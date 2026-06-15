@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KeywordMoneyMaker — AI SEO Content Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #F5C542;
+    --gold-dark: #D4A017;
+    --black: #080A0F;
+    --dark: #0F1218;
+    --card: #141820;
+    --border: #1E2535;
+    --text: #E8EDF5;
+    --muted: #7A8BA0;
+    --green: #22C55E;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* LANGUAGE SELECTOR */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(8,10,15,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  .lang-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .lang-selector select {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    padding: 7px 32px 7px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A8BA0' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    min-width: 180px;
+  }
+
+  .lang-globe { font-size: 16px; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 24px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(245,197,66,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content { max-width: 780px; position: relative; z-index: 1; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,197,66,0.1);
+    border: 1px solid rgba(245,197,66,0.3);
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(36px, 7vw, 72px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--gold), #F9A825);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2.5vw, 20px);
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px 32px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-primary:hover { background: var(--gold-dark); transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 14px 32px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 60px auto;
+    max-width: 700px;
+  }
+
+  .stat {
+    background: var(--card);
+    padding: 28px 20px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label { font-size: 13px; color: var(--muted); }
+
+  /* FEATURES */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+
+  .section-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 56px;
+    line-height: 1.6;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .feature-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    transition: border-color 0.2s;
+  }
+
+  .feature-card:hover { border-color: rgba(245,197,66,0.3); }
+
+  .feature-icon {
+    width: 48px; height: 48px;
+    background: rgba(245,197,66,0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+
+  .feature-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .feature-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+  }
+
+  .pricing-card.popular {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(245,197,66,0.06), var(--card));
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--black);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    letter-spacing: 0.06em;
+  }
+
+  .price-name {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .price-amount {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .price-amount span { font-size: 20px; color: var(--muted); }
+  .price-period { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+
+  .price-features { list-style: none; margin-bottom: 28px; }
+
+  .price-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text);
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .price-features li:last-child { border-bottom: none; }
+  .check { color: var(--green); font-size: 16px; }
+
+  /* HOW IT WORKS */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+    position: relative;
+  }
+
+  .step { text-align: center; }
+
+  .step-num {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: rgba(245,197,66,0.1);
+    border: 2px solid rgba(245,197,66,0.3);
+    color: var(--gold);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+  }
+
+  .step-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .step-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: linear-gradient(135deg, rgba(245,197,66,0.08), rgba(245,197,66,0.02));
+    border: 1px solid rgba(245,197,66,0.2);
+    border-radius: 20px;
+    padding: 64px 40px;
+    text-align: center;
+    margin: 0 24px 80px;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 24px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: 1fr; }
+    .hero-cta { flex-direction: column; align-items: center; }
+    .cta-section { padding: 40px 24px; }
+  }
+
+  [dir="rtl"] { text-align: right; }
+</style>
+</head>
+<body>
+
+<!-- LANGUAGE BAR -->
+<nav class="lang-bar">
+  <div class="logo">💰 KeywordMoneyMaker</div>
+  <div class="lang-selector">
+    <span class="lang-globe">🌍</span>
+    <select id="langSelect" onchange="setLang(this.value)">
+      <option value="en">🇬🇧 English</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="es">🇪🇸 Español</option>
+      <option value="de">🇩🇪 Deutsch</option>
+      <option value="nl">🇳🇱 Nederlands</option>
+      <option value="it">🇮🇹 Italiano</option>
+      <option value="pt">🇵🇹 Português</option>
+      <option value="ar">🇸🇦 العربية</option>
+      <option value="zh">🇨🇳 中文</option>
+      <option value="ja">🇯🇵 日本語</option>
+      <option value="ko">🇰🇷 한국어</option>
+      <option value="ru">🇷🇺 Русский</option>
+      <option value="tr">🇹🇷 Türkçe</option>
+      <option value="pl">🇵🇱 Polski</option>
+      <option value="sv">🇸🇪 Svenska</option>
+      <option value="da">🇩🇰 Dansk</option>
+      <option value="fi">🇫🇮 Suomi</option>
+      <option value="no">🇳🇴 Norsk</option>
+      <option value="hi">🇮🇳 हिन्दी</option>
+      <option value="id">🇮🇩 Bahasa Indonesia</option>
+    </select>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">✨ <span data-t="badge"></span></div>
+    <h1><span data-t="hero_title_1"></span><br><span data-t="hero_title_2"></span></h1>
+    <p class="hero-sub" data-t="hero_sub"></p>
+    <div class="hero-cta">
+      <a href="#pricing" class="btn-primary">🚀 <span data-t="cta_start"></span></a>
+      <a href="#how" class="btn-secondary">▶ <span data-t="cta_demo"></span></a>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">50+</div>
+        <div class="stat-label" data-t="stat_articles"></div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">€15k</div>
+        <div class="stat-label" data-t="stat_revenue"></div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">10x</div>
+        <div class="stat-label" data-t="stat_faster"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-label" data-t="features_label"></div>
+  <h2 class="section-title" data-t="features_title"></h2>
+  <p class="section-sub" data-t="features_sub"></p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <div class="feature-title" data-t="f1_title"></div>
+      <div class="feature-desc" data-t="f1_desc"></div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <div class="feature-title" data-t="f2_title"></div>
+      <div class="feature-desc" data-t="f2_desc"></div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title" data-t="f3_title"></div>
+      <div class="feature-desc" data-t="f3_desc"></div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌍</div>
+      <div class="feature-title" data-t="f4_title"></div>
+      <div class="feature-desc" data-t="f4_desc"></div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <div class="feature-title" data-t="f5_title"></div>
+      <div class="feature-desc" data-t="f5_desc"></div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title" data-t="f6_title"></div>
+      <div class="feature-desc" data-t="f6_desc"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="section-label" data-t="how_label"></div>
+  <h2 class="section-title" data-t="how_title"></h2>
+  <p class="section-sub" data-t="how_sub"></p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title" data-t="s1_title"></div>
+      <div class="step-desc" data-t="s1_desc"></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title" data-t="s2_title"></div>
+      <div class="step-desc" data-t="s2_desc"></div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title" data-t="s3_title"></div>
+      <div class="step-desc" data-t="s3_desc"></div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-title" data-t="s4_title"></div>
+      <div class="step-desc" data-t="s4_desc"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="section-label" data-t="pricing_label"></div>
+  <h2 class="section-title" data-t="pricing_title"></h2>
+  <p class="section-sub" data-t="pricing_sub"></p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="price-name" data-t="plan1_name"></div>
+      <div class="price-amount">€29<span>/mo</span></div>
+      <div class="price-period" data-t="plan1_period"></div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> <span data-t="plan1_f1"></span></li>
+        <li><span class="check">✓</span> <span data-t="plan1_f2"></span></li>
+        <li><span class="check">✓</span> <span data-t="plan1_f3"></span></li>
+      </ul>
+      <a href="#" class="btn-secondary" style="width:100%;justify-content:center;" data-t="plan_btn"></a>
+    </div>
+
+    <div class="pricing-card popular">
+      <div class="popular-badge" data-t="popular"></div>
+      <div class="price-name" data-t="plan2_name"></div>
+      <div class="price-amount">€79<span>/mo</span></div>
+      <div class="price-period" data-t="plan2_period"></div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> <span data-t="plan2_f1"></span></li>
+        <li><span class="check">✓</span> <span data-t="plan2_f2"></span></li>
+        <li><span class="check">✓</span> <span data-t="plan2_f3"></span></li>
+        <li><span class="check">✓</span> <span data-t="plan2_f4"></span></li>
+      </ul>
+      <a href="#" class="btn-primary" style="width:100%;justify-content:center;" data-t="plan_btn"></a>
+    </div>
+
+    <div class="pricing-card">
+      <div class="price-name" data-t="plan3_name"></div>
+      <div class="price-amount">€199<span>/mo</span></div>
+      <div class="price-period" data-t="plan3_period"></div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> <span data-t="plan3_f1"></span></li>
+        <li><span class="check">✓</span> <span data-t="plan3_f2"></span></li>
+        <li><span class="check">✓</span> <span data-t="plan3_f3"></span></li>
+        <li><span class="check">✓</span> <span data-t="plan3_f4"></span></li>
+      </ul>
+      <a href="#" class="btn-secondary" style="width:100%;justify-content:center;" data-t="plan_btn"></a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2 class="section-title" data-t="cta_title"></h2>
+  <p class="section-sub" style="margin:0 auto 32px;" data-t="cta_sub"></p>
+  <a href="#pricing" class="btn-primary" style="font-size:16px;padding:16px 40px;">🚀 <span data-t="cta_start"></span></a>
+</div>
+
+<footer>
+  <p>© 2025 KeywordMoneyMaker — <span data-t="footer"></span></p>
+</footer>
+
+<script>
+const TRANSLATIONS = {
+  en: {
+    badge: "AI-Powered SEO Content Generator",
+    hero_title_1: "Generate 50+ SEO Articles",
+    hero_title_2: "Every Month with AI",
+    hero_sub: "Turn keywords into revenue. Our AI writes optimized articles that rank on Google and attract paying customers — automatically.",
+    cta_start: "Start Free Trial",
+    cta_demo: "Watch Demo",
+    stat_articles: "Articles / month",
+    stat_revenue: "Monthly potential",
+    stat_faster: "Faster than humans",
+    features_label: "Features",
+    features_title: "Everything you need to dominate SEO",
+    features_sub: "One platform to generate, optimize and publish content that ranks and converts.",
+    f1_title: "AI Content Generation",
+    f1_desc: "Generate complete, SEO-optimized articles in seconds. Our AI understands search intent and writes content that Google loves.",
+    f2_title: "Keyword Research",
+    f2_desc: "Find profitable keywords with low competition. Target the exact searches your customers make.",
+    f3_title: "Bulk Generation",
+    f3_desc: "Create 50+ articles in one click. Scale your content production without scaling your team.",
+    f4_title: "Multilingual Content",
+    f4_desc: "Generate content in 20+ languages. Reach customers worldwide with perfectly localized articles.",
+    f5_title: "Revenue Tracking",
+    f5_desc: "See exactly which articles generate revenue. Track conversions and ROI from your content.",
+    f6_title: "Analytics Dashboard",
+    f6_desc: "Monitor rankings, traffic and conversions in real time. Know what works and double down on it.",
+    how_label: "How it works",
+    how_title: "From keyword to revenue in 4 steps",
+    how_sub: "Simple, fast, and completely automated.",
+    s1_title: "Enter your keyword",
+    s1_desc: "Type your target keyword or topic. Our AI analyzes competition and search intent instantly.",
+    s2_title: "AI generates content",
+    s2_desc: "Get a complete, optimized article in seconds — with title, meta description, headings and body.",
+    s3_title: "Publish automatically",
+    s3_desc: "Publish directly to your website or download the content. No copy-paste needed.",
+    s4_title: "Watch your traffic grow",
+    s4_desc: "Track your rankings improve week by week as Google indexes your optimized content.",
+    pricing_label: "Pricing",
+    pricing_title: "Simple, transparent pricing",
+    pricing_sub: "Start free. Scale as you grow. No hidden fees.",
+    popular: "⭐ MOST POPULAR",
+    plan1_name: "STARTER",
+    plan1_period: "Perfect to get started",
+    plan1_f1: "10 articles / month",
+    plan1_f2: "5 languages",
+    plan1_f3: "Basic analytics",
+    plan2_name: "GROWTH",
+    plan2_period: "Best for growing businesses",
+    plan2_f1: "50 articles / month",
+    plan2_f2: "20 languages",
+    plan2_f3: "Advanced analytics",
+    plan2_f4: "Priority support",
+    plan3_name: "AGENCY",
+    plan3_period: "For agencies and enterprises",
+    plan3_f1: "Unlimited articles",
+    plan3_f2: "All languages",
+    plan3_f3: "White label",
+    plan3_f4: "Dedicated account manager",
+    plan_btn: "Get Started",
+    cta_title: "Ready to make money with content?",
+    cta_sub: "Join thousands of businesses already using KeywordMoneyMaker to generate passive income from SEO.",
+    footer: "All rights reserved. Built with ❤️ and AI."
+  },
+  fr: {
+    badge: "Générateur de Contenu SEO par IA",
+    hero_title_1: "Générez 50+ Articles SEO",
+    hero_title_2: "Chaque Mois avec l'IA",
+    hero_sub: "Transformez des mots-clés en revenus. Notre IA rédige des articles optimisés qui se positionnent sur Google et attirent des clients — automatiquement.",
+    cta_start: "Essai Gratuit",
+    cta_demo: "Voir la Démo",
+    stat_articles: "Articles / mois",
+    stat_revenue: "Potentiel mensuel",
+    stat_faster: "Plus rapide qu'un humain",
+    features_label: "Fonctionnalités",
+    features_title: "Tout ce qu'il faut pour dominer le SEO",
+    features_sub: "Une seule plateforme pour générer, optimiser et publier du contenu qui classe et convertit.",
+    f1_title: "Génération IA",
+    f1_desc: "Créez des articles complets et optimisés en quelques secondes. Notre IA comprend l'intention de recherche.",
+    f2_title: "Recherche de Mots-clés",
+    f2_desc: "Trouvez des mots-clés rentables avec peu de concurrence. Ciblez exactement ce que cherchent vos clients.",
+    f3_title: "Génération en Masse",
+    f3_desc: "Créez 50+ articles en un clic. Multipliez votre production de contenu sans agrandir votre équipe.",
+    f4_title: "Contenu Multilingue",
+    f4_desc: "Générez du contenu en 20+ langues. Touchez des clients partout dans le monde.",
+    f5_title: "Suivi des Revenus",
+    f5_desc: "Voyez exactement quels articles génèrent des revenus. Suivez les conversions et le ROI.",
+    f6_title: "Tableau de Bord",
+    f6_desc: "Surveillez les classements, le trafic et les conversions en temps réel.",
+    how_label: "Comment ça marche",
+    how_title: "Du mot-clé au revenu en 4 étapes",
+    how_sub: "Simple, rapide, et entièrement automatisé.",
+    s1_title: "Entrez votre mot-clé",
+    s1_desc: "Tapez votre mot-clé cible. Notre IA analyse la concurrence et l'intention de recherche instantanément.",
+    s2_title: "L'IA génère le contenu",
+    s2_desc: "Obtenez un article complet et optimisé en quelques secondes — titre, méta description, titres et corps.",
+    s3_title: "Publiez automatiquement",
+    s3_desc: "Publiez directement sur votre site ou téléchargez le contenu. Aucun copier-coller nécessaire.",
+    s4_title: "Regardez votre trafic croître",
+    s4_desc: "Suivez l'amélioration de vos classements semaine après semaine.",
+    pricing_label: "Tarifs",
+    pricing_title: "Tarification simple et transparente",
+    pricing_sub: "Commencez gratuitement. Évoluez selon votre croissance. Sans frais cachés.",
+    popular: "⭐ LE PLUS POPULAIRE",
+    plan1_name: "DÉBUTANT",
+    plan1_period: "Parfait pour commencer",
+    plan1_f1: "10 articles / mois",
+    plan1_f2: "5 langues",
+    plan1_f3: "Analyses de base",
+    plan2_name: "CROISSANCE",
+    plan2_period: "Idéal pour les entreprises en croissance",
+    plan2_f1: "50 articles / mois",
+    plan2_f2: "20 langues",
+    plan2_f3: "Analyses avancées",
+    plan2_f4: "Support prioritaire",
+    plan3_name: "AGENCE",
+    plan3_period: "Pour les agences et entreprises",
+    plan3_f1: "Articles illimités",
+    plan3_f2: "Toutes les langues",
+    plan3_f3: "Marque blanche",
+    plan3_f4: "Gestionnaire de compte dédié",
+    plan_btn: "Commencer",
+    cta_title: "Prêt à gagner de l'argent avec le contenu ?",
+    cta_sub: "Rejoignez des milliers d'entreprises qui utilisent déjà KeywordMoneyMaker pour générer des revenus passifs.",
+    footer: "Tous droits réservés. Créé avec ❤️ et l'IA."
+  },
+  es: { badge:"Generador de Contenido SEO con IA", hero_title_1:"Genera 50+ Artículos SEO", hero_title_2:"Cada Mes con IA", hero_sub:"Convierte palabras clave en ingresos. Nuestra IA escribe artículos optimizados que posicionan en Google.", cta_start:"Prueba Gratuita", cta_demo:"Ver Demo", stat_articles:"Artículos / mes", stat_revenue:"Potencial mensual", stat_faster:"Más rápido que humanos", features_label:"Características", features_title:"Todo lo que necesitas para dominar el SEO", features_sub:"Una plataforma para generar, optimizar y publicar contenido.", f1_title:"Generación con IA", f1_desc:"Crea artículos completos y optimizados en segundos.", f2_title:"Investigación de Palabras Clave", f2_desc:"Encuentra palabras clave rentables con poca competencia.", f3_title:"Generación Masiva", f3_desc:"Crea 50+ artículos con un clic.", f4_title:"Contenido Multilingüe", f4_desc:"Genera contenido en 20+ idiomas.", f5_title:"Seguimiento de Ingresos", f5_desc:"Ve exactamente qué artículos generan ingresos.", f6_title:"Panel de Análisis", f6_desc:"Monitorea rankings, tráfico y conversiones en tiempo real.", how_label:"Cómo funciona", how_title:"De palabra clave a ingresos en 4 pasos", how_sub:"Simple, rápido y completamente automatizado.", s1_title:"Ingresa tu palabra clave", s1_desc:"Escribe tu palabra clave objetivo.", s2_title:"La IA genera el contenido", s2_desc:"Obtén un artículo completo en segundos.", s3_title:"Publica automáticamente", s3_desc:"Publica directamente en tu sitio web.", s4_title:"Mira crecer tu tráfico", s4_desc:"Rastrea tus mejoras de ranking semana a semana.", pricing_label:"Precios", pricing_title:"Precios simples y transparentes", pricing_sub:"Comienza gratis. Escala según tu crecimiento.", popular:"⭐ MÁS POPULAR", plan1_name:"INICIO", plan1_period:"Perfecto para empezar", plan1_f1:"10 artículos / mes", plan1_f2:"5 idiomas", plan1_f3:"Análisis básico", plan2_name:"CRECIMIENTO", plan2_period:"Para negocios en crecimiento", plan2_f1:"50 artículos / mes", plan2_f2:"20 idiomas", plan2_f3:"Análisis avanzado", plan2_f4:"Soporte prioritario", plan3_name:"AGENCIA", plan3_period:"Para agencias y empresas", plan3_f1:"Artículos ilimitados", plan3_f2:"Todos los idiomas", plan3_f3:"Marca blanca", plan3_f4:"Gestor de cuenta dedicado", plan_btn:"Comenzar", cta_title:"¿Listo para ganar dinero con contenido?", cta_sub:"Únete a miles de empresas que ya usan KeywordMoneyMaker.", footer:"Todos los derechos reservados. Hecho con ❤️ e IA." },
+  de: { badge:"KI-gestützter SEO-Content-Generator", hero_title_1:"Generiere 50+ SEO-Artikel", hero_title_2:"Jeden Monat mit KI", hero_sub:"Verwandle Keywords in Einnahmen. Unsere KI schreibt optimierte Artikel, die bei Google ranken.", cta_start:"Kostenlos starten", cta_demo:"Demo ansehen", stat_articles:"Artikel / Monat", stat_revenue:"Monatliches Potenzial", stat_faster:"Schneller als Menschen", features_label:"Funktionen", features_title:"Alles was du brauchst, um SEO zu dominieren", features_sub:"Eine Plattform zum Generieren, Optimieren und Veröffentlichen von Inhalten.", f1_title:"KI-Inhaltserstellung", f1_desc:"Erstelle vollständige, optimierte Artikel in Sekunden.", f2_title:"Keyword-Recherche", f2_desc:"Finde profitable Keywords mit geringem Wettbewerb.", f3_title:"Massenproduktion", f3_desc:"Erstelle 50+ Artikel mit einem Klick.", f4_title:"Mehrsprachige Inhalte", f4_desc:"Generiere Inhalte in 20+ Sprachen.", f5_title:"Umsatz-Tracking", f5_desc:"Sieh genau, welche Artikel Umsatz generieren.", f6_title:"Analyse-Dashboard", f6_desc:"Überwache Rankings, Traffic und Conversions in Echtzeit.", how_label:"So funktioniert es", how_title:"Vom Keyword zum Umsatz in 4 Schritten", how_sub:"Einfach, schnell und vollautomatisch.", s1_title:"Keyword eingeben", s1_desc:"Gib dein Ziel-Keyword ein.", s2_title:"KI erstellt Inhalt", s2_desc:"Erhalte einen vollständigen Artikel in Sekunden.", s3_title:"Automatisch veröffentlichen", s3_desc:"Veröffentliche direkt auf deiner Website.", s4_title:"Beobachte dein Wachstum", s4_desc:"Verfolge deine Ranking-Verbesserungen Woche für Woche.", pricing_label:"Preise", pricing_title:"Einfache, transparente Preise", pricing_sub:"Kostenlos starten. Nach Bedarf skalieren.", popular:"⭐ AM BELIEBTESTEN", plan1_name:"STARTER", plan1_period:"Perfekt für den Einstieg", plan1_f1:"10 Artikel / Monat", plan1_f2:"5 Sprachen", plan1_f3:"Basis-Analysen", plan2_name:"WACHSTUM", plan2_period:"Für wachsende Unternehmen", plan2_f1:"50 Artikel / Monat", plan2_f2:"20 Sprachen", plan2_f3:"Erweiterte Analysen", plan2_f4:"Prioritäts-Support", plan3_name:"AGENTUR", plan3_period:"Für Agenturen und Unternehmen", plan3_f1:"Unbegrenzte Artikel", plan3_f2:"Alle Sprachen", plan3_f3:"White Label", plan3_f4:"Dedizierter Account Manager", plan_btn:"Jetzt starten", cta_title:"Bereit, mit Inhalten Geld zu verdienen?", cta_sub:"Schließe dich Tausenden von Unternehmen an, die bereits KeywordMoneyMaker nutzen.", footer:"Alle Rechte vorbehalten. Mit ❤️ und KI erstellt." },
+  nl: { badge:"AI-aangedreven SEO Content Generator", hero_title_1:"Genereer 50+ SEO Artikelen", hero_title_2:"Elke Maand met AI", hero_sub:"Verander zoekwoorden in inkomsten. Onze AI schrijft geoptimaliseerde artikelen die scoren bij Google.", cta_start:"Gratis Starten", cta_demo:"Demo Bekijken", stat_articles:"Artikelen / maand", stat_revenue:"Maandelijks potentieel", stat_faster:"Sneller dan mensen", features_label:"Functies", features_title:"Alles wat je nodig hebt om SEO te domineren", features_sub:"Één platform om content te genereren, optimaliseren en publiceren.", f1_title:"AI Content Generatie", f1_desc:"Maak complete, geoptimaliseerde artikelen in seconden.", f2_title:"Zoekwoord Onderzoek", f2_desc:"Vind winstgevende zoekwoorden met weinig concurrentie.", f3_title:"Bulk Generatie", f3_desc:"Maak 50+ artikelen met één klik.", f4_title:"Meertalige Content", f4_desc:"Genereer content in 20+ talen.", f5_title:"Omzet Tracking", f5_desc:"Zie precies welke artikelen omzet genereren.", f6_title:"Analytics Dashboard", f6_desc:"Monitor rankings, verkeer en conversies in realtime.", how_label:"Hoe het werkt", how_title:"Van zoekwoord naar omzet in 4 stappen", how_sub:"Eenvoudig, snel en volledig geautomatiseerd.", s1_title:"Voer je zoekwoord in", s1_desc:"Typ je doelzoekwoord in.", s2_title:"AI genereert content", s2_desc:"Ontvang een volledig artikel in seconden.", s3_title:"Automatisch publiceren", s3_desc:"Publiceer direct op je website.", s4_title:"Zie je verkeer groeien", s4_desc:"Volg je ranking verbeteringen week na week.", pricing_label:"Prijzen", pricing_title:"Eenvoudige, transparante prijzen", pricing_sub:"Gratis starten. Schaal naar behoefte.", popular:"⭐ MEEST POPULAIR", plan1_name:"STARTER", plan1_period:"Perfect om te beginnen", plan1_f1:"10 artikelen / maand", plan1_f2:"5 talen", plan1_f3:"Basis analyses", plan2_name:"GROEI", plan2_period:"Voor groeiende bedrijven", plan2_f1:"50 artikelen / maand", plan2_f2:"20 talen", plan2_f3:"Geavanceerde analyses", plan2_f4:"Prioriteit support", plan3_name:"BUREAU", plan3_period:"Voor bureaus en ondernemingen", plan3_f1:"Onbeperkte artikelen", plan3_f2:"Alle talen", plan3_f3:"White label", plan3_f4:"Toegewijde accountmanager", plan_btn:"Aan de slag", cta_title:"Klaar om geld te verdienen met content?", cta_sub:"Sluit je aan bij duizenden bedrijven die al KeywordMoneyMaker gebruiken.", footer:"Alle rechten voorbehouden. Gemaakt met ❤️ en AI." },
+  ar: { badge:"مولّد محتوى SEO بالذكاء الاصطناعي", hero_title_1:"أنشئ أكثر من 50 مقالة SEO", hero_title_2:"كل شهر بالذكاء الاصطناعي", hero_sub:"حوّل الكلمات المفتاحية إلى إيرادات. يكتب الذكاء الاصطناعي مقالات محسّنة تظهر في جوجل.", cta_start:"ابدأ مجاناً", cta_demo:"مشاهدة العرض", stat_articles:"مقالة / شهر", stat_revenue:"إمكانات شهرية", stat_faster:"أسرع من البشر", features_label:"الميزات", features_title:"كل ما تحتاجه للسيطرة على SEO", features_sub:"منصة واحدة لإنشاء المحتوى وتحسينه ونشره.", f1_title:"توليد المحتوى بالذكاء الاصطناعي", f1_desc:"أنشئ مقالات كاملة ومحسّنة في ثوانٍ.", f2_title:"بحث الكلمات المفتاحية", f2_desc:"اعثر على كلمات مفتاحية مربحة بمنافسة منخفضة.", f3_title:"التوليد بالجملة", f3_desc:"أنشئ أكثر من 50 مقالة بنقرة واحدة.", f4_title:"محتوى متعدد اللغات", f4_desc:"أنشئ محتوى بأكثر من 20 لغة.", f5_title:"تتبع الإيرادات", f5_desc:"اعرف بالضبط أي المقالات تولّد الإيرادات.", f6_title:"لوحة التحليلات", f6_desc:"راقب التصنيفات والحركة والتحويلات في الوقت الفعلي.", how_label:"كيف يعمل", how_title:"من الكلمة المفتاحية إلى الإيراد في 4 خطوات", how_sub:"بسيط وسريع ومؤتمت بالكامل.", s1_title:"أدخل كلمتك المفتاحية", s1_desc:"اكتب كلمتك المفتاحية المستهدفة.", s2_title:"الذكاء الاصطناعي يولّد المحتوى", s2_desc:"احصل على مقالة كاملة في ثوانٍ.", s3_title:"النشر التلقائي", s3_desc:"انشر مباشرة على موقعك.", s4_title:"شاهد حركتك تنمو", s4_desc:"تابع تحسينات تصنيفك أسبوعاً بأسبوع.", pricing_label:"الأسعار", pricing_title:"أسعار بسيطة وشفافة", pricing_sub:"ابدأ مجاناً. تطور مع نموك.", popular:"⭐ الأكثر شعبية", plan1_name:"مبتدئ", plan1_period:"مثالي للبداية", plan1_f1:"10 مقالات / شهر", plan1_f2:"5 لغات", plan1_f3:"تحليلات أساسية", plan2_name:"نمو", plan2_period:"للأعمال المتنامية", plan2_f1:"50 مقالة / شهر", plan2_f2:"20 لغة", plan2_f3:"تحليلات متقدمة", plan2_f4:"دعم أولوية", plan3_name:"وكالة", plan3_period:"للوكالات والشركات", plan3_f1:"مقالات غير محدودة", plan3_f2:"جميع اللغات", plan3_f3:"علامة بيضاء", plan3_f4:"مدير حساب مخصص", plan_btn:"ابدأ الآن", cta_title:"هل أنت مستعد لكسب المال بالمحتوى؟", cta_sub:"انضم إلى آلاف الشركات التي تستخدم KeywordMoneyMaker.", footer:"جميع الحقوق محفوظة. بُني بـ ❤️ والذكاء الاصطناعي." },
+  zh: { badge:"AI驱动的SEO内容生成器", hero_title_1:"每月生成50+篇SEO文章", hero_title_2:"用AI实现", hero_sub:"将关键词转化为收入。我们的AI撰写优化文章，在Google上排名靠前。", cta_start:"免费开始", cta_demo:"观看演示", stat_articles:"文章/月", stat_revenue:"月收入潜力", stat_faster:"比人类快10倍", features_label:"功能", features_title:"一切所需，主导SEO", features_sub:"一个平台，生成、优化和发布内容。", f1_title:"AI内容生成", f1_desc:"几秒内创建完整优化的文章。", f2_title:"关键词研究", f2_desc:"找到竞争少的盈利关键词。", f3_title:"批量生成", f3_desc:"一键创建50+篇文章。", f4_title:"多语言内容", f4_desc:"生成20+种语言的内容。", f5_title:"收入追踪", f5_desc:"准确了解哪些文章产生收入。", f6_title:"分析仪表板", f6_desc:"实时监控排名、流量和转化。", how_label:"工作原理", how_title:"4步从关键词到收入", how_sub:"简单、快速、完全自动化。", s1_title:"输入关键词", s1_desc:"输入目标关键词。", s2_title:"AI生成内容", s2_desc:"几秒内获得完整文章。", s3_title:"自动发布", s3_desc:"直接发布到您的网站。", s4_title:"见证流量增长", s4_desc:"逐周跟踪排名改善。", pricing_label:"定价", pricing_title:"简单透明的定价", pricing_sub:"免费开始。按需扩展。", popular:"⭐ 最受欢迎", plan1_name:"入门版", plan1_period:"适合入门", plan1_f1:"10篇文章/月", plan1_f2:"5种语言", plan1_f3:"基础分析", plan2_name:"成长版", plan2_period:"适合成长中的企业", plan2_f1:"50篇文章/月", plan2_f2:"20种语言", plan2_f3:"高级分析", plan2_f4:"优先支持", plan3_name:"机构版", plan3_period:"适合机构和企业", plan3_f1:"无限文章", plan3_f2:"所有语言", plan3_f3:"白标", plan3_f4:"专属客户经理", plan_btn:"立即开始", cta_title:"准备好用内容赚钱了吗？", cta_sub:"加入数千家已使用KeywordMoneyMaker的企业。", footer:"版权所有。用❤️和AI构建。" },
+  ja: { badge:"AI搭載SEOコンテンツジェネレーター", hero_title_1:"毎月50以上のSEO記事を生成", hero_title_2:"AIで実現", hero_sub:"キーワードを収益に変換。AIがGoogleでランクインする最適化記事を自動作成。", cta_start:"無料で始める", cta_demo:"デモを見る", stat_articles:"記事/月", stat_revenue:"月間収益ポテンシャル", stat_faster:"人間より10倍速い", features_label:"機能", features_title:"SEOを制覇するために必要なすべて", features_sub:"コンテンツを生成、最適化、公開するためのプラットフォーム。", f1_title:"AIコンテンツ生成", f1_desc:"数秒で完全最適化記事を作成。", f2_title:"キーワードリサーチ", f2_desc:"競合の少ない収益性の高いキーワードを発見。", f3_title:"一括生成", f3_desc:"ワンクリックで50以上の記事を作成。", f4_title:"多言語コンテンツ", f4_desc:"20以上の言語でコンテンツを生成。", f5_title:"収益トラッキング", f5_desc:"どの記事が収益を生むか正確に把握。", f6_title:"分析ダッシュボード", f6_desc:"ランキング、トラフィック、コンバージョンをリアルタイム監視。", how_label:"使い方", how_title:"キーワードから収益まで4ステップ", how_sub:"シンプル、高速、完全自動化。", s1_title:"キーワードを入力", s1_desc:"ターゲットキーワードを入力。", s2_title:"AIがコンテンツ生成", s2_desc:"数秒で完全な記事を取得。", s3_title:"自動公開", s3_desc:"ウェブサイトに直接公開。", s4_title:"トラフィックの成長を見る", s4_desc:"週ごとのランキング改善を追跡。", pricing_label:"料金", pricing_title:"シンプルで透明な料金", pricing_sub:"無料で開始。成長に合わせてスケール。", popular:"⭐ 最も人気", plan1_name:"スターター", plan1_period:"始めるのに最適", plan1_f1:"10記事/月", plan1_f2:"5言語", plan1_f3:"基本分析", plan2_name:"グロース", plan2_period:"成長企業向け", plan2_f1:"50記事/月", plan2_f2:"20言語", plan2_f3:"高度な分析", plan2_f4:"優先サポート", plan3_name:"エージェンシー", plan3_period:"代理店・企業向け", plan3_f1:"無制限記事", plan3_f2:"全言語", plan3_f3:"ホワイトラベル", plan3_f4:"専任アカウントマネージャー", plan_btn:"始める", cta_title:"コンテンツでお金を稼ぐ準備はできましたか？", cta_sub:"すでにKeywordMoneyMakerを使用している数千の企業に参加しましょう。", footer:"全著作権所有。❤️とAIで構築。" },
+  pt: { badge:"Gerador de Conteúdo SEO com IA", hero_title_1:"Gere 50+ Artigos SEO", hero_title_2:"Todo Mês com IA", hero_sub:"Transforme palavras-chave em receita. Nossa IA escreve artigos otimizados que rankeiam no Google.", cta_start:"Começar Grátis", cta_demo:"Ver Demo", stat_articles:"Artigos / mês", stat_revenue:"Potencial mensal", stat_faster:"Mais rápido que humanos", features_label:"Recursos", features_title:"Tudo que você precisa para dominar o SEO", features_sub:"Uma plataforma para gerar, otimizar e publicar conteúdo.", f1_title:"Geração de Conteúdo com IA", f1_desc:"Crie artigos completos e otimizados em segundos.", f2_title:"Pesquisa de Palavras-chave", f2_desc:"Encontre palavras-chave lucrativas com baixa concorrência.", f3_title:"Geração em Massa", f3_desc:"Crie 50+ artigos com um clique.", f4_title:"Conteúdo Multilíngue", f4_desc:"Gere conteúdo em 20+ idiomas.", f5_title:"Rastreamento de Receita", f5_desc:"Veja exatamente quais artigos geram receita.", f6_title:"Painel de Análise", f6_desc:"Monitore rankings, tráfego e conversões em tempo real.", how_label:"Como funciona", how_title:"Da palavra-chave à receita em 4 passos", how_sub:"Simples, rápido e completamente automatizado.", s1_title:"Digite sua palavra-chave", s1_desc:"Digite sua palavra-chave alvo.", s2_title:"IA gera o conteúdo", s2_desc:"Obtenha um artigo completo em segundos.", s3_title:"Publicar automaticamente", s3_desc:"Publique diretamente no seu site.", s4_title:"Veja seu tráfego crescer", s4_desc:"Acompanhe as melhorias de ranking semana a semana.", pricing_label:"Preços", pricing_title:"Preços simples e transparentes", pricing_sub:"Comece grátis. Escale conforme cresce.", popular:"⭐ MAIS POPULAR", plan1_name:"INICIANTE", plan1_period:"Perfeito para começar", plan1_f1:"10 artigos / mês", plan1_f2:"5 idiomas", plan1_f3:"Análises básicas", plan2_name:"CRESCIMENTO", plan2_period:"Para empresas em crescimento", plan2_f1:"50 artigos / mês", plan2_f2:"20 idiomas", plan2_f3:"Análises avançadas", plan2_f4:"Suporte prioritário", plan3_name:"AGÊNCIA", plan3_period:"Para agências e empresas", plan3_f1:"Artigos ilimitados", plan3_f2:"Todos os idiomas", plan3_f3:"White label", plan3_f4:"Gerente de conta dedicado", plan_btn:"Começar", cta_title:"Pronto para ganhar dinheiro com conteúdo?", cta_sub:"Junte-se a milhares de empresas que já usam KeywordMoneyMaker.", footer:"Todos os direitos reservados. Feito com ❤️ e IA." },
+  it: { badge:"Generatore di Contenuti SEO con IA", hero_title_1:"Genera 50+ Articoli SEO", hero_title_2:"Ogni Mese con l'IA", hero_sub:"Trasforma le parole chiave in entrate. La nostra IA scrive articoli ottimizzati che si posizionano su Google.", cta_start:"Inizia Gratis", cta_demo:"Guarda Demo", stat_articles:"Articoli / mese", stat_revenue:"Potenziale mensile", stat_faster:"Più veloce degli umani", features_label:"Funzionalità", features_title:"Tutto ciò che serve per dominare la SEO", features_sub:"Una piattaforma per generare, ottimizzare e pubblicare contenuti.", f1_title:"Generazione Contenuti IA", f1_desc:"Crea articoli completi e ottimizzati in pochi secondi.", f2_title:"Ricerca Parole Chiave", f2_desc:"Trova parole chiave redditizie con poca concorrenza.", f3_title:"Generazione Massiva", f3_desc:"Crea 50+ articoli con un clic.", f4_title:"Contenuto Multilingue", f4_desc:"Genera contenuti in 20+ lingue.", f5_title:"Tracciamento Entrate", f5_desc:"Vedi esattamente quali articoli generano entrate.", f6_title:"Dashboard Analisi", f6_desc:"Monitora ranking, traffico e conversioni in tempo reale.", how_label:"Come funziona", how_title:"Dalla parola chiave alle entrate in 4 passi", how_sub:"Semplice, veloce e completamente automatizzato.", s1_title:"Inserisci la tua parola chiave", s1_desc:"Digita la tua parola chiave target.", s2_title:"L'IA genera il contenuto", s2_desc:"Ottieni un articolo completo in pochi secondi.", s3_title:"Pubblica automaticamente", s3_desc:"Pubblica direttamente sul tuo sito.", s4_title:"Guarda crescere il tuo traffico", s4_desc:"Monitora i miglioramenti del ranking settimana per settimana.", pricing_label:"Prezzi", pricing_title:"Prezzi semplici e trasparenti", pricing_sub:"Inizia gratis. Scala con la tua crescita.", popular:"⭐ PIÙ POPOLARE", plan1_name:"STARTER", plan1_period:"Perfetto per iniziare", plan1_f1:"10 articoli / mese", plan1_f2:"5 lingue", plan1_f3:"Analisi di base", plan2_name:"CRESCITA", plan2_period:"Per aziende in crescita", plan2_f1:"50 articoli / mese", plan2_f2:"20 lingue", plan2_f3:"Analisi avanzate", plan2_f4:"Supporto prioritario", plan3_name:"AGENZIA", plan3_period:"Per agenzie e imprese", plan3_f1:"Articoli illimitati", plan3_f2:"Tutte le lingue", plan3_f3:"White label", plan3_f4:"Account manager dedicato", plan_btn:"Inizia", cta_title:"Pronto a guadagnare con i contenuti?", cta_sub:"Unisciti a migliaia di aziende che usano già KeywordMoneyMaker.", footer:"Tutti i diritti riservati. Costruito con ❤️ e IA." },
+  ru: { badge:"Генератор SEO-контента на основе ИИ", hero_title_1:"Генерируй 50+ SEO статей", hero_title_2:"Каждый месяц с ИИ", hero_sub:"Превращай ключевые слова в доход. Наш ИИ пишет оптимизированные статьи, которые ранжируются в Google.", cta_start:"Начать бесплатно", cta_demo:"Смотреть демо", stat_articles:"Статей / месяц", stat_revenue:"Ежемесячный потенциал", stat_faster:"Быстрее людей", features_label:"Функции", features_title:"Всё необходимое для доминирования в SEO", features_sub:"Одна платформа для создания, оптимизации и публикации контента.", f1_title:"Генерация контента ИИ", f1_desc:"Создавай полные оптимизированные статьи за секунды.", f2_title:"Исследование ключевых слов", f2_desc:"Находи прибыльные ключевые слова с низкой конкуренцией.", f3_title:"Массовая генерация", f3_desc:"Создавай 50+ статей одним кликом.", f4_title:"Многоязычный контент", f4_desc:"Генерируй контент на 20+ языках.", f5_title:"Отслеживание дохода", f5_desc:"Видь точно, какие статьи генерируют доход.", f6_title:"Аналитика", f6_desc:"Мониторь рейтинги, трафик и конверсии в реальном времени.", how_label:"Как это работает", how_title:"От ключевого слова до дохода за 4 шага", how_sub:"Просто, быстро и полностью автоматически.", s1_title:"Введи ключевое слово", s1_desc:"Введи целевое ключевое слово.", s2_title:"ИИ генерирует контент", s2_desc:"Получи полную статью за секунды.", s3_title:"Автоматическая публикация", s3_desc:"Публикуй прямо на свой сайт.", s4_title:"Наблюдай рост трафика", s4_desc:"Отслеживай улучшения рейтинга неделю за неделей.", pricing_label:"Цены", pricing_title:"Простые прозрачные цены", pricing_sub:"Начни бесплатно. Масштабируй по мере роста.", popular:"⭐ САМЫЙ ПОПУЛЯРНЫЙ", plan1_name:"СТАРТЕР", plan1_period:"Идеально для начала", plan1_f1:"10 статей / месяц", plan1_f2:"5 языков", plan1_f3:"Базовая аналитика", plan2_name:"РОСТ", plan2_period:"Для растущего бизнеса", plan2_f1:"50 статей / месяц", plan2_f2:"20 языков", plan2_f3:"Расширенная аналитика", plan2_f4:"Приоритетная поддержка", plan3_name:"АГЕНТСТВО", plan3_period:"Для агентств и предприятий", plan3_f1:"Неограниченные статьи", plan3_f2:"Все языки", plan3_f3:"White label", plan3_f4:"Персональный менеджер", plan_btn:"Начать", cta_title:"Готов зарабатывать на контенте?", cta_sub:"Присоединяйся к тысячам компаний, которые уже используют KeywordMoneyMaker.", footer:"Все права защищены. Создано с ❤️ и ИИ." },
+  tr: { badge:"Yapay Zeka Destekli SEO İçerik Üreticisi", hero_title_1:"Aylık 50+ SEO Makalesi Oluştur", hero_title_2:"Yapay Zeka ile", hero_sub:"Anahtar kelimeleri gelire dönüştür. Yapay zekamız Google'da sıralanan optimize makaleler yazar.", cta_start:"Ücretsiz Başla", cta_demo:"Demo İzle", stat_articles:"Makale / ay", stat_revenue:"Aylık potansiyel", stat_faster:"İnsanlardan daha hızlı", features_label:"Özellikler", features_title:"SEO'ya hakim olmak için ihtiyacın olan her şey", features_sub:"İçerik oluşturmak, optimize etmek ve yayımlamak için tek platform.", f1_title:"Yapay Zeka İçerik Üretimi", f1_desc:"Saniyeler içinde tam optimize makaleler oluştur.", f2_title:"Anahtar Kelime Araştırması", f2_desc:"Düşük rekabetli karlı anahtar kelimeler bul.", f3_title:"Toplu Üretim", f3_desc:"Tek tıkla 50+ makale oluştur.", f4_title:"Çok Dilli İçerik", f4_desc:"20+ dilde içerik oluştur.", f5_title:"Gelir Takibi", f5_desc:"Hangi makalelerin gelir getirdiğini tam olarak gör.", f6_title:"Analiz Paneli", f6_desc:"Sıralamalar, trafik ve dönüşümleri gerçek zamanlı izle.", how_label:"Nasıl çalışır", how_title:"Anahtar kelimeden gelire 4 adımda", how_sub:"Basit, hızlı ve tamamen otomatik.", s1_title:"Anahtar kelimenizi girin", s1_desc:"Hedef anahtar kelimenizi yazın.", s2_title:"Yapay zeka içerik üretir", s2_desc:"Saniyeler içinde tam makale alın.", s3_title:"Otomatik yayımlama", s3_desc:"Doğrudan web sitenize yayımlayın.", s4_title:"Trafiğinizin büyümesini izleyin", s4_desc:"Sıralama iyileştirmelerini hafta hafta takip edin.", pricing_label:"Fiyatlandırma", pricing_title:"Basit ve şeffaf fiyatlandırma", pricing_sub:"Ücretsiz başla. Büyüdükçe ölçeklendir.", popular:"⭐ EN POPÜLER", plan1_name:"BAŞLANGIÇ", plan1_period:"Başlamak için mükemmel", plan1_f1:"10 makale / ay", plan1_f2:"5 dil", plan1_f3:"Temel analitik", plan2_name:"BÜYÜME", plan2_period:"Büyüyen işletmeler için", plan2_f1:"50 makale / ay", plan2_f2:"20 dil", plan2_f3:"Gelişmiş analitik", plan2_f4:"Öncelikli destek", plan3_name:"AJANS", plan3_period:"Ajanslar ve kurumlar için", plan3_f1:"Sınırsız makale", plan3_f2:"Tüm diller", plan3_f3:"White label", plan3_f4:"Özel hesap yöneticisi", plan_btn:"Başla", cta_title:"İçerikle para kazanmaya hazır mısın?", cta_sub:"Zaten KeywordMoneyMaker kullanan binlerce işletmeye katıl.", footer:"Tüm hakları saklıdır. ❤️ ve yapay zeka ile oluşturuldu." },
+  ko: { badge:"AI 기반 SEO 콘텐츠 생성기", hero_title_1:"매월 50개 이상의 SEO 기사 생성", hero_title_2:"AI로 실현", hero_sub:"키워드를 수익으로 전환. AI가 구글에서 상위 노출되는 최적화된 기사를 자동으로 작성합니다.", cta_start:"무료로 시작", cta_demo:"데모 보기", stat_articles:"기사/월", stat_revenue:"월 수익 잠재력", stat_faster:"인간보다 10배 빠름", features_label:"기능", features_title:"SEO를 지배하기 위한 모든 것", features_sub:"콘텐츠를 생성, 최적화, 게시하는 하나의 플랫폼.", f1_title:"AI 콘텐츠 생성", f1_desc:"몇 초 만에 완전히 최적화된 기사를 작성합니다.", f2_title:"키워드 리서치", f2_desc:"경쟁이 적은 수익성 있는 키워드를 찾으세요.", f3_title:"대량 생성", f3_desc:"한 번의 클릭으로 50개 이상의 기사를 생성합니다.", f4_title:"다국어 콘텐츠", f4_desc:"20개 이상의 언어로 콘텐츠를 생성합니다.", f5_title:"수익 추적", f5_desc:"어떤 기사가 수익을 창출하는지 정확히 확인합니다.", f6_title:"분석 대시보드", f6_desc:"순위, 트래픽, 전환을 실시간으로 모니터링합니다.", how_label:"작동 방식", how_title:"키워드에서 수익까지 4단계", how_sub:"간단하고 빠르며 완전 자동화됩니다.", s1_title:"키워드 입력", s1_desc:"목표 키워드를 입력하세요.", s2_title:"AI가 콘텐츠 생성", s2_desc:"몇 초 만에 완전한 기사를 받으세요.", s3_title:"자동 게시", s3_desc:"웹사이트에 직접 게시합니다.", s4_title:"트래픽 성장 확인", s4_desc:"주간 순위 개선을 추적합니다.", pricing_label:"요금제", pricing_title:"간단하고 투명한 요금제", pricing_sub:"무료로 시작. 성장에 따라 확장.", popular:"⭐ 가장 인기", plan1_name:"스타터", plan1_period:"시작하기에 완벽", plan1_f1:"10개 기사/월", plan1_f2:"5개 언어", plan1_f3:"기본 분석", plan2_name:"성장", plan2_period:"성장하는 비즈니스를 위한", plan2_f1:"50개 기사/월", plan2_f2:"20개 언어", plan2_f3:"고급 분석", plan2_f4:"우선 지원", plan3_name:"에이전시", plan3_period:"대행사 및 기업을 위한", plan3_f1:"무제한 기사", plan3_f2:"모든 언어", plan3_f3:"화이트 레이블", plan3_f4:"전담 계정 관리자", plan_btn:"시작하기", cta_title:"콘텐츠로 돈을 벌 준비가 됐나요?", cta_sub:"이미 KeywordMoneyMaker를 사용하는 수천 개의 기업에 합류하세요.", footer:"모든 권리 보유. ❤️와 AI로 제작." },
+  hi: { badge:"AI-संचालित SEO सामग्री जनरेटर", hero_title_1:"हर महीने 50+ SEO लेख बनाएं", hero_title_2:"AI के साथ", hero_sub:"कीवर्ड को आय में बदलें। हमारा AI ऐसे अनुकूलित लेख लिखता है जो Google पर रैंक करते हैं।", cta_start:"मुफ्त शुरू करें", cta_demo:"डेमो देखें", stat_articles:"लेख / माह", stat_revenue:"मासिक क्षमता", stat_faster:"इंसानों से तेज़", features_label:"विशेषताएं", features_title:"SEO पर हावी होने के लिए सब कुछ", features_sub:"सामग्री उत्पन्न करने, अनुकूलित करने और प्रकाशित करने के लिए एक प्लेटफॉर्म।", f1_title:"AI सामग्री निर्माण", f1_desc:"सेकंडों में पूर्ण अनुकूलित लेख बनाएं।", f2_title:"कीवर्ड शोध", f2_desc:"कम प्रतिस्पर्धा वाले लाभदायक कीवर्ड खोजें।", f3_title:"बल्क जनरेशन", f3_desc:"एक क्लिक में 50+ लेख बनाएं।", f4_title:"बहुभाषी सामग्री", f4_desc:"20+ भाषाओं में सामग्री उत्पन्न करें।", f5_title:"आय ट्रैकिंग", f5_desc:"देखें कि कौन से लेख आय उत्पन्न करते हैं।", f6_title:"एनालिटिक्स डैशबोर्ड", f6_desc:"रैंकिंग, ट्रैफिक और रूपांतरण की निगरानी करें।", how_label:"यह कैसे काम करता है", how_title:"4 चरणों में कीवर्ड से आय तक", how_sub:"सरल, तेज़ और पूरी तरह स्वचालित।", s1_title:"अपना कीवर्ड दर्ज करें", s1_desc:"अपना लक्ष्य कीवर्ड टाइप करें।", s2_title:"AI सामग्री उत्पन्न करता है", s2_desc:"सेकंडों में पूर्ण लेख प्राप्त करें।", s3_title:"स्वचालित प्रकाशन", s3_desc:"अपनी वेबसाइट पर सीधे प्रकाशित करें।", s4_title:"ट्रैफिक बढ़ते देखें", s4_desc:"सप्ताह दर सप्ताह रैंकिंग सुधार ट्रैक करें।", pricing_label:"मूल्य निर्धारण", pricing_title:"सरल, पारदर्शी मूल्य निर्धारण", pricing_sub:"मुफ्त शुरू करें। विकास के साथ स्केल करें।", popular:"⭐ सबसे लोकप्रिय", plan1_name:"स्टार्टर", plan1_period:"शुरू करने के लिए बिल्कुल सही", plan1_f1:"10 लेख / माह", plan1_f2:"5 भाषाएं", plan1_f3:"बुनियादी विश्लेषण", plan2_name:"ग्रोथ", plan2_period:"बढ़ते व्यवसायों के लिए", plan2_f1:"50 लेख / माह", plan2_f2:"20 भाषाएं", plan2_f3:"उन्नत विश्लेषण", plan2_f4:"प्राथमिकता समर्थन", plan3_name:"एजेंसी", plan3_period:"एजेंसियों और उद्यमों के लिए", plan3_f1:"असीमित लेख", plan3_f2:"सभी भाषाएं", plan3_f3:"व्हाइट लेबल", plan3_f4:"समर्पित खाता प्रबंधक", plan_btn:"शुरू करें", cta_title:"सामग्री से पैसे कमाने के लिए तैयार हैं?", cta_sub:"हजारों व्यवसायों से जुड़ें जो पहले से KeywordMoneyMaker उपयोग कर रहे हैं।", footer:"सर्वाधिकार सुरक्षित। ❤️ और AI के साथ बनाया गया।" },
+  id: { badge:"Generator Konten SEO Bertenaga AI", hero_title_1:"Buat 50+ Artikel SEO", hero_title_2:"Setiap Bulan dengan AI", hero_sub:"Ubah kata kunci menjadi pendapatan. AI kami menulis artikel teroptimasi yang peringkat di Google.", cta_start:"Mulai Gratis", cta_demo:"Lihat Demo", stat_articles:"Artikel / bulan", stat_revenue:"Potensi bulanan", stat_faster:"Lebih cepat dari manusia", features_label:"Fitur", features_title:"Semua yang Anda butuhkan untuk mendominasi SEO", features_sub:"Satu platform untuk membuat, mengoptimalkan, dan menerbitkan konten.", f1_title:"Pembuatan Konten AI", f1_desc:"Buat artikel lengkap yang dioptimalkan dalam hitungan detik.", f2_title:"Riset Kata Kunci", f2_desc:"Temukan kata kunci menguntungkan dengan persaingan rendah.", f3_title:"Generasi Massal", f3_desc:"Buat 50+ artikel dengan satu klik.", f4_title:"Konten Multibahasa", f4_desc:"Buat konten dalam 20+ bahasa.", f5_title:"Pelacakan Pendapatan", f5_desc:"Lihat persis artikel mana yang menghasilkan pendapatan.", f6_title:"Dasbor Analitik", f6_desc:"Pantau peringkat, lalu lintas, dan konversi secara real time.", how_label:"Cara Kerja", how_title:"Dari kata kunci ke pendapatan dalam 4 langkah", how_sub:"Sederhana, cepat, dan sepenuhnya otomatis.", s1_title:"Masukkan kata kunci Anda", s1_desc:"Ketik kata kunci target Anda.", s2_title:"AI menghasilkan konten", s2_desc:"Dapatkan artikel lengkap dalam hitungan detik.", s3_title:"Terbitkan otomatis", s3_desc:"Terbitkan langsung ke situs web Anda.", s4_title:"Saksikan lalu lintas Anda berkembang", s4_desc:"Lacak peningkatan peringkat dari minggu ke minggu.", pricing_label:"Harga", pricing_title:"Harga sederhana dan transparan", pricing_sub:"Mulai gratis. Skalakan sesuai pertumbuhan.", popular:"⭐ PALING POPULER", plan1_name:"PEMULA", plan1_period:"Sempurna untuk memulai", plan1_f1:"10 artikel / bulan", plan1_f2:"5 bahasa", plan1_f3:"Analitik dasar", plan2_name:"PERTUMBUHAN", plan2_period:"Untuk bisnis yang berkembang", plan2_f1:"50 artikel / bulan", plan2_f2:"20 bahasa", plan2_f3:"Analitik lanjutan", plan2_f4:"Dukungan prioritas", plan3_name:"AGENSI", plan3_period:"Untuk agensi dan perusahaan", plan3_f1:"Artikel tak terbatas", plan3_f2:"Semua bahasa", plan3_f3:"White label", plan3_f4:"Manajer akun khusus", plan_btn:"Mulai", cta_title:"Siap menghasilkan uang dari konten?", cta_sub:"Bergabunglah dengan ribuan bisnis yang sudah menggunakan KeywordMoneyMaker.", footer:"Hak cipta dilindungi. Dibuat dengan ❤️ dan AI." },
+  sv: { badge:"AI-driven SEO innehållsgenerator", hero_title_1:"Generera 50+ SEO-artiklar", hero_title_2:"Varje månad med AI", hero_sub:"Förvandla nyckelord till intäkter. Vår AI skriver optimerade artiklar som rankar på Google.", cta_start:"Börja gratis", cta_demo:"Se demo", stat_articles:"Artiklar / månad", stat_revenue:"Månadsintäktspotential", stat_faster:"Snabbare än människor", features_label:"Funktioner", features_title:"Allt du behöver för att dominera SEO", features_sub:"En plattform för att generera, optimera och publicera innehåll.", f1_title:"AI-innehållsgenerering", f1_desc:"Skapa kompletta optimerade artiklar på sekunder.", f2_title:"Nyckelordsforskning", f2_desc:"Hitta lönsamma nyckelord med låg konkurrens.", f3_title:"Massgenerering", f3_desc:"Skapa 50+ artiklar med ett klick.", f4_title:"Flerspråkigt innehåll", f4_desc:"Generera innehåll på 20+ språk.", f5_title:"Intäktsspårning", f5_desc:"Se exakt vilka artiklar som genererar intäkter.", f6_title:"Analyspanel", f6_desc:"Övervaka rankningar, trafik och konverteringar i realtid.", how_label:"Hur det fungerar", how_title:"Från nyckelord till intäkter i 4 steg", how_sub:"Enkelt, snabbt och helt automatiserat.", s1_title:"Ange ditt nyckelord", s1_desc:"Skriv ditt målnyckelord.", s2_title:"AI genererar innehåll", s2_desc:"Få en komplett artikel på sekunder.", s3_title:"Publicera automatiskt", s3_desc:"Publicera direkt på din webbplats.", s4_title:"Se din trafik växa", s4_desc:"Spåra rankningsförbättringar vecka för vecka.", pricing_label:"Prissättning", pricing_title:"Enkel, transparent prissättning", pricing_sub:"Börja gratis. Skala med din tillväxt.", popular:"⭐ MEST POPULÄR", plan1_name:"STARTER", plan1_period:"Perfekt för att komma igång", plan1_f1:"10 artiklar / månad", plan1_f2:"5 språk", plan1_f3:"Grundläggande analys", plan2_name:"TILLVÄXT", plan2_period:"För växande företag", plan2_f1:"50 artiklar / månad", plan2_f2:"20 språk", plan2_f3:"Avancerad analys", plan2_f4:"Prioritetssupport", plan3_name:"BYRÅ", plan3_period:"För byråer och företag", plan3_f1:"Obegränsade artiklar", plan3_f2:"Alla språk", plan3_f3:"White label", plan3_f4:"Dedikerad kontoansvarig", plan_btn:"Kom igång", cta_title:"Redo att tjäna pengar på innehåll?", cta_sub:"Gå med tusentals företag som redan använder KeywordMoneyMaker.", footer:"Alla rättigheter förbehållna. Byggt med ❤️ och AI." },
+  pl: { badge:"Generator treści SEO oparty na AI", hero_title_1:"Generuj 50+ artykułów SEO", hero_title_2:"Co miesiąc z AI", hero_sub:"Zamień słowa kluczowe w przychody. Nasze AI pisze zoptymalizowane artykuły, które rankują w Google.", cta_start:"Zacznij za darmo", cta_demo:"Zobacz demo", stat_articles:"Artykułów / miesiąc", stat_revenue:"Miesięczny potencjał", stat_faster:"Szybszy niż ludzie", features_label:"Funkcje", features_title:"Wszystko, czego potrzebujesz, aby zdominować SEO", features_sub:"Jedna platforma do generowania, optymalizowania i publikowania treści.", f1_title:"Generowanie treści AI", f1_desc:"Twórz kompletne, zoptymalizowane artykuły w sekundy.", f2_title:"Badanie słów kluczowych", f2_desc:"Znajdź dochodowe słowa kluczowe z niską konkurencją.", f3_title:"Generowanie masowe", f3_desc:"Twórz 50+ artykułów jednym kliknięciem.", f4_title:"Treści wielojęzyczne", f4_desc:"Generuj treści w 20+ językach.", f5_title:"Śledzenie przychodów", f5_desc:"Zobacz dokładnie, które artykuły generują przychody.", f6_title:"Panel analityczny", f6_desc:"Monitoruj rankingi, ruch i konwersje w czasie rzeczywistym.", how_label:"Jak to działa", how_title:"Od słowa kluczowego do przychodów w 4 krokach", how_sub:"Proste, szybkie i w pełni zautomatyzowane.", s1_title:"Wpisz słowo kluczowe", s1_desc:"Wpisz docelowe słowo kluczowe.", s2_title:"AI generuje treść", s2_desc:"Otrzymaj kompletny artykuł w sekundy.", s3_title:"Automatyczna publikacja", s3_desc:"Publikuj bezpośrednio na swojej stronie.", s4_title:"Obserwuj wzrost ruchu", s4_desc:"Śledź poprawę rankingów tydzień po tygodniu.", pricing_label:"Cennik", pricing_title:"Prosty, przejrzysty cennik", pricing_sub:"Zacznij za darmo. Skaluj wraz z rozwojem.", popular:"⭐ NAJPOPULARNIEJSZY", plan1_name:"STARTER", plan1_period:"Idealny na start", plan1_f1:"10 artykułów / miesiąc", plan1_f2:"5 języków", plan1_f3:"Podstawowe analizy", plan2_name:"WZROST", plan2_period:"Dla rozwijających się firm", plan2_f1:"50 artykułów / miesiąc", plan2_f2:"20 języków", plan2_f3:"Zaawansowane analizy", plan2_f4:"Wsparcie priorytetowe", plan3_name:"AGENCJA", plan3_period:"Dla agencji i przedsiębiorstw", plan3_f1:"Nieograniczone artykuły", plan3_f2:"Wszystkie języki", plan3_f3:"White label", plan3_f4:"Dedykowany opiekun konta", plan_btn:"Zacznij", cta_title:"Gotowy zarabiać na treści?", cta_sub:"Dołącz do tysięcy firm, które już używają KeywordMoneyMaker.", footer:"Wszelkie prawa zastrzeżone. Zbudowane z ❤️ i AI." },
+  da: { badge:"AI-drevet SEO-indholdsgenerator", hero_title_1:"Generer 50+ SEO-artikler", hero_title_2:"Hver måned med AI", hero_sub:"Forvandl søgeord til indkomst. Vores AI skriver optimerede artikler, der rangerer på Google.", cta_start:"Start gratis", cta_demo:"Se demo", stat_articles:"Artikler / måned", stat_revenue:"Månedligt potentiale", stat_faster:"Hurtigere end mennesker", features_label:"Funktioner", features_title:"Alt hvad du behøver for at dominere SEO", features_sub:"Én platform til at generere, optimere og publicere indhold.", f1_title:"AI-indholdsgenerering", f1_desc:"Opret komplette optimerede artikler på sekunder.", f2_title:"Søgeordsforskning", f2_desc:"Find profitable søgeord med lav konkurrence.", f3_title:"Massegenerering", f3_desc:"Opret 50+ artikler med ét klik.", f4_title:"Flersproget indhold", f4_desc:"Generer indhold på 20+ sprog.", f5_title:"Indkomstsporing", f5_desc:"Se præcis hvilke artikler der genererer indkomst.", f6_title:"Analysepanel", f6_desc:"Overvåg placeringer, trafik og konverteringer i realtid.", how_label:"Sådan fungerer det", how_title:"Fra søgeord til indkomst i 4 trin", how_sub:"Simpelt, hurtigt og fuldstændig automatiseret.", s1_title:"Indtast dit søgeord", s1_desc:"Skriv dit målsøgeord.", s2_title:"AI genererer indhold", s2_desc:"Få en komplet artikel på sekunder.", s3_title:"Publicer automatisk", s3_desc:"Publicer direkte på dit website.", s4_title:"Se din trafik vokse", s4_desc:"Spor rangforbedringer uge for uge.", pricing_label:"Priser", pricing_title:"Enkle, transparente priser", pricing_sub:"Start gratis. Skaler med din vækst.", popular:"⭐ MEST POPULÆR", plan1_name:"STARTER", plan1_period:"Perfekt til at starte", plan1_f1:"10 artikler / måned", plan1_f2:"5 sprog", plan1_f3:"Grundlæggende analyse", plan2_name:"VÆKST", plan2_period:"Til voksende virksomheder", plan2_f1:"50 artikler / måned", plan2_f2:"20 sprog", plan2_f3:"Avanceret analyse", plan2_f4:"Prioritetssupport", plan3_name:"BUREAU", plan3_period:"Til bureauer og virksomheder", plan3_f1:"Ubegrænsede artikler", plan3_f2:"Alle sprog", plan3_f3:"White label", plan3_f4:"Dedikeret kundechef", plan_btn:"Kom i gang", cta_title:"Klar til at tjene penge på indhold?", cta_sub:"Tilslut dig tusindvis af virksomheder, der allerede bruger KeywordMoneyMaker.", footer:"Alle rettigheder forbeholdes. Bygget med ❤️ og AI." },
+  fi: { badge:"AI-pohjainen SEO-sisällön generaattori", hero_title_1:"Luo 50+ SEO-artikkelia", hero_title_2:"Joka kuukausi tekoälyn avulla", hero_sub:"Muunna avainsanat tuloiksi. Tekoälymme kirjoittaa optimoituja artikkeleita, jotka sijoittuvat Googlessa.", cta_start:"Aloita ilmaiseksi", cta_demo:"Katso demo", stat_articles:"Artikkelia / kk", stat_revenue:"Kuukausitulojen potentiaali", stat_faster:"Nopeampi kuin ihmiset", features_label:"Ominaisuudet", features_title:"Kaikki mitä tarvitset SEO:n hallintaan", features_sub:"Yksi alusta sisällön luomiseen, optimointiin ja julkaisemiseen.", f1_title:"Tekoälysisällön luonti", f1_desc:"Luo täydellisiä optimoituja artikkeleita sekunneissa.", f2_title:"Avainsanatutkimus", f2_desc:"Löydä tuottoisat avainsanat, joilla on vähän kilpailua.", f3_title:"Joukkotuotanto", f3_desc:"Luo 50+ artikkelia yhdellä napsautuksella.", f4_title:"Monikielinen sisältö", f4_desc:"Luo sisältöä yli 20 kielellä.", f5_title:"Tulojen seuranta", f5_desc:"Näe tarkalleen mitkä artikkelit tuottavat tuloja.", f6_title:"Analytiikkakojelauta", f6_desc:"Seuraa sijoituksia, liikennettä ja konversioita reaaliajassa.", how_label:"Miten se toimii", how_title:"Avainsanasta tuloihin 4 vaiheessa", how_sub:"Yksinkertainen, nopea ja täysin automatisoitu.", s1_title:"Syötä avainsanasi", s1_desc:"Kirjoita kohdeavainsanasi.", s2_title:"Tekoäly luo sisällön", s2_desc:"Saat täydellisen artikkelin sekunneissa.", s3_title:"Julkaise automaattisesti", s3_desc:"Julkaise suoraan verkkosivustollesi.", s4_title:"Katso liikenteesi kasvavan", s4_desc:"Seuraa sijoitusten paranemista viikko viikolta.", pricing_label:"Hinnoittelu", pricing_title:"Yksinkertainen, läpinäkyvä hinnoittelu", pricing_sub:"Aloita ilmaiseksi. Skaalaa kasvusi mukaan.", popular:"⭐ SUOSITUIN", plan1_name:"ALOITTAJA", plan1_period:"Täydellinen aloittamiseen", plan1_f1:"10 artikkelia / kk", plan1_f2:"5 kieltä", plan1_f3:"Perusanalytiikka", plan2_name:"KASVU", plan2_period:"Kasvavile yrityksille", plan2_f1:"50 artikkelia / kk", plan2_f2:"20 kieltä", plan2_f3:"Edistynyt analytiikka", plan2_f4:"Prioriteettituki", plan3_name:"TOIMISTO", plan3_period:"Toimistoille ja yrityksille", plan3_f1:"Rajoittamattomat artikkelit", plan3_f2:"Kaikki kielet", plan3_f3:"White label", plan3_f4:"Oma tilinhoitaja", plan_btn:"Aloita", cta_title:"Valmis ansaitsemaan rahaa sisällöllä?", cta_sub:"Liity tuhansiin yrityksiin, jotka jo käyttävät KeywordMoneyMakeria.", footer:"Kaikki oikeudet pidätetään. Rakennettu ❤️:llä ja tekoälyllä." },
+  no: { badge:"AI-drevet SEO-innholdsgenerator", hero_title_1:"Generer 50+ SEO-artikler", hero_title_2:"Hver måned med AI", hero_sub:"Gjør søkeord om til inntekter. Vår AI skriver optimaliserte artikler som rangerer på Google.", cta_start:"Start gratis", cta_demo:"Se demo", stat_articles:"Artikler / måned", stat_revenue:"Månedlig potensial", stat_faster:"Raskere enn mennesker", features_label:"Funksjoner", features_title:"Alt du trenger for å dominere SEO", features_sub:"Én plattform for å generere, optimalisere og publisere innhold.", f1_title:"AI-innholdsgenerering", f1_desc:"Lag komplette optimaliserte artikler på sekunder.", f2_title:"Søkeordforskning", f2_desc:"Finn lønnsomme søkeord med lav konkurranse.", f3_title:"Massegenerering", f3_desc:"Lag 50+ artikler med ett klikk.", f4_title:"Flerspråklig innhold", f4_desc:"Generer innhold på 20+ språk.", f5_title:"Inntektssporing", f5_desc:"Se nøyaktig hvilke artikler som genererer inntekter.", f6_title:"Analysepanel", f6_desc:"Overvåk rangeringer, trafikk og konverteringer i sanntid.", how_label:"Slik fungerer det", how_title:"Fra søkeord til inntekter i 4 trinn", how_sub:"Enkelt, raskt og fullt automatisert.", s1_title:"Skriv inn søkeordet ditt", s1_desc:"Skriv inn målsøkeordet ditt.", s2_title:"AI genererer innhold", s2_desc:"Få en komplett artikkel på sekunder.", s3_title:"Publiser automatisk", s3_desc:"Publiser direkte på nettstedet ditt.", s4_title:"Se trafikken din vokse", s4_desc:"Spor rangforbedringer uke for uke.", pricing_label:"Priser", pricing_title:"Enkle, transparente priser", pricing_sub:"Start gratis. Skaler med veksten din.", popular:"⭐ MEST POPULÆR", plan1_name:"STARTER", plan1_period:"Perfekt for å komme i gang", plan1_f1:"10 artikler / måned", plan1_f2:"5 språk", plan1_f3:"Grunnleggende analyse", plan2_name:"VEKST", plan2_period:"For voksende bedrifter", plan2_f1:"50 artikler / måned", plan2_f2:"20 språk", plan2_f3:"Avansert analyse", plan2_f4:"Prioritetsstøtte", plan3_name:"BYRÅ", plan3_period:"For byråer og bedrifter", plan3_f1:"Ubegrensede artikler", plan3_f2:"Alle språk", plan3_f3:"White label", plan3_f4:"Dedikert kundeansvarlig", plan_btn:"Kom i gang", cta_title:"Klar til å tjene penger på innhold?", cta_sub:"Bli med tusenvis av bedrifter som allerede bruker KeywordMoneyMaker.", footer:"Alle rettigheter forbeholdt. Bygget med ❤️ og AI." }
+};
+
+const RTL_LANGS = ['ar'];
+
+function setLang(lang) {
+  const t = TRANSLATIONS[lang] || TRANSLATIONS['en'];
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (t[key]) el.textContent = t[key];
+  });
+  document.documentElement.lang = lang;
+  document.documentElement.dir = RTL_LANGS.includes(lang) ? 'rtl' : 'ltr';
+}
+
+// Auto-detect browser language
+const browserLang = navigator.language.split('-')[0];
+const supported = Object.keys(TRANSLATIONS);
+const defaultLang = supported.includes(browserLang) ? browserLang : 'en';
+document.getElementById('langSelect').value = defaultLang;
+setLang(defaultLang);
+</script>
+</body>
+</html>
