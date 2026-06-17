@@ -7,6 +7,7 @@ import asyncio
 from keyword_analyzer import analyze_keyword
 from report_generator import generate_report
 from content_optimizer import optimize_all
+from linkedin_cv_agent import main as linkedin_cv_main
 
 
 async def main():
@@ -26,6 +27,11 @@ async def main():
     print("AGENT 3 — Optimisation du contenu")
     print("━" * 60)
     await optimize_all()
+
+    print("\n" + "━" * 60)
+    print("AGENT 4 — Documentation LinkedIn & CV")
+    print("━" * 60)
+    await linkedin_cv_main()
 
     print("\n✅ Tous les agents ont terminé.")
 
