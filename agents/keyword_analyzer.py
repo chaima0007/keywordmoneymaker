@@ -4,7 +4,7 @@ Analyse un mot-clé cible : volume, concurrence, potentiel SEO, mots-clés assoc
 """
 
 import asyncio
-from claude_code_sdk import query, ClaudeCodeOptions
+from claude_agent_sdk import query, ClaudeAgentOptions
 
 
 async def analyze_keyword(keyword: str, langue: str = "fr") -> None:
@@ -28,7 +28,7 @@ Présente les résultats de façon structurée et actionnable.
     print(f"\n🔍 Analyse du mot-clé : '{keyword}' [{langue}]\n{'='*60}")
     async for message in query(
         prompt=prompt,
-        options=ClaudeCodeOptions(
+        options=ClaudeAgentOptions(
             allowed_tools=[],  # Pas d'accès fichiers — analyse pure
         ),
     ):

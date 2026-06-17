@@ -6,7 +6,7 @@ Analyse les métriques du projet et génère un rapport Markdown complet.
 import asyncio
 import os
 from datetime import datetime
-from claude_code_sdk import query, ClaudeCodeOptions
+from claude_agent_sdk import query, ClaudeAgentOptions
 
 
 REPORTS_DIR = os.path.join(os.path.dirname(__file__), "..", "reports")
@@ -64,7 +64,7 @@ Utilise des chiffres réalistes et des insights actionnables. Formate proprement
 
     async for message in query(
         prompt=prompt,
-        options=ClaudeCodeOptions(
+        options=ClaudeAgentOptions(
             allowed_tools=["Write"],
         ),
     ):

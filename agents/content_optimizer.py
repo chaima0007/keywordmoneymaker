@@ -5,7 +5,7 @@ Analyse le contenu existant, détecte les faiblesses SEO et applique les correct
 
 import asyncio
 import os
-from claude_code_sdk import query, ClaudeCodeOptions
+from claude_agent_sdk import query, ClaudeAgentOptions
 
 
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), "..")
@@ -47,7 +47,7 @@ Sois précis, efficace et concentre-toi sur les changements à fort impact SEO.
 
     async for message in query(
         prompt=prompt,
-        options=ClaudeCodeOptions(
+        options=ClaudeAgentOptions(
             allowed_tools=["Read", "Edit"],
         ),
     ):

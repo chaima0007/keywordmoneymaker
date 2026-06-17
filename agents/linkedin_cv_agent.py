@@ -9,7 +9,7 @@ Analyse le travail accompli et génère du contenu professionnel :
 import asyncio
 import os
 from datetime import datetime
-from claude_code_sdk import query, ClaudeCodeOptions
+from claude_agent_sdk import query, ClaudeAgentOptions
 
 
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "..", "linkedin_cv")
@@ -55,7 +55,7 @@ Les 3 angles :
     content = ""
     async for message in query(
         prompt=prompt,
-        options=ClaudeCodeOptions(allowed_tools=[]),
+        options=ClaudeAgentOptions(allowed_tools=[]),
     ):
         if hasattr(message, "content") and message.content:
             for block in message.content:
@@ -122,7 +122,7 @@ Ton : professionnel, confiant, humain. Évite le jargon creux. Chaque ligne doit
     content = ""
     async for message in query(
         prompt=prompt,
-        options=ClaudeCodeOptions(allowed_tools=[]),
+        options=ClaudeAgentOptions(allowed_tools=[]),
     ):
         if hasattr(message, "content") and message.content:
             for block in message.content:
@@ -158,7 +158,7 @@ Ton : chaleureux, authentique, expert mais accessible. Pas de bullshit corporate
     content = ""
     async for message in query(
         prompt=prompt,
-        options=ClaudeCodeOptions(allowed_tools=[]),
+        options=ClaudeAgentOptions(allowed_tools=[]),
     ):
         if hasattr(message, "content") and message.content:
             for block in message.content:
