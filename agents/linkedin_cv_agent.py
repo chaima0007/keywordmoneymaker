@@ -1,16 +1,15 @@
 """
 Agent 4 — Documentation LinkedIn & CV
-Analyse le travail accompli et génère du contenu professionnel :
-- Posts LinkedIn percutants
-- Sections CV détaillées
-- Positionnement expert : Communication · Vente · Empathie
+Génère des posts LinkedIn percutants, une section CV détaillée et un "À propos".
+Positionnement : Communication · Vente · Empathie
+Intègre les recommandations de l'audit expert Business/LinkedIn.
 """
 
 import asyncio
 import os
 from datetime import datetime
+from pathlib import Path
 from claude_agent_sdk import query, ClaudeAgentOptions
-
 
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "..", "linkedin_cv")
 
@@ -20,115 +19,163 @@ async def generate_linkedin_post() -> str:
 Tu es un expert en personal branding et copywriting LinkedIn.
 
 Génère 3 posts LinkedIn percutants pour une professionnelle qui a :
-- Créé une plateforme SaaS SEO complète (KeywordMoneyMaker) capable de générer 50+ articles/mois
-- Développé 3 agents IA autonomes (analyse de mots-clés, rapports, optimisation de contenu)
-- Intégré des outils d'automatisation avancés (Claude Agent SDK, Composio, uv)
-- Maîtrise la vente, la communication et l'empathie client
+- Créé une plateforme SaaS SEO complète (KeywordMoneyMaker) : 50+ articles/mois, ce qui remplace 200+ heures de travail manuel
+- Développé 4 agents IA autonomes (analyse mots-clés, rapports, optimisation, LinkedIn/CV)
+- Intégré des outils avancés (Claude Agent SDK, Composio, uv)
+- Expertise : vente consultative, communication persuasive, empathie client
 
-Son positionnement : experte en **communication persuasive**, **stratégie de vente digitale** et **empathie client** — elle comprend les besoins profonds des clients et construit des outils qui y répondent.
+Son positionnement : experte en **communication persuasive**, **stratégie de vente digitale** et **empathie client**.
 
-Pour chaque post LinkedIn :
-
-### POST [numéro] — [Thème]
-
-**Accroche** (1 ligne qui stoppe le scroll)
-
-Corps du post (150-200 mots maximum) :
-- Storytelling personnel et authentique
-- Valeur concrète et chiffres
-- Ton humain, chaleureux, empathique
-- Pas de jargon technique pur — vulgarise intelligemment
-
-**Hashtags** (5-7 pertinents)
-
-**Appel à l'action** (engageant, pas commercial)
+Règles impératives :
+- Maximum 5 hashtags par post (pas plus)
+- Chaque chiffre doit avoir un contexte (ex. "50 articles = 200+ heures remplacées")
+- CTA personnalisé et engageant (pas générique)
+- Ton authentique, humain, jamais corporate
 
 ---
 
-Les 3 angles :
-1. **L'histoire du projet** — comment l'idée est née, le défi relevé
-2. **L'expertise en vente/communication** — ce que l'IA ne remplacera jamais : l'humain
-3. **Le conseil empathique** — une leçon apprise sur la compréhension des besoins clients
+### POST 1 — L'histoire du projet
+
+**Accroche** (1 ligne qui stoppe le scroll, révèle une vulnérabilité ou une contradiction)
+
+Corps (150-200 mots) :
+- Comment l'idée est née d'une frustration personnelle
+- Le défi relevé avec des chiffres contextualisés
+- Leçon apprise : la meilleure tech vient d'un problème humain réel
+
+**CTA** : invite les lecteurs à partager leur frustration et promet une réponse personnelle
+
+---
+
+### POST 2 — L'humain que l'IA ne remplacera jamais
+
+**Accroche** (joue sur la contradiction IA vs humain)
+
+Corps (150-200 mots) :
+- Automatise la production mais pas la relation
+- Proof point concret : les utilisateurs Premium restent parce que l'UX est pensée avec empathie
+- Les 3 compétences que l'IA ne code pas (écouter, reformuler, savoir quand reculer)
+
+**CTA** : invite à taguer un bon vendeur en commentaire
+
+---
+
+### POST 3 — La leçon d'empathie qui a tout changé
+
+**Accroche** (admet un vrai échec)
+
+Corps (150-200 mots) :
+- Version du produit techniquement parfaite mais qui ne marchait pas
+- Les 3 questions à poser avant chaque fonctionnalité
+- Conclusion : l'empathie est un avantage concurrentiel, pas une qualité douce
+
+**CTA** : demande une histoire similaire dans les commentaires
+
+---
+
+Pour chaque post, ajoute exactement 5 hashtags pertinents.
 """
 
     print("\n💼 Génération des posts LinkedIn...\n" + "="*60)
     content = ""
-    async for message in query(
-        prompt=prompt,
-        options=ClaudeAgentOptions(allowed_tools=[]),
-    ):
-        if hasattr(message, "content") and message.content:
-            for block in message.content:
-                if hasattr(block, "text"):
-                    print(block.text)
-                    content += block.text
+    try:
+        async with asyncio.timeout(90):
+            async for message in query(
+                prompt=prompt,
+                options=ClaudeAgentOptions(allowed_tools=[]),
+            ):
+                if hasattr(message, "content") and message.content:
+                    for block in message.content:
+                        if hasattr(block, "text"):
+                            print(block.text)
+                            content += block.text
+    except asyncio.TimeoutError:
+        print("❌ Timeout génération posts LinkedIn")
+    except Exception as e:
+        print(f"❌ Erreur : {type(e).__name__}: {e}")
     return content
 
 
 async def generate_cv_section() -> str:
     prompt = """
-Tu es un expert en rédaction de CV haut de gamme et en personal branding.
+Tu es un expert en rédaction de CV haut de gamme et personal branding.
 
-Génère une section CV professionnelle et détaillée pour une experte qui a créé KeywordMoneyMaker.
-
-Son profil : experte en **Communication · Vente · Empathie** qui utilise la technologie comme levier.
+Génère une section CV professionnelle pour une experte qui a créé KeywordMoneyMaker.
+Profil : Communication · Vente · Empathie — la tech est un levier, pas le cœur.
 
 ---
 
-## PROFIL PROFESSIONNEL (Accroche CV)
-3 phrases percutantes qui résument son identité professionnelle unique.
-Met en avant : leadership, empathie, impact business, innovation.
+## PROFIL PROFESSIONNEL
+3 phrases percutantes. Inclure un chiffre clé (ex. "50+ articles en 3 minutes vs. 8 heures").
+Mettre en avant : empathie d'abord, tech ensuite.
 
 ---
 
 ## EXPÉRIENCE CLÉE
 
-### Fondatrice & Architecte IA — KeywordMoneyMaker (2026)
-Format : bullet points STAR (Situation → Tâche → Action → Résultat)
+### Fondatrice & Architecte Produit IA — KeywordMoneyMaker (2026)
 
-Inclure :
-- Vision stratégique et conception du produit
-- Développement de 3 agents IA autonomes (Python, Claude SDK, Composio)
-- Architecture d'une plateforme SaaS multilingue (19 langues)
-- Potentiel de revenus : 15 000€+/mois pour les utilisateurs
-- Compétences en vente : modèle freemium 3 niveaux (0€ → 99€ → 199€/mois)
-- Communication client : UX pensée avec empathie pour 3 personas distincts
-- Automatisation complète du pipeline contenu SEO
+Format bullets STAR. Organiser en 4 blocs :
 
----
+**Vision & Stratégie Produit**
+- Identifier le besoin marché non adressé, concevoir l'architecture SaaS 19 langues, définir 3 personas
 
-## COMPÉTENCES CLÉES
+**Développement Technique & IA**
+- 4 agents IA autonomes Python (Claude SDK + Composio)
+- Pipeline automatisé : de l'intention de recherche à la publication — 8h → 3 min par article
+- Sécurité : score 2/9 → 9/9 grâce à CSP, hreflang, meta-tags de sécurité
 
-### Communication & Vente
-Liste détaillée des compétences soft et hard en communication persuasive, closing, empathie.
+**Vente, Modèle Économique & Acquisition**
+- Freemium 3 niveaux (0€ / 99€ / 199€/mois) optimisé pour la conversion
+- Copywriting complet : pages de vente, onboarding, emails — bénéfice avant fonctionnalité
+- Utilisateurs Premium actifs : potentiel de 15 000€+/mois en contenu SEO monétisé
 
-### Leadership & Stratégie
-Vision produit, prise de décision, gestion de projet IA.
-
-### Outils & Technologies
-Stack technique de façon accessible (pas trop jargonneux).
+**Communication Client & Empathie**
+- Cartographie 3 personas, UX pensée pour rassurer autant qu'informer
+- Chaque message (erreur, notif, email) rédigé avec une logique d'empathie structurée
+- Voix de marque cohérente entre produit, communication externe et support
 
 ---
 
-## RÉALISATIONS CHIFFRÉES
-5 bullet points avec métriques concrètes.
+## COMPÉTENCES CLÉES (hiérarchie Tier 1/2/3)
+
+### Tier 1 — Communication & Vente (compétences maîtresses)
+Copywriting, storytelling, vente consultative, écoute active, empathie structurée, reformulation,
+communication multicanal, freemium & upsell
+
+### Tier 2 — Leadership & Stratégie
+Vision produit, décision autonome, pensée systémique, gestion de projet IA, résilience
+
+### Tier 3 — Outils & Technologies
+Tableau : IA / Dev / SEO / Produit / Business
 
 ---
 
-Ton : professionnel, confiant, humain. Évite le jargon creux. Chaque ligne doit montrer de la valeur réelle.
+## RÉALISATIONS CHIFFRÉES (6 bullets avec emojis)
+Inclure : lancement solo, 19 langues, 95% réduction temps, 15 000€+/mois, 4 agents IA, rétention empathique
+
+---
+
+Ton : confiant, humain, sans jargon creux. Corriger la faute : "Architécturé" → "Architecturé".
 """
 
     print("\n📄 Génération de la section CV...\n" + "="*60)
     content = ""
-    async for message in query(
-        prompt=prompt,
-        options=ClaudeAgentOptions(allowed_tools=[]),
-    ):
-        if hasattr(message, "content") and message.content:
-            for block in message.content:
-                if hasattr(block, "text"):
-                    print(block.text)
-                    content += block.text
+    try:
+        async with asyncio.timeout(90):
+            async for message in query(
+                prompt=prompt,
+                options=ClaudeAgentOptions(allowed_tools=[]),
+            ):
+                if hasattr(message, "content") and message.content:
+                    for block in message.content:
+                        if hasattr(block, "text"):
+                            print(block.text)
+                            content += block.text
+    except asyncio.TimeoutError:
+        print("❌ Timeout génération CV")
+    except Exception as e:
+        print(f"❌ Erreur : {type(e).__name__}: {e}")
     return content
 
 
@@ -136,42 +183,53 @@ async def generate_about_section() -> str:
     prompt = """
 Tu es un expert en personal branding LinkedIn.
 
-Rédige une section "À propos" LinkedIn complète et percutante pour une professionnelle experte en :
-- Communication persuasive et copywriting
-- Vente digitale et stratégie commerciale
-- Empathie client et compréhension des besoins profonds
-- Innovation technologique (IA, SaaS, automatisation)
+Rédige la section "À propos" LinkedIn pour une experte en Communication · Vente · Empathie.
+Elle a créé KeywordMoneyMaker : 50+ articles SEO/mois, 8h → 3 minutes par article, 19 langues, 4 agents IA.
 
-Elle a créé KeywordMoneyMaker : une plateforme qui aide les entreprises à générer du trafic organique et des revenus passifs grâce à l'IA.
+Limite réelle LinkedIn : 2 600 caractères. Vise 1 600-1 800 pour avoir de l'impact sans remplissage.
 
-Format de la section "À propos" LinkedIn (1 300 caractères max) :
-- Ligne d'accroche inoubliable
-- Ce qu'elle fait concrètement et pour qui
-- Sa philosophie / valeurs (empathie, authenticité, impact)
-- Résultats concrets qu'elle génère
-- Appel à l'action pour la contacter
+Structure :
+1. **Accroche 3 temps** mémorable (couvre Communication / Tech / Empathie)
+2. **Ce qu'elle fait** concrètement et pour qui (entrepreneurs, startups, équipes commerciales)
+3. **Philosophie** : tech sans empathie = bruit / mots sans stratégie = gaspillage
+4. **Chiffre clé** : "8 heures → 3 minutes" (crédibilité immédiate)
+5. **Ce que le lecteur obtient** : 3 bullets scannables, orientés résultats
+6. **Mention LinkedIn** : elle partage aussi du contenu sur l'IA + relation client (ancre sa crédibilité de communicant)
+7. **CTA à deux volets** : deux raisons claires d'envoyer un DM (contenu SEO OU IA sans perdre la relation client)
 
-Ton : chaleureux, authentique, expert mais accessible. Pas de bullshit corporate.
+Ton : chaleureux, direct ("tu"), authentique, jamais corporate.
+Pas de bullet "Mes valeurs sont..." — montrer, pas annoncer.
 """
 
     print("\n🌟 Génération de la section À propos LinkedIn...\n" + "="*60)
     content = ""
-    async for message in query(
-        prompt=prompt,
-        options=ClaudeAgentOptions(allowed_tools=[]),
-    ):
-        if hasattr(message, "content") and message.content:
-            for block in message.content:
-                if hasattr(block, "text"):
-                    print(block.text)
-                    content += block.text
+    try:
+        async with asyncio.timeout(90):
+            async for message in query(
+                prompt=prompt,
+                options=ClaudeAgentOptions(allowed_tools=[]),
+            ):
+                if hasattr(message, "content") and message.content:
+                    for block in message.content:
+                        if hasattr(block, "text"):
+                            print(block.text)
+                            content += block.text
+    except asyncio.TimeoutError:
+        print("❌ Timeout génération À propos")
+    except Exception as e:
+        print(f"❌ Erreur : {type(e).__name__}: {e}")
     return content
 
 
 async def save_all(posts: str, cv: str, about: str) -> str:
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    try:
+        Path(OUTPUT_DIR).mkdir(parents=True, exist_ok=True)
+    except (OSError, PermissionError) as e:
+        print(f"❌ Impossible de créer {OUTPUT_DIR}: {e}")
+        return ""
+
     date_str = datetime.now().strftime("%Y-%m-%d")
-    output_path = os.path.join(OUTPUT_DIR, f"linkedin_cv_{date_str}.md")
+    output_path = Path(OUTPUT_DIR) / f"linkedin_cv_{date_str}.md"
 
     full_content = f"""# LinkedIn & CV — KeywordMoneyMaker
 Généré le {date_str}
@@ -194,25 +252,45 @@ Généré le {date_str}
 
 {about}
 """
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(full_content)
-
-    print(f"\n✅ Fichier sauvegardé : {output_path}")
-    return output_path
+    try:
+        output_path.write_text(full_content, encoding="utf-8")
+        print(f"\n✅ Fichier sauvegardé : {output_path}")
+        return str(output_path)
+    except (OSError, IOError) as e:
+        print(f"❌ Échec sauvegarde : {e}")
+        return ""
 
 
 async def main():
     print("🚀 Agent LinkedIn & CV — Démarrage\n")
+    try:
+        posts, cv, about = await asyncio.wait_for(
+            asyncio.gather(
+                generate_linkedin_post(),
+                generate_cv_section(),
+                generate_about_section(),
+                return_exceptions=True,
+            ),
+            timeout=300,
+        )
 
-    posts, cv, about = await asyncio.gather(
-        generate_linkedin_post(),
-        generate_cv_section(),
-        generate_about_section(),
-    )
+        for name, result in [("Posts LinkedIn", posts), ("CV", cv), ("À propos", about)]:
+            if isinstance(result, Exception):
+                print(f"❌ {name} : {type(result).__name__}")
 
-    path = await save_all(posts, cv, about)
-    print(f"\n🎯 Tout est prêt dans : {path}")
-    print("   → Copiez le contenu directement sur LinkedIn et votre CV !")
+        path = await save_all(
+            posts if isinstance(posts, str) else "",
+            cv if isinstance(cv, str) else "",
+            about if isinstance(about, str) else "",
+        )
+        if path:
+            print(f"\n🎯 Tout est prêt dans : {path}")
+            print("   → Copiez le contenu directement sur LinkedIn et votre CV !")
+
+    except asyncio.TimeoutError:
+        print("❌ Timeout global (>5 min)")
+    except Exception as e:
+        print(f"❌ Erreur critique : {type(e).__name__}: {e}")
 
 
 if __name__ == "__main__":
