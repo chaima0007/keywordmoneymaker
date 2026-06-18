@@ -8,3 +8,8 @@ dependencies = [
     "composio>=0.13.1",
     "composio-claude-agent-sdk>=0.13.1",
 ]
+
+[dependency-groups]
+dev = [
+    "pip-audit>=2.10.1",
+]
