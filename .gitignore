@@ -1,0 +1,56 @@
+# ─────────────────────────────────────────
+#  KeywordMoneyMaker — .gitignore sécurisé
+# ─────────────────────────────────────────
+
+# ── Secrets & credentials ────────────────
+.env
+.env.*
+*.env
+!.env.example
+secrets.*
+credentials.*
+*.key
+*.pem
+*.p12
+*.pfx
+
+# ── Python ───────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+.mypy_cache/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.ruff_cache/
+
+# ── Security reports (ne pas commiter) ───
+security_reports/
+
+# ── Logs ─────────────────────────────────
+*.log
+logs/
+
+# ── Coverage & tests ─────────────────────
+.coverage
+htmlcov/
+pip-log.txt
+npm-debug.log
+
+# ── Backups ───────────────────────────────
+*.bak
+.env.local
+.env.*.local
+
+# ── OS & editors ─────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
