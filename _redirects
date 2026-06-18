@@ -1,0 +1,22 @@
+# ── Caelum Partners (page principale) ─────────────────────────
+/                       /caelum-index.html              200
+/caelum                 /caelum-index.html              200
+/agence                 /caelum-index.html              200
+
+# ── CompeteIQ ──────────────────────────────────────────────────
+/competeiq              /competeiq-landing.html         200
+/competeiq/             /competeiq-landing.html         200
+/intelligence           /competeiq-landing.html         200
+
+# ── KeywordMoneyMaker ──────────────────────────────────────────
+/kmm                    /keywordmoneymaker-index.html   200
+/keywordmoneymaker      /keywordmoneymaker-index.html   200
+/seo                    /keywordmoneymaker-index.html   200
+
+# ── Redirections propres ───────────────────────────────────────
+/home                   /                               301
+/index                  /                               301
+/index.html             /                               301
+
+# ── Fallback 404 ──────────────────────────────────────────────
+/*                      /caelum-index.html              404
