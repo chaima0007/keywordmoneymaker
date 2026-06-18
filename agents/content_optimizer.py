@@ -1,72 +1,92 @@
 """
 Agent 3 — Surveillance et optimisation du contenu
-Analyse le contenu existant, détecte les faiblesses SEO et applique les corrections.
+Analyse le contenu HTML, détecte les faiblesses SEO et applique les corrections.
 """
 
 import asyncio
 import os
+from pathlib import Path
+from typing import Optional
 from claude_agent_sdk import query, ClaudeAgentOptions
 
+PROJECT_ROOT = Path(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+MAX_FILE_SIZE = 5_000_000  # 5 MB
+IGNORE_DIRS = {".git", ".venv", "__pycache__", "node_modules", ".mypy_cache", "agents"}
 
-PROJECT_ROOT = os.path.join(os.path.dirname(__file__), "..")
 
+async def optimize_content(file_path: str) -> Optional[str]:
+    try:
+        path = Path(file_path).resolve()
 
-async def optimize_content(file_path: str) -> None:
-    abs_path = os.path.abspath(file_path)
-    if not os.path.exists(abs_path):
-        print(f"❌ Fichier introuvable : {abs_path}")
-        return
+        # Protection path traversal — fichier doit être dans PROJECT_ROOT
+        if not str(path).startswith(str(PROJECT_ROOT)):
+            print(f"❌ Chemin invalide (hors du projet) : {file_path}")
+            return None
+        if not path.exists() or not path.is_file():
+            print(f"❌ Fichier introuvable : {path}")
+            return None
+        if path.stat().st_size > MAX_FILE_SIZE:
+            print(f"❌ Fichier trop volumineux (>{MAX_FILE_SIZE/1e6}MB) : {path.name}")
+            return None
+        if path.suffix.lower() not in {".html", ".htm"}:
+            print(f"❌ Type non supporté : {path.suffix}")
+            return None
+    except Exception as e:
+        print(f"❌ Validation du chemin : {e}")
+        return None
 
     prompt = f"""
-Tu es un expert SEO on-page et copywriter. Analyse et optimise le fichier suivant :
+Tu es un expert SEO on-page. Analyse et optimise le fichier HTML suivant :
+Fichier : {path}
 
-Fichier : {abs_path}
-
-Effectue les actions suivantes dans l'ordre :
-
-1. **Lecture** — Lis le fichier avec l'outil Read
-2. **Audit SEO** — Identifie :
-   - Balises title, meta description, H1-H6 manquantes ou non optimisées
-   - Densité de mots-clés (trop faible ou trop élevée)
-   - Contenu trop court ou mal structuré
-   - Liens internes manquants
-   - Textes alternatifs d'images absents
-   - Appels à l'action (CTA) faibles ou absents
-3. **Score SEO** — Note le contenu /100 avec détail par critère
-4. **Optimisation** — Applique les corrections prioritaires directement dans le fichier avec Edit :
-   - Améliore les titres et meta descriptions
-   - Renforce les CTAs
-   - Ajoute les attributs manquants
-5. **Rapport de modifications** — Liste ce qui a été changé et pourquoi
-
-Sois précis, efficace et concentre-toi sur les changements à fort impact SEO.
+Effectue ces actions dans l'ordre :
+1. **Lire** le fichier avec Read
+2. **Audit SEO on-page** :
+   - Title (< 60 chars, keyword en début, unique)
+   - Meta description (150-160 chars, CTA, keyword)
+   - H1 unique, < 60 chars, pas de <br> dedans
+   - Hiérarchie H1→H2→H3 correcte
+   - Schema.org : SoftwareApplication, FAQPage si applicable, BreadcrumbList
+   - Hreflang : présent pour toutes les langues supportées
+   - Open Graph : og:image 1200x630px présent
+   - Twitter Cards : twitter:image présent
+   - Alt text et aria-label sur tous les éléments visuels (emojis inclus)
+   - Core Web Vitals : recommandations lazy loading, optimisation images
+   - E-E-A-T : sources, auteur, date, signaux d'autorité
+3. **Score SEO** /100 avec détail par critère
+4. **Appliquer corrections** avec Edit (priorité haute seulement)
+5. **Rapport** : liste des changements et justifications
 """
 
-    filename = os.path.basename(file_path)
+    filename = path.name
     print(f"\n⚙️  Optimisation : {filename}\n{'='*60}")
 
-    async for message in query(
-        prompt=prompt,
-        options=ClaudeAgentOptions(
-            allowed_tools=["Read", "Edit"],
-        ),
-    ):
-        if hasattr(message, "content") and message.content:
-            for block in message.content:
-                if hasattr(block, "text"):
-                    print(block.text)
+    try:
+        async with asyncio.timeout(120):
+            async for message in query(
+                prompt=prompt,
+                options=ClaudeAgentOptions(allowed_tools=["Read", "Edit"]),
+            ):
+                if hasattr(message, "content") and message.content:
+                    for block in message.content:
+                        if hasattr(block, "text"):
+                            print(block.text)
+    except asyncio.TimeoutError:
+        print(f"❌ Timeout : optimisation de {filename} >120s")
+        return None
+    except Exception as e:
+        print(f"❌ Erreur : {type(e).__name__}: {e}")
+        return None
 
     print(f"\n✅ Optimisation terminée : {filename}")
+    return str(path)
 
 
 async def optimize_all() -> None:
-    html_files = []
-    for root, _, files in os.walk(PROJECT_ROOT):
-        if ".git" in root or "agents" in root:
-            continue
-        for f in files:
-            if f.endswith((".html", ".htm")):
-                html_files.append(os.path.join(root, f))
+    html_files = [
+        f for f in PROJECT_ROOT.rglob("*.html")
+        if not any(part in IGNORE_DIRS for part in f.parts)
+    ]
 
     if not html_files:
         print("❌ Aucun fichier HTML trouvé dans le projet.")
@@ -74,7 +94,7 @@ async def optimize_all() -> None:
 
     print(f"🔎 {len(html_files)} fichier(s) HTML détecté(s)")
     for path in html_files:
-        await optimize_content(path)
+        await optimize_content(str(path))
 
 
 if __name__ == "__main__":

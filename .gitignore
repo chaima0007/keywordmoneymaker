@@ -35,6 +35,17 @@ security_reports/
 *.log
 logs/
 
+# ── Coverage & tests ─────────────────────
+.coverage
+htmlcov/
+pip-log.txt
+npm-debug.log
+
+# ── Backups ───────────────────────────────
+*.bak
+.env.local
+.env.*.local
+
 # ── OS & editors ─────────────────────────
 .DS_Store
 Thumbs.db

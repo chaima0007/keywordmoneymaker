@@ -51,16 +51,22 @@ Format du rapport :
 """
 
     print(f"\n🔐 Audit de sécurité en cours...\n{'='*60}")
-    async for message in query(
-        prompt=prompt,
-        options=ClaudeAgentOptions(
-            allowed_tools=["Read", "Glob", "Grep", "Write"],
-        ),
-    ):
-        if hasattr(message, "content") and message.content:
-            for block in message.content:
-                if hasattr(block, "text"):
-                    print(block.text)
+    try:
+        async with asyncio.timeout(120):
+            async for message in query(
+                prompt=prompt,
+                options=ClaudeAgentOptions(
+                    allowed_tools=["Read", "Glob", "Grep"],
+                ),
+            ):
+                if hasattr(message, "content") and message.content:
+                    for block in message.content:
+                        if hasattr(block, "text"):
+                            print(block.text)
+    except asyncio.TimeoutError:
+        print("❌ Timeout : audit de sécurité >120s")
+    except Exception as e:
+        print(f"❌ Erreur : {type(e).__name__}: {e}")
 
     print(f"\n✅ Rapport sauvegardé : {report_path}")
     return report_path

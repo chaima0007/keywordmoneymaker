@@ -4,60 +4,63 @@ Vérifie que toutes les dépendances Python sont à jour et sans CVE connues.
 """
 
 import asyncio
-import subprocess
 import json
+import logging
 import os
+import subprocess
+import sys
 from datetime import datetime
+from pathlib import Path
 
+logger = logging.getLogger(__name__)
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 REPORTS_DIR = os.path.join(PROJECT_ROOT, "security_reports")
 
 
 def run_pip_audit() -> dict:
-    """Lance pip-audit pour détecter les CVE dans les dépendances."""
     try:
         result = subprocess.run(
             ["uv", "run", "pip-audit", "--format=json", "--output=-"],
-            capture_output=True, text=True, cwd=PROJECT_ROOT
+            capture_output=True, text=True, cwd=PROJECT_ROOT, timeout=60
         )
+        if result.returncode != 0:
+            logger.warning(f"pip-audit a retourné une erreur : {result.stderr[:200]}")
         if result.stdout:
             return json.loads(result.stdout)
-    except Exception:
-        pass
-    return {}
+    except subprocess.TimeoutExpired:
+        logger.error("pip-audit a dépassé le timeout de 60s")
+    except json.JSONDecodeError as e:
+        logger.error(f"Réponse pip-audit invalide : {e}")
+    except Exception as e:
+        logger.error(f"Erreur audit dépendances : {type(e).__name__}: {e}")
+    return {"vulnerabilities": []}
 
 
 def check_outdated() -> list[dict]:
-    """Liste les paquets avec des mises à jour disponibles."""
     try:
         result = subprocess.run(
             ["uv", "pip", "list", "--outdated", "--format=json"],
-            capture_output=True, text=True, cwd=PROJECT_ROOT
+            capture_output=True, text=True, cwd=PROJECT_ROOT, timeout=30
         )
         if result.stdout:
             return json.loads(result.stdout)
-    except Exception:
-        pass
+    except (subprocess.TimeoutExpired, json.JSONDecodeError, Exception) as e:
+        logger.warning(f"Vérification mises à jour échouée : {e}")
     return []
 
 
 def generate_report(audit: dict, outdated: list[dict]) -> str:
-    os.makedirs(REPORTS_DIR, exist_ok=True)
+    Path(REPORTS_DIR).mkdir(parents=True, exist_ok=True)
     date_str = datetime.now().strftime("%Y-%m-%d_%H-%M")
-    report_path = os.path.join(REPORTS_DIR, f"deps_{date_str}.md")
+    report_path = Path(REPORTS_DIR) / f"deps_{date_str}.md"
 
     vulnerabilities = audit.get("vulnerabilities", [])
-    critical_vuln = [v for v in vulnerabilities if any(
-        float(fix.get("cvss", 0) or 0) >= 7.0
-        for fix in v.get("fix_versions", [{}])
-    )]
 
     lines = [
         "# Rapport Dépendances — Vulnérabilités & Mises à jour",
         f"Date : {date_str}\n",
         "## Résumé",
-        f"- Vulnérabilités détectées : **{len(vulnerabilities)}**",
-        f"- Vulnérabilités critiques (CVSS ≥ 7.0) : **{len(critical_vuln)}**",
+        f"- Vulnérabilités CVE détectées : **{len(vulnerabilities)}**",
         f"- Paquets obsolètes : **{len(outdated)}**\n",
     ]
 
@@ -67,7 +70,9 @@ def generate_report(audit: dict, outdated: list[dict]) -> str:
             lines.append(f"### {vuln.get('name')} {vuln.get('version')}")
             for v in vuln.get("vulns", []):
                 lines.append(f"- **{v.get('id')}** : {v.get('description', 'N/A')[:200]}")
-                lines.append(f"  - Fix : `uv add {vuln.get('name')}=={v.get('fix_versions', ['latest'])[0] if v.get('fix_versions') else 'latest'}`")
+                fixes = v.get("fix_versions", [])
+                fix = fixes[0] if fixes else "latest"
+                lines.append(f"  - Fix : `uv add {vuln.get('name')}=={fix}`")
             lines.append("")
     else:
         lines.append("## ✅ Aucune vulnérabilité CVE détectée\n")
@@ -82,23 +87,35 @@ def generate_report(audit: dict, outdated: list[dict]) -> str:
     else:
         lines.append("## ✅ Toutes les dépendances sont à jour\n")
 
-    lines.append("## Bonnes pratiques")
-    lines.append("- Exécuter ce scan hebdomadairement")
-    lines.append("- Activer Dependabot ou Renovate sur GitHub")
-    lines.append("- Ne jamais ignorer les CVE de criticité HAUTE ou CRITIQUE")
-    lines.append("- Épingler les versions dans pyproject.toml en production")
+    lines += [
+        "## Bonnes pratiques",
+        "- Exécuter ce scan hebdomadairement",
+        "- Activer Dependabot sur GitHub",
+        "- Ne jamais ignorer les CVE HAUTE ou CRITIQUE",
+        "- Épingler les versions dans pyproject.toml en production",
+    ]
 
-    with open(report_path, "w", encoding="utf-8") as f:
-        f.write("\n".join(lines))
+    try:
+        report_path.write_text("\n".join(lines), encoding="utf-8")
+    except (OSError, IOError) as e:
+        logger.error(f"Échec sauvegarde rapport : {e}")
 
-    return report_path
+    return str(report_path)
 
 
 async def main():
+    logging.basicConfig(level=logging.WARNING)
     print(f"\n📦 Vérification des dépendances...\n{'='*60}")
 
-    # Installer pip-audit si absent
-    subprocess.run(["uv", "add", "--dev", "pip-audit"], capture_output=True, cwd=PROJECT_ROOT)
+    # Vérifier que pip-audit est disponible sans l'installer automatiquement
+    check = subprocess.run(
+        ["uv", "run", "pip-audit", "--version"],
+        capture_output=True, text=True, cwd=PROJECT_ROOT, timeout=10
+    )
+    if check.returncode != 0:
+        print("⚠️  pip-audit n'est pas installé")
+        print("   Installez-le manuellement avec : uv add --dev pip-audit")
+        sys.exit(1)
 
     print("🔍 Scan CVE en cours...")
     audit = run_pip_audit()
@@ -107,18 +124,17 @@ async def main():
     outdated = check_outdated()
 
     report_path = generate_report(audit, outdated)
-
     vulnerabilities = audit.get("vulnerabilities", [])
+
     if vulnerabilities:
         print(f"\n🚨 {len(vulnerabilities)} vulnérabilité(s) trouvée(s) !")
         for v in vulnerabilities:
-            print(f"   ├── {v.get('name')} {v.get('version')} — {len(v.get('vulns', []))} CVE")
+            print(f"   ├── {v.get('name')} {v.get('version')}")
     else:
         print("\n✅ Aucune vulnérabilité CVE détectée")
 
     if outdated:
-        print(f"\n⬆️  {len(outdated)} paquet(s) à mettre à jour")
-        print("   └── Lancer : uv sync --upgrade")
+        print(f"\n⬆️  {len(outdated)} paquet(s) à mettre à jour → `uv sync --upgrade`")
     else:
         print("✅ Toutes les dépendances sont à jour")
 
