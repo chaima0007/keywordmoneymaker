@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self';" />
+
+  <title>CompeteIQ — Intelligence Concurrentielle Pilotée par l'IA</title>
+  <meta name="description" content="9 agents IA surveillent vos concurrents 24h/24. Alertes en temps réel, battle cards, signaux faibles, plan de conquête. Essai gratuit 14 jours." />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="CompeteIQ — Intelligence Concurrentielle par IA" />
+  <meta property="og:description" content="Sachez avant vos concurrents ce que vos concurrents font. 9 agents IA. Alertes en temps réel." />
+  <meta property="og:type" content="website" />
+
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #020617;
+      --bg2:      #0f172a;
+      --bg3:      #1e293b;
+      --indigo:   #4338ca;
+      --indigo2:  #6366f1;
+      --violet:   #7c3aed;
+      --cyan:     #06b6d4;
+      --emerald:  #10b981;
+      --amber:    #f59e0b;
+      --red:      #ef4444;
+      --text:     #e2e8f0;
+      --muted:    #64748b;
+      --border:   rgba(255,255,255,.06);
+      --card:     rgba(255,255,255,.025);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(2,6,23,.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem; font-weight: 700; color: #fff;
+      letter-spacing: -.5px; text-decoration: none;
+    }
+    .logo span { color: var(--indigo2); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-actions { display: flex; gap: .75rem; align-items: center; }
+    .btn-ghost { color: var(--text); text-decoration: none; font-size: .88rem; font-weight: 500; padding: .5rem 1rem; }
+    .btn-cta {
+      background: var(--indigo); color: #fff;
+      padding: .55rem 1.25rem; border-radius: 8px;
+      text-decoration: none; font-size: .88rem; font-weight: 600;
+      transition: background .2s; white-space: nowrap;
+    }
+    .btn-cta:hover { background: var(--indigo2); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 8rem 2rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 90% 70% at 50% -10%, rgba(67,56,202,.25) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 85% 90%, rgba(124,58,237,.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 15% 80%, rgba(6,182,212,.07) 0%, transparent 60%);
+    }
+
+    /* LIVE BADGE */
+    .live-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3);
+      color: #fca5a5; padding: .35rem 1rem; border-radius: 100px;
+      font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; margin-bottom: 2rem;
+    }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--red); animation: livepulse 1.5s infinite;
+    }
+    @keyframes livepulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)} }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.6rem, 6.5vw, 4.8rem);
+      font-weight: 700; line-height: 1.08;
+      letter-spacing: -.04em; margin-bottom: 1.5rem;
+    }
+    h1 .accent { color: var(--indigo2); }
+    h1 .dimmed { color: var(--muted); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--muted); max-width: 600px;
+      margin: 0 auto 2.5rem; line-height: 1.7;
+    }
+
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 3.5rem; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--indigo), var(--violet));
+      color: #fff; padding: .95rem 2.2rem; border-radius: 10px;
+      text-decoration: none; font-weight: 600; font-size: 1rem;
+      box-shadow: 0 0 40px rgba(67,56,202,.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(67,56,202,.6); }
+    .btn-demo {
+      background: transparent; color: var(--text);
+      padding: .95rem 2.2rem; border-radius: 10px;
+      border: 1px solid var(--border); text-decoration: none;
+      font-weight: 500; font-size: 1rem;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-demo:hover { border-color: var(--indigo2); color: var(--indigo2); }
+
+    /* TICKER */
+    .ticker-wrap {
+      width: 100%; overflow: hidden;
+      background: rgba(67,56,202,.08); border-top: 1px solid rgba(67,56,202,.2);
+      border-bottom: 1px solid rgba(67,56,202,.2);
+      padding: .7rem 0; margin-bottom: 0;
+    }
+    .ticker {
+      display: flex; gap: 3rem; white-space: nowrap;
+      animation: ticker 28s linear infinite;
+    }
+    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .ticker-item { display: flex; align-items: center; gap: .6rem; font-size: .8rem; }
+    .ticker-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .dot-red { background: var(--red); }
+    .dot-amber { background: var(--amber); }
+    .dot-emerald { background: var(--emerald); }
+    .ticker-label { color: var(--muted); }
+    .ticker-value { color: var(--text); font-weight: 600; }
+
+    /* STATS */
+    .stats {
+      display: flex; gap: 3rem; flex-wrap: wrap;
+      justify-content: center; margin-top: 3.5rem;
+    }
+    .stat { text-align: center; }
+    .stat-n {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem; font-weight: 700; color: #fff; line-height: 1;
+    }
+    .stat-l { font-size: .8rem; color: var(--muted); margin-top: .3rem; }
+
+    /* SECTIONS */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-tag {
+      font-size: .72rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--indigo2);
+      margin-bottom: .9rem; display: block;
+    }
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: 700; line-height: 1.15; letter-spacing: -.025em;
+      margin-bottom: 1rem;
+    }
+    .sub { color: var(--muted); font-size: 1.05rem; max-width: 560px; margin-bottom: 3.5rem; line-height: 1.7; }
+    .divider { height: 1px; background: var(--border); max-width: 1100px; margin: 0 auto; }
+
+    /* PAIN SECTION */
+    .pain-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .pain-card {
+      background: rgba(239,68,68,.04); border: 1px solid rgba(239,68,68,.15);
+      border-radius: 14px; padding: 1.6rem;
+    }
+    .pain-icon { font-size: 1.6rem; margin-bottom: .9rem; }
+    .pain-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: .5rem; }
+    .pain-card p { font-size: .88rem; color: var(--muted); line-height: 1.6; }
+
+    /* AGENTS */
+    .agents-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.25rem;
+    }
+    .agent-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.6rem;
+      transition: border-color .25s, transform .25s; position: relative;
+    }
+    .agent-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      border-radius: 14px 14px 0 0; opacity: 0; transition: opacity .25s;
+    }
+    .agent-card.indigo::before { background: linear-gradient(90deg, var(--indigo), var(--indigo2)); }
+    .agent-card.violet::before { background: linear-gradient(90deg, var(--violet), var(--indigo2)); }
+    .agent-card.cyan::before   { background: linear-gradient(90deg, var(--cyan), var(--emerald)); }
+    .agent-card:hover { border-color: rgba(99,102,241,.4); transform: translateY(-3px); }
+    .agent-card:hover::before { opacity: 1; }
+    .agent-top { display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem; }
+    .agent-icon {
+      width: 40px; height: 40px; border-radius: 9px;
+      background: rgba(99,102,241,.12); border: 1px solid rgba(99,102,241,.2);
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .agent-meta {}
+    .agent-codename { font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--indigo2); }
+    .agent-name { font-weight: 600; font-size: .95rem; }
+    .agent-desc { font-size: .86rem; color: var(--muted); line-height: 1.6; }
+    .agent-stat {
+      display: inline-flex; align-items: center; gap: .4rem;
+      margin-top: .9rem; background: rgba(99,102,241,.08);
+      border: 1px solid rgba(99,102,241,.15);
+      padding: .2rem .65rem; border-radius: 6px;
+      font-size: .72rem; color: var(--indigo2); font-weight: 600;
+    }
+    .agent-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--emerald); animation: livepulse 2s infinite; }
+
+    /* FEATURES */
+    .features-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    }
+    .feature {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.8rem;
+    }
+    .feature.wide { grid-column: span 2; }
+    .feature-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .feature h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: .5rem; }
+    .feature p { font-size: .88rem; color: var(--muted); line-height: 1.6; }
+    .feature-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1rem; }
+    .tag {
+      background: rgba(99,102,241,.1); border: 1px solid rgba(99,102,241,.2);
+      color: var(--indigo2); padding: .2rem .6rem; border-radius: 5px;
+      font-size: .72rem; font-weight: 600;
+    }
+
+    /* PRICING */
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem; align-items: start;
+    }
+    .plan {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem; position: relative;
+    }
+    .plan.featured {
+      border-color: rgba(99,102,241,.5);
+      background: rgba(99,102,241,.06);
+    }
+    .plan-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--indigo), var(--violet));
+      color: #fff; padding: .25rem .9rem; border-radius: 100px;
+      font-size: .72rem; font-weight: 700; white-space: nowrap;
+    }
+    .plan-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.8rem; font-weight: 700; color: #fff; line-height: 1;
+    }
+    .plan-period { font-size: .88rem; color: var(--muted); font-weight: 400; }
+    .plan-name { font-weight: 600; margin: .5rem 0 .3rem; }
+    .plan-desc { font-size: .85rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .plan-features { list-style: none; }
+    .plan-features li {
+      font-size: .86rem; padding: .45rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex; gap: .6rem; align-items: flex-start;
+    }
+    .plan-features li:last-child { border: none; }
+    .plan-features li::before { content: '✓'; color: var(--indigo2); font-weight: 700; flex-shrink: 0; margin-top: .05rem; }
+    .plan-cta {
+      display: block; text-align: center; margin-top: 1.5rem;
+      padding: .75rem; border-radius: 9px;
+      text-decoration: none; font-weight: 600; font-size: .92rem;
+      transition: opacity .2s;
+    }
+    .plan-cta.primary { background: var(--indigo); color: #fff; }
+    .plan-cta.outline { border: 1px solid var(--border); color: var(--text); }
+    .plan-cta:hover { opacity: .85; }
+
+    /* SOCIAL PROOF */
+    .proof-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+    .proof-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.6rem;
+    }
+    .proof-stars { color: var(--amber); font-size: .9rem; margin-bottom: .8rem; }
+    .proof-text { font-size: .9rem; color: var(--text); font-style: italic; line-height: 1.7; margin-bottom: 1.1rem; }
+    .proof-author strong { display: block; font-size: .88rem; }
+    .proof-author span { font-size: .78rem; color: var(--muted); }
+    .proof-metric {
+      margin-top: .9rem; padding-top: .9rem;
+      border-top: 1px solid var(--border);
+      font-size: .8rem; color: var(--emerald); font-weight: 600;
+    }
+
+    /* CTA FINAL */
+    .cta-section {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(67,56,202,.15) 0%, rgba(124,58,237,.08) 100%);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .cta-section h2 { max-width: 620px; margin: 0 auto 1rem; }
+    .cta-section p { color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; }
+    .cta-note { font-size: .8rem; color: var(--muted); margin-top: 1.2rem; }
+
+    /* FOOTER */
+    footer {
+      padding: 2.5rem 2rem; border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer p { font-size: .8rem; color: var(--muted); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: .8rem; color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem; }
+      .nav-links { display: none; }
+      .features-grid { grid-template-columns: 1fr; }
+      .feature.wide { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="logo">Compete<span>IQ</span></a>
+  <ul class="nav-links">
+    <li><a href="#agents">Agents</a></li>
+    <li><a href="#fonctionnalites">Fonctionnalités</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#temoignages">Témoignages</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="/login" class="btn-ghost">Connexion</a>
+    <a href="/signup" class="btn-cta">Essai gratuit →</a>
+  </div>
+</nav>
+
+<!-- LIVE TICKER -->
+<div style="height:3rem"></div>
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item"><span class="ticker-dot dot-red"></span><span class="ticker-label">ORACLE détecte :</span><span class="ticker-value">Salesforce +12% sur l'offre Enterprise</span></div>
+    <div class="ticker-item"><span class="ticker-dot dot-amber"></span><span class="ticker-label">PRISM alerte :</span><span class="ticker-value">HubSpot lance AI Insights — en bêta</span></div>
+    <div class="ticker-item"><span class="ticker-dot dot-emerald"></span><span class="ticker-label">ECHO signal :</span><span class="ticker-value">Monday.com recrute 45 ingénieurs IA</span></div>
+    <div class="ticker-item"><span class="ticker-dot dot-red"></span><span class="ticker-label">ATLAS map :</span><span class="ticker-value">Nouveau entrant : Klue lève 75M$</span></div>
+    <div class="ticker-item"><span class="ticker-dot dot-amber"></span><span class="ticker-label">SENTINEL :</span><span class="ticker-value">Gartner positionne Crayon en "Visionnaire"</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><span class="ticker-dot dot-red"></span><span class="ticker-label">ORACLE détecte :</span><span class="ticker-value">Salesforce +12% sur l'offre Enterprise</span></div>
+    <div class="ticker-item"><span class="ticker-dot dot-amber"></span><span class="ticker-label">PRISM alerte :</span><span class="ticker-value">HubSpot lance AI Insights — en bêta</span></div>
+    <div class="ticker-item"><span class="ticker-dot dot-emerald"></span><span class="ticker-label">ECHO signal :</span><span class="ticker-value">Monday.com recrute 45 ingénieurs IA</span></div>
+    <div class="ticker-item"><span class="ticker-dot dot-red"></span><span class="ticker-label">ATLAS map :</span><span class="ticker-value">Nouveau entrant : Klue lève 75M$</span></div>
+    <div class="ticker-item"><span class="ticker-dot dot-amber"></span><span class="ticker-label">SENTINEL :</span><span class="ticker-value">Gartner positionne Crayon en "Visionnaire"</span></div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="live-badge"><span class="live-dot"></span>9 agents actifs en ce moment</div>
+  <h1>
+    Sachez ce que font<br>
+    <span class="accent">vos concurrents</span><br>
+    <span class="dimmed">avant qu'ils le fassent.</span>
+  </h1>
+  <p class="hero-sub">CompeteIQ déploie 9 agents IA spécialisés qui surveillent, analysent et alertent 24h/24. Réagissez en heures, pas en semaines.</p>
+  <div class="hero-cta">
+    <a href="/signup" class="btn-primary">Démarrer l'essai gratuit — 14 jours</a>
+    <a href="#demo" class="btn-demo">Voir une démo</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-n">9</div><div class="stat-l">Agents IA actifs</div></div>
+    <div class="stat"><div class="stat-n">&lt;2h</div><div class="stat-l">Délai d'alerte moyen</div></div>
+    <div class="stat"><div class="stat-n">29</div><div class="stat-l">Modules d'analyse</div></div>
+    <div class="stat"><div class="stat-n">0</div><div class="stat-l">Configuration requise</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PAIN -->
+<section>
+  <div class="container">
+    <span class="section-tag">Le problème</span>
+    <h2>Vous apprenez les mouvements de vos concurrents… trop tard.</h2>
+    <p class="sub">Pendant que vous analysez manuellement des flux RSS et des rapports trimestriels, vos concurrents signent vos prospects.</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">😤</div>
+        <h3>Veille manuelle = plein-temps perdu</h3>
+        <p>3 à 6 heures par semaine à surveiller des sites, des LinkedIn, des G2. Un travail répétitif et incomplet que personne ne veut faire.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📉</div>
+        <h3>Réactions en retard</h3>
+        <p>Vous découvrez la baisse de prix de votre concurrent le jour où votre client vous envoie le screenshot. Trop tard pour préparer une réponse.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🎯</div>
+        <h3>Deals perdus sans savoir pourquoi</h3>
+        <p>"On est partis avec X" — sans battle card à jour, vos commerciaux perdent des deals évitables face à des arguments prévisibles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- AGENTS -->
+<section id="agents">
+  <div class="container">
+    <span class="section-tag">La flotte CompeteIQ</span>
+    <h2>9 agents. Chacun maître dans son domaine.</h2>
+    <p class="sub">Pas des dashboards. Des agents autonomes qui agissent, alertent, et génèrent des recommandations actionnables.</p>
+    <div class="agents-grid">
+
+      <div class="agent-card indigo">
+        <div class="agent-top">
+          <div class="agent-icon">🛡️</div>
+          <div class="agent-meta">
+            <div class="agent-codename">SENTINEL</div>
+            <div class="agent-name">Surveillance des Menaces</div>
+          </div>
+        </div>
+        <div class="agent-desc">Monitore en temps réel les mouvements concurrentiels : offres d'emploi, communiqués, brevets déposés, levées de fonds. Alerte sous 2h.</div>
+        <div class="agent-stat"><span class="agent-dot"></span>Actif — 247 signaux/semaine</div>
+      </div>
+
+      <div class="agent-card violet">
+        <div class="agent-top">
+          <div class="agent-icon">🔮</div>
+          <div class="agent-meta">
+            <div class="agent-codename">ORACLE</div>
+            <div class="agent-name">Analyse Prédictive</div>
+          </div>
+        </div>
+        <div class="agent-desc">Prédit les mouvements futurs à partir des signaux faibles actuels. Probabilités sur 3 et 6 mois. Forecasting des parts de marché.</div>
+        <div class="agent-stat"><span class="agent-dot"></span>Actif — Précision 78%</div>
+      </div>
+
+      <div class="agent-card cyan">
+        <div class="agent-top">
+          <div class="agent-icon">📡</div>
+          <div class="agent-meta">
+            <div class="agent-codename">ECHO</div>
+            <div class="agent-name">Monitoring Social</div>
+          </div>
+        </div>
+        <div class="agent-desc">LinkedIn, forums, Reddit, Glassdoor, G2, Capterra. Détecte les plaintes clients concurrents — vos opportunités de conquête.</div>
+        <div class="agent-stat"><span class="agent-dot"></span>Actif — 12 sources surveillées</div>
+      </div>
+
+      <div class="agent-card indigo">
+        <div class="agent-top">
+          <div class="agent-icon">💰</div>
+          <div class="agent-meta">
+            <div class="agent-codename">PRISM</div>
+            <div class="agent-name">Intelligence Tarifaire</div>
+          </div>
+        </div>
+        <div class="agent-desc">Suit chaque changement de prix, bundle, promotion, discount. Analyse le positionnement tarifaire et détecte les opportunités de revalorisation.</div>
+        <div class="agent-stat"><span class="agent-dot"></span>Actif — 34 grilles surveillées</div>
+      </div>
+
+      <div class="agent-card violet">
+        <div class="agent-top">
+          <div class="agent-icon">🗺️</div>
+          <div class="agent-meta">
+            <div class="agent-codename">ATLAS</div>
+            <div class="agent-name">Cartographie Marché</div>
+          </div>
+        </div>
+        <div class="agent-desc">Visualise l'écosystème concurrentiel : nouveaux entrants, acquisitions, partenariats, expansions géographiques. Bubble chart temps réel.</div>
+        <div class="agent-stat"><span class="agent-dot"></span>Actif — Carte mise à jour quotidiennement</div>
+      </div>
+
+      <div class="agent-card cyan">
+        <div class="agent-top">
+          <div class="agent-icon">✉️</div>
+          <div class="agent-meta">
+            <div class="agent-codename">HERMES</div>
+            <div class="agent-name">Veille Communications</div>
+          </div>
+        </div>
+        <div class="agent-desc">Analyse le messaging concurrentiel : newsletters, blogs, landing pages. Identifie les pivots de positionnement et les nouvelles promesses.</div>
+        <div class="agent-stat"><span class="agent-dot"></span>Actif — 89 sources analysées</div>
+      </div>
+
+      <div class="agent-card indigo">
+        <div class="agent-top">
+          <div class="agent-icon">🔗</div>
+          <div class="agent-meta">
+            <div class="agent-codename">NEXUS</div>
+            <div class="agent-name">Corrélation des Données</div>
+          </div>
+        </div>
+        <div class="agent-desc">Connecte les signaux disparates et révèle des insights invisibles individuellement. "Cette offre d'emploi + ce brevet = nouveau produit dans 6 mois."</div>
+        <div class="agent-stat"><span class="agent-dot"></span>Actif — 1 247 connexions détectées</div>
+      </div>
+
+      <div class="agent-card violet">
+        <div class="agent-top">
+          <div class="agent-icon">⚔️</div>
+          <div class="agent-meta">
+            <div class="agent-codename">FORGE</div>
+            <div class="agent-name">Génération Battle Cards</div>
+          </div>
+        </div>
+        <div class="agent-desc">Génère automatiquement des battle cards à jour pour chaque concurrent. Arguments, objections anticipées, preuves sociales — prêts pour vos commerciaux.</div>
+        <div class="agent-stat"><span class="agent-dot"></span>Actif — 12 battle cards à jour</div>
+      </div>
+
+      <div class="agent-card cyan" style="border-color:rgba(6,182,212,.3);background:rgba(6,182,212,.04)">
+        <div class="agent-top">
+          <div class="agent-icon">🎖️</div>
+          <div class="agent-meta">
+            <div class="agent-codename">COMMANDANT <span style="background:rgba(124,58,237,.2);color:#a78bfa;font-size:.6rem;padding:.1rem .4rem;border-radius:4px;margin-left:.3rem">PRO</span></div>
+            <div class="agent-name">Coordinateur Général</div>
+          </div>
+        </div>
+        <div class="agent-desc">Reçoit vos missions stratégiques en langage naturel, coordonne la flotte, génère un plan de réponse exécutif avec KPIs et jalons.</div>
+        <div class="agent-stat"><span class="agent-dot"></span>PRO — Accès illimité</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<section id="fonctionnalites">
+  <div class="container">
+    <span class="section-tag">Fonctionnalités</span>
+    <h2>Tout ce dont votre équipe a besoin.</h2>
+    <p class="sub">Du signal brut à la décision stratégique — en une seule plateforme.</p>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Alertes en temps réel</h3>
+        <p>Notification push, email ou Slack dès qu'un concurrent fait un mouvement. Filtrable par type, urgence, et concurrent.</p>
+        <div class="feature-tags"><span class="tag">Push</span><span class="tag">Email</span><span class="tag">Slack</span></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🃏</div>
+        <h3>Battle Cards automatiques</h3>
+        <p>Générées par FORGE et mises à jour en continu. Vos commerciaux entrent en réunion avec les bons arguments.</p>
+        <div class="feature-tags"><span class="tag">Auto-update</span><span class="tag">PDF export</span></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <h3>Simulateur de scénarios</h3>
+        <p>Simulez l'impact sur votre CA si un concurrent baisse ses prix, lance une feature, ou entre sur un nouveau segment.</p>
+        <div class="feature-tags"><span class="tag">Conservateur</span><span class="tag">Réaliste</span><span class="tag">Optimiste</span></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🎯</div>
+        <h3>Radar Clients à risque</h3>
+        <p>Identifie vos comptes les plus exposés aux approches concurrentielles. Score de risque, historique, actions recommandées.</p>
+        <div class="feature-tags"><span class="tag">Churn prédictif</span><span class="tag">Action prioritaire</span></div>
+      </div>
+      <div class="feature wide">
+        <div class="feature-icon">🏆</div>
+        <h3>RÉSOLVEUR — Plan de réponse stratégique en 30 secondes</h3>
+        <p>Décrivez votre problème concurrentiel ("Salesforce vient de baisser ses prix de 20%"), RÉSOLVEUR génère un plan d'action sur 3 horizons temporels : réponse immédiate (0-7j), court terme (7-30j), et stratégique (30-90j) — avec agents mobilisés, KPIs à surveiller, et arguments pour vos commerciaux.</p>
+        <div class="feature-tags"><span class="tag">PRO</span><span class="tag">Généré en 30s</span><span class="tag">Export PDF</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section id="tarifs">
+  <div class="container">
+    <span class="section-tag">Tarifs</span>
+    <h2>Investissement. Pas une dépense.</h2>
+    <p class="sub">Un seul deal sauvé couvre 6 mois d'abonnement. Essai 14 jours sans carte bancaire.</p>
+    <div class="pricing-grid">
+
+      <div class="plan">
+        <div class="plan-price">149€ <span class="plan-period">/ mois</span></div>
+        <div class="plan-name">Starter</div>
+        <div class="plan-desc">Pour les équipes qui démarrent leur veille concurrentielle.</div>
+        <ul class="plan-features">
+          <li>5 concurrents surveillés</li>
+          <li>Alertes email (délai 24h)</li>
+          <li>Dashboard complet</li>
+          <li>Battle cards manuelles</li>
+          <li>Rapports hebdomadaires</li>
+          <li>1 utilisateur</li>
+        </ul>
+        <a href="/signup?plan=starter" class="plan-cta outline">Commencer gratuitement</a>
+      </div>
+
+      <div class="plan featured">
+        <div class="plan-badge">⭐ Le plus populaire</div>
+        <div class="plan-price">399€ <span class="plan-period">/ mois</span></div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-desc">Pour les équipes commerciales et marketing qui veulent réagir vite.</div>
+        <ul class="plan-features">
+          <li>15 concurrents surveillés</li>
+          <li>Alertes temps réel (&lt;2h)</li>
+          <li>Battle cards automatiques (FORGE)</li>
+          <li>Simulateur de scénarios</li>
+          <li>Radar clients à risque</li>
+          <li>COMMANDANT + RÉSOLVEUR PRO</li>
+          <li>Signaux faibles</li>
+          <li>Export PDF/CSV illimité</li>
+          <li>5 utilisateurs</li>
+        </ul>
+        <a href="/signup?plan=pro" class="plan-cta primary">Essai gratuit 14 jours</a>
+      </div>
+
+      <div class="plan">
+        <div class="plan-price">Sur devis</div>
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-desc">Pour les grandes équipes avec des besoins sur mesure.</div>
+        <ul class="plan-features">
+          <li>Concurrents illimités</li>
+          <li>Agents dédiés + SLA 99.9%</li>
+          <li>Intégration CRM (Salesforce, HubSpot)</li>
+          <li>SSO + contrôle d'accès granulaire</li>
+          <li>Onboarding dédié</li>
+          <li>Utilisateurs illimités</li>
+          <li>Rapport mensuel exécutif</li>
+        </ul>
+        <a href="mailto:retrouvetonsmile@gmail.com?subject=CompeteIQ Enterprise" class="plan-cta outline">Contacter l'équipe</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOCIAL PROOF -->
+<section id="temoignages">
+  <div class="container">
+    <span class="section-tag">Résultats clients</span>
+    <h2>Ils ont arrêté de réagir. Ils anticipent.</h2>
+    <p class="sub">Des résultats mesurables dès la première semaine.</p>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-text">SENTINEL nous a alertés 6 jours avant que Salesforce annonce publiquement sa nouvelle offre PME. On avait déjà notre contre-argument prêt.</p>
+        <div class="proof-author">
+          <strong>Laurent B.</strong>
+          <span>VP Sales, Éditeur SaaS B2B, Paris</span>
+        </div>
+        <div class="proof-metric">↑ 23% taux de rétention clients · 3 comptes sauvés ce trimestre</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-text">FORGE génère nos battle cards automatiquement. L'équipe commerciale est entrée en Q4 avec 12 battle cards à jour. On n'avait jamais eu ça.</p>
+        <div class="proof-author">
+          <strong>Amina K.</strong>
+          <span>Directrice Marketing, SaaS RH, Bruxelles</span>
+        </div>
+        <div class="proof-metric">↑ 31% win rate sur les deals compétitifs</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-text">RÉSOLVEUR m'a généré un plan de réponse complet quand Monday.com a lancé une feature qui nous menaçait directement. En 30 secondes.</p>
+        <div class="proof-author">
+          <strong>Thomas R.</strong>
+          <span>CEO, Startup B2B Series A, Lyon</span>
+        </div>
+        <div class="proof-metric">Plan de réponse exécuté en 3 semaines · Zéro churn</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <span class="section-tag">Passez à l'action</span>
+    <h2>Vos concurrents bougent en ce moment.</h2>
+    <p>14 jours d'essai gratuit. Configuration en 5 minutes. Première alerte sous 24h. Aucune carte bancaire requise.</p>
+    <div class="hero-cta">
+      <a href="/signup" class="btn-primary">Démarrer mon essai gratuit →</a>
+      <a href="mailto:retrouvetonsmile@gmail.com?subject=Démo CompeteIQ" class="btn-demo">Demander une démo</a>
+    </div>
+    <p class="cta-note">Déjà client ? <a href="/login" style="color:var(--indigo2);text-decoration:none">Connexion →</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="logo" style="font-size:1.1rem">Compete<span>IQ</span></a>
+    <p>© 2026 CompeteIQ — Caelum Partners, Bruxelles</p>
+    <div class="footer-links">
+      <a href="#agents">Agents</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="/login">Connexion</a>
+      <a href="mailto:retrouvetonsmile@gmail.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
