@@ -14,6 +14,7 @@
 - 2026-06-18 : domaine caelumpartners.agency rattaché à GitHub Pages (CNAME commité, deploy Actions vert).
 - 2026-07-17 : DNS repointés parking Namecheap → GitHub Pages (A 185.199.108.153, www CNAME chaima0007.github.io), « DNS only », 525 résolu, site en HTTPS (autre session, doc 13). NE PAS réactiver le proxy Cloudflare tant que le certificat GitHub n'est pas confirmé stable.
 - 2026-07-17 : flotte d'agents installée (.claude/agents/, 24 agents docs 08/09/12/14) + CLAUDE.md maître (doc 10) + ce fichier.
+- 2026-07-17 : PROTOCOLE UNIVERSEL « DRIVE D'ABORD » adopté (doc 19 du Drive) : Drive lu avant toute action, critique des critiques (3 couches), journalisation datée+synopsis dans le dossier concerné. Intégré au §0 et §2 de CLAUDE.md.
 
 ## Tâches
 | Tâche | État | Preuve |

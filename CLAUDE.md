@@ -1,8 +1,18 @@
 # CLAUDE.md — RÈGLES MAÎTRES DU PROJET (CAELUM PARTNERS)
 
-## 0. AVANT TOUTE ACTION
-Lis d'abord : ce fichier, puis « ETAT.md » (état du projet), puis la dernière PASSATION. Ne relis pas tout le
-code : va droit aux fichiers concernés par ta tâche. Si ETAT.md n'existe pas, crée-le.
+## 0. AVANT TOUTE ACTION — PROTOCOLE « DRIVE D'ABORD » (P-DRIVE-D-ABORD, doc 19)
+1. **DRIVE D'ABORD** : ouvre le dossier Drive concerné (Caelum/KMM/CompeteIQ → « 🗂️ Caelum — Journal
+   d'Audit », ID 1npTlFufVU03luocJIw365Sd3evziZGg_ ; transversal → « 🗂️ COMPILATION & SYNOPSIS — Empire
+   Chaima », ID 1qXUj9D9r7HSmIMzMcsScz4Ynlv4auP4G) et lis le DERNIER rapport de session + les titres
+   existants + les décisions en attente. Ne refais JAMAIS un travail déjà fait ; ne crée JAMAIS de doublon ;
+   repars toujours des versions déjà critiquées/corrigées, pas des originales.
+2. Puis lis : ce fichier, « ETAT.md », et la dernière PASSATION. Ne relis pas tout le code : va droit aux
+   fichiers concernés par ta tâche. Si ETAT.md n'existe pas, crée-le. Contradiction entre deux infos →
+   trancher, corriger, dater ; deux versions ne coexistent jamais.
+3. **JOURNALISATION** : chaque action significative → UN document dans le dossier Drive concerné, titre
+   « N°/AAAA-MM-JJ — TYPE — sujet », en-tête date+heure UTC + auteur + SYNOPSIS complet, corps
+   FAIT (preuves) / VÉRIFIÉ / RESTE / DÉPEND DE CHAIMA, relu après création (read-back). Propre, concis,
+   un événement = un document, jamais de modification rétroactive.
 
 ## 1. MISSION & PÉRIMÈTRE
 - UN seul projet : Caelum Partners. Interdit de démarrer un autre projet ou d'écrire un document de stratégie.
@@ -17,7 +27,11 @@ code : va droit aux fichiers concernés par ta tâche. Si ETAT.md n'existe pas, 
   social-linkedin, ads-sea, email-marketing, partenariats-fiduciaires, analytics-mesure,
   completeur-angles-morts, analyste-marche, reformulateur-demandes).
 - Une responsabilité = un agent (pas de doublon). En cas de recouvrement, le meta-orchestrateur tranche.
-- Chaque tâche terminée passe par le « qa-verificateur » : score qualité ≥ 90/100 sinon retour avec corrections.
+- Chaque tâche terminée passe par la **qualité en 3 couches** (doc 19) : production (agent spécialisé) →
+  critique adversariale (« qa-verificateur »/« gardien-juridique-verite » : vérité, droit, RGPD, langue) →
+  **critique de la critique** (un second vérificateur juge la critique : corrections fondées ? défaut raté ?
+  sur-correction ?). Validé seulement ≥ 90/100, sinon retour en couche 1 avec la liste exacte.
+  Action mineure (typo, commit technique) : auto-contrôle documenté (tests/grep/read-back) — le dire honnêtement.
 - Avant tout déploiement : audit de « architecte-securite » + « rgpd-securite ».
 
 ## 3. RÈGLE DE VÉRIFICATION (À CHAQUE GESTE — le cœur)
