@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:;" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Simulateur « Suis-je concerné ? » — Caelum Partners</title>
+  <meta name="description" content="4 questions, 2 minutes : découvrez quelles obligations (e-facturation Peppol, NIS2, RGPD, lanceurs d'alerte) s'appliquent réellement à votre entreprise belge — et lesquelles ne s'appliquent pas." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://caelumpartners.agency/simulateur.html" />
+  <style>
+    :root{--encre:#16232F;--navy:#14243A;--papier:#FAFAF8;--vert:#1E6E50;--filet:#E4E1D8;--gris:#5B6672;--or:#C8B27C}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--papier);color:var(--encre);line-height:1.7;font-size:17px}
+    a{color:var(--vert)}
+    .skip{position:absolute;left:-9999px;top:0;background:#fff;padding:.5rem 1rem;z-index:10}
+    .skip:focus{left:0}
+    header{background:var(--navy);color:#F5F2EA;padding:.9rem 1.2rem}
+    .nav{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap}
+    .marque{font-weight:700;letter-spacing:.04em;color:#F5F2EA;text-decoration:none}
+    .nav a.lien{color:#D8DEE6;text-decoration:none;font-size:.95rem}
+    main{max-width:860px;margin:0 auto;padding:2.5rem 1.2rem 4rem}
+    h1{font-size:clamp(1.5rem,4vw,2rem);color:var(--navy);line-height:1.3}
+    .chapo{color:var(--gris);margin:.8rem 0 2rem;max-width:60ch}
+    fieldset{border:1px solid var(--filet);border-radius:8px;background:#fff;padding:1.3rem 1.5rem;margin-bottom:1.3rem}
+    legend{font-weight:700;color:var(--navy);padding:0 .5rem;font-size:1.02rem}
+    .aide{font-size:.88rem;color:var(--gris);margin-bottom:.7rem}
+    label.opt{display:block;padding:.5rem .2rem;cursor:pointer}
+    label.opt input{margin-right:.6rem;accent-color:var(--vert);transform:scale(1.15)}
+    button{background:var(--vert);color:#fff;border:none;padding:.85rem 1.7rem;border-radius:6px;font-size:1.02rem;font-weight:600;cursor:pointer}
+    button:hover,button:focus{background:#17573F;outline:3px solid var(--or);outline-offset:2px}
+    #resultat{margin-top:2rem}
+    .res-carte{border-radius:8px;padding:1.2rem 1.4rem;margin-bottom:1rem;border:1px solid var(--filet);background:#fff}
+    .res-oui{border-left:5px solid #B0503C}
+    .res-verifier{border-left:5px solid var(--or)}
+    .res-non{border-left:5px solid var(--vert)}
+    .res-carte h3{color:var(--navy);margin-bottom:.3rem;font-size:1.02rem}
+    .res-carte p{font-size:.94rem;color:var(--gris)}
+    .etiquette{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .res-oui .etiquette{color:#B0503C}
+    .res-verifier .etiquette{color:#8A6D2F}
+    .res-non .etiquette{color:var(--vert)}
+    .suite{background:#F2F0E9;border-radius:8px;padding:1.3rem 1.5rem;margin-top:1.5rem;font-size:.95rem}
+    footer{background:var(--navy);color:#AEB9C6;padding:1.8rem 1.2rem;font-size:.85rem}
+    .pied{max-width:860px;margin:0 auto}
+    footer a{color:#D8DEE6}
+    .disclaimer{font-style:italic;margin-top:.6rem}
+    [hidden]{display:none !important}
+  </style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header>
+  <nav class="nav" aria-label="Navigation principale">
+    <a class="marque" href="/">CAELUM PARTNERS</a>
+    <a class="lien" href="/offres.html">Offres</a>
+    <a class="lien" href="/mentions-legales.html">Mentions légales</a>
+  </nav>
+</header>
+<main id="contenu">
+  <h1>Suis-je concerné&nbsp;? Le test en 4 questions</h1>
+  <p class="chapo">Répondez selon votre situation réelle. Le résultat distingue honnêtement ce qui s'applique à votre entreprise, ce qui est à vérifier, et ce qui ne vous concerne pas. Aucune donnée n'est envoyée&nbsp;: tout se calcule dans votre navigateur.</p>
+
+  <form id="simu" novalidate>
+    <fieldset>
+      <legend>1. Votre entreprise est-elle assujettie à la TVA en Belgique et facture-t-elle d'autres entreprises (B2B)&nbsp;?</legend>
+      <p class="aide">L'e-facturation Peppol concerne les factures entre assujettis TVA établis en Belgique.</p>
+      <label class="opt"><input type="radio" name="q1" value="oui" required /> Oui</label>
+      <label class="opt"><input type="radio" name="q1" value="non" /> Non (clients uniquement particuliers, ou non assujettie)</label>
+      <label class="opt"><input type="radio" name="q1" value="nsp" /> Je ne sais pas</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>2. Combien de travailleurs compte votre entreprise&nbsp;?</legend>
+      <label class="opt"><input type="radio" name="q2" value="moins50" required /> Moins de 50</label>
+      <label class="opt"><input type="radio" name="q2" value="plus50" /> 50 ou plus</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>3. Votre activité relève-t-elle d'un secteur visé par NIS2&nbsp;?</legend>
+      <p class="aide">Exemples de secteurs visés (~18 au total)&nbsp;: énergie, transport, santé, eau, infrastructure numérique et services TIC, banque, espace, services postaux, gestion des déchets, agroalimentaire, fabrication critique… Liste complète sur ccb.belgium.be.</p>
+      <label class="opt"><input type="radio" name="q3" value="oui" required /> Oui, mon secteur est dans la liste</label>
+      <label class="opt"><input type="radio" name="q3" value="non" /> Non</label>
+      <label class="opt"><input type="radio" name="q3" value="nsp" /> Je ne sais pas</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>4. Traitez-vous des données personnelles (clients, prospects, salariés)&nbsp;?</legend>
+      <p class="aide">Un fichier clients, des fiches de paie ou une boîte mail professionnelle suffisent pour répondre oui.</p>
+      <label class="opt"><input type="radio" name="q4" value="oui" required /> Oui</label>
+      <label class="opt"><input type="radio" name="q4" value="non" /> Non, aucune</label>
+    </fieldset>
+
+    <button type="submit">Voir mon résultat</button>
+  </form>
+
+  <section id="resultat" hidden aria-live="polite">
+    <h2 style="color:var(--navy);margin-bottom:1rem">Votre résultat</h2>
+    <div id="res-liste"></div>
+    <div class="suite">
+      <strong>Et maintenant&nbsp;?</strong>
+      <p style="margin-top:.5rem">Ce pré-diagnostic est une première photographie, fondée uniquement sur vos réponses. Pour recevoir votre résultat par écrit et être tenu au courant de nos outils, envoyez-nous un e-mail — le bouton ci-dessous prépare le message dans votre logiciel, avec votre résultat&nbsp;; rien n'est envoyé sans votre geste.</p>
+      <p style="margin-top:.8rem"><a id="mail-resultat" href="mailto:chaima.caelumpartners@gmail.com"><button type="button">Recevoir mon résultat par e-mail</button></a></p>
+      <p style="margin-top:.8rem;font-size:.85rem;color:var(--gris)">En envoyant cet e-mail, vous consentez à ce que Caelum utilise votre adresse pour vous répondre et vous informer de ses outils de conformité. Conservation limitée&nbsp;; désinscription sur simple demande&nbsp;; aucun partage avec des tiers. Détails dans nos <a href="/mentions-legales.html">mentions légales &amp; politique de confidentialité</a>.</p>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="pied">
+    Contact&nbsp;: <a href="mailto:chaima.caelumpartners@gmail.com">chaima.caelumpartners@gmail.com</a> · <a href="/mentions-legales.html">Mentions légales</a>
+    <p class="disclaimer">Caelum fournit de l'information et des outils, pas un conseil juridique personnalisé&nbsp;; Caelum n'est pas un cabinet d'avocats. Ce simulateur donne une orientation générale, pas un avis sur votre situation individuelle.</p>
+  </div>
+</footer>
+<script>
+(function () {
+  "use strict";
+  var form = document.getElementById("simu");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = function (n) {
+      var el = form.querySelector('input[name="' + n + '"]:checked');
+      return el ? el.value : null;
+    };
+    var q1 = v("q1"), q2 = v("q2"), q3 = v("q3"), q4 = v("q4");
+    if (!q1 || !q2 || !q3 || !q4) {
+      alert("Merci de répondre aux 4 questions.");
+      return;
+    }
+    var res = [];
+    // E-facturation — fait vérifié : obligatoire depuis le 01/01/2026 (Peppol), assujettis TVA établis en Belgique, B2B.
+    if (q1 === "oui") {
+      res.push({ n: "E-facturation B2B (Peppol)", s: "oui",
+        t: "Applicable. Obligatoire depuis le 01/01/2026 pour les factures entre assujettis TVA établis en Belgique. Vérifiez que votre logiciel émet ET reçoit via Peppol — un PDF par e-mail ne suffit plus. Prochaine échéance connue : e-reporting prévu pour 2028." });
+    } else if (q1 === "nsp") {
+      res.push({ n: "E-facturation B2B (Peppol)", s: "verifier",
+        t: "À vérifier. Si votre entreprise est assujettie à la TVA en Belgique et facture d'autres entreprises, l'obligation s'applique depuis le 01/01/2026. Votre comptable peut le confirmer en quelques minutes." });
+    } else {
+      res.push({ n: "E-facturation B2B (Peppol)", s: "non",
+        t: "A priori non applicable à ce jour sur la base de votre réponse (pas de facturation B2B entre assujettis TVA belges). Si votre situation change, la question se reposera." });
+    }
+    // NIS2 — loi 26/04/2024, en vigueur 18/10/2024 ; secteurs + taille ; échéance essentielles 18/04/2026.
+    if (q3 === "oui" && q2 === "plus50") {
+      res.push({ n: "NIS2 (cybersécurité)", s: "oui",
+        t: "Probablement applicable : secteur visé et 50 travailleurs ou plus. La loi belge du 26/04/2024 est en vigueur depuis le 18/10/2024 ; l'échéance du 18/04/2026 pour les entités essentielles est passée. Vérifiez votre statut exact (essentielle ou importante) sur ccb.belgium.be — c'est la source officielle." });
+    } else if (q3 === "oui" || q3 === "nsp") {
+      res.push({ n: "NIS2 (cybersécurité)", s: "verifier",
+        t: "À vérifier. NIS2 dépend du secteur ET de critères de taille (souvent 50 salariés et plus, avec des exceptions selon le secteur). Consultez la liste officielle du Centre pour la Cybersécurité Belgique (ccb.belgium.be) — beaucoup d'entreprises découvrent qu'elles ne sont PAS concernées." });
+    } else {
+      res.push({ n: "NIS2 (cybersécurité)", s: "non",
+        t: "A priori non applicable : votre secteur n'est pas dans la liste. C'est une bonne nouvelle à documenter — savoir pourquoi on n'est pas concerné est aussi une preuve de sérieux face à vos clients." });
+    }
+    // RGPD — toutes entreprises traitant des données personnelles.
+    if (q4 === "oui") {
+      res.push({ n: "RGPD (données personnelles)", s: "oui",
+        t: "Applicable — comme pour toute entreprise qui traite des données personnelles, quelle que soit sa taille. Les trois chantiers concrets : savoir quelles données vous détenez et où, documenter pourquoi et combien de temps vous les gardez, encadrer vos sous-traitants. Source officielle : autoriteprotectiondonnees.be." });
+    } else {
+      res.push({ n: "RGPD (données personnelles)", s: "verifier",
+        t: "Réponse rare : la quasi-totalité des entreprises traite des données personnelles (une boîte mail professionnelle ou des fiches de paie suffisent). Revérifiez — si vous en traitez, le RGPD s'applique." });
+    }
+    // Lanceurs d'alerte — loi 28/11/2022, ≥50 travailleurs.
+    if (q2 === "plus50") {
+      res.push({ n: "Canal lanceurs d'alerte", s: "oui",
+        t: "Applicable : la loi du 28/11/2022 impose un canal de signalement interne confidentiel aux entreprises d'au moins 50 travailleurs. Vérifiez qu'un dispositif existe et que vos travailleurs le connaissent." });
+    } else {
+      res.push({ n: "Canal lanceurs d'alerte", s: "non",
+        t: "Non applicable à ce jour : l'obligation commence à 50 travailleurs. À revoir si vous approchez ce seuil." });
+    }
+    // CSRD / DORA — démystification honnête, toujours affichée.
+    res.push({ n: "CSRD et DORA — le point honnête", s: "non",
+      t: "CSRD : depuis le paquet Omnibus adopté le 24/02/2026, les seuils ont été fortement relevés (cible ~1 000 salariés) — la grande majorité des PME n'est pas concernée à court terme. DORA : secteur financier et prestataires TIC uniquement. Si on vous vend l'un ou l'autre comme une urgence PME, demandez la source." });
+
+    var lib = { oui: "S'applique à vous", verifier: "À vérifier", non: "A priori non concerné" };
+    var cont = document.getElementById("res-liste");
+    cont.innerHTML = "";
+    res.forEach(function (r) {
+      var d = document.createElement("div");
+      d.className = "res-carte res-" + r.s;
+      d.innerHTML = '<span class="etiquette">' + lib[r.s] + "</span><h3>" + r.n + "</h3><p>" + r.t + "</p>";
+      cont.appendChild(d);
+    });
+
+    var corps = "Bonjour,%0D%0A%0D%0AVoici mon résultat au simulateur Caelum :%0D%0A" +
+      res.map(function (r) { return "- " + r.n + " : " + lib[r.s]; }).join("%0D%0A") +
+      "%0D%0A%0D%0AJe souhaite recevoir la synthèse écrite et être informé(e) de vos outils de conformité (consentement donné par cet envoi, désinscription sur simple demande).%0D%0A%0D%0ANom de l'entreprise : %0D%0ASecteur : ";
+    document.getElementById("mail-resultat").setAttribute("href",
+      "mailto:chaima.caelumpartners@gmail.com?subject=" + encodeURIComponent("Mon résultat — simulateur Caelum") + "&body=" + corps);
+
+    var sec = document.getElementById("resultat");
+    sec.hidden = false;
+    sec.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+</script>
+</body>
+</html>
