@@ -25,8 +25,18 @@
 | Étape 2 — brouillons marketing | vérifié | Drive doc 15 (vérifié par binôme juridique+QA) |
 | Étape 3 — audit La Loi Avec Moi | BLOQUÉ session | accès dépôt refusé (add_repo indisponible) — à relancer, rien inventé |
 | Angles morts | vérifié | Drive doc 16 (25 points, triés par urgence) |
+| CompeteIQ — landing « en pause » (vérité rétablie) | vérifié | PR keywordmoneymaker#2 mergée, commit 60c241c |
 
 ## PASSATION (dernière en date en haut)
+### 2026-07-17 (4) — CompeteIQ : landing passée en « en développement » (session Claude Code CompeteIQ/TEST, scope étendu)
+- Tâche : rendre competeiq-landing.html honnête et non trouvable (produit EN PAUSE), sur autorisation de Chaima (ajout du dépôt au scope).
+- Ce que j'ai fait : noindex,nofollow ; prix (149€/399€/Sur devis) → « Bientôt disponible » ; suppression des faux témoignages nominatifs + métriques inventées, du ticker « live » (faits fictifs sur concurrents réels) et des 9 métriques « Actif — N » des cartes d'agents ; bandeau « en développement — non disponible à la vente » ; CTA /signup·/login (app inexistante) → bouton mailto « Prévenez-moi » (aucune collecte) ; métadonnées au futur.
+- Fichiers touchés : competeiq-landing.html UNIQUEMENT (29 insertions / 96 suppressions). Aucune page Caelum touchée.
+- Vérifié : git status = 1 seul fichier ; grep « Klue lève 75M$ » / « 247 signaux » / « /signup » / « /login » → 0 ; structure HTML équilibrée (6 sections) ; site caelumpartners.agency répond (home OK). Vérification humaine du diff par Chaima avant merge. Merge API {"merged":true}, sha 60c241c.
+- Limite honnête : le rendu de la page déployée n'a pas été rechargé depuis ce sandbox (proxy réseau 403) — déploiement statique à reprendre par le host ; à confirmer visuellement par Chaima.
+- Décisions de Chaima (clôture) : _redirects (/competeiq accessible en direct) laissé tel quel (page honnête + non indexée) ; vrai formulaire e-mail reporté (mailto suffit tant que CompeteIQ est en pause).
+- Besoin du suivant : rien sur CompeteIQ (clôturé). 00-LIRE-D-ABORD.md n'existe pas dans ce dépôt — ETAT.md fait office de passation ; créer un 00-LIRE-D-ABORD.md séparé seulement si Chaima le veut (éviter le doublon avec ce fichier).
+
 ### 2026-07-17 (2) — Refonte Étape 1 (session Claude Code, décision Étape 0 obtenue)
 - Tâche : refonte du site sur le positionnement RegTech conformité PME (décision de Chaima du jour).
 - Ce que j'ai fait : caelum-index.html réécrit (accueil conformité : 4 obligations vérifiées doc 06 + démystification CSRD/DORA + bloc transparence sans chiffre inventé) ; simulateur.html créé (4 questions → logique réelle par obligation, résultat oui/à vérifier/non, capture par e-mail volontaire avec consentement, AUCUNE donnée transmise automatiquement) ; offres.html créé (3 niveaux, prix « à confirmer », aucun paiement possible) ; mentions-legales.html créé (éditeur/BCE « à compléter » en toute transparence, politique RGPD, cookies : aucun traceur) ; robots.txt + sitemap.xml.
