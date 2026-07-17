@@ -9,10 +9,17 @@
 2. Puis lis : ce fichier, « ETAT.md », et la dernière PASSATION. Ne relis pas tout le code : va droit aux
    fichiers concernés par ta tâche. Si ETAT.md n'existe pas, crée-le. Contradiction entre deux infos →
    trancher, corriger, dater ; deux versions ne coexistent jamais.
-3. **JOURNALISATION** : chaque action significative → UN document dans le dossier Drive concerné, titre
-   « N°/AAAA-MM-JJ — TYPE — sujet », en-tête date+heure UTC + auteur + SYNOPSIS complet, corps
-   FAIT (preuves) / VÉRIFIÉ / RESTE / DÉPEND DE CHAIMA, relu après création (read-back). Propre, concis,
-   un événement = un document, jamais de modification rétroactive.
+3. **JOURNALISATION — PROTOCOLE DE LIVRAISON (obligatoire à chaque livraison, directive Chaima 17-07-2026)** :
+   - DATE/HEURE réelles via `TZ="Europe/Brussels" date` — utilisées PARTOUT (titres, en-têtes, passations).
+   - Chaque document/rapport COMMENCE par un SYNOPSIS (2-3 lignes : quoi, pourquoi, état).
+   - Titre horodaté : « AAAA-MM-JJ-HHhMM — [auteur] — [sujet] ».
+   - AUDIT honnête : FAIT / VÉRIFIÉ (avec preuve : test, capture, commande) / RESTE. Ne JAMAIS dire
+     qu'une chose est finie si elle ne tourne pas.
+   - Copie du rapport dans le Drive, dossier « COMPILATION & SYNOPSIS — Empire Chaima »
+     (ID 1qXUj9D9r7HSmIMzMcsScz4Ynlv4auP4G) ; SANS accès Drive : le dire et déposer dans `reports/` du dépôt.
+   - Mettre à jour la passation (ETAT.md ici ; 00-LIRE-D-ABORD.md dans les dépôts qui l'utilisent).
+   - Un document = un événement ; AJOUT, jamais d'écrasement. Vérité totale, zéro invention, sources datées.
+   - Read-back après création avant d'annoncer.
 
 ## 1. MISSION & PÉRIMÈTRE
 - UN seul projet : Caelum Partners. Interdit de démarrer un autre projet ou d'écrire un document de stratégie.

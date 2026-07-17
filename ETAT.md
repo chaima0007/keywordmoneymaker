@@ -27,6 +27,13 @@
 | Angles morts | vérifié | Drive doc 16 (25 points, triés par urgence) |
 
 ## PASSATION (dernière en date en haut)
+### 2026-07-17 21h44 (Europe/Brussels) — Protocole de livraison v2 (session Claude Code)
+- Tâche : intégrer le protocole de livraison obligatoire dicté par Chaima (date/heure Europe/Brussels partout, synopsis en tête, titre « AAAA-MM-JJ-HHhMM — [auteur] — [sujet] », audit FAIT/VÉRIFIÉ avec preuve/RESTE, copie Drive COMPILATION ou reports/ en secours, passation à jour, ajout jamais d'écrasement).
+- Fichiers touchés : CLAUDE.md (§0.3 réécrit), ETAT.md.
+- Vérifié : commit + push (voir git log) ; amendement déposé dans le Drive (doc « 2026-07-17-21h44 — Claude Code — Protocole de livraison v2 »), read-back effectué.
+- Reste : les autres dépôts qui utilisent 00-LIRE-D-ABORD.md (hors de portée de cette session) doivent recopier ce bloc — signalé dans le doc Drive.
+- Besoin du suivant : appliquer ce protocole à CHAQUE livraison, sans exception.
+
 ### 2026-07-17 (2) — Refonte Étape 1 (session Claude Code, décision Étape 0 obtenue)
 - Tâche : refonte du site sur le positionnement RegTech conformité PME (décision de Chaima du jour).
 - Ce que j'ai fait : caelum-index.html réécrit (accueil conformité : 4 obligations vérifiées doc 06 + démystification CSRD/DORA + bloc transparence sans chiffre inventé) ; simulateur.html créé (4 questions → logique réelle par obligation, résultat oui/à vérifier/non, capture par e-mail volontaire avec consentement, AUCUNE donnée transmise automatiquement) ; offres.html créé (3 niveaux, prix « à confirmer », aucun paiement possible) ; mentions-legales.html créé (éditeur/BCE « à compléter » en toute transparence, politique RGPD, cookies : aucun traceur) ; robots.txt + sitemap.xml.
