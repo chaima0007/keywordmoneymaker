@@ -18,6 +18,7 @@ from claude_agent_sdk import query, ClaudeAgentOptions
 sys.path.insert(0, str(Path(__file__).parent))
 import cache_manager as cache
 import drive_audit
+from protocole import with_protocole
 
 PROJECT_ROOT = Path(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 OUTPUT_DIR = PROJECT_ROOT / "commandant"
@@ -85,6 +86,8 @@ Analyse la mission et génère un plan d'action JSON avec cette structure exacte
 }}
 
 Réponds UNIQUEMENT avec le JSON valide, sans markdown ni explication."""
+
+    prompt = with_protocole(prompt)
 
     content = ""
     try:
@@ -215,6 +218,8 @@ Rédige un rapport exécutif en français (400-600 mots) avec :
 ### Points d'attention
 ### Prochaines actions prioritaires (top 3)
 ### Score de mission /10"""
+
+    prompt = with_protocole(prompt)
 
     content = ""
     try:
