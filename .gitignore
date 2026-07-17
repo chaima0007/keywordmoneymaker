@@ -54,3 +54,8 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Sorties runtime du protocole d'audit (la copie de référence est sur le Drive)
+audit_drive/*.md
+audit_drive/manifest.jsonl
+!audit_drive/README.md
