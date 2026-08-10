@@ -27,6 +27,15 @@
 | Angles morts | vérifié | Drive doc 16 (25 points, triés par urgence) |
 
 ## PASSATION (dernière en date en haut)
+### 2026-08-10 (11h14 CEST) — Refonte PREMIUM du design (session Claude Code, branche + PR)
+- Tâche : élever le design des 4 pages (caelum-index, simulateur, offres, mentions-legales) au niveau premium, SANS toucher au contenu honnête ni à la logique du simulateur, CSP conservée.
+- Ce que j'ai fait : système de design partagé (assets/caelum.css — Fraunces+Inter via Google Fonts, palette crème/or/bleu-nuit, cartes en relief, révélation au scroll) ; héros sombre & doré avec œuvre SVG originale (dôme céleste + constellation + arc de 12 étoiles = clin d'œil UE) ; icônes SVG cohérentes par obligation (Peppol/NIS2/RGPD/lanceurs d'alerte) ; JS externalisé (assets/caelum.js micro-interactions, assets/simulateur.js logique du simulateur DÉPLACÉE telle quelle) ; prefers-reduced-motion respecté ; 100% SVG inline (aucune photo stock).
+- Fichiers touchés : caelum-index.html, simulateur.html, offres.html, mentions-legales.html, assets/caelum.css, assets/caelum.js, assets/simulateur.js.
+- Vérifié (preuves) : logique du simulateur IDENTIQUE au caractère près (diff `var res=[]`→`var lib=` = 44 lignes, 0 diff) ; 4 HTML parsés sans balise orpheline (parseur Python) ; CSP durcie script-src 'self' + hôtes Google Fonts sur les 4 pages, 0 script inline ; assets présents ; chaînes honnêtes préservées (Prix à confirmer / Sur devis / BCE inscription en cours / disclaimers / sources) ; aucune image externe.
+- Livré via : branche `design/caelum-premium-refonte` + PR #3 vers main (JAMAIS de push direct sur le site). Fusion = décision de Chaima.
+- Limite honnête : le rendu visuel réel (chargement Google Fonts + responsive dans un navigateur) n'est PAS vérifiable depuis ce sandbox (sortie réseau restreinte) — RESTE : revue visuelle par Chaima avant fusion.
+- Besoin du suivant : Chaima relit la PR #3, vérifie le rendu, fusionne si OK → déploiement GitHub Pages automatique.
+
 ### 2026-07-17 (2) — Refonte Étape 1 (session Claude Code, décision Étape 0 obtenue)
 - Tâche : refonte du site sur le positionnement RegTech conformité PME (décision de Chaima du jour).
 - Ce que j'ai fait : caelum-index.html réécrit (accueil conformité : 4 obligations vérifiées doc 06 + démystification CSRD/DORA + bloc transparence sans chiffre inventé) ; simulateur.html créé (4 questions → logique réelle par obligation, résultat oui/à vérifier/non, capture par e-mail volontaire avec consentement, AUCUNE donnée transmise automatiquement) ; offres.html créé (3 niveaux, prix « à confirmer », aucun paiement possible) ; mentions-legales.html créé (éditeur/BCE « à compléter » en toute transparence, politique RGPD, cookies : aucun traceur) ; robots.txt + sitemap.xml.
