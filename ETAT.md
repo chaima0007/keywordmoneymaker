@@ -27,6 +27,13 @@
 | Angles morts | vérifié | Drive doc 16 (25 points, triés par urgence) |
 
 ## PASSATION (dernière en date en haut)
+### 2026-08-10 11h17 (Europe/Brussels) — Audit global + correction racine (session Claude Code)
+- Tâche : re-vérification complète demandée par Chaima ; élimination des erreurs relevées par les audits Drive.
+- CORRECTION D'AUDIT MAJEURE : la PR #2 est MERGÉE depuis le 17/07/2026 18h59 (API GitHub : state closed, merged true, merged_by chaima0007). Les journaux « boucle-caelum » (28/07→10/08) qui affirment « PR#2 NON mergée » se trompent : refs/pull/2/head persiste toujours après fusion. Aucun merge n'attend Chaima.
+- ERREUR RÉELLE CORRIGÉE (E1) : la racine du site servait un placeholder noindex « Redirection en cours » → index.html contient désormais la vraie page d'accueil conformité (canonical /), caelum-index.html devient une redirection noindex vers /, ajout de 404.html.
+- Vérifié : HTML parsé sans erreur ; disclaimer présent ; commit + push (voir git log) ; run Actions deploy à contrôler après push.
+- Reste : vérification visuelle du live par Chaima (sandbox sans accès réseau au domaine).
+
 ### 2026-07-17 21h44 (Europe/Brussels) — Protocole de livraison v2 (session Claude Code)
 - Tâche : intégrer le protocole de livraison obligatoire dicté par Chaima (date/heure Europe/Brussels partout, synopsis en tête, titre « AAAA-MM-JJ-HHhMM — [auteur] — [sujet] », audit FAIT/VÉRIFIÉ avec preuve/RESTE, copie Drive COMPILATION ou reports/ en secours, passation à jour, ajout jamais d'écrasement).
 - Fichiers touchés : CLAUDE.md (§0.3 réécrit), ETAT.md.
