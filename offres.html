@@ -4,57 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:;" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Offres — Caelum Partners (prix en cours de finalisation)</title>
   <meta name="description" content="Les trois niveaux d'accompagnement conformité de Caelum pour les PME belges. Prix en cours de finalisation — annoncés quand ils seront exacts." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://caelumpartners.agency/offres.html" />
-  <style>
-    :root{--encre:#16232F;--navy:#14243A;--papier:#FAFAF8;--vert:#1E6E50;--filet:#E4E1D8;--gris:#5B6672;--or:#C8B27C}
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--papier);color:var(--encre);line-height:1.7;font-size:17px}
-    a{color:var(--vert)}
-    .skip{position:absolute;left:-9999px;top:0;background:#fff;padding:.5rem 1rem;z-index:10}
-    .skip:focus{left:0}
-    header{background:var(--navy);color:#F5F2EA;padding:.9rem 1.2rem}
-    .nav{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap}
-    .marque{font-weight:700;letter-spacing:.04em;color:#F5F2EA;text-decoration:none}
-    .nav a.lien{color:#D8DEE6;text-decoration:none;font-size:.95rem}
-    main{max-width:1060px;margin:0 auto;padding:2.5rem 1.2rem 4rem}
-    h1{font-size:clamp(1.5rem,4vw,2rem);color:var(--navy)}
-    .chapo{color:var(--gris);margin:.8rem 0 1rem;max-width:62ch}
-    .avis{background:#FBF6E9;border:1px solid #E8DCB8;border-radius:8px;padding:1rem 1.3rem;margin:1.2rem 0 2rem;font-size:.95rem}
-    .grille{display:grid;gap:1.3rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .offre{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:1.6rem;display:flex;flex-direction:column}
-    .offre h2{color:var(--navy);font-size:1.2rem}
-    .prix{font-size:1.15rem;font-weight:700;color:#8A6D2F;margin:.6rem 0 1rem}
-    .offre ul{margin:0 0 1.2rem 1.1rem;font-size:.94rem;color:var(--gris)}
-    .offre li{margin-bottom:.45rem}
-    .offre .note{font-size:.85rem;color:var(--gris);margin-top:auto}
-    .cta{display:inline-block;background:var(--vert);color:#fff;text-decoration:none;padding:.7rem 1.3rem;border-radius:6px;font-weight:600;margin-top:.8rem;text-align:center}
-    .cta:hover,.cta:focus{background:#17573F;outline:3px solid var(--or);outline-offset:2px}
-    footer{background:var(--navy);color:#AEB9C6;padding:1.8rem 1.2rem;font-size:.85rem}
-    .pied{max-width:1060px;margin:0 auto}
-    footer a{color:#D8DEE6}
-    .disclaimer{font-style:italic;margin-top:.6rem}
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="/assets/caelum.css" />
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
-<header>
+<header class="site">
   <nav class="nav" aria-label="Navigation principale">
-    <a class="marque" href="/">CAELUM PARTNERS</a>
+    <a class="marque" href="/">
+      <svg class="astre" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#E6CB86" stroke-width="1.3" opacity=".5"/><path d="M12 3.5l1.9 4.3 4.6.5-3.4 3.1 1 4.6L12 13.8 7.9 16l1-4.6L5.5 8.3l4.6-.5z" fill="#E6CB86"/></svg>
+      CAELUM PARTNERS
+    </a>
+    <span class="spacer"></span>
     <a class="lien" href="/simulateur.html">Simulateur</a>
     <a class="lien" href="/mentions-legales.html">Mentions légales</a>
   </nav>
 </header>
 <main id="contenu">
-  <h1>Nos offres</h1>
-  <p class="chapo">Trois niveaux d'accompagnement, pensés pour des PME sans juriste interne. Le simulateur reste gratuit, quoi qu'il arrive.</p>
-  <div class="avis"><strong>Honnêteté d'abord&nbsp;:</strong> les prix sont <strong>en cours de finalisation</strong> et seront annoncés quand ils seront exacts — pas avant. Aucun paiement n'est possible sur ce site aujourd'hui. Laissez-nous votre e-mail via le simulateur pour être informé en premier.</div>
+  <p class="eyebrow reveal">Accompagnement</p>
+  <h1 class="reveal">Nos offres</h1>
+  <p class="intro reveal">Trois niveaux d'accompagnement, pensés pour des PME sans juriste interne. Le simulateur reste gratuit, quoi qu'il arrive.</p>
+  <div class="avis reveal"><strong>Honnêteté d'abord&nbsp;:</strong> les prix sont <strong>en cours de finalisation</strong> et seront annoncés quand ils seront exacts — pas avant. Aucun paiement n'est possible sur ce site aujourd'hui. Laissez-nous votre e-mail via le simulateur pour être informé en premier.</div>
   <div class="grille">
-    <article class="offre">
+    <article class="offre reveal">
       <h2>Essentiel</h2>
       <p class="prix">Prix à confirmer</p>
       <ul>
@@ -65,7 +45,7 @@
       <p class="note">Pour l'indépendant ou la petite PME qui veut y voir clair.</p>
       <a class="cta" href="/simulateur.html">Commencer par le test gratuit</a>
     </article>
-    <article class="offre">
+    <article class="offre reveal d1">
       <h2>Sérénité</h2>
       <p class="prix">Prix à confirmer</p>
       <ul>
@@ -77,7 +57,7 @@
       <p class="note">Pour la PME qui veut rester en règle sans y penser chaque semaine.</p>
       <a class="cta" href="/simulateur.html">Commencer par le test gratuit</a>
     </article>
-    <article class="offre">
+    <article class="offre reveal d2">
       <h2>Sur-mesure</h2>
       <p class="prix">Sur devis</p>
       <ul>
@@ -90,11 +70,12 @@
     </article>
   </div>
 </main>
-<footer>
+<footer class="site">
   <div class="pied">
-    Contact&nbsp;: <a href="mailto:chaima.caelumpartners@gmail.com">chaima.caelumpartners@gmail.com</a> · <a href="/mentions-legales.html">Mentions légales</a>
+    <div>Contact&nbsp;: <a href="mailto:chaima.caelumpartners@gmail.com">chaima.caelumpartners@gmail.com</a> · <a href="/mentions-legales.html">Mentions légales</a></div>
     <p class="disclaimer">Caelum fournit de l'information et des outils, pas un conseil juridique personnalisé&nbsp;; Caelum n'est pas un cabinet d'avocats.</p>
   </div>
 </footer>
+<script src="/assets/caelum.js" defer></script>
 </body>
 </html>
