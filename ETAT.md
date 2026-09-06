@@ -27,6 +27,13 @@
 | Angles morts | vérifié | Drive doc 16 (25 points, triés par urgence) |
 
 ## PASSATION (dernière en date en haut)
+### 2026-09-06 21h30 (Europe/Brussels) — Le contrôle sécurité a trouvé et corrigé 3 CVE (session Claude Code)
+- Boucle complète prouvée : le contrôle DÉTECTE → on CORRIGE → le contrôle CONFIRME.
+- Défaut du run n°1 corrigé : pip-audit auditait l'environnement Ubuntu du runner (cloud-init, ufw, twisted…) au lieu du projet → cible désormais uv.lock (635 dépendances réelles).
+- 3 vulnérabilités réelles trouvées puis corrigées dans le verrou : cryptography 49.0.0→50.0.1 (PYSEC-2026-3552) · mcp 1.28.0→1.29.1 (PYSEC-2026-3483) · pydantic-settings 2.14.1→2.15.0 (GHSA-4xgf-cpjx-pc3j).
+- Vérifié : run n°3 du workflow « Sécurité du code » VERT, journal : « Dépendances auditées : 635 » puis « No known vulnerabilities found ». Commits 54cd359 (flotte) · bfe624f (correction cible) · b8cf719 (correction CVE).
+- Reste : épingler par SHA les 4 actions de deploy.yml (SHA non récupérables depuis le sandbox — API GitHub bloquée pour actions/*) ; licences des dépendances non vérifiables ici (paquets non installés).
+
 ### 2026-09-06 21h24 (Europe/Brussels) — Flotte « code sûr » + contrôle automatique GitHub (session Claude Code)
 - Tâche : agents pour trouver du code disponible et NON pollué + vérification multi-agents contre le risque de piratage (demande de Chaima).
 - Fait : 5 agents ajoutés (.claude/agents/ : chercheur-code-libre, auditeur-licences, auditeur-chaine-approvisionnement, verificateur-code-tiers, contre-verificateur-securite → 29 au total) ; script `scripts/audit_code_sur.py` (5 contrôles : secrets, dépendances, actions CI, code à risque, licences) ; workflow `.github/workflows/securite-code.yml` (aucune action tierce, permissions lecture seule, + pip-audit) ; règle §2 bis dans CLAUDE.md.
