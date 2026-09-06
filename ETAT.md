@@ -27,6 +27,15 @@
 | Angles morts | vérifié | Drive doc 16 (25 points, triés par urgence) |
 
 ## PASSATION (dernière en date en haut)
+### 2026-09-06 (23h11 CEST) — Installation du PROTOCOLE CODEX (session Claude Code, branche + PR #5)
+- Tâche : installer le PROTOCOLE CODEX — EMPIRE CHAIMA (version consolidée 2026-09-06) dans le projet.
+- Ce que j'ai fait : bloc collé EN TÊTE de CLAUDE.md intégralement (83 → 417 lignes, les 83 lignes d'origine conservées à l'identique dessous, diff vérifié) ; §15.4 ajouté (dépôt, stack, commandes de vérification avant push, pièges datés) ; structure §12 créée (codex/candidates, expertise, opportunites, licences-sortantes, A-DECIDER.md, EVOLUTION.md, « 📋 JOURNAL.md », « 🔴 ERREURS.md ») ; snapshot §5 écrit ; A-DECIDER.md rempli avec les 6 décisions réelles en attente (5 à plus de 14 jours, mises en évidence).
+- Fichiers touchés : CLAUDE.md, codex/*, « 📋 JOURNAL.md », « 🔴 ERREURS.md », .claude/skills/debat/README.md, ETAT.md. AUCUN fichier du site.
+- Vérifié : diff des 83 lignes d'origine = 0 différence ; git status = aucun fichier du site modifié ; structure conforme au §12.
+- NON VÉRIFIÉ / RESTE : les 21 agents du §12 ne sont PAS installés — .claude/agents/ contient 29 agents de l'ancienne flotte ; le §15.3 dit de les COPIER depuis un projet existant, ils n'ont pas été fournis, donc rien n'a été inventé. Écart signalé (§5.5), jamais corrigé seul (§10). Porté dans A-DECIDER.md. La skill .claude/skills/debat/ est marquée NON INSTALLÉE.
+- Rappel : PR #3 (refonte premium du site) toujours OUVERTE depuis 27 jours, attend la revue visuelle de Chaima.
+- Besoin du suivant : lire /codex/A-DECIDER.md EN PREMIER. Ne rien supprimer dans .claude/agents/ sans décision de Chaima.
+
 ### 2026-09-06 21h30 (Europe/Brussels) — Le contrôle sécurité a trouvé et corrigé 3 CVE (session Claude Code)
 - Boucle complète prouvée : le contrôle DÉTECTE → on CORRIGE → le contrôle CONFIRME.
 - Défaut du run n°1 corrigé : pip-audit auditait l'environnement Ubuntu du runner (cloud-init, ufw, twisted…) au lieu du projet → cible désormais uv.lock (635 dépendances réelles).
