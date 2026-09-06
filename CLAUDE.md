@@ -41,6 +41,18 @@
   Action mineure (typo, commit technique) : auto-contrôle documenté (tests/grep/read-back) — le dire honnêtement.
 - Avant tout déploiement : audit de « architecte-securite » + « rgpd-securite ».
 
+## 2 bis. CODE TIERS — CHAÎNE DE VÉRIFICATION OBLIGATOIRE (aucune exception)
+Avant d'intégrer le moindre code venu de l'extérieur (bibliothèque, extrait copié, gabarit, action CI) :
+1. `chercheur-code-libre` — identité canonique, licence lue dans le dépôt, vitalité, dépendances transitives,
+   et la question « peut-on faire sans ? ».
+2. `auditeur-licences` — permissive / copyleft / licence absente (= pas de droit d'usage).
+3. `auditeur-chaine-approvisionnement` — typosquatting, détournement de paquet, script d'installation, épinglage CI.
+4. `verificateur-code-tiers` — LIRE le code : exfiltration, exécution distante, obscurcissement.
+5. `contre-verificateur-securite` — critique ces vérifications (défaut raté, sur-correction, faux « vert »).
+Contrôle automatique à chaque push et sur chaque PR : `.github/workflows/securite-code.yml`
+(exécute `scripts/audit_code_sur.py` + `pip-audit`). Un contrôle bloquant en échec = on ne pousse pas.
+DÉFENSIF ET LÉGAL UNIQUEMENT : jamais d'intrusion ni de contre-attaque, même en réponse à une attaque.
+
 ## 3. RÈGLE DE VÉRIFICATION (À CHAQUE GESTE — le cœur)
 - VÉRIFIER, PAS SUPPOSER : lance réellement le build ET les tests ; vérifie que le push distant a réussi.
 - VÉRITÉ : aucun chiffre inventé ; chaque affirmation légale = loi réelle + source officielle + date, sinon supprimée.

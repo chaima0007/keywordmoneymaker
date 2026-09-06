@@ -27,6 +27,13 @@
 | Angles morts | vérifié | Drive doc 16 (25 points, triés par urgence) |
 
 ## PASSATION (dernière en date en haut)
+### 2026-09-06 21h24 (Europe/Brussels) — Flotte « code sûr » + contrôle automatique GitHub (session Claude Code)
+- Tâche : agents pour trouver du code disponible et NON pollué + vérification multi-agents contre le risque de piratage (demande de Chaima).
+- Fait : 5 agents ajoutés (.claude/agents/ : chercheur-code-libre, auditeur-licences, auditeur-chaine-approvisionnement, verificateur-code-tiers, contre-verificateur-securite → 29 au total) ; script `scripts/audit_code_sur.py` (5 contrôles : secrets, dépendances, actions CI, code à risque, licences) ; workflow `.github/workflows/securite-code.yml` (aucune action tierce, permissions lecture seule, + pip-audit) ; règle §2 bis dans CLAUDE.md.
+- Vérifié : script exécuté sur le dépôt → VERT sur les contrôles bloquants ; DÉTECTION PROUVÉE par test piégé (faux secret + curl|bash + shell=True + exec distant → verdict ROUGE, puis VERT après nettoyage) ; workflow validé structurellement + zéro `uses:` (contrôle automatisé).
+- Trouvé : 4 actions GitHub non épinglées par SHA dans deploy.yml (risque supply chain réel, signalé en avertissement). SHA réels NON récupérables depuis ce sandbox (API GitHub bloquée pour les dépôts actions/*) → aucun SHA inventé ; épinglage laissé à faire avec accès réseau.
+- Reste : épingler les 4 actions de deploy.yml ; vérifier les licences des 3 dépendances (non installées ici, donc NON vérifiées).
+
 ### 2026-08-10 11h17 (Europe/Brussels) — Audit global + correction racine (session Claude Code)
 - Tâche : re-vérification complète demandée par Chaima ; élimination des erreurs relevées par les audits Drive.
 - CORRECTION D'AUDIT MAJEURE : la PR #2 est MERGÉE depuis le 17/07/2026 18h59 (API GitHub : state closed, merged true, merged_by chaima0007). Les journaux « boucle-caelum » (28/07→10/08) qui affirment « PR#2 NON mergée » se trompent : refs/pull/2/head persiste toujours après fusion. Aucun merge n'attend Chaima.
