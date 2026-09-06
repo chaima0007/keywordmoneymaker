@@ -14,3 +14,4 @@
 | ⏳ Épinglage par SHA des 4 actions de deploy.yml | Caelum | Sécurité | 2026-09-06 | SHA non récupérables depuis le sandbox (API GitHub bloquée pour actions/*) ; aucun SHA inventé |
 | 50 agents dans .claude/agents au lieu des 21 du §12 | Caelum | Protocole | 2026-09-06 | 29 agents antérieurs coexistent avec les 21 du Codex : garder, archiver ou fusionner ? Supprimer un fichier est strictement humain (§10) |
 | Consultation d'un conseil en brevets | Caelum | PI | 2026-09-06 | i-DEPOT n°160988 : titularité (SRL non constituée) + arbitrage brevet vs secret d'affaires — à caler après le CCNA |
+| Où journaliser : Drive ou dépôt ? | Tous | Protocole | 2026-09-06 | Le CODEX (§5, §6.5) place le journal dans le dépôt (JOURNAL.md / EVOLUTION.md) et ne mentionne pas le Drive ; les deux sont tenus en attendant ton arbitrage |
