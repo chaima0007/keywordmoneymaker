@@ -15,6 +15,7 @@
 - 2026-07-17 : DNS repointés parking Namecheap → GitHub Pages (A 185.199.108.153, www CNAME chaima0007.github.io), « DNS only », 525 résolu, site en HTTPS (autre session, doc 13). NE PAS réactiver le proxy Cloudflare tant que le certificat GitHub n'est pas confirmé stable.
 - 2026-07-17 : flotte d'agents installée (.claude/agents/, 24 agents docs 08/09/12/14) + CLAUDE.md maître (doc 10) + ce fichier.
 - 2026-07-17 : PROTOCOLE UNIVERSEL « DRIVE D'ABORD » adopté (doc 19 du Drive) : Drive lu avant toute action, critique des critiques (3 couches), journalisation datée+synopsis dans le dossier concerné. Intégré au §0 et §2 de CLAUDE.md.
+- 2026-09-06 : PROTOCOLE CODEX installé (« protocole + structure d'abord ») — bloc CLAUDE.md + structure /codex + skill debat (PR #7). Agents non touchés (réconciliation en attente, voir /codex/A-DECIDER.md). TRANCHÉ PAR CHAIMA.
 
 ## Tâches
 | Tâche | État | Preuve |
@@ -25,8 +26,17 @@
 | Étape 2 — brouillons marketing | vérifié | Drive doc 15 (vérifié par binôme juridique+QA) |
 | Étape 3 — audit La Loi Avec Moi | BLOQUÉ session | accès dépôt refusé (add_repo indisponible) — à relancer, rien inventé |
 | Angles morts | vérifié | Drive doc 16 (25 points, triés par urgence) |
+| CompeteIQ — landing « en pause » (vérité rétablie) | vérifié | PR #2 mergée, commit 60c241c |
 
 ## PASSATION (dernière en date en haut)
+### 2026-09-06 23h27 (Europe/Brussels) — Rétro-passation : clôture CompeteIQ + installation CODEX (session Claude Code CompeteIQ/TEST)
+- Contexte : documenter la clôture CompeteIQ (non journalisée à l'époque dans ce fichier) + installer le CODEX. Remplace la PR #4 (basée sur un ETAT.md périmé, fermée).
+- FAIT : (17-07) landing competeiq-landing.html passée en « en développement — non disponible » — noindex, prix → « Bientôt disponible », faux témoignages/ticker/métriques « Actif » supprimés, bandeau, CTA → mailto ; PR #2 mergée (60c241c). (06-09) CODEX installé (bloc CLAUDE.md + /codex + skill debat) via PR #7.
+- VÉRIFIÉ (preuve) : PR #2 API {"merged":true} sha 60c241c ; PR #7 poussée (commit 0dbf613) ; ETAT.md/CLAUDE.md du main relus via API avant écriture (§5 état réel, pas de mémoire).
+- NON VÉRIFIÉ : rendu de la page CompeteIQ déployée (proxy réseau 403 depuis le sandbox) ; à confirmer visuellement.
+- RESTE : réconcilier les agents CODEX (21) vs flotte existante (29) — voir /codex/A-DECIDER.md ; merger PR #7 (CODEX) et cette PR après validation Chaima ; installer le CODEX sur chaima0007/test (priorité 2) ; décisions Chaima en attente (prix, BCE, ONEM, Brevo).
+- Besoin du suivant : lire le bloc CODEX en tête de CLAUDE.md + /codex/A-DECIDER.md avant d'agir.
+
 ### 2026-09-06 21h30 (Europe/Brussels) — Le contrôle sécurité a trouvé et corrigé 3 CVE (session Claude Code)
 - Boucle complète prouvée : le contrôle DÉTECTE → on CORRIGE → le contrôle CONFIRME.
 - Défaut du run n°1 corrigé : pip-audit auditait l'environnement Ubuntu du runner (cloud-init, ufw, twisted…) au lieu du projet → cible désormais uv.lock (635 dépendances réelles).
