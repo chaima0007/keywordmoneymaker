@@ -33,6 +33,7 @@
 | E-14 | Deux racines créées pour un même projet | Tu crées un dossier | ARCHITECTE |
 | E-15 | Contenu d'un projet déposé dans le dépôt d'un autre | Tu écris un fichier | BOUSSOLE |
 | E-16 | Service en échec pris pour service inexistant | Un outil ne répond pas | tous |
+| E-17 | Documents internes publiés avec le site | Tu configures une publication, un déploiement | PROTECTEUR · REMPART |
 
 ---
 
@@ -230,6 +231,33 @@ observe le premier.
 **Leçon transférable.** « Ça ne répond pas » et « ça n'existe pas » appellent des réponses opposées.
 
 ---
+
+## E-17 — Des documents internes ont été publiés avec le site
+**Constaté le** 2026-09-11 (dans le code du workflow) · **Survenu** avant le durcissement de `deploy.yml`
+· **État** corrigé, mécanisme en place
+
+**Ce qui s'est passé.** Le workflow GitHub Pages publiait `path: '.'` — c'est-à-dire **le dépôt entier**.
+Les documents internes devenaient donc lisibles sur `caelumpartners.agency` : `CLAUDE.md`, `ETAT.md`,
+`reports/`, `.claude/`, `scripts/`, `agents/`, et un CV. Le commentaire de `.github/workflows/deploy.yml`
+le documente explicitement. C'est l'incident d'exposition de fichiers internes déjà signalé par Chaima.
+
+**Cause racine.** Le déploiement fonctionnait par **liste noire implicite** : tout était publié sauf ce
+qu'on pensait à exclure. Or personne ne pense à tout, et chaque fichier ajouté au dépôt devenait public
+par défaut, sans décision. Cause aggravante et toujours présente : le dépôt mêle contenu public de site
+et documents internes de travail — l'adjacence rend l'accident possible.
+
+**Signal de détection.** Tu configures ou modifies une publication, un déploiement, un `path`, une règle
+de copie vers un répertoire servi. Ou tu ajoutes un fichier à un dépôt dont une partie est publiée.
+
+**Contre-mesure — en place, à ne jamais affaiblir.** `deploy.yml` publie désormais une **liste blanche
+explicite** : tout fichier non listé n'est pas mis en ligne. Deux garde-fous bloquants complètent le
+dispositif, et doivent rester bloquants : un `find` qui échoue le déploiement si un `CLAUDE.md`, `ETAT.md`,
+`*.py`, `uv.lock`, `pyproject.toml`, `.env*` ou `README.md` a traversé ; et un contrôle d'existence du
+`CNAME`, sans lequel le domaine casserait. Le workflow liste aussi le contenu réellement publié — à lire,
+pas à survoler.
+
+**Leçon transférable.** Une publication se définit par ce qu'on autorise, jamais par ce qu'on interdit.
+Une liste noire est fausse dès le fichier suivant.
 
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
