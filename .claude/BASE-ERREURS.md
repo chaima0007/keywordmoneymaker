@@ -35,6 +35,7 @@
 | E-16 | Service en échec pris pour service inexistant | Un outil ne répond pas | tous |
 | E-17 | Documents internes publiés avec le site | Tu configures une publication, un déploiement | PROTECTEUR · REMPART |
 | E-18 | Deux sources de vérité pour la même question | Tu ajoutes une source d'information à côté d'une existante | ARCHITECTE · GARDIEN |
+| E-19 | Manipulation git pendant une fusion en cours | Tu fais autre chose au milieu d'un merge non finalisé | tous |
 
 ---
 
@@ -291,6 +292,36 @@ hiérarchie se perd au premier refactor.
 subordonner explicitement — et quelque chose doit vérifier qu'elles s'accordent. Deux sources
 d'accord aujourd'hui ne prouvent rien sur demain. Et un piège qui ne se déclenche pas est une
 information, pas un succès.
+
+## E-19 — Une manipulation git a détruit l'état d'une fusion en cours
+**Constaté le** 2026-09-11 · **État** corrigé le jour même, avant tout push
+
+**Ce qui s'est passé.** Au milieu d'un `git merge` non finalisé (conflit en cours de résolution), un
+`git stash -u` puis un `git checkout` d'une autre référence ont été lancés — pour mesurer, légitimement, le
+delta de publication entre les deux branches. Ces commandes ont **détruit `MERGE_HEAD`**. Les modifications
+étaient toujours là, l'index paraissait normal : rien ne signalait le problème. Or committer aurait produit
+un commit **ordinaire**, sans la branche fusionnée comme second parent — donc un historique faux et un
+conflit garanti à la fusion suivante, sur les mêmes fichiers.
+
+**Cause racine.** Une fusion en cours n'est pas un état de travail comme un autre : c'est un état
+**transitoire** que git conserve dans des fichiers de contrôle (`MERGE_HEAD`, `MERGE_MSG`). Toute commande
+qui réécrit l'index ou change de branche les efface, **sans avertissement et sans erreur**. La commande
+réussit, l'information disparaît.
+
+**Comment elle a été trouvée.** Par un contrôle explicite — `test -f .git/MERGE_HEAD` — ajouté par réflexe
+avant de committer, pas par une alerte de git. Sans ce contrôle, l'erreur aurait été poussée.
+
+**Signal de détection.** Tu es au milieu d'une fusion (conflits à résoudre, `MERGE_HEAD` présent) et tu
+t'apprêtes à lancer autre chose que la résolution : `stash`, `checkout`, `reset`, `pull`, changement de
+branche — ou n'importe quelle mesure sur un autre état du dépôt.
+
+**Contre-mesure.** Une fusion se finalise **avant** toute autre opération. Ce qui doit être mesuré sur une
+autre référence se mesure **avant** de lancer le merge, ou depuis un clone séparé, ou avec des commandes de
+lecture seule qui ne touchent pas l'index (`git show ref:chemin`, `git ls-tree`). Et dans tous les cas :
+vérifier `MERGE_HEAD` juste avant le commit de fusion.
+
+**Leçon transférable.** Certains états d'outil sont transitoires et s'effacent en silence quand on fait
+autre chose. Le succès d'une commande ne dit rien sur ce qu'elle a détruit au passage.
 
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 

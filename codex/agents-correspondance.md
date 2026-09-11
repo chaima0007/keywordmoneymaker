@@ -54,3 +54,44 @@ rien retirer, conformément à la décision « mapper + compléter, sans suppres
 Recouvrement assumé avec `archiviste-preuves` : celui-ci conserve la preuve de toute affirmation
 publiée ; l'HORLOGER est spécialisé sur les dates et les échéances du patrimoine. Les deux coopèrent.
 Total agents : 42 → **44**.
+
+## Ajout du 2026-09-11 (soir) — rôles du domaine VEILLE / BREVETS / CAPITAUX (hors des 21 rôles CODEX)
+Chaîne proposée par Chaima, réconciliée avec la flotte existante **rôle par rôle, par elle**. Même
+principe que ci-dessus : mapper + compléter, **sans suppression** (§10).
+
+### Ce qui NE crée PAS de rôle nouveau — arbitrages de Chaima
+| Rôle proposé | Décision | Rôle qui l'assume |
+|---|---|---|
+| ÉLAGUEUR | **abandonné**, le nom existant est gardé | `croque-mort` — mission identique (« déclarer mort, archiver, post-mortem ») |
+| GARANT | **fusionné** dans un rôle existant | `verificateur-verite`, complété de la nuance « sur quoi repose la confiance ? » (voir son fichier) |
+| DÉPOSANT | déjà créé le 2026-09-11 (matin) | `deposant` |
+| HORLOGER | déjà créé le 2026-09-11 (matin) | `horloger` |
+
+### Rôles AJOUTÉS — aucun équivalent dans la flotte (8)
+| Rôle | Périmètre | À ne pas confondre avec |
+|---|---|---|
+| `testeur` | viabilité réelle d'une trouvaille EXTERNE, itérations documentées, échecs compris | `testeur-adverse` (§1, couvert par `qa-verificateur`) qui teste la non-régression de NOTRE code |
+| `controleur` | 2ᵉ vérification **indépendante**, jugement formé avant lecture du 1ᵉʳ rapport | `verificateur-verite`, qui contrôle le statut épistémique, pas la reproductibilité |
+| `pilote` | ordre d'exécution du domaine + qualification des blocages | `meta-orchestrateur`, qui garde l'autorité hors domaine |
+| `chef-orchestre-veille` | répartition dans le domaine + UNE synthèse unique ; **subordonné** | `meta-orchestrateur` — deux chefs d'orchestre = paralysie |
+| `sentinelles` | trois passes nommées (légale, technique, divulgation) : ce que personne n'a soulevé | `sentinel-securite` (§1, mappé sur `architecte-securite`) |
+| `gardien-controle-final` | droit de dire « ce n'est pas terminé » + audit de la chaîne | `gardien-juridique-verite` et `gardien-donnees`, autres périmètres |
+| `prophete` | attaques anticipées sur CVE publiées et patterns documentés | `conservateur-secrets`, qui traite ce qui fuit déjà |
+| `dechiffreur` | résumé opposable d'une source technique dense (brevet, thèse, norme) | `scribe-empire` (mappé), qui rédige pour publication |
+
+### Rôles AJOUTÉS après REDÉCOUPAGE d'un recouvrement (4) — frontières écrites dans chaque fichier
+| Rôle | Ce qui est à lui | Ce qui n'est PAS à lui |
+|---|---|---|
+| `guetteur` | menaces **externes** uniquement | l'état interne (`superviseur-vigie`), les passations (`passerelle`) |
+| `passerelle` | circulation de l'info **entre agents** uniquement | l'état interne (`superviseur-vigie`), les menaces (`guetteur`) |
+| `boussole` | **constat** de dérive de périmètre et de doublon | tenir un état ou un fichier de gouvernance (`cartographe`) |
+| `protecteur` | fuite **juridique** : divulgation avant dépôt (art. 54 CBE), **irréparable** | fuite **technique** : clés, `.env`, historique git (`conservateur-secrets`), réparable par rotation |
+
+`superviseur-vigie`, `cartographe` et `conservateur-secrets` ont reçu en retour la frontière réciproque,
+écrite dans leur propre fichier : une frontière connue d'un seul côté n'est pas une frontière.
+
+**Aucune suppression. Aucun agent renommé.** Total agents : 44 → **56**.
+
+> Garde-fou assumé : 56 agents, c'est le régime où les doublons se multiplient sans que personne ne les
+> voie. C'est précisément le mandat de `boussole`, et l'audit de chaîne de `gardien-controle-final`.
+
