@@ -1,3 +1,27 @@
+# ⚠️ ATTENTION — CE FICHIER EST INACTIF SUR L'HÉBERGEMENT ACTUEL ⚠️
+#
+# Le site est hébergé sur GITHUB PAGES, qui IGNORE totalement ce fichier.
+# `_headers` est une convention de Cloudflare Pages et de Netlify uniquement.
+#
+# CONSÉQUENCE À CONNAÎTRE : aucun des en-têtes ci-dessous n'est réellement
+# envoyé aux visiteurs aujourd'hui. En particulier, NE PAS croire que le site
+# bénéficie de HSTS, X-Frame-Options, Permissions-Policy, COOP/CORP ni des
+# règles de cache : ils ne s'appliquent PAS.
+#
+# CE QUI PROTÈGE RÉELLEMENT LE SITE AUJOURD'HUI :
+#   - une CSP en <meta http-equiv> dans CHAQUE page HTML (elle, est active) ;
+#   - <meta http-equiv="X-Content-Type-Options" content="nosniff"> ;
+#   - le HTTPS fourni par GitHub Pages.
+#   - À savoir : `frame-ancestors` et HSTS ne peuvent PAS être posés par une
+#     balise <meta> — ces deux protections sont donc réellement absentes.
+#
+# POURQUOI ON GARDE CE FICHIER : il est prêt à l'emploi le jour d'une
+# migration vers Cloudflare Pages ou Netlify (voir Option B). Il ne coûte rien
+# et ne casse rien sur GitHub Pages — mais il ne protège rien non plus.
+#
+# Vérifié le 2026-09-11.
+# ──────────────────────────────────────────────────────────────────────────
+
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
