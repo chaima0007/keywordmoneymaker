@@ -106,9 +106,9 @@ def c2_racine_propre() -> list[str]:
         return []
     faux = []
     for p in sorted(RACINE.iterdir()):
-        if p.is_dir() and not p.name.startswith(".git") and p.name not in RACINE_AUTORISEE:
-            if p.name.startswith("."):
-                continue
+        if p.name.startswith(".") or p.name == "__pycache__":
+            continue        # état local et artefacts de build : non versionnés, hors sujet
+        if p.is_dir() and p.name not in RACINE_AUTORISEE:
             faux.append(f"répertoire de premier niveau non autorisé : {p.name}/")
     return faux
 

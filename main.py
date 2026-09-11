@@ -26,13 +26,17 @@ WHITE  = "\033[97m"
 BG_DARK= "\033[40m"
 
 ROOT = Path(__file__).parent
-AGENTS_DIR = ROOT / "agents"
 SHARED_DIR = ROOT / "shared"          # modules transverses (Option B, phase 2)
+PRODUCTS_DIR = ROOT / "products"      # un dossier d'agents par produit (Option B, phase 3)
 MEMORY_DIR = ROOT / ".memory"         # une mémoire par produit (décision Chaima 2026-09-11)
 LEGACY_MEMORY = ROOT / ".caelum_memory.json"   # ancienne mémoire unique — migrée puis renommée
 
-sys.path.insert(0, str(AGENTS_DIR))
+# Les imports du projet sont à plat (`__import__("avocat")`), pas de style paquet.
+# On met donc shared/ et les trois dossiers d'agents produits sur le chemin.
+# shared/ EN PREMIER : `from attribution import ...` juste en dessous en dépend.
 sys.path.insert(0, str(SHARED_DIR))
+for _d in sorted(PRODUCTS_DIR.glob("*/agents")):
+    sys.path.insert(0, str(_d))
 
 
 # ── Mémoire de session — UNE PAR PRODUIT ───────────────────────────────────────
