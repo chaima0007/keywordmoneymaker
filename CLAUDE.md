@@ -71,6 +71,14 @@ Ces deux règles s'appliquent aux **42 agents**, pas seulement à ceux de la cha
    Motif historique : une trentaine de journaux quasi identiques produits entre le 28/07 et le 11/08/2026,
    dont un faux positif qui a survécu deux semaines (fiches E-01 et E-02 de la base d'erreurs).
 
+3. **DEUX SUBSTRATS D'EXÉCUTION — connaître la frontière.** Ce dépôt contient deux systèmes d'agents
+   distincts, qui s'ignoraient totalement jusqu'au 2026-09-11 : les **42 définitions Markdown** de
+   `.claude/agents/` (lues par Claude Code) et les **33 modules Python** de `agents/` (code exécutable,
+   lancé par `main.py`, socle `claude-agent-sdk`). Ce ne sont **pas** des doublons : ni fusion, ni
+   archivage. Qui possède quoi, et la règle d'arbitrage : `.claude/FRONTIERE-SUBSTRATS.md` — à lire
+   avant d'affirmer « ce qui existe déjà » (fiche E-07). Le substrat Python ne lit pas ce fichier :
+   la base d'erreurs l'atteint via `agents/base_erreurs.py`, qui la **lit** sans la recopier.
+
 ## 3. RÈGLE DE VÉRIFICATION (À CHAQUE GESTE — le cœur)
 - VÉRIFIER, PAS SUPPOSER : lance réellement le build ET les tests ; vérifie que le push distant a réussi.
 - VÉRITÉ : aucun chiffre inventé ; chaque affirmation légale = loi réelle + source officielle + date, sinon supprimée.

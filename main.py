@@ -268,6 +268,22 @@ async def main_loop():
     mem["derniere_session"] = datetime.now().isoformat()
     save_memory(mem)
 
+    # ── Base d'erreurs de la chaîne (CLAUDE.md §2 ter) ─────────────────────────
+    # Ce substrat ne lit pas CLAUDE.md : le rappel passe par agents/base_erreurs.py,
+    # qui LIT .claude/BASE-ERREURS.md — aucune règle n'est recopiée ici (fiche E-01).
+    try:
+        import base_erreurs
+        print(f"\n  {VIOLET}{BOLD}RAPPEL — BASE D'ERREURS DE LA CHAINE{RESET}")
+        print(base_erreurs.rappel_demarrage())
+    except Exception as e:  # échec bruyant : une base absente ne doit jamais passer inaperçue
+        print(f"\n  {RED}{BOLD}/!\\ BASE D'ERREURS NON CONSULTABLE{RESET}")
+        print(f"  {RED}{e}{RESET}")
+        print(f"  {YELLOW}Ne conclus PAS « aucune erreur connue » — la base n'a pas pu etre lue.{RESET}")
+    try:
+        input(f"\n  {DIM}Entree pour continuer…{RESET}")
+    except (KeyboardInterrupt, EOFError):
+        pass
+
     while True:
         clear()
         header(mem)
