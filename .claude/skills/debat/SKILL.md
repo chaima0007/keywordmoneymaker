@@ -31,8 +31,8 @@ S'en écarter exige de dire pourquoi.
     NON VÉRIFIÉ : [ce qui n'a pas pu être établi, ou « rien »]
     CE QUI CHANGERAIT MON AVIS : [le fait précis qui inverserait le verdict]
 
-## NOTE D'INSTALLATION (2026-09-06)
+## NOTE (réconciliation 2026-09-11)
 Les agents référencés ici (`avocat`, `contradicteur`, `simulateur-scenarios`, `arbitre-expert`,
-`verificateur-verite`) font partie des 21 rôles CODEX **pas encore créés** dans ce dépôt (décision Chaima
-« protocole + structure d'abord »). Tant qu'ils ne sont pas créés/réconciliés (voir /codex/A-DECIDER.md),
-appliquer la séquence ci-dessus manuellement, en une seule passe, sans sauter le CONTRE.
+`verificateur-verite`, `cartographe`) sont désormais **créés** dans `.claude/agents/` (réconciliation
+« mapper + compléter », voir /codex/agents-correspondance.md). La séquence peut être conduite par ces agents,
+ou à la main en une seule passe si besoin — sans jamais sauter le CONTRE.
