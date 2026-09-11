@@ -35,6 +35,7 @@
 | E-16 | Service en échec pris pour service inexistant | Un outil ne répond pas | tous |
 | E-17 | Documents internes publiés avec le site | Tu configures une publication, un déploiement | PROTECTEUR · REMPART |
 | E-18 | Deux sources de vérité pour la même question | Tu ajoutes une source d'information à côté d'une existante | ARCHITECTE · GARDIEN |
+| E-19 | Défaut annoncé sans avoir été constaté | Tu rapportes un bug que tu n'as pas reproduit | GARANT · tous |
 
 ---
 
@@ -291,6 +292,40 @@ hiérarchie se perd au premier refactor.
 subordonner explicitement — et quelque chose doit vérifier qu'elles s'accordent. Deux sources
 d'accord aujourd'hui ne prouvent rien sur demain. Et un piège qui ne se déclenche pas est une
 information, pas un succès.
+
+## E-19 — Un défaut a été annoncé à Chaima sans avoir jamais été constaté
+**Constaté le** 2026-09-11 · **Survenu** 2026-09-11 · **État** corrigé le jour même
+
+**Ce qui s'est passé.** Dans un état des lieux sur la typographie du site de Caelum, j'ai annoncé à
+Chaima un défaut technique : « le CSS appelle Fraunces en 600/700 alors que seules les graisses 400 et
+500 sont chargées ». Chaima a intégré ce défaut à ses priorités du jour et m'a demandé de le corriger.
+Au moment d'écrire le correctif, la vérification règle par règle a montré qu'**il n'y avait aucun
+défaut** : toutes les déclarations `font-weight:600` et `700` du fichier appartiennent à Inter, qui est
+bien chargée en `400;500;600;700`. Fraunces n'est jamais appelée en 600 ni en 700.
+
+**Cause racine.** Deux faits vrais ont été rapprochés sans être reliés : « le CSS contient des poids
+600/700 » (vrai) et « Fraunces n'est chargée qu'en 400;500 » (vrai). La conclusion « donc Fraunces est
+appelée en 600/700 » ne découlait ni de l'un ni de l'autre — il manquait la seule question qui
+tranchait : *à quelle famille appartient chaque règle en 600/700 ?* Elle n'avait pas été posée.
+
+**Le coût réel.** Il ne s'agit pas d'une erreur interne rattrapée avant sortie : l'affirmation avait
+déjà atteint Chaima, qui a arbitré ses priorités dessus. Un défaut inventé consomme sa décision aussi
+sûrement qu'un défaut réel — c'est la faute du §13 du CODEX sur les affirmations **à propos de nous**,
+celles que personne ne pense à sourcer.
+
+**Signal de détection.** Tu t'apprêtes à rapporter un défaut, un manque ou une régression que tu n'as
+pas **reproduit**. Ou ton constat repose sur un décompte agrégé (`grep -c`, un total, une liste de
+poids) et non sur l'examen de chaque occurrence.
+
+**Contre-mesure.** Aucun défaut n'est annoncé sans la commande qui l'exhibe, jointe au constat. Pour
+un décompte, descendre à l'occurrence : ce n'est pas « il y a N poids 600/700 », c'est « la règle
+`fichier:ligne` applique 600 à la famille X ». Vocabulaire du §13 : sans exécution, c'est **PLAUSIBLE**,
+jamais **VÉRIFIÉ**.
+
+**Leçon transférable.** Un agrégat ne prouve rien sur ses éléments. Deux faits vrais côte à côte ne
+font pas une conclusion vraie : il faut la question qui les relie, et elle doit être posée avant le
+rapport, pas au moment du correctif. Et quand l'erreur est déjà partie chez Chaima, elle se corrige à
+voix haute, dans le même canal, sans attendre qu'elle la découvre.
 
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
