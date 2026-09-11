@@ -47,7 +47,7 @@ jobs:
             CNAME
             _headers _redirects
           )
-          DOSSIERS=( assets caelum agence home competeiq intelligence kmm keywordmoneymaker seo )
+          DOSSIERS=( assets nl caelum agence home competeiq intelligence kmm keywordmoneymaker seo )
 
           for f in "${FICHIERS[@]}"; do
             if [ -f "$f" ]; then cp "$f" _site/; else echo "::warning::fichier attendu absent : $f"; fi
