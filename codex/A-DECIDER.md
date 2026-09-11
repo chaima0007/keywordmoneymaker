@@ -11,7 +11,6 @@
 | ⚠️ Déclaration C1/C1C ONEM → débloque Stripe | Caelum | Admin / paiement | 2026-07-17 | aucun encaissement possible avant |
 | ⚠️ Compte Brevo + LEADS_WEBHOOK_URL | Caelum | Marketing / tech | 2026-07-17 | capture de lead = mailto en attendant l'endpoint |
 | Épingler par SHA les 4 actions de deploy.yml | Caelum | Sécurité | 2026-09-06 | **Blocage levé le 2026-09-11** : les 4 SHA sont en main (voir sous le tableau). Arbitrage réel à trancher, pas un simple correctif |
-| Fusionner la PR #19 — identité de marque | Caelum | Livraison | 2026-09-11 | CI verte, `mergeable_state: clean`, 0 fil de revue. Marque, favicons, image de partage + licences des polices |
 | Auto-héberger Fraunces et Inter (RGPD) | Caelum | Données personnelles | 2026-09-11 | Servies par fonts.gstatic.com → l'IP de chaque visiteur part chez Google sans consentement. Pas un défaut de licence. Remède autorisé par l'OFL |
 | Verdict sur le spécimen « Le Signal » | Caelum | Design | 2026-09-11 | Consultable : https://claude.ai/code/artifact/8413c51c-4b28-44fc-ba24-cd76d5619392 — débloque la refonte du corps du site, toujours en « Le Greffe » |
 
@@ -63,3 +62,6 @@ de contenu, pour que le déploiement soit vérifiable isolément.
   TRANCHÉ PAR CHAIMA.
 - 2026-09-11 — **Visibilité du dépôt, dépôt de marque et dates i-DEPOT** : administratif, Chaima s'en charge
   elle-même. Hors périmètre des agents. TRANCHÉ PAR CHAIMA.
+- 2026-09-11 — **PR #19 — identité de marque** : FUSIONNÉE (merge `7163653`), sur autorisation explicite
+  de Chaima (« Merge PR #19 maintenant — aucune décision requise, elle est verte »). Déploiement GitHub
+  Pages en succès ; les 5 fichiers d'identité figurent dans l'archive publiée. TRANCHÉ PAR CHAIMA.
