@@ -1,0 +1,270 @@
+/* ================================================================
+   CAELUM PARTNERS — système de design « Le Greffe »
+   Registre institutionnel et typographique.
+
+   RÈGLE FONDATRICE : LA COULEUR NE SERT QU'À DIRE QUELQUE CHOSE.
+   Aucune couleur décorative. Les boutons sont en encre, pas en couleur.
+   Les trois seules couleurs de la page portent un verdict :
+     terracotta = s'applique · ambre = à vérifier · vert = non concerné.
+
+   Deux principes repris du haut de marché :
+   - la profondeur vient du CONTRASTE DE SURFACES, jamais d'une ombre
+     (cartes blanches posées sur papier crème) ;
+   - la hiérarchie se fait par la TAILLE, jamais par le gras.
+   ================================================================ */
+
+:root{
+  /* Surfaces */
+  --papier:#FAF8F3;      /* fond de page, crème teinté (jamais blanc clinique) */
+  --surface:#FFFFFF;     /* cartes : le contraste avec le papier EST l'élévation */
+  --filet:#E5E0D6;       /* filets 1 px, à la place des ombres */
+  --filet-fort:#D5CFC1;
+
+  /* Encre */
+  --encre:#16232F;       /* texte principal ET boutons (jamais le noir pur) */
+  --encre-douce:#2B3A48;
+  --gris:#545F6B;        /* texte secondaire — AA vérifié sur papier et sur blanc */
+
+  /* Sur fond sombre (en-tête, pied de page) */
+  --sur-sombre:#F6F3EC;
+  --sur-sombre-doux:#C2CBD4;
+  --sur-sombre-tenu:#94A0AC;
+
+  /* ——— Les trois seules couleurs de la page : elles portent un SENS ——— */
+  --applique:#B0503C;    /* « s'applique à vous » */
+  --verifier:#8A6D2F;    /* « à vérifier » */
+  --non-concerne:#1E6E50;/* « a priori non concerné » */
+
+  /* Accessibilité : signature de focus (principe repris de GOV.UK) */
+  --focus:#FFDD00;
+
+  --max:1060px;
+  --max-lisible:720px;   /* mesure de lecture : ~70 caractères */
+  --rayon:6px;           /* rayons discrets : registre document, pas application */
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+body{
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  background:var(--papier);
+  color:var(--encre);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- Typographie : hiérarchie par la TAILLE, pas par le gras ---------- */
+h1,h2,h3,.marque{
+  font-family:"Fraunces","Iowan Old Style","Georgia",serif;
+  font-weight:400;            /* volontairement léger : la taille fait la hiérarchie */
+  line-height:1.15;
+  letter-spacing:-.012em;
+  color:var(--encre);
+}
+h1{font-size:clamp(1.95rem,4.6vw,3rem)}
+h2{font-size:clamp(1.45rem,3vw,1.95rem);margin-bottom:.5rem}
+h3{font-size:1.12rem;font-weight:500;line-height:1.3;margin-bottom:.3rem}
+
+a{color:var(--encre);text-decoration:underline;text-underline-offset:.16em;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+
+/* Focus visible et franc — l'accessibilité est un marqueur de sérieux */
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;background:rgba(255,221,0,.18);border-radius:2px}
+
+.skip{position:absolute;left:-9999px;top:0;background:var(--surface);color:var(--encre);padding:.7rem 1.1rem;z-index:30;border:1px solid var(--encre)}
+.skip:focus{left:0}
+
+/* ---------- Barre de langue — en Belgique, elle précède le contenu ---------- */
+.langues{background:var(--encre);border-bottom:1px solid rgba(246,243,236,.14)}
+.langues-int{max-width:var(--max);margin:0 auto;padding:.35rem 1.2rem;display:flex;align-items:center;gap:.9rem;font-size:.82rem}
+.langues .etiq{color:var(--sur-sombre-tenu);letter-spacing:.04em}
+.langues a,.langues span.actif{color:var(--sur-sombre-doux);text-decoration:none;padding:.15rem .1rem}
+.langues span.actif{color:var(--sur-sombre);border-bottom:2px solid var(--sur-sombre)}
+.langues a:hover{color:var(--sur-sombre);text-decoration:underline}
+
+/* ---------- En-tête ---------- */
+header.site{background:var(--encre);color:var(--sur-sombre);padding:1rem 1.2rem}
+.nav{max-width:var(--max);margin:0 auto;display:flex;align-items:baseline;gap:1.5rem;flex-wrap:wrap}
+.marque{
+  font-size:1.18rem;letter-spacing:.01em;color:var(--sur-sombre);
+  text-decoration:none;text-transform:lowercase;   /* bas de casse, sans symbole */
+}
+.marque:hover{text-decoration:none;color:#fff}
+.nav .spacer{flex:1}
+.nav a.lien{color:var(--sur-sombre-doux);text-decoration:none;font-size:.94rem}
+.nav a.lien:hover{color:var(--sur-sombre);text-decoration:underline;text-underline-offset:.2em}
+
+/* ---------- Structure ---------- */
+main{max-width:var(--max);margin:0 auto;padding:0 1.2rem}
+main.lisible{max-width:var(--max-lisible)}
+section{padding:3.2rem 0;border-top:1px solid var(--filet)}
+section:first-of-type{border-top:none}
+
+.eyebrow{
+  font-family:"Inter",sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--gris);margin-bottom:.8rem;
+}
+.intro{color:var(--gris);max-width:62ch}
+p+p{margin-top:.9rem}
+
+/* ---------- Héros : une question, pas un slogan. Sur papier, sans mise en scène. ---------- */
+.hero{border-bottom:1px solid var(--filet);background:var(--papier)}
+.hero-int{max-width:var(--max);margin:0 auto;padding:4rem 1.2rem 3.4rem}
+.hero h1{max-width:19ch}
+.hero .chapo{margin-top:1.2rem;max-width:60ch;color:var(--gris);font-size:clamp(1rem,2vw,1.08rem)}
+.hero small{display:block;margin-top:1rem;color:var(--gris);font-size:.86rem}
+.filet-titre{width:54px;height:2px;background:var(--encre);margin-bottom:1.6rem}
+
+/* ---------- Actions : UN SEUL bouton plein par bande, en encre ---------- */
+.cta{
+  display:inline-block;background:var(--encre);color:var(--sur-sombre);
+  text-decoration:none;padding:.82rem 1.5rem;border-radius:var(--rayon);
+  font-family:"Inter",sans-serif;font-weight:500;font-size:1rem;
+  border:1px solid var(--encre);
+}
+.cta:hover{background:#0E1822;color:#fff;text-decoration:none}
+.cta.secondaire{background:transparent;color:var(--encre);border-color:var(--filet-fort)}
+.cta.secondaire:hover{background:var(--surface);color:var(--encre);border-color:var(--encre)}
+.cta-rangee{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.9rem;align-items:center}
+
+/* ---------- Cartes : blanc sur crème. AUCUNE ombre. ---------- */
+.grille{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));margin-top:1.8rem}
+.carte{
+  background:var(--surface);border:1px solid var(--filet);border-radius:var(--rayon);
+  padding:1.4rem 1.5rem;
+}
+.carte p{font-size:.95rem;color:var(--gris)}
+.carte h3{margin-top:.55rem}
+
+/* Étiquette d'échéance : information datée, en encre — pas un ornement */
+.date{
+  display:inline-block;font-family:"Inter",sans-serif;font-size:.75rem;font-weight:600;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--gris);
+  border-bottom:1px solid var(--filet-fort);padding-bottom:.22rem;
+}
+
+/* ---------- Note de base légale : le motif graphique récurrent du site ---------- */
+.source{
+  margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--filet);
+  font-size:.8rem;color:var(--gris);line-height:1.5;
+}
+.source b{font-weight:600;color:var(--encre-douce)}
+
+/* ---------- Encarts ---------- */
+.encadre{background:var(--surface);border:1px solid var(--filet);border-radius:var(--rayon);padding:1.4rem 1.6rem;margin-top:1.5rem}
+.encadre.marque-gauche{border-left:3px solid var(--encre)}
+.encadre p{color:var(--gris);font-size:.96rem}
+.encadre h3{color:var(--encre)}
+
+/* ---------- Étapes numérotées ---------- */
+ol.pas{list-style:none;counter-reset:p;margin-top:1.6rem;display:grid;gap:1.3rem}
+ol.pas li{counter-increment:p;position:relative;padding-left:2.9rem;color:var(--gris)}
+ol.pas li::before{
+  content:counter(p);position:absolute;left:0;top:0;
+  width:1.9rem;height:1.9rem;display:grid;place-items:center;
+  border:1px solid var(--filet-fort);border-radius:50%;
+  font-family:"Fraunces",serif;font-size:.95rem;color:var(--encre);background:var(--surface);
+}
+ol.pas li strong{color:var(--encre);font-weight:600}
+
+/* ---------- Bloc « expert nommé » — en réserve, masqué tant qu'il est vide ---------- */
+.expert{display:grid;grid-template-columns:auto 1fr;gap:1.3rem;align-items:start;
+  background:var(--surface);border:1px solid var(--filet);border-radius:var(--rayon);padding:1.5rem}
+.expert .portrait{width:92px;height:92px;border-radius:50%;border:1px solid var(--filet-fort);
+  background:var(--papier);display:grid;place-items:center;color:var(--gris);font-size:.7rem;text-align:center;padding:.4rem}
+.expert p{color:var(--gris);font-size:.96rem}
+@media (max-width:520px){.expert{grid-template-columns:1fr}}
+
+/* ================================================================
+   Simulateur — c'est ici que la couleur reprend ses droits,
+   parce qu'ici elle signifie quelque chose.
+   ================================================================ */
+fieldset{border:1px solid var(--filet);border-radius:var(--rayon);background:var(--surface);
+  padding:1.4rem 1.5rem;margin-bottom:1.1rem}
+fieldset:focus-within{border-color:var(--filet-fort)}
+legend{font-family:"Fraunces",serif;font-weight:500;font-size:1.06rem;color:var(--encre);padding:0 .45rem;line-height:1.35}
+.aide{font-size:.87rem;color:var(--gris);margin:.4rem 0 .85rem}
+label.opt{display:flex;align-items:flex-start;gap:.65rem;padding:.5rem .5rem;cursor:pointer;border-radius:4px}
+label.opt:hover{background:var(--papier)}
+label.opt input{margin-top:.3rem;accent-color:var(--encre);flex:none;width:1.05rem;height:1.05rem}
+
+button{
+  background:var(--encre);color:var(--sur-sombre);border:1px solid var(--encre);
+  padding:.82rem 1.6rem;border-radius:var(--rayon);
+  font-family:"Inter",sans-serif;font-size:1rem;font-weight:500;cursor:pointer;
+}
+button:hover{background:#0E1822;color:#fff}
+
+.progress{display:flex;gap:.35rem;margin-top:1.5rem;max-width:280px}
+.progress span{height:3px;flex:1;background:var(--filet-fort)}
+.progress span.on{background:var(--encre)}
+
+#resultat{margin-top:2.4rem}
+.res-carte{background:var(--surface);border:1px solid var(--filet);border-left-width:4px;
+  border-radius:var(--rayon);padding:1.2rem 1.4rem;margin-bottom:.9rem}
+.res-oui{border-left-color:var(--applique)}
+.res-verifier{border-left-color:var(--verifier)}
+.res-non{border-left-color:var(--non-concerne)}
+.res-carte h3{margin-bottom:.35rem}
+.res-carte p{font-size:.94rem;color:var(--gris)}
+.etiquette{font-family:"Inter",sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;display:inline-block;margin-bottom:.3rem}
+.res-oui .etiquette{color:var(--applique)}
+.res-verifier .etiquette{color:var(--verifier)}
+.res-non .etiquette{color:var(--non-concerne)}
+
+.suite{background:var(--surface);border:1px solid var(--filet);border-radius:var(--rayon);
+  padding:1.4rem 1.6rem;margin-top:1.6rem;font-size:.95rem}
+.suite p{color:var(--gris)}
+[hidden]{display:none !important}
+
+/* ---------- Légende des couleurs : rendre la règle explicite ---------- */
+.legende{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1.2rem;font-size:.82rem;color:var(--gris)}
+.legende span{display:inline-flex;align-items:center;gap:.4rem}
+.legende i{width:10px;height:10px;border-radius:2px;display:inline-block}
+
+/* ================================================================
+   Offres
+   ================================================================ */
+.offre{background:var(--surface);border:1px solid var(--filet);border-radius:var(--rayon);
+  padding:1.6rem;display:flex;flex-direction:column}
+.offre h2{font-size:1.3rem;margin-bottom:.2rem}
+.prix{font-family:"Fraunces",serif;font-size:1.15rem;color:var(--encre);
+  margin:.5rem 0 1.1rem;padding-bottom:.7rem;border-bottom:1px solid var(--filet)}
+.offre ul{list-style:none;margin:0 0 1.2rem;font-size:.94rem;color:var(--gris);display:grid;gap:.5rem}
+.offre li{position:relative;padding-left:1.15rem}
+.offre li::before{content:"—";position:absolute;left:0;color:var(--filet-fort)}
+.offre .note{font-size:.86rem;color:var(--gris);margin:auto 0 1rem;font-style:italic}
+.avis{background:var(--surface);border:1px solid var(--filet);border-left:3px solid var(--verifier);
+  border-radius:var(--rayon);padding:1.1rem 1.4rem;margin:1.4rem 0 2rem;font-size:.95rem}
+
+/* ================================================================
+   Pages légales
+   ================================================================ */
+.legal h2{font-size:1.2rem;margin:2.2rem 0 .5rem}
+.legal p,.legal li{color:var(--encre-douce);font-size:.97rem}
+.legal ul{margin-left:1.1rem;display:grid;gap:.45rem}
+.attention{background:var(--surface);border:1px solid var(--filet);border-left:3px solid var(--verifier);
+  border-radius:var(--rayon);padding:1.1rem 1.4rem;margin:1rem 0;font-size:.94rem}
+
+/* ================================================================
+   Pied de page — identification légale complète et visible
+   ================================================================ */
+footer.site{background:var(--encre);color:var(--sur-sombre-doux);padding:2.6rem 1.2rem;font-size:.88rem;margin-top:3rem}
+.pied{max-width:var(--max);margin:0 auto;display:grid;gap:1rem}
+.pied.lisible{max-width:var(--max-lisible)}
+footer.site strong{color:var(--sur-sombre);font-weight:600}
+footer.site a{color:var(--sur-sombre-doux)}
+footer.site a:hover{color:#fff}
+.disclaimer{border-top:1px solid rgba(246,243,236,.16);padding-top:1rem;color:var(--sur-sombre-tenu);font-style:italic}
+
+/* ---------- Apparition au défilement : discrète, et désactivable ---------- */
+.reveal{opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease}
+.reveal.is-visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+.mt2{margin-top:1.6rem}

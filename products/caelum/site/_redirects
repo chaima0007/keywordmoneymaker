@@ -1,0 +1,48 @@
+# ⚠️ ATTENTION — CE FICHIER EST INACTIF SUR L'HÉBERGEMENT ACTUEL ⚠️
+#
+# Le site est hébergé sur GITHUB PAGES, qui IGNORE totalement ce fichier.
+# `_redirects` est une convention de Cloudflare Pages et de Netlify uniquement.
+#
+# CONSÉQUENCE : les URLs courtes ci-dessous ne fonctionnent PAS grâce à ce
+# fichier. Elles fonctionnent aujourd'hui grâce à de vrais dossiers contenant
+# un index.html de redirection (/competeiq/index.html, /kmm/index.html, …).
+# Si vous ajoutez une URL courte ici, ajoutez AUSSI le dossier correspondant,
+# sinon elle renverra 404.
+#
+# CORRECTION DU 2026-09-11 — une boucle infinie a été désamorcée ici :
+# ce fichier contenait « /  ->  /caelum-index.html (200) », or
+# caelum-index.html est devenu une redirection vers « / ». Si ce fichier
+# avait été activé (migration Cloudflare/Netlify), la racine du site aurait
+# bouclé à l'infini. La règle fautive est supprimée : sur Cloudflare comme
+# sur Netlify, « / » sert index.html nativement, aucune règle n'est requise.
+# ──────────────────────────────────────────────────────────────────────────
+
+# ── Caelum Partners (page principale) ─────────────────────────
+# (aucune règle pour « / » : index.html est servi nativement)
+/caelum                 /index.html                     200
+/agence                 /index.html                     200
+
+# ── HORS PÉRIMÈTRE DEPUIS LE 2026-09-11 — RÈGLES NEUTRALISÉES ──
+# Décision de Chaima (« Option 0 ») : CompeteIQ et KeywordMoneyMaker ne sont
+# plus publiés sur caelumpartners.agency. Leurs cibles n'existent donc plus
+# dans le contenu servi.
+# Ces règles sont commentées et NON supprimées, pour deux raisons : elles
+# documentent l'état antérieur, et si ce fichier devenait actif (migration
+# Cloudflare/Netlify) elles renverraient un 404 — exactement le piège que
+# l'en-tête de ce fichier signale déjà dans l'autre sens.
+# Ne les réactiver que si Chaima décide de republier ces produits ici.
+#
+# /competeiq              /competeiq-landing.html         200
+# /competeiq/             /competeiq-landing.html         200
+# /intelligence           /competeiq-landing.html         200
+# /kmm                    /keywordmoneymaker-index.html   200
+# /keywordmoneymaker      /keywordmoneymaker-index.html   200
+# /seo                    /keywordmoneymaker-index.html   200
+
+# ── Redirections propres ───────────────────────────────────────
+/home                   /                               301
+/index                  /                               301
+/index.html             /                               301
+
+# ── Fallback 404 (corrigé : pointe vers la vraie page 404) ─────
+/*                      /404.html                       404

@@ -8,11 +8,11 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self';" />
 
   <title>CompeteIQ — Intelligence Concurrentielle Pilotée par l'IA</title>
-  <meta name="description" content="9 agents IA surveillent vos concurrents 24h/24. Alertes en temps réel, battle cards, signaux faibles, plan de conquête. Essai gratuit 14 jours." />
-  <meta name="robots" content="index, follow" />
+  <meta name="description" content="CompeteIQ — plateforme d'intelligence concurrentielle par IA. Produit en développement, pas encore disponible." />
+  <meta name="robots" content="noindex, nofollow" />
 
   <meta property="og:title" content="CompeteIQ — Intelligence Concurrentielle par IA" />
-  <meta property="og:description" content="Sachez avant vos concurrents ce que vos concurrents font. 9 agents IA. Alertes en temps réel." />
+  <meta property="og:description" content="Plateforme d'intelligence concurrentielle par IA — en développement, pas encore disponible." />
   <meta property="og:type" content="website" />
 
   <link rel="manifest" href="/manifest.json" />
@@ -52,7 +52,7 @@
 
     /* NAV */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 2.4rem; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1rem 2rem;
       background: rgba(2,6,23,.9);
@@ -358,6 +358,11 @@
 </head>
 <body>
 
+<!-- STATUS BANNER -->
+<div style="background:#f59e0b;color:#020617;text-align:center;padding:.6rem 1rem;font-weight:700;font-size:.85rem;position:fixed;top:0;left:0;right:0;z-index:200;">
+  🚧 CompeteIQ est en développement — non disponible à la vente.
+</div>
+
 <!-- NAV -->
 <nav>
   <a href="/" class="logo">Compete<span>IQ</span></a>
@@ -365,50 +370,27 @@
     <li><a href="#agents">Agents</a></li>
     <li><a href="#fonctionnalites">Fonctionnalités</a></li>
     <li><a href="#tarifs">Tarifs</a></li>
-    <li><a href="#temoignages">Témoignages</a></li>
   </ul>
   <div class="nav-actions">
-    <a href="/login" class="btn-ghost">Connexion</a>
-    <a href="/signup" class="btn-cta">Essai gratuit →</a>
+    <a href="#notify" class="btn-cta">Prévenez-moi</a>
   </div>
 </nav>
 
 <!-- LIVE TICKER -->
 <div style="height:3rem"></div>
-<div class="ticker-wrap">
-  <div class="ticker">
-    <div class="ticker-item"><span class="ticker-dot dot-red"></span><span class="ticker-label">ORACLE détecte :</span><span class="ticker-value">Salesforce +12% sur l'offre Enterprise</span></div>
-    <div class="ticker-item"><span class="ticker-dot dot-amber"></span><span class="ticker-label">PRISM alerte :</span><span class="ticker-value">HubSpot lance AI Insights — en bêta</span></div>
-    <div class="ticker-item"><span class="ticker-dot dot-emerald"></span><span class="ticker-label">ECHO signal :</span><span class="ticker-value">Monday.com recrute 45 ingénieurs IA</span></div>
-    <div class="ticker-item"><span class="ticker-dot dot-red"></span><span class="ticker-label">ATLAS map :</span><span class="ticker-value">Nouveau entrant : Klue lève 75M$</span></div>
-    <div class="ticker-item"><span class="ticker-dot dot-amber"></span><span class="ticker-label">SENTINEL :</span><span class="ticker-value">Gartner positionne Crayon en "Visionnaire"</span></div>
-    <!-- duplicate for seamless loop -->
-    <div class="ticker-item"><span class="ticker-dot dot-red"></span><span class="ticker-label">ORACLE détecte :</span><span class="ticker-value">Salesforce +12% sur l'offre Enterprise</span></div>
-    <div class="ticker-item"><span class="ticker-dot dot-amber"></span><span class="ticker-label">PRISM alerte :</span><span class="ticker-value">HubSpot lance AI Insights — en bêta</span></div>
-    <div class="ticker-item"><span class="ticker-dot dot-emerald"></span><span class="ticker-label">ECHO signal :</span><span class="ticker-value">Monday.com recrute 45 ingénieurs IA</span></div>
-    <div class="ticker-item"><span class="ticker-dot dot-red"></span><span class="ticker-label">ATLAS map :</span><span class="ticker-value">Nouveau entrant : Klue lève 75M$</span></div>
-    <div class="ticker-item"><span class="ticker-dot dot-amber"></span><span class="ticker-label">SENTINEL :</span><span class="ticker-value">Gartner positionne Crayon en "Visionnaire"</span></div>
-  </div>
-</div>
+<!-- Ticker retiré : données concurrentielles fictives non vérifiables (chiffres inventés sur des sociétés tierces réelles). -->
 
 <!-- HERO -->
 <section class="hero">
-  <div class="live-badge"><span class="live-dot"></span>9 agents actifs en ce moment</div>
+  <div class="live-badge"><span class="live-dot"></span>Produit en développement</div>
   <h1>
     Sachez ce que font<br>
     <span class="accent">vos concurrents</span><br>
     <span class="dimmed">avant qu'ils le fassent.</span>
   </h1>
-  <p class="hero-sub">CompeteIQ déploie 9 agents IA spécialisés qui surveillent, analysent et alertent 24h/24. Réagissez en heures, pas en semaines.</p>
+  <p class="hero-sub">CompeteIQ vise à déployer 9 agents IA spécialisés pour surveiller, analyser et alerter en continu. Produit en cours de développement — pas encore disponible.</p>
   <div class="hero-cta">
-    <a href="/signup" class="btn-primary">Démarrer l'essai gratuit — 14 jours</a>
-    <a href="#demo" class="btn-demo">Voir une démo</a>
-  </div>
-  <div class="stats">
-    <div class="stat"><div class="stat-n">9</div><div class="stat-l">Agents IA actifs</div></div>
-    <div class="stat"><div class="stat-n">&lt;2h</div><div class="stat-l">Délai d'alerte moyen</div></div>
-    <div class="stat"><div class="stat-n">29</div><div class="stat-l">Modules d'analyse</div></div>
-    <div class="stat"><div class="stat-n">0</div><div class="stat-l">Configuration requise</div></div>
+    <a href="#notify" class="btn-primary">Prévenez-moi au lancement</a>
   </div>
 </section>
 
@@ -459,7 +441,6 @@
           </div>
         </div>
         <div class="agent-desc">Monitore en temps réel les mouvements concurrentiels : offres d'emploi, communiqués, brevets déposés, levées de fonds. Alerte sous 2h.</div>
-        <div class="agent-stat"><span class="agent-dot"></span>Actif — 247 signaux/semaine</div>
       </div>
 
       <div class="agent-card violet">
@@ -471,7 +452,6 @@
           </div>
         </div>
         <div class="agent-desc">Prédit les mouvements futurs à partir des signaux faibles actuels. Probabilités sur 3 et 6 mois. Forecasting des parts de marché.</div>
-        <div class="agent-stat"><span class="agent-dot"></span>Actif — Précision 78%</div>
       </div>
 
       <div class="agent-card cyan">
@@ -483,7 +463,6 @@
           </div>
         </div>
         <div class="agent-desc">LinkedIn, forums, Reddit, Glassdoor, G2, Capterra. Détecte les plaintes clients concurrents — vos opportunités de conquête.</div>
-        <div class="agent-stat"><span class="agent-dot"></span>Actif — 12 sources surveillées</div>
       </div>
 
       <div class="agent-card indigo">
@@ -495,7 +474,6 @@
           </div>
         </div>
         <div class="agent-desc">Suit chaque changement de prix, bundle, promotion, discount. Analyse le positionnement tarifaire et détecte les opportunités de revalorisation.</div>
-        <div class="agent-stat"><span class="agent-dot"></span>Actif — 34 grilles surveillées</div>
       </div>
 
       <div class="agent-card violet">
@@ -507,7 +485,6 @@
           </div>
         </div>
         <div class="agent-desc">Visualise l'écosystème concurrentiel : nouveaux entrants, acquisitions, partenariats, expansions géographiques. Bubble chart temps réel.</div>
-        <div class="agent-stat"><span class="agent-dot"></span>Actif — Carte mise à jour quotidiennement</div>
       </div>
 
       <div class="agent-card cyan">
@@ -519,7 +496,6 @@
           </div>
         </div>
         <div class="agent-desc">Analyse le messaging concurrentiel : newsletters, blogs, landing pages. Identifie les pivots de positionnement et les nouvelles promesses.</div>
-        <div class="agent-stat"><span class="agent-dot"></span>Actif — 89 sources analysées</div>
       </div>
 
       <div class="agent-card indigo">
@@ -531,7 +507,6 @@
           </div>
         </div>
         <div class="agent-desc">Connecte les signaux disparates et révèle des insights invisibles individuellement. "Cette offre d'emploi + ce brevet = nouveau produit dans 6 mois."</div>
-        <div class="agent-stat"><span class="agent-dot"></span>Actif — 1 247 connexions détectées</div>
       </div>
 
       <div class="agent-card violet">
@@ -543,7 +518,6 @@
           </div>
         </div>
         <div class="agent-desc">Génère automatiquement des battle cards à jour pour chaque concurrent. Arguments, objections anticipées, preuves sociales — prêts pour vos commerciaux.</div>
-        <div class="agent-stat"><span class="agent-dot"></span>Actif — 12 battle cards à jour</div>
       </div>
 
       <div class="agent-card cyan" style="border-color:rgba(6,182,212,.3);background:rgba(6,182,212,.04)">
@@ -555,7 +529,6 @@
           </div>
         </div>
         <div class="agent-desc">Reçoit vos missions stratégiques en langage naturel, coordonne la flotte, génère un plan de réponse exécutif avec KPIs et jalons.</div>
-        <div class="agent-stat"><span class="agent-dot"></span>PRO — Accès illimité</div>
       </div>
 
     </div>
@@ -612,11 +585,11 @@
   <div class="container">
     <span class="section-tag">Tarifs</span>
     <h2>Investissement. Pas une dépense.</h2>
-    <p class="sub">Un seul deal sauvé couvre 6 mois d'abonnement. Essai 14 jours sans carte bancaire.</p>
+    <p class="sub">Grille tarifaire indicative, non contractuelle. Les tarifs seront confirmés au lancement.</p>
     <div class="pricing-grid">
 
       <div class="plan">
-        <div class="plan-price">149€ <span class="plan-period">/ mois</span></div>
+        <div class="plan-price" style="font-size:1.6rem">Bientôt disponible</div>
         <div class="plan-name">Starter</div>
         <div class="plan-desc">Pour les équipes qui démarrent leur veille concurrentielle.</div>
         <ul class="plan-features">
@@ -627,12 +600,11 @@
           <li>Rapports hebdomadaires</li>
           <li>1 utilisateur</li>
         </ul>
-        <a href="/signup?plan=starter" class="plan-cta outline">Commencer gratuitement</a>
+        <a href="#notify" class="plan-cta outline">Être prévenu au lancement</a>
       </div>
 
       <div class="plan featured">
-        <div class="plan-badge">⭐ Le plus populaire</div>
-        <div class="plan-price">399€ <span class="plan-period">/ mois</span></div>
+        <div class="plan-price" style="font-size:1.6rem">Bientôt disponible</div>
         <div class="plan-name">Pro</div>
         <div class="plan-desc">Pour les équipes commerciales et marketing qui veulent réagir vite.</div>
         <ul class="plan-features">
@@ -646,11 +618,11 @@
           <li>Export PDF/CSV illimité</li>
           <li>5 utilisateurs</li>
         </ul>
-        <a href="/signup?plan=pro" class="plan-cta primary">Essai gratuit 14 jours</a>
+        <a href="#notify" class="plan-cta primary">Être prévenu au lancement</a>
       </div>
 
       <div class="plan">
-        <div class="plan-price">Sur devis</div>
+        <div class="plan-price" style="font-size:1.6rem">Bientôt disponible</div>
         <div class="plan-name">Enterprise</div>
         <div class="plan-desc">Pour les grandes équipes avec des besoins sur mesure.</div>
         <ul class="plan-features">
@@ -662,7 +634,7 @@
           <li>Utilisateurs illimités</li>
           <li>Rapport mensuel exécutif</li>
         </ul>
-        <a href="mailto:retrouvetonsmile@gmail.com?subject=CompeteIQ Enterprise" class="plan-cta outline">Contacter l'équipe</a>
+        <a href="#notify" class="plan-cta outline">Être prévenu au lancement</a>
       </div>
 
     </div>
@@ -671,57 +643,18 @@
 
 <div class="divider"></div>
 
-<!-- SOCIAL PROOF -->
-<section id="temoignages">
-  <div class="container">
-    <span class="section-tag">Résultats clients</span>
-    <h2>Ils ont arrêté de réagir. Ils anticipent.</h2>
-    <p class="sub">Des résultats mesurables dès la première semaine.</p>
-    <div class="proof-grid">
-      <div class="proof-card">
-        <div class="proof-stars">★★★★★</div>
-        <p class="proof-text">SENTINEL nous a alertés 6 jours avant que Salesforce annonce publiquement sa nouvelle offre PME. On avait déjà notre contre-argument prêt.</p>
-        <div class="proof-author">
-          <strong>Laurent B.</strong>
-          <span>VP Sales, Éditeur SaaS B2B, Paris</span>
-        </div>
-        <div class="proof-metric">↑ 23% taux de rétention clients · 3 comptes sauvés ce trimestre</div>
-      </div>
-      <div class="proof-card">
-        <div class="proof-stars">★★★★★</div>
-        <p class="proof-text">FORGE génère nos battle cards automatiquement. L'équipe commerciale est entrée en Q4 avec 12 battle cards à jour. On n'avait jamais eu ça.</p>
-        <div class="proof-author">
-          <strong>Amina K.</strong>
-          <span>Directrice Marketing, SaaS RH, Bruxelles</span>
-        </div>
-        <div class="proof-metric">↑ 31% win rate sur les deals compétitifs</div>
-      </div>
-      <div class="proof-card">
-        <div class="proof-stars">★★★★★</div>
-        <p class="proof-text">RÉSOLVEUR m'a généré un plan de réponse complet quand Monday.com a lancé une feature qui nous menaçait directement. En 30 secondes.</p>
-        <div class="proof-author">
-          <strong>Thomas R.</strong>
-          <span>CEO, Startup B2B Series A, Lyon</span>
-        </div>
-        <div class="proof-metric">Plan de réponse exécuté en 3 semaines · Zéro churn</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
+<!-- Section témoignages retirée : faux clients et métriques de résultats non vérifiables. -->
 
 <!-- CTA -->
-<section class="cta-section">
+<section class="cta-section" id="notify">
   <div class="container">
-    <span class="section-tag">Passez à l'action</span>
-    <h2>Vos concurrents bougent en ce moment.</h2>
-    <p>14 jours d'essai gratuit. Configuration en 5 minutes. Première alerte sous 24h. Aucune carte bancaire requise.</p>
+    <span class="section-tag">Rester informé</span>
+    <h2>Soyez prévenu au lancement.</h2>
+    <p>CompeteIQ est en développement. Écrivez-nous et nous vous préviendrons dès qu'il sera disponible — aucune donnée n'est stockée sur ce site, aucun suivi.</p>
     <div class="hero-cta">
-      <a href="/signup" class="btn-primary">Démarrer mon essai gratuit →</a>
-      <a href="mailto:retrouvetonsmile@gmail.com?subject=Démo CompeteIQ" class="btn-demo">Demander une démo</a>
+      <a href="mailto:retrouvetonsmile@gmail.com?subject=Pr%C3%A9venez-moi%20au%20lancement%20de%20CompeteIQ&body=Bonjour%2C%20je%20souhaite%20%C3%AAtre%20pr%C3%A9venu(e)%20au%20lancement%20de%20CompeteIQ." class="btn-primary">Prévenez-moi au lancement</a>
     </div>
-    <p class="cta-note">Déjà client ? <a href="/login" style="color:var(--indigo2);text-decoration:none">Connexion →</a></p>
+    <p class="cta-note">En cliquant, votre logiciel de messagerie s'ouvre : vous nous écrivez vous-même (consentement explicite). Nous n'utilisons votre adresse que pour vous prévenir du lancement.</p>
   </div>
 </section>
 
@@ -733,7 +666,7 @@
     <div class="footer-links">
       <a href="#agents">Agents</a>
       <a href="#tarifs">Tarifs</a>
-      <a href="/login">Connexion</a>
+      <a href="#notify">Être prévenu</a>
       <a href="mailto:retrouvetonsmile@gmail.com">Contact</a>
     </div>
   </div>

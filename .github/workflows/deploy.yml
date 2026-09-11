@@ -1,0 +1,137 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      # ══════════════════════════════════════════════════════════════════
+      # Le dépôt contient des documents INTERNES (CLAUDE.md, ETAT.md,
+      # reports/, .claude/, scripts/, agents/, CV…). Publier `path: '.'`
+      # les rendait lisibles sur caelumpartners.agency.
+      # On publie désormais UNIQUEMENT une liste blanche : tout fichier
+      # qui n'est pas listé ci-dessous n'est PAS mis en ligne.
+      # ══════════════════════════════════════════════════════════════════
+      - name: Construire le contenu public (liste blanche)
+        run: |
+          set -euo pipefail
+          rm -rf _site && mkdir -p _site
+
+          # ── PÉRIMÈTRE DE PUBLICATION : CAELUM PARTNERS UNIQUEMENT ──────────
+          # Décision de Chaima du 2026-09-11 (« Option 0 » du plan de séparation).
+          #
+          # CompeteIQ et KeywordMoneyMaker NE SONT PLUS PUBLIÉS sur ce domaine.
+          # Motif : caelumpartners.agency est le domaine d'un conseil en conformité.
+          # Y servir deux produits SaaS sans rapport diluait le positionnement
+          # tranché le 17/07/2026 (RegTech conformité PME belges). Aggravant :
+          # keywordmoneymaker-index.html n'avait PAS de noindex — la page « AI SEO
+          # Content Generator » était donc indexable sur le domaine de Caelum.
+          #
+          # Les fichiers RESTENT dans le dépôt : ils ne sont plus servis, c'est tout.
+          # NE PAS les remettre dans les listes ci-dessous sans décision de Chaima.
+          # Retirés le 2026-09-11 : competeiq-landing.html · keywordmoneymaker-index.html
+          #                         competeiq/ · intelligence/ · kmm/ · keywordmoneymaker/ · seo/
+          # Conservés (tous Caelum) : caelum/ · agence/ · home/ → redirigent vers « / » ;
+          #                           nl/ → version néerlandaise.
+          # Vérifié avant retrait : aucune page Caelum ne liait ces produits (grep),
+          # et sitemap.xml ne listait que des URL Caelum. Zéro lien mort créé.
+          # ───────────────────────────────────────────────────────────────────
+          # Depuis la phase 4 de l'Option B (2026-09-11), le site de Caelum vit dans
+          # products/caelum/site/. Les chemins PUBLIÉS ne changent pas : le contenu de
+          # ce dossier est copié à la racine de _site, donc les URL restent identiques.
+          SRC="products/caelum/site"
+          if [ ! -d "$SRC" ]; then
+            echo "::error::Source du site introuvable : $SRC"; exit 1
+          fi
+
+          FICHIERS=(
+            index.html simulateur.html offres.html mentions-legales.html
+            caelum-index.html 404.html
+            robots.txt sitemap.xml
+            CNAME
+            _headers _redirects
+          )
+          DOSSIERS=( assets nl caelum agence home )
+
+          for f in "${FICHIERS[@]}"; do
+            if [ -f "$SRC/$f" ]; then cp "$SRC/$f" _site/; else echo "::warning::fichier attendu absent : $SRC/$f"; fi
+          done
+          for d in "${DOSSIERS[@]}"; do
+            if [ -d "$SRC/$d" ]; then cp -r "$SRC/$d" _site/; else echo "::warning::dossier attendu absent : $SRC/$d"; fi
+          done
+
+          # ── Fichiers de vérification de propriété (Google Search Console, etc.) ──
+          # Leur nom est imprévisible (googleXXXXXXXX.html) et doit être servi à la
+          # racine, sinon la vérification échoue en 404. On publie donc par MOTIF :
+          # la prochaine vérification ne retombera pas dans le même piège.
+          # Cherché dans $SRC depuis la phase 4 : le site de Caelum vit dans
+          # products/caelum/site/, et un fichier de vérification est un fichier de SITE.
+          # Le laisser à la racine marchait par accident (le motif s'y résolvait), mais
+          # séparait le fichier du site qu'il certifie.
+          for f in "$SRC"/google*.html; do
+            if [ -f "$f" ]; then cp "$f" _site/; echo "vérification de propriété publiée : $(basename "$f")"; fi
+          done
+
+          # ── Garde-fou 1 : aucun fichier interne ne doit avoir traversé ──
+          FUITES=$(find _site \( -iname 'CLAUDE.md' -o -iname 'ETAT.md' -o -iname '*.py' \
+                   -o -iname 'uv.lock' -o -iname 'pyproject.toml' -o -iname '.env*' \
+                   -o -iname 'README.md' \) -print)
+          if [ -n "$FUITES" ]; then
+            echo "::error::Fichier interne dans le contenu public :"; echo "$FUITES"; exit 1
+          fi
+
+          # ── Garde-fou 3 : périmètre Caelum — aucun autre produit publié ──
+          # Décision du 2026-09-11. Rend la règle vérifiée par la machine plutôt
+          # que par la mémoire : c'est la leçon de la fiche E-01 (une règle sans
+          # mécanisme d'application n'est pas une règle).
+          HORS_PERIMETRE=$(find _site \( -iname 'competeiq*' -o -iname 'keywordmoneymaker*' \) -print)
+          if [ -n "$HORS_PERIMETRE" ]; then
+            echo "::error::Produit hors périmètre dans le contenu public de Caelum :"
+            echo "$HORS_PERIMETRE"
+            echo "::error::Voir la decision du 2026-09-11 en tete de cette etape."
+            exit 1
+          fi
+          for d in competeiq intelligence kmm keywordmoneymaker seo; do
+            if [ -d "_site/$d" ]; then
+              echo "::error::Dossier hors perimetre publie : $d"; exit 1
+            fi
+          done
+
+          # ── Garde-fou 2 : sans CNAME, le domaine personnalisé casse ──
+          if [ ! -f _site/CNAME ]; then
+            echo "::error::CNAME absent du contenu public — le domaine casserait"; exit 1
+          fi
+
+          echo "── Contenu réellement publié ($(find _site -type f | wc -l) fichiers) ──"
+          find _site -type f | sort
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

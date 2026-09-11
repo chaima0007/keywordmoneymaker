@@ -54,8 +54,16 @@ Thumbs.db
 *.swp
 *.swo
 *~
-
 # Sorties runtime du protocole d'audit (la copie de référence est sur le Drive)
 audit_drive/*.md
 audit_drive/manifest.jsonl
 !audit_drive/README.md
+_site/
+
+# ── Mémoire d'exécution par produit (état local, jamais versionné) ──
+.memory/
+.caelum_memory.json
+.caelum_memory.json.migre
+
+# Documents personnels — ne jamais commiter (dépôt public)
+linkedin_cv/

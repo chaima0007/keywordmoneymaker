@@ -1,0 +1,73 @@
+# Contrôle « code sûr et non pollué » — défensif uniquement.
+#
+# Choix assumé : ce workflow n'utilise AUCUNE action tierce (pas même
+# actions/checkout). Le code source est récupéré avec git, épinglé sur le SHA
+# exact du commit contrôlé. Raison : une action référencée par étiquette mobile
+# (@v4) peut être réécrite côté éditeur ; c'est le vecteur d'attaque n°1 sur les
+# chaînes d'intégration continue. Un contrôle de sécurité ne doit pas lui-même
+# introduire la dépendance qu'il dénonce.
+name: Sécurité du code
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read          # moindre privilège : lecture seule, aucun droit d'écriture
+
+concurrency:
+  group: securite-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code (sans action tierce, épinglé au SHA du commit)
+        env:
+          DEPOT: ${{ github.repository }}
+          COMMIT: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://github.com/${DEPOT}"
+          git fetch -q --depth 1 origin "${COMMIT}"
+          git checkout -q FETCH_HEAD
+          echo "Commit contrôlé : ${COMMIT}"
+
+      - name: Audit maison — secrets, dépendances, actions CI, code à risque, licences
+        run: python3 scripts/audit_code_sur.py
+
+      - name: Cloisonnement des produits (BLOQUANT depuis la phase 5, 2026-09-11)
+        # Contrôle bloquant : un import croisé entre deux produits, un répertoire
+        # inattendu à la racine, un shared/ qui dépend d'un produit ou un module non
+        # rattaché échouent ce workflow — donc interdisent de merger (CLAUDE.md §2 bis).
+        # La règle est ainsi tenue par la machine et non par la mémoire : c'est la leçon
+        # des fiches E-01 et E-07 de .claude/BASE-ERREURS.md, où une règle écrite puis
+        # laissée sans mécanisme d'application a cédé deux fois.
+        # Détection prouvée par test piégé avant la bascule (voir le message de commit).
+        run: python3 scripts/audit_cloisonnement.py --bloquant
+
+      - name: pip-audit — CVE des dépendances DU PROJET (pas de l'environnement du runner)
+        continue-on-error: true   # informatif : l'absence de CVE connue ne prouve pas l'absence de faille
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet --disable-pip-version-check uv "pip-audit>=2.10.1"
+          # Sans -r, pip-audit analyse les paquets préinstallés d'Ubuntu (cloud-init, ufw…) :
+          # des CVE réelles mais SANS rapport avec ce projet. On audite donc le verrou du projet.
+          if uv export --frozen --no-dev --no-emit-project --format requirements-txt -o /tmp/dependances-projet.txt 2>/dev/null; then
+            echo "Dépendances auditées (extraites de uv.lock) :"
+            grep -cv '^\s*#' /tmp/dependances-projet.txt || true
+            python3 -m pip_audit -r /tmp/dependances-projet.txt --progress-spinner off \
+              || echo "::warning::pip-audit a signalé des CVE sur les dépendances du projet (voir ci-dessus)"
+          else
+            echo "::warning::Export de uv.lock impossible — audit CVE NON EXÉCUTÉ sur ce run (aucun résultat n'est affirmé)."
+          fi
+
+      - name: Rappel honnête
+        if: always()
+        run: |
+          echo "Ce contrôle détecte des motifs connus et les CVE publiées."
+          echo "Il ne remplace pas une relecture humaine avant d'intégrer du code tiers."

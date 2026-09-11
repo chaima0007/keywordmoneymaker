@@ -1,0 +1,51 @@
+# ⚠️ ATTENTION — CE FICHIER EST INACTIF SUR L'HÉBERGEMENT ACTUEL ⚠️
+#
+# Le site est hébergé sur GITHUB PAGES, qui IGNORE totalement ce fichier.
+# `_headers` est une convention de Cloudflare Pages et de Netlify uniquement.
+#
+# CONSÉQUENCE À CONNAÎTRE : aucun des en-têtes ci-dessous n'est réellement
+# envoyé aux visiteurs aujourd'hui. En particulier, NE PAS croire que le site
+# bénéficie de HSTS, X-Frame-Options, Permissions-Policy, COOP/CORP ni des
+# règles de cache : ils ne s'appliquent PAS.
+#
+# CE QUI PROTÈGE RÉELLEMENT LE SITE AUJOURD'HUI :
+#   - une CSP en <meta http-equiv> dans CHAQUE page HTML (elle, est active) ;
+#   - <meta http-equiv="X-Content-Type-Options" content="nosniff"> ;
+#   - le HTTPS fourni par GitHub Pages.
+#   - À savoir : `frame-ancestors` et HSTS ne peuvent PAS être posés par une
+#     balise <meta> — ces deux protections sont donc réellement absentes.
+#
+# POURQUOI ON GARDE CE FICHIER : il est prêt à l'emploi le jour d'une
+# migration vers Cloudflare Pages ou Netlify (voir Option B). Il ne coûte rien
+# et ne casse rien sur GitHub Pages — mais il ne protège rien non plus.
+#
+# Vérifié le 2026-09-11.
+# ──────────────────────────────────────────────────────────────────────────
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/manifest.json
+  Cache-Control: public, max-age=86400
+  Content-Type: application/manifest+json
