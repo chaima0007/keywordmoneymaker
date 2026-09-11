@@ -135,4 +135,9 @@ Dates de création **vérifiées par l'historique git** (premier commit de chaqu
 - **Zéro invention.** Pas de source = `NON VÉRIFIÉ`. Un statut ne monte jamais en grade sans preuve neuve.
 - Ce fichier **n'est pas publié sur le site** : la liste blanche de `deploy.yml` l'exclut. Il reste interne au dépôt.
 
-> ⚠️ **Note d'honnêteté sur les agents.** Le DÉPOSANT et l'HORLOGER **ne sont pas des agents installés** dans `.claude/agents/` : ils n'existent pas encore comme fichiers. Ce document a été construit à la main dans la session du 2026-09-11 et **structuré pour qu'ils puissent le reprendre** dès leur création. Aucun agent ne le maintient automatiquement à ce jour.
+> ✅ **Note sur les agents (mise à jour 2026-09-11).** Le **DÉPOSANT** (`.claude/agents/deposant.md`)
+> et l'**HORLOGER** (`.claude/agents/horloger.md`) **existent désormais** comme agents installés, bâtis
+> sur le socle commun des autres agents du projet. Ils peuvent reprendre et tenir ce document.
+> Restent vraies deux choses : ce document a été **construit à la main** le 2026-09-11, et **aucune
+> exécution automatique n'est encore programmée** — les agents existent, une routine qui les appelle
+> périodiquement reste à décider (décision humaine, §10).
