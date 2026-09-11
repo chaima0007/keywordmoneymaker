@@ -222,6 +222,11 @@ Un chiffre sans date est un chiffre faux en sursis. Attention particulière aux 
 > Bloc CODEX + structure /codex + skill debat installés. Les **21 agents CODEX ne sont PAS encore créés** :
 > le dépôt a déjà 29 agents (câblés à la CI sécurité). Leur réconciliation (mapper / compléter / remplacer)
 > est une décision en attente — voir /codex/A-DECIDER.md. Jusque-là, le §2 ci-dessous (flotte existante) fait foi.
+>
+> **Préséance des formats de passation (règle, 2026-09-11)** : le bloc **§14 du CODEX** est le format de fin de tâche
+> **entre agents** (DE/POUR/OBJET/VERDICT/…). Le **« MODÈLE DE PASSATION » du §4 projet** ci-dessous décrit spécifiquement
+> l'**entrée à écrire dans ETAT.md**. Les deux coexistent (l'un ne remplace pas l'autre) ; en cas de doute sur le format
+> à employer pour une passation inter-agents, le §14 prime.
 > ═══════════════════════════════════════════════════════════════
 
 # CLAUDE.md — RÈGLES MAÎTRES DU PROJET (CAELUM PARTNERS)
@@ -292,7 +297,7 @@ DÉFENSIF ET LÉGAL UNIQUEMENT : jamais d'intrusion ni de contre-attaque, même 
 - MODÈLE DE PASSATION (à écrire en finissant chaque tâche, dans ETAT.md) :
   Tâche · Ce que j'ai fait · Fichiers touchés · Vérifié (build/test/push) + preuve · Ce qui reste/risques · Besoin du suivant.
 - À la fin de CHAQUE session : écris un RAPPORT honnête DANS LE DRIVE (dossier compilation) : fait / vérifié / reste /
-  dépend de Chaima.
+  dépend de Chaima. Objectif : que l'assistant qui suit Chaima puisse le lire et poursuivre avec elle.
 
 ## 5. LOIS À JOUR (refléter EXACTEMENT sur le site — ni plus, ni moins)
 - E-facturation B2B : obligatoire depuis 01/01/2026 (Peppol), assujettis TVA établis en Belgique ; tolérance ~3 mois ; e-reporting 2028.
