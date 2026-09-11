@@ -39,6 +39,7 @@
 | E-20 | Outil d'audit pointé sur la mauvaise cible | Tu lances un scan, un audit, un test de dépendances | tous |
 | E-21 | État d'un site déduit du dépôt, pas du live | Tu conclus sur ce que voit un visiteur | GUETTEUR · verificateur-verite |
 | E-22 | Défaut annoncé sans avoir été constaté | Tu rapportes un bug que tu n'as pas reproduit | GARANT · tous |
+| E-23 | Livraison annoncée sans vérifier qu'elle existe | Tu dis « c'est poussé / la PR t'attend / c'est en ligne » | GARDIEN-CONTRÔLE-FINAL · tous |
 
 ---
 
@@ -407,6 +408,37 @@ font pas une conclusion vraie : il faut la question qui les relie, et elle doit 
 rapport, pas au moment du correctif. Et quand l'erreur est déjà partie chez Chaima, elle se corrige à
 voix haute, dans le même canal, sans attendre qu'elle la découvre.
 
+
+## E-23 — Une livraison a été annoncée à Chaima alors qu'elle n'existait pas
+
+**Constaté le** 2026-09-11 · **Survenu** 2026-09-11 · **État** corrigé le soir même
+
+**Ce qui s'est passé.** Après la fusion de la PR #19, la journalisation (registre, passation, rapport) a
+été commitée et **poussée** sur la branche de travail. J'ai ensuite écrit à Chaima : « Je n'ai pas non plus
+fusionné la PR du journal. Elle t'attend, c'est un clic. » **Cette PR n'avait jamais été créée.** La
+branche était bien poussée — l'étape suivante, l'ouverture de la PR, n'avait pas été faite. Chaima s'est
+endormie en croyant qu'un travail l'attendait au réveil ; il n'y avait rien à cliquer.
+
+**Cause racine.** Le `git push` a réussi, et ce succès a été pris pour l'aboutissement de la chaîne. Une
+chaîne de livraison a plusieurs maillons (commit → push → PR ouverte → CI verte → fusionnable) et le succès
+d'un maillon ne dit rien des suivants. C'est la même racine que la fiche **E-22** — affirmer sans avoir
+constaté — mais appliquée à **son propre travail**, qui est l'angle mort le plus difficile à voir : on sait
+ce qu'on a voulu faire, et on le confond avec ce qu'on a fait.
+
+**Le coût réel.** L'erreur est partie chez Chaima dans un message de fin de session, juste avant son départ.
+Une affirmation fausse sur l'état d'une livraison est plus coûteuse qu'une affirmation fausse sur un fait
+technique : elle organise le temps de quelqu'un d'autre.
+
+**Signal de détection.** Tu écris « c'est poussé », « la PR t'attend », « c'est en ligne », « il n'y a plus
+qu'à cliquer » — et tu t'appuies sur le succès de l'étape **précédente**, pas sur l'observation de l'état
+que tu annonces.
+
+**Contre-mesure.** Avant d'annoncer l'existence d'un livrable, l'**observer** : `list_pull_requests` pour
+une PR, le listing du déploiement pour un fichier en ligne, `git log origin/<branche>` pour un push. Le
+dernier maillon de la chaîne se vérifie explicitement, jamais par déduction depuis l'avant-dernier.
+
+**Leçon transférable.** Le succès d'une étape ne prouve que cette étape. Une livraison n'est pas ce qu'on a
+lancé, c'est ce qu'on a vu exister — et c'est sur son propre travail que l'on vérifie le moins.
 
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
