@@ -27,10 +27,28 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      # Allowlist stricte : on ne publie QUE le site public. Tout le reste du dépôt
+      # (CLAUDE.md, ETAT.md, README.md, /codex, 📋 JOURNAL.md, 🔴 ERREURS.md, main.py,
+      # pyproject.toml, uv.lock, .env.example, /agents, /scripts, /reports, /linkedin_cv)
+      # reste PRIVÉ et n'est pas empaqueté dans l'artifact Pages.
+      - name: Assemble public site (allowlist)
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site
+          for f in \
+            index.html caelum-index.html competeiq-landing.html keywordmoneymaker-index.html \
+            simulateur.html offres.html mentions-legales.html 404.html \
+            CNAME robots.txt sitemap.xml _headers _redirects ; do
+            if [ -e "$f" ]; then cp "$f" _site/; fi
+          done
+          echo "Fichiers publiés sur GitHub Pages :"
+          ls -1 _site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
