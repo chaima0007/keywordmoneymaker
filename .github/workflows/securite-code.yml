@@ -40,6 +40,12 @@ jobs:
       - name: Audit maison — secrets, dépendances, actions CI, code à risque, licences
         run: python3 scripts/audit_code_sur.py
 
+      - name: Cloisonnement des produits (phase 1 — AVERTISSEMENT, non bloquant)
+        # Bascule prévue en --bloquant à la phase 5 de l'Option B, après vérification
+        # par test piégé. Tant qu'il est en --avertir, ce contrôle rapporte sans interdire :
+        # il sert d'abord à mesurer l'état réel avant les déplacements de fichiers.
+        run: python3 scripts/audit_cloisonnement.py --avertir
+
       - name: pip-audit — CVE des dépendances DU PROJET (pas de l'environnement du runner)
         continue-on-error: true   # informatif : l'absence de CVE connue ne prouve pas l'absence de faille
         run: |
