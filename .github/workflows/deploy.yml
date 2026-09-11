@@ -58,6 +58,14 @@ jobs:
           # Vérifié avant retrait : aucune page Caelum ne liait ces produits (grep),
           # et sitemap.xml ne listait que des URL Caelum. Zéro lien mort créé.
           # ───────────────────────────────────────────────────────────────────
+          # Depuis la phase 4 de l'Option B (2026-09-11), le site de Caelum vit dans
+          # products/caelum/site/. Les chemins PUBLIÉS ne changent pas : le contenu de
+          # ce dossier est copié à la racine de _site, donc les URL restent identiques.
+          SRC="products/caelum/site"
+          if [ ! -d "$SRC" ]; then
+            echo "::error::Source du site introuvable : $SRC"; exit 1
+          fi
+
           FICHIERS=(
             index.html simulateur.html offres.html mentions-legales.html
             caelum-index.html 404.html
@@ -68,10 +76,10 @@ jobs:
           DOSSIERS=( assets nl caelum agence home )
 
           for f in "${FICHIERS[@]}"; do
-            if [ -f "$f" ]; then cp "$f" _site/; else echo "::warning::fichier attendu absent : $f"; fi
+            if [ -f "$SRC/$f" ]; then cp "$SRC/$f" _site/; else echo "::warning::fichier attendu absent : $SRC/$f"; fi
           done
           for d in "${DOSSIERS[@]}"; do
-            if [ -d "$d" ]; then cp -r "$d" _site/; else echo "::warning::dossier attendu absent : $d"; fi
+            if [ -d "$SRC/$d" ]; then cp -r "$SRC/$d" _site/; else echo "::warning::dossier attendu absent : $SRC/$d"; fi
           done
 
           # ── Garde-fou 1 : aucun fichier interne ne doit avoir traversé ──
