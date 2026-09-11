@@ -17,6 +17,8 @@ from claude_agent_sdk import query, ClaudeAgentOptions
 
 sys.path.insert(0, str(Path(__file__).parent))
 import cache_manager as cache
+import drive_audit
+from protocole import with_protocole
 
 PROJECT_ROOT = Path(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 OUTPUT_DIR = PROJECT_ROOT / "commandant"
@@ -37,9 +39,15 @@ AGENT_REGISTRY = {
 }
 
 
-async def _plan_mission(mission: str) -> dict:
-    """Demande à Claude de décomposer la mission en plan d'action."""
-    params = {"mission": mission.strip().lower()}
+async def _plan_mission(mission: str, journal: str = "") -> dict:
+    """Demande à Claude de décomposer la mission en plan d'action.
+
+    `journal` : résumé des travaux déjà effectués par la flotte (lu sur le Drive
+    via drive_audit). Le COMMANDANT en tient compte pour ne pas refaire un travail
+    déjà fait par un autre agent / service — c'est le protocole « regarder le
+    Drive et agir en conséquence ».
+    """
+    params = {"mission": mission.strip().lower(), "journal": journal[:500]}
     cached = cache.get("commandant_plan", params)
     if cached:
         try:
@@ -48,10 +56,14 @@ async def _plan_mission(mission: str) -> dict:
             pass
 
     agents_list = "\n".join(f"- {k}: {v}" for k, v in AGENT_REGISTRY.items())
+    contexte_journal = (
+        f"\n{journal}\nTiens compte de ces travaux déjà faits : ne les refais pas, "
+        f"complète-les ou enchaîne dessus.\n" if journal else ""
+    )
     prompt = f"""Tu es COMMANDANT, l'orchestrateur stratégique d'une flotte d'agents IA pour KeywordMoneyMaker (plateforme SaaS SEO).
 
 Mission reçue : "{mission}"
-
+{contexte_journal}
 Agents disponibles :
 {agents_list}
 
@@ -74,6 +86,8 @@ Analyse la mission et génère un plan d'action JSON avec cette structure exacte
 }}
 
 Réponds UNIQUEMENT avec le JSON valide, sans markdown ni explication."""
+
+    prompt = with_protocole(prompt)
 
     content = ""
     try:
@@ -205,6 +219,8 @@ Rédige un rapport exécutif en français (400-600 mots) avec :
 ### Prochaines actions prioritaires (top 3)
 ### Score de mission /10"""
 
+    prompt = with_protocole(prompt)
+
     content = ""
     try:
         async with asyncio.timeout(45):
@@ -229,8 +245,14 @@ async def execute_mission(mission: str) -> str:
 
     wall_start = time.perf_counter()
 
+    # PROTOCOLE — Étape 0 : lire le journal d'audit (le Drive de la flotte)
+    # pour agir en conséquence et ne pas doublonner le travail d'un autre agent.
+    print("\n📚 Consultation du journal d'audit de la flotte...")
+    journal = drive_audit.resume_journal(limit=15)
+    print("  " + journal.splitlines()[0])
+
     print("\n🗂️  Planification en cours...")
-    plan = await _plan_mission(mission)
+    plan = await _plan_mission(mission, journal)
     print(f"  Objectif  : {plan.get('objectif', '?')}")
     print(f"  Priorité  : {plan.get('priorite', '?')}")
     print(f"  Étapes    : {len(plan.get('etapes', []))}")
@@ -283,6 +305,27 @@ async def execute_mission(mission: str) -> str:
     )
     path.write_text(full_content, encoding="utf-8")
     print(f"  Rapport : {path}")
+
+    # PROTOCOLE — Étape finale : déposer un audit propre (titre + synopsis)
+    # dans le journal de la flotte, pour Chaima et les agents collègues.
+    try:
+        synopsis = (
+            f"Mission « {plan.get('objectif', mission)[:120]} » exécutée par la flotte : "
+            f"{ok}/{len(executions)} étape(s) réussie(s) en {wall}s. "
+            f"Agents mobilisés : {', '.join(e['agent'] for e in executions) or 'aucun'}."
+        )
+        audit_path = drive_audit.record_audit(
+            agent="commandant",
+            sujet=f"Mission — {mission[:60]}",
+            synopsis=synopsis,
+            statut="ok" if ok == len(executions) and executions else "attention",
+            service="Orchestration",
+            details=f"Rapport complet : {path}",
+        )
+        print(f"  Audit  : {audit_path}")
+    except Exception as e:
+        print(f"  ⚠️  Audit non déposé : {type(e).__name__}: {e}")
+
     return str(path)
 
 

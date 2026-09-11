@@ -9,4 +9,8 @@ Extrait illustratif (quelques lignes max, avec « voir source : URL ») / Object
 
 Parcours : CODEX §8 parcours 1. Verdicts : REJETÉ / VALIDÉ NON INTÉGRÉ / INTÉGRÉ (§13).
 
-_(Aucune fiche pour l'instant.)_
+## Fiches
+
+| ID | Composant | Statut | Date |
+|---|---|---|---|
+| [C-01](C-01-polices-fraunces-inter.md) | Polices Fraunces & Inter (SIL OFL 1.1) | INTÉGRÉ | 2026-09-11 |

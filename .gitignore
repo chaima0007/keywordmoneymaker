@@ -54,6 +54,10 @@ Thumbs.db
 *.swp
 *.swo
 *~
+# Sorties runtime du protocole d'audit (la copie de référence est sur le Drive)
+products/kmm/audit_drive/*.md
+products/kmm/audit_drive/manifest.jsonl
+!products/kmm/audit_drive/README.md
 _site/
 
 # ── Mémoire d'exécution par produit (état local, jamais versionné) ──
