@@ -40,7 +40,7 @@ RACINE = Path(__file__).resolve().parent.parent
 # La table vivait ici ET dans main.py : deux copies divergeraient (fiche E-01).
 # Elle est désormais dans shared/attribution.py, lue par ce contrôle ET par main.py.
 sys.path.insert(0, str(RACINE / "shared"))
-from attribution import ATTRIBUTION, TRANSVERSES, proprietaire  # noqa: E402
+from attribution import ATTRIBUTION, TRANSVERSES, incoherences, proprietaire  # noqa: E402
 
 PRODUITS = {"caelum", "kmm", "competeiq"}
 RACINE_AUTORISEE = {
@@ -160,6 +160,11 @@ def main() -> int:
         ("C1 IMPORTS_CROISES", c1_imports_croises(mods)),
         ("C2 RACINE_PROPRE", c2_racine_propre()),
         ("C3 SHARED_INDEPENDANT", c3_shared_independant(mods)),
+        # C4 ajouté le 2026-09-11 après test piégé : le contrôle de rattachement devenait
+        # inopérant après migration, le chemin suffisant à attribuer un module. Or la table
+        # déclarée servait encore au routage de la mémoire — deux sources pouvaient donc
+        # diverger en silence. C4 compare explicitement le disque et la table.
+        ("C4 TABLE_vs_DISQUE", incoherences()),
     ):
         if faux:
             echecs += 1

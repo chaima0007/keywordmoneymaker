@@ -11,6 +11,8 @@ le signale pour qu'une décision soit prise. Le silence n'est pas une décision.
 
 from __future__ import annotations
 
+from pathlib import Path
+
 PRODUITS = ("caelum", "kmm", "competeiq")
 
 # ── Modules rattachés à UN produit ─────────────────────────────────────────────
@@ -58,10 +60,53 @@ TRANSVERSES: frozenset[str] = frozenset({
 })
 
 
+_RACINE = Path(__file__).resolve().parent.parent
+
+
+def _carte_disque() -> dict[str, str]:
+    """Propriétaire de chaque module tel qu'il est RANGÉ SUR LE DISQUE.
+
+    Le disque primait déjà pour le contrôle CI après migration, alors que cette table
+    servait encore au routage de la mémoire : deux sources de vérité pour la même
+    question, donc la divergence qu'E-01 décrit — dans le module même censé l'empêcher.
+    Trouvé par test piégé le 2026-09-11. Le disque fait désormais foi, la table ne sert
+    plus que de repli et de garde-fou de cohérence (contrôle C4).
+    """
+    carte: dict[str, str] = {}
+    for f in (_RACINE / "products").glob("*/agents/*.py"):
+        if f.stem == "__init__":
+            continue        # marqueur de paquet, pas un module : les imports sont à plat
+        carte[f.stem] = f.parents[1].name
+    for f in (_RACINE / "shared").glob("*.py"):
+        if f.stem == "__init__":
+            continue
+        carte[f.stem] = "shared"
+    return carte
+
+
 def proprietaire(module: str) -> str:
-    """« caelum » · « kmm » · « competeiq » · « shared » · « inconnu »."""
+    """« caelum » · « kmm » · « competeiq » · « shared » · « inconnu ».
+
+    Le rangement sur le disque fait foi. La table déclarée sert de repli — utile avant
+    migration, et pour un module importé sans fichier repérable.
+    """
+    depuis_disque = _carte_disque().get(module)
+    if depuis_disque:
+        return depuis_disque
     if module in ATTRIBUTION:
         return ATTRIBUTION[module]
     if module in TRANSVERSES:
         return "shared"
     return "inconnu"
+
+
+def incoherences() -> list[str]:
+    """Modules dont le rangement sur le disque contredit la table déclarée."""
+    ecarts = []
+    for module, sur_disque in sorted(_carte_disque().items()):
+        declare = ATTRIBUTION.get(module) or ("shared" if module in TRANSVERSES else None)
+        if declare is None:
+            ecarts.append(f"{module} : rangé dans « {sur_disque} » mais absent de la table déclarée")
+        elif declare != sur_disque:
+            ecarts.append(f"{module} : rangé dans « {sur_disque} » mais déclaré « {declare} »")
+    return ecarts
