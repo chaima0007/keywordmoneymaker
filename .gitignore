@@ -60,3 +60,6 @@ _site/
 .memory/
 .caelum_memory.json
 .caelum_memory.json.migre
+
+# Documents personnels — ne jamais commiter (dépôt public)
+linkedin_cv/

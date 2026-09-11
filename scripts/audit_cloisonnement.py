@@ -45,10 +45,13 @@ from attribution import ATTRIBUTION, TRANSVERSES, incoherences, proprietaire  # 
 PRODUITS = {"caelum", "kmm", "competeiq"}
 RACINE_AUTORISEE = {
     ".claude", ".github", "products", "shared", "scripts", "reports",
-    # `linkedin_cv/` contient une production personnelle de Chaima (CV, posts), pas un
-    # produit. Toléré à la racine en attendant SA décision : le ranger dans reports/,
-    # le sortir du dépôt, ou le laisser ici. Rien n'est déplacé sans son accord.
-    "linkedin_cv",
+    # `codex/` : protocole CODEX installé sur main par une autre session (29c22b9, ab6d4dd).
+    # Gouvernance de niveau dépôt, comme .claude/ — pas un produit, donc autorisé ici.
+    # Contient codex/agents-correspondance.md, la réconciliation menée en parallèle, et
+    # codex/expertise/ que le rôle METTEUR À JOUR alimente.
+    "codex",
+    # `linkedin_cv/` a été RETIRÉ du dépôt par main (54a61c1) et ajouté au .gitignore :
+    # l'entrée de tolérance n'a plus d'objet.
 }
 
 
