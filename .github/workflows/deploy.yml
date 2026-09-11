@@ -56,6 +56,14 @@ jobs:
             if [ -d "$d" ]; then cp -r "$d" _site/; else echo "::warning::dossier attendu absent : $d"; fi
           done
 
+          # ── Fichiers de vérification de propriété (Google Search Console, etc.) ──
+          # Leur nom est imprévisible (googleXXXXXXXX.html) et doit être servi à la
+          # racine, sinon la vérification échoue en 404. On publie donc par MOTIF :
+          # la prochaine vérification ne retombera pas dans le même piège.
+          for f in google*.html; do
+            if [ -f "$f" ]; then cp "$f" _site/; echo "vérification de propriété publiée : $f"; fi
+          done
+
           # ── Garde-fou 1 : aucun fichier interne ne doit avoir traversé ──
           FUITES=$(find _site \( -iname 'CLAUDE.md' -o -iname 'ETAT.md' -o -iname '*.py' \
                    -o -iname 'uv.lock' -o -iname 'pyproject.toml' -o -iname '.env*' \
