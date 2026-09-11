@@ -44,6 +44,12 @@ ATTRIBUTION: dict[str, str] = {
     # tel qu'il est. Le rendre réellement transverse est un refactor (couper ses imports
     # KMM directs), pas un déplacement.
     "superviseur": "kmm",
+    # Récupérés le 2026-09-11 du travail du 2026-07-17 resté non fusionné.
+    # Rattachés à kmm sur PREUVE D'IMPORTS : leur unique consommateur est
+    # commandant.py (« import drive_audit », « from protocole import with_protocole »),
+    # lui-même rattaché à kmm. Ils vivent dans products/kmm/agents/ à côté de lui.
+    "drive_audit": "kmm",
+    "protocole": "kmm",
     # CompeteIQ — intelligence concurrentielle
     "competitor_tracker": "competeiq",
     "battle_card_generator": "competeiq",
