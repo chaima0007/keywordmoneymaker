@@ -53,6 +53,24 @@ Contrôle automatique à chaque push et sur chaque PR : `.github/workflows/secur
 (exécute `scripts/audit_code_sur.py` + `pip-audit`). Un contrôle bloquant en échec = on ne pousse pas.
 DÉFENSIF ET LÉGAL UNIQUEMENT : jamais d'intrusion ni de contre-attaque, même en réponse à une attaque.
 
+## 2 ter. BASE D'ERREURS & CONTRÔLE AVANT RAPPORT (directive Chaima 11-09-2026 — TOUS les agents)
+Ces deux règles s'appliquent aux **42 agents**, pas seulement à ceux de la chaîne veille.
+
+1. **Base d'erreurs — à consulter AVANT d'agir.** `.claude/BASE-ERREURS.md` recense les fautes déjà
+   commises, leur cause racine, leur signal de détection et leur contre-mesure. Lis l'INDEX, va aux
+   fiches qui correspondent à ce que tu vas faire, applique la contre-mesure. Toute erreur nouvelle =
+   une fiche **ajoutée** (jamais de réécriture, jamais de suppression sans l'accord de Chaima).
+   Les erreurs commises par les agents y figurent au même titre que les autres.
+
+2. **Contrôle honnête avant tout rapport complet.** Aucun rapport ne commence sans une phrase répondant
+   à : *ai-je produit récemment des documents quasi identiques ?* et *la condition d'arrêt a-t-elle
+   fonctionné (aucun document neuf quand l'état est inchangé) ?* Si un problème apparaît — répétition,
+   boucle, état inchangé documenté plusieurs fois — **l'ÉLAGUEUR est saisi immédiatement, avant la
+   remise du rapport, sans attendre une demande de Chaima**. Si tout est sain, le dire en une phrase
+   avec le motif.
+   Motif historique : une trentaine de journaux quasi identiques produits entre le 28/07 et le 11/08/2026,
+   dont un faux positif qui a survécu deux semaines (fiches E-01 et E-02 de la base d'erreurs).
+
 ## 3. RÈGLE DE VÉRIFICATION (À CHAQUE GESTE — le cœur)
 - VÉRIFIER, PAS SUPPOSER : lance réellement le build ET les tests ; vérifie que le push distant a réussi.
 - VÉRITÉ : aucun chiffre inventé ; chaque affirmation légale = loi réelle + source officielle + date, sinon supprimée.
