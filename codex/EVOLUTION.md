@@ -10,3 +10,4 @@
 - 2026-08-10 — Racine du site corrigée : index.html devient la vraie page d'accueil conformité (avant : placeholder noindex) ; ajout 404.html.
 - 2026-09-06 — Flotte « code sûr » + workflow CI securite-code.yml ajoutés ; le contrôle a détecté puis corrigé 3 CVE réelles (cryptography, mcp, pydantic-settings). Boucle détection→correction→confirmation prouvée.
 - 2026-09-06 — PROTOCOLE CODEX installé (bloc CLAUDE.md + structure /codex + skill debat). Agents non touchés (décision « protocole d'abord »).
+- 2026-09-11 — Réconciliation des agents (« mapper + compléter, sans suppression ») : 13 rôles CODEX ajoutés (récupérés de la PR #6, auditée propre), 8 mappés aux agents existants, 0 suppression → 42 agents + table /codex/agents-correspondance.md.

@@ -219,9 +219,10 @@ Un chiffre sans date est un chiffre faux en sursis. Attention particulière aux 
 > ═══════════════════════════════════════════════════════════════
 > # SPÉCIFICITÉS DU PROJET CAELUM PARTNERS (conservées)
 > État d'installation CODEX (2026-09-06, TRANCHÉ PAR CHAIMA) : « protocole + structure d'abord ».
-> Bloc CODEX + structure /codex + skill debat installés. Les **21 agents CODEX ne sont PAS encore créés** :
-> le dépôt a déjà 29 agents (câblés à la CI sécurité). Leur réconciliation (mapper / compléter / remplacer)
-> est une décision en attente — voir /codex/A-DECIDER.md. Jusque-là, le §2 ci-dessous (flotte existante) fait foi.
+> Bloc CODEX + structure /codex + skill debat installés. **Agents réconciliés le 2026-09-11** (« mapper + compléter,
+> sans suppression », TRANCHÉ PAR CHAIMA) : 13 rôles CODEX absents AJOUTÉS (cœur du parcours 2 + angles morts),
+> 8 rôles MAPPÉS aux agents existants, les 29 d'origine CONSERVÉS → 42 agents. Table : /codex/agents-correspondance.md.
+> La flotte existante (§2 ci-dessous) reste en vigueur ; consolider les doublons = décision humaine ultérieure.
 >
 > **Préséance des formats de passation (règle, 2026-09-11)** : le bloc **§14 du CODEX** est le format de fin de tâche
 > **entre agents** (DE/POUR/OBJET/VERDICT/…). Le **« MODÈLE DE PASSATION » du §4 projet** ci-dessous décrit spécifiquement
