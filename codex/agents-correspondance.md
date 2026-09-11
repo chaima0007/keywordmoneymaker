@@ -40,3 +40,17 @@
   Les deux sont conservés ; à consolider si Chaima le décide (décision humaine, §10).
 - Les autres agents métier existants (marketing, SEO, design, dev, meta-orchestrateur…) n'ont pas d'équivalent
   CODEX : ils restent la flotte opérationnelle du projet, complémentaire des rôles de gouvernance du CODEX.
+
+## Ajout du 2026-09-11 — rôles de patrimoine (hors des 21 rôles CODEX)
+Créés à la demande de Chaima pour tenir `🔐 PATRIMOINE.md` (base unique de ce qu'elle possède).
+Ils ne figurent pas dans les 21 rôles du §1 : ce sont des rôles **propres au projet**, ajoutés sans
+rien retirer, conformément à la décision « mapper + compléter, sans suppression ».
+
+| Rôle | Fichier | Périmètre |
+|---|---|---|
+| **DÉPOSANT** | `.claude/agents/deposant.md` | colonnes *statut* et *droits* : marques, dépôts, cessions. Ne dépose jamais rien lui-même (§10). |
+| **HORLOGER** | `.claude/agents/horloger.md` | colonnes *date* et *preuve* : antériorité, dates de création (via git), **échéances** (i-DEPOT 5/10 ans, domaine, marque). |
+
+Recouvrement assumé avec `archiviste-preuves` : celui-ci conserve la preuve de toute affirmation
+publiée ; l'HORLOGER est spécialisé sur les dates et les échéances du patrimoine. Les deux coopèrent.
+Total agents : 42 → **44**.
