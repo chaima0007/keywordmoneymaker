@@ -5,6 +5,7 @@
 
 | Date | Erreur | Statut | Preuve / correction |
 |---|---|---|---|
+| 2026-09-11 | Sessions programmées (Routines) : `git push` refusé — « not in this session's authorized repository set » (403). Les Routines ne portent AUCUN dépôt (`folders_state: NONE`) et l'API Routines n'expose pas de paramètre de dépôt. | ✅ CORRIGÉE | La session programmée doit appeler `add_repo(owner, repo, access:"push")` avant tout git. Vérifié par push réel depuis une session interactive : branche `codex/verif-acces-ecriture-routine` (ce commit). |
 | 2026-09-06 | pip-audit auditait l'environnement Ubuntu du runner au lieu du projet | ✅ CORRIGÉE | cible = uv.lock (635 dépendances) ; run n°3 vert (commit bfe624f) |
 | 2026-08-10 | Racine du site servait un placeholder noindex « Redirection en cours » | ✅ CORRIGÉE | index.html = vraie page d'accueil conformité ; caelum-index.html → redirection ; +404.html |
 | ≤2026-08-10 | Journaux « boucle-caelum » affirmaient à tort « PR #2 non mergée » | ✅ CORRIGÉE | API GitHub : PR #2 closed+merged le 17/07 ; refs/pull/2/head persiste après fusion (normal) |
