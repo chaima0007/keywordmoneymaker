@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /linkedin_cv/
 Sitemap: https://caelumpartners.agency/sitemap.xml
