@@ -55,3 +55,6 @@ Thumbs.db
 *.swo
 *~
 _site/
+
+# Documents personnels — ne jamais commiter (dépôt public)
+linkedin_cv/
