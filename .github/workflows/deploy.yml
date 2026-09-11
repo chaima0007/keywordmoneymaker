@@ -27,10 +27,55 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      # ══════════════════════════════════════════════════════════════════
+      # Le dépôt contient des documents INTERNES (CLAUDE.md, ETAT.md,
+      # reports/, .claude/, scripts/, agents/, CV…). Publier `path: '.'`
+      # les rendait lisibles sur caelumpartners.agency.
+      # On publie désormais UNIQUEMENT une liste blanche : tout fichier
+      # qui n'est pas listé ci-dessous n'est PAS mis en ligne.
+      # ══════════════════════════════════════════════════════════════════
+      - name: Construire le contenu public (liste blanche)
+        run: |
+          set -euo pipefail
+          rm -rf _site && mkdir -p _site
+
+          FICHIERS=(
+            index.html simulateur.html offres.html mentions-legales.html
+            caelum-index.html 404.html
+            competeiq-landing.html keywordmoneymaker-index.html
+            robots.txt sitemap.xml
+            CNAME
+            _headers _redirects
+          )
+          DOSSIERS=( assets caelum agence home competeiq intelligence kmm keywordmoneymaker seo )
+
+          for f in "${FICHIERS[@]}"; do
+            if [ -f "$f" ]; then cp "$f" _site/; else echo "::warning::fichier attendu absent : $f"; fi
+          done
+          for d in "${DOSSIERS[@]}"; do
+            if [ -d "$d" ]; then cp -r "$d" _site/; else echo "::warning::dossier attendu absent : $d"; fi
+          done
+
+          # ── Garde-fou 1 : aucun fichier interne ne doit avoir traversé ──
+          FUITES=$(find _site \( -iname 'CLAUDE.md' -o -iname 'ETAT.md' -o -iname '*.py' \
+                   -o -iname 'uv.lock' -o -iname 'pyproject.toml' -o -iname '.env*' \
+                   -o -iname 'README.md' \) -print)
+          if [ -n "$FUITES" ]; then
+            echo "::error::Fichier interne dans le contenu public :"; echo "$FUITES"; exit 1
+          fi
+
+          # ── Garde-fou 2 : sans CNAME, le domaine personnalisé casse ──
+          if [ ! -f _site/CNAME ]; then
+            echo "::error::CNAME absent du contenu public — le domaine casserait"; exit 1
+          fi
+
+          echo "── Contenu réellement publié ($(find _site -type f | wc -l) fichiers) ──"
+          find _site -type f | sort
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
