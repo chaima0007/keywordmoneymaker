@@ -22,15 +22,22 @@
 /caelum                 /index.html                     200
 /agence                 /index.html                     200
 
-# ── CompeteIQ ──────────────────────────────────────────────────
-/competeiq              /competeiq-landing.html         200
-/competeiq/             /competeiq-landing.html         200
-/intelligence           /competeiq-landing.html         200
-
-# ── KeywordMoneyMaker ──────────────────────────────────────────
-/kmm                    /keywordmoneymaker-index.html   200
-/keywordmoneymaker      /keywordmoneymaker-index.html   200
-/seo                    /keywordmoneymaker-index.html   200
+# ── HORS PÉRIMÈTRE DEPUIS LE 2026-09-11 — RÈGLES NEUTRALISÉES ──
+# Décision de Chaima (« Option 0 ») : CompeteIQ et KeywordMoneyMaker ne sont
+# plus publiés sur caelumpartners.agency. Leurs cibles n'existent donc plus
+# dans le contenu servi.
+# Ces règles sont commentées et NON supprimées, pour deux raisons : elles
+# documentent l'état antérieur, et si ce fichier devenait actif (migration
+# Cloudflare/Netlify) elles renverraient un 404 — exactement le piège que
+# l'en-tête de ce fichier signale déjà dans l'autre sens.
+# Ne les réactiver que si Chaima décide de republier ces produits ici.
+#
+# /competeiq              /competeiq-landing.html         200
+# /competeiq/             /competeiq-landing.html         200
+# /intelligence           /competeiq-landing.html         200
+# /kmm                    /keywordmoneymaker-index.html   200
+# /keywordmoneymaker      /keywordmoneymaker-index.html   200
+# /seo                    /keywordmoneymaker-index.html   200
 
 # ── Redirections propres ───────────────────────────────────────
 /home                   /                               301

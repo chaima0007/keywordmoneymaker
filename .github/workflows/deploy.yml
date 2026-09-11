@@ -39,15 +39,33 @@ jobs:
           set -euo pipefail
           rm -rf _site && mkdir -p _site
 
+          # ── PÉRIMÈTRE DE PUBLICATION : CAELUM PARTNERS UNIQUEMENT ──────────
+          # Décision de Chaima du 2026-09-11 (« Option 0 » du plan de séparation).
+          #
+          # CompeteIQ et KeywordMoneyMaker NE SONT PLUS PUBLIÉS sur ce domaine.
+          # Motif : caelumpartners.agency est le domaine d'un conseil en conformité.
+          # Y servir deux produits SaaS sans rapport diluait le positionnement
+          # tranché le 17/07/2026 (RegTech conformité PME belges). Aggravant :
+          # keywordmoneymaker-index.html n'avait PAS de noindex — la page « AI SEO
+          # Content Generator » était donc indexable sur le domaine de Caelum.
+          #
+          # Les fichiers RESTENT dans le dépôt : ils ne sont plus servis, c'est tout.
+          # NE PAS les remettre dans les listes ci-dessous sans décision de Chaima.
+          # Retirés le 2026-09-11 : competeiq-landing.html · keywordmoneymaker-index.html
+          #                         competeiq/ · intelligence/ · kmm/ · keywordmoneymaker/ · seo/
+          # Conservés (tous Caelum) : caelum/ · agence/ · home/ → redirigent vers « / » ;
+          #                           nl/ → version néerlandaise.
+          # Vérifié avant retrait : aucune page Caelum ne liait ces produits (grep),
+          # et sitemap.xml ne listait que des URL Caelum. Zéro lien mort créé.
+          # ───────────────────────────────────────────────────────────────────
           FICHIERS=(
             index.html simulateur.html offres.html mentions-legales.html
             caelum-index.html 404.html
-            competeiq-landing.html keywordmoneymaker-index.html
             robots.txt sitemap.xml
             CNAME
             _headers _redirects
           )
-          DOSSIERS=( assets nl caelum agence home competeiq intelligence kmm keywordmoneymaker seo )
+          DOSSIERS=( assets nl caelum agence home )
 
           for f in "${FICHIERS[@]}"; do
             if [ -f "$f" ]; then cp "$f" _site/; else echo "::warning::fichier attendu absent : $f"; fi
@@ -63,6 +81,23 @@ jobs:
           if [ -n "$FUITES" ]; then
             echo "::error::Fichier interne dans le contenu public :"; echo "$FUITES"; exit 1
           fi
+
+          # ── Garde-fou 3 : périmètre Caelum — aucun autre produit publié ──
+          # Décision du 2026-09-11. Rend la règle vérifiée par la machine plutôt
+          # que par la mémoire : c'est la leçon de la fiche E-01 (une règle sans
+          # mécanisme d'application n'est pas une règle).
+          HORS_PERIMETRE=$(find _site \( -iname 'competeiq*' -o -iname 'keywordmoneymaker*' \) -print)
+          if [ -n "$HORS_PERIMETRE" ]; then
+            echo "::error::Produit hors périmètre dans le contenu public de Caelum :"
+            echo "$HORS_PERIMETRE"
+            echo "::error::Voir la decision du 2026-09-11 en tete de cette etape."
+            exit 1
+          fi
+          for d in competeiq intelligence kmm keywordmoneymaker seo; do
+            if [ -d "_site/$d" ]; then
+              echo "::error::Dossier hors perimetre publie : $d"; exit 1
+            fi
+          done
 
           # ── Garde-fou 2 : sans CNAME, le domaine personnalisé casse ──
           if [ ! -f _site/CNAME ]; then
