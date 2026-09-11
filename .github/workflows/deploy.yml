@@ -70,6 +70,7 @@ jobs:
             index.html simulateur.html offres.html mentions-legales.html
             caelum-index.html 404.html
             robots.txt sitemap.xml
+            favicon.svg favicon-32.png apple-touch-icon.png
             CNAME
             _headers _redirects
           )
