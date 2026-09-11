@@ -48,6 +48,14 @@
 - Vérifié : HTML parsé sans erreur ; disclaimer présent ; commit + push (voir git log) ; run Actions deploy à contrôler après push.
 - Reste : vérification visuelle du live par Chaima (sandbox sans accès réseau au domaine).
 
+### 2026-08-10 (11h14 CEST) — Refonte PREMIUM du design (session Claude Code, branche + PR)
+- Tâche : élever le design des 4 pages (caelum-index, simulateur, offres, mentions-legales) au niveau premium, SANS toucher au contenu honnête ni à la logique du simulateur, CSP conservée.
+- Ce que j'ai fait : système de design partagé (assets/caelum.css — Fraunces+Inter via Google Fonts, palette crème/or/bleu-nuit, cartes en relief, révélation au scroll) ; héros sombre & doré avec œuvre SVG originale (dôme céleste + constellation + arc de 12 étoiles = clin d'œil UE) ; icônes SVG cohérentes par obligation (Peppol/NIS2/RGPD/lanceurs d'alerte) ; JS externalisé (assets/caelum.js micro-interactions, assets/simulateur.js logique du simulateur DÉPLACÉE telle quelle) ; prefers-reduced-motion respecté ; 100% SVG inline (aucune photo stock).
+- Fichiers touchés : caelum-index.html, simulateur.html, offres.html, mentions-legales.html, assets/caelum.css, assets/caelum.js, assets/simulateur.js.
+- Vérifié (preuves) : logique du simulateur IDENTIQUE au caractère près (diff `var res=[]`→`var lib=` = 44 lignes, 0 diff) ; 4 HTML parsés sans balise orpheline (parseur Python) ; CSP durcie script-src 'self' + hôtes Google Fonts sur les 4 pages, 0 script inline ; assets présents ; chaînes honnêtes préservées (Prix à confirmer / Sur devis / BCE inscription en cours / disclaimers / sources) ; aucune image externe.
+- Livré via : branche `design/caelum-premium-refonte` + PR #3 vers main (JAMAIS de push direct sur le site). Fusion = décision de Chaima.
+- Limite honnête : le rendu visuel réel (chargement Google Fonts + responsive dans un navigateur) n'est PAS vérifiable depuis ce sandbox (sortie réseau restreinte) — RESTE : revue visuelle par Chaima avant fusion.
+- Besoin du suivant : Chaima relit la PR #3, vérifie le rendu, fusionne si OK → déploiement GitHub Pages automatique.
 ### 2026-07-17 21h44 (Europe/Brussels) — Protocole de livraison v2 (session Claude Code)
 - Tâche : intégrer le protocole de livraison obligatoire dicté par Chaima (date/heure Europe/Brussels partout, synopsis en tête, titre « AAAA-MM-JJ-HHhMM — [auteur] — [sujet] », audit FAIT/VÉRIFIÉ avec preuve/RESTE, copie Drive COMPILATION ou reports/ en secours, passation à jour, ajout jamais d'écrasement).
 - Fichiers touchés : CLAUDE.md (§0.3 réécrit), ETAT.md.

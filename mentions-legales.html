@@ -4,42 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:;" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Mentions légales &amp; politique de confidentialité — Caelum Partners</title>
   <meta name="description" content="Mentions légales, politique de confidentialité et information cookies du site caelumpartners.agency." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://caelumpartners.agency/mentions-legales.html" />
-  <style>
-    :root{--encre:#16232F;--navy:#14243A;--papier:#FAFAF8;--vert:#1E6E50;--filet:#E4E1D8;--gris:#5B6672}
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--papier);color:var(--encre);line-height:1.75;font-size:17px}
-    a{color:var(--vert)}
-    header{background:var(--navy);color:#F5F2EA;padding:.9rem 1.2rem}
-    .nav{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap}
-    .marque{font-weight:700;letter-spacing:.04em;color:#F5F2EA;text-decoration:none}
-    .nav a.lien{color:#D8DEE6;text-decoration:none;font-size:.95rem}
-    main{max-width:860px;margin:0 auto;padding:2.5rem 1.2rem 4rem}
-    h1{font-size:clamp(1.4rem,4vw,1.9rem);color:var(--navy);margin-bottom:1.5rem}
-    h2{font-size:1.15rem;color:var(--navy);margin:2rem 0 .6rem}
-    p,li{color:#3A4550;font-size:.97rem}
-    ul{margin-left:1.2rem}
-    .attention{background:#FBF6E9;border:1px solid #E8DCB8;border-radius:8px;padding:1rem 1.3rem;margin:1rem 0;font-size:.93rem}
-    .encadre{background:#fff;border:1px solid var(--filet);border-radius:8px;padding:1.2rem 1.4rem;margin:.8rem 0}
-    footer{background:var(--navy);color:#AEB9C6;padding:1.8rem 1.2rem;font-size:.85rem}
-    .pied{max-width:860px;margin:0 auto}
-    footer a{color:#D8DEE6}
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="/assets/caelum.css" />
 </head>
 <body>
-<header>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site">
   <nav class="nav" aria-label="Navigation principale">
-    <a class="marque" href="/">CAELUM PARTNERS</a>
+    <a class="marque" href="/">
+      <svg class="astre" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#E6CB86" stroke-width="1.3" opacity=".5"/><path d="M12 3.5l1.9 4.3 4.6.5-3.4 3.1 1 4.6L12 13.8 7.9 16l1-4.6L5.5 8.3l4.6-.5z" fill="#E6CB86"/></svg>
+      CAELUM PARTNERS
+    </a>
+    <span class="spacer"></span>
     <a class="lien" href="/simulateur.html">Simulateur</a>
     <a class="lien" href="/offres.html">Offres</a>
   </nav>
 </header>
-<main>
+<main class="lisible legal" id="contenu">
   <h1>Mentions légales &amp; politique de confidentialité</h1>
   <p>Dernière mise à jour&nbsp;: 17 juillet 2026.</p>
 
@@ -77,10 +66,11 @@
   <h2>7. Propriété intellectuelle</h2>
   <p>Les contenus de ce site (textes, structure) sont la propriété de leur auteur. Toute reproduction à des fins commerciales sans autorisation est interdite. Les citations avec lien vers la source sont bienvenues.</p>
 </main>
-<footer>
-  <div class="pied">
-    Contact&nbsp;: <a href="mailto:chaima.caelumpartners@gmail.com">chaima.caelumpartners@gmail.com</a> · <a href="/">Accueil</a> · <a href="/simulateur.html">Simulateur</a> · <a href="/offres.html">Offres</a>
+<footer class="site">
+  <div class="pied lisible">
+    <div>Contact&nbsp;: <a href="mailto:chaima.caelumpartners@gmail.com">chaima.caelumpartners@gmail.com</a> · <a href="/">Accueil</a> · <a href="/simulateur.html">Simulateur</a> · <a href="/offres.html">Offres</a></div>
   </div>
 </footer>
+<script src="/assets/caelum.js" defer></script>
 </body>
 </html>
