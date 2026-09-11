@@ -27,28 +27,125 @@ BG_DARK= "\033[40m"
 
 ROOT = Path(__file__).parent
 AGENTS_DIR = ROOT / "agents"
-MEMORY_FILE = ROOT / ".caelum_memory.json"
+SHARED_DIR = ROOT / "shared"          # modules transverses (Option B, phase 2)
+MEMORY_DIR = ROOT / ".memory"         # une mémoire par produit (décision Chaima 2026-09-11)
+LEGACY_MEMORY = ROOT / ".caelum_memory.json"   # ancienne mémoire unique — migrée puis renommée
 
 sys.path.insert(0, str(AGENTS_DIR))
+sys.path.insert(0, str(SHARED_DIR))
 
 
-# ── Mémoire de session ─────────────────────────────────────────────────────────
-def load_memory() -> dict:
-    if MEMORY_FILE.exists():
-        try:
-            return json.loads(MEMORY_FILE.read_text(encoding="utf-8"))
-        except Exception:
-            pass
+# ── Mémoire de session — UNE PAR PRODUIT ───────────────────────────────────────
+# Décision de Chaima du 2026-09-11 : la mémoire est découpée par produit. Une mémoire
+# partagée entre trois produits porte le même risque de contamination que les fiches
+# E-01 et E-07 de .claude/BASE-ERREURS.md — aucune raison de le laisser dormir.
+#
+# Choix d'implémentation : les LECTURES restent agrégées, présentées comme un seul dict,
+# afin que l'affichage (header, menu, show_stats) n'ait pas à changer — moins de surface
+# de casse. Les ÉCRITURES sont routées vers le produit propriétaire de l'agent lancé,
+# d'après shared/attribution.py, qui est la source unique du rattachement.
+from attribution import PRODUITS, proprietaire   # depuis shared/ (voir sys.path)
+
+PROPRIETAIRES = (*PRODUITS, "shared")
+
+
+def _memoire_vide() -> dict:
     return {"sessions": 0, "agents_lances": {}, "derniere_session": None}
 
 
-def save_memory(mem: dict) -> None:
-    MEMORY_FILE.write_text(json.dumps(mem, ensure_ascii=False, indent=2), encoding="utf-8")
+class Memoires:
+    """Plusieurs mémoires par produit, vues comme un seul dict en lecture."""
+
+    def __init__(self) -> None:
+        MEMORY_DIR.mkdir(exist_ok=True)
+        self._m = {p: self._charger(p) for p in PROPRIETAIRES}
+        self._migrer_ancienne_memoire()
+
+    def _fichier(self, proprio: str) -> Path:
+        return MEMORY_DIR / f"{proprio}.json"
+
+    def _charger(self, proprio: str) -> dict:
+        f = self._fichier(proprio)
+        if f.exists():
+            try:
+                return json.loads(f.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+        return _memoire_vide()
+
+    def _migrer_ancienne_memoire(self) -> None:
+        """Répartit l'ancienne mémoire unique, une seule fois, puis la met de côté.
+
+        Les lancements passés sont attribuables : label → module → propriétaire. Rien
+        n'est inventé, et l'ancien fichier est RENOMMÉ, pas supprimé.
+        """
+        if not LEGACY_MEMORY.exists():
+            return
+        try:
+            ancien = json.loads(LEGACY_MEMORY.read_text(encoding="utf-8"))
+        except Exception:
+            print(f"  {YELLOW}Ancienne mémoire illisible — NON migrée, laissée en place.{RESET}")
+            return
+        label_vers_module = {a[1]: a[3] for a in AGENTS}
+        for label, n in (ancien.get("agents_lances") or {}).items():
+            proprio = proprietaire(label_vers_module.get(label, ""))
+            if proprio == "inconnu":
+                proprio = "shared"
+            cible = self._m[proprio]["agents_lances"]
+            cible[label] = cible.get(label, 0) + n
+        self._m["shared"]["sessions"] = ancien.get("sessions", 0)
+        self._m["shared"]["derniere_session"] = ancien.get("derniere_session")
+        self.sauver()
+        LEGACY_MEMORY.rename(LEGACY_MEMORY.with_name(LEGACY_MEMORY.name + ".migre"))
+        print(f"  {GREEN}Ancienne mémoire unique répartie par produit et mise de côté.{RESET}")
+
+    # ── Lecture : agrégée ──────────────────────────────────────────────────────
+    def __getitem__(self, cle: str):
+        if cle == "agents_lances":
+            fusion: dict[str, int] = {}
+            for m in self._m.values():
+                for k, v in m["agents_lances"].items():
+                    fusion[k] = fusion.get(k, 0) + v
+            return fusion
+        return self._m["shared"].get(cle)
+
+    def get(self, cle: str, defaut=None):
+        valeur = self[cle]
+        return defaut if valeur is None else valeur
+
+    # ── Écriture : routée ──────────────────────────────────────────────────────
+    def __setitem__(self, cle: str, valeur) -> None:
+        self._m["shared"][cle] = valeur
+
+    def enregistrer(self, label: str, module: str) -> None:
+        proprio = proprietaire(module)
+        if proprio == "inconnu":
+            proprio = "shared"
+            print(f"  {YELLOW}Module « {module} » non rattaché — lancement porté à shared.{RESET}")
+        cible = self._m[proprio]["agents_lances"]
+        cible[label] = cible.get(label, 0) + 1
+        self.sauver()
+
+    def sauver(self) -> None:
+        for proprio, m in self._m.items():
+            self._fichier(proprio).write_text(
+                json.dumps(m, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+
+    def par_produit(self) -> dict[str, int]:
+        return {p: sum(m["agents_lances"].values()) for p, m in self._m.items()}
 
 
-def record_launch(mem: dict, agent_name: str) -> None:
-    mem["agents_lances"][agent_name] = mem["agents_lances"].get(agent_name, 0) + 1
-    save_memory(mem)
+def load_memory() -> Memoires:
+    return Memoires()
+
+
+def save_memory(mem: Memoires) -> None:
+    mem.sauver()
+
+
+def record_launch(mem: Memoires, agent_name: str, module_name: str) -> None:
+    mem.enregistrer(agent_name, module_name)
 
 
 # ── Affichage ──────────────────────────────────────────────────────────────────
@@ -170,7 +267,7 @@ async def launch_agent(num: str, mem: dict) -> None:
         return
 
     _, label, desc, module_name, func_name = agents_index[num]
-    record_launch(mem, label)
+    record_launch(mem, label, module_name)
 
     print(f"\n  {VIOLET}{BOLD}▶  {label}{RESET}  {DIM}{desc}{RESET}")
     print(f"  {'─'*60}")
@@ -235,6 +332,8 @@ def show_stats(mem: dict):
     print(f"  Agents utilisés     : {len(mem['agents_lances'])}")
     print(f"  Lancements totaux   : {sum(mem['agents_lances'].values())}")
     print(f"  Dernière session    : {mem.get('derniere_session', 'Première fois')}")
+    detail = " · ".join(f"{p} {n}" for p, n in sorted(mem.par_produit().items()) if n)
+    print(f"  Par produit         : {detail or 'aucun lancement'}")
     if mem["agents_lances"]:
         print(f"\n  {BOLD}Top agents :{RESET}")
         top = sorted(mem["agents_lances"].items(), key=lambda x: x[1], reverse=True)[:5]

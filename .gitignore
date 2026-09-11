@@ -55,3 +55,8 @@ Thumbs.db
 *.swo
 *~
 _site/
+
+# ── Mémoire d'exécution par produit (état local, jamais versionné) ──
+.memory/
+.caelum_memory.json
+.caelum_memory.json.migre

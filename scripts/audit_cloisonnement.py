@@ -36,53 +36,11 @@ from pathlib import Path
 
 RACINE = Path(__file__).resolve().parent.parent
 
-# ── Rattachement déclaré des modules (disposition « avant migration ») ─────────
-# Source : la liste AGENTS et le dictionnaire CATEGORIES de main.py, lus le 2026-09-11.
-# Un module ne figure ici que s'il sert UN produit. Tout le reste est transverse, donc `shared`.
-ATTRIBUTION: dict[str, str] = {
-    # ── Caelum Partners — conformité, juridique, fiscal (CATEGORIES « JURIDIQUE & FISC. »)
-    "avocat": "caelum",
-    "fiscaliste": "caelum",
-    "contrat_forge": "caelum",
-    "contrat_client_expert": "caelum",
-    "gdpr_garde": "caelum",
-    # ── KeywordMoneyMaker — SEO et contenu (CATEGORIES « SEO & CONTENU »)
-    "keyword_analyzer": "kmm",
-    "fast_analyzer": "kmm",
-    "report_generator": "kmm",
-    "content_optimizer": "kmm",
-    "trend_radar": "kmm",
-    "monetization_detector": "kmm",
-    # Reclassés le 2026-09-11 sur PREUVE D'IMPORTS, pas sur interprétation : la phase 1 a montré
-    # que ces modules importent keyword_analyzer / trend_radar / report_generator / fast_analyzer /
-    # content_optimizer, tous KMM. Ce sont des orchestrateurs du pipeline SEO, pas du transverse.
-    # L'interprétation initiale (les catégories de main.py) les disait transverses : elle avait tort.
-    "commandant": "kmm",
-    "parallel_runner": "kmm",
-    "run_all": "kmm",
-    # PROVISOIRE — DÉCISION REQUISE DE CHAIMA.
-    # `superviseur` s'annonce « scan santé de la flotte », donc transverse par intention, mais il
-    # n'inspecte en pratique que des modules KMM. Rattaché à kmm pour refléter le code tel qu'il est.
-    # Si l'intention est bien de superviser les trois produits, il doit repasser en transverse ET
-    # perdre ses imports KMM directs — ce qui est un vrai refactor, pas un déplacement.
-    "superviseur": "kmm",
-    # ── CompeteIQ — intelligence concurrentielle (CATEGORIES « COMPETEIQ »)
-    "competitor_tracker": "competeiq",
-    "battle_card_generator": "competeiq",
-    "signal_detector": "competeiq",
-    "competeiq_orchestrator": "competeiq",
-}
-
-# Transverse par nature : sécurité, pilotage, orchestration, cache, outillage.
-# Ces modules iront dans `shared/`. Les lister explicitement évite qu'un module nouveau
-# devienne transverse par défaut, sans décision.
-TRANSVERSES = {
-    "__init__", "base_erreurs",
-    "security_audit", "secrets_scanner", "security_hardener", "dependency_checker",
-    "resolveur", "innovateur",
-    "decision_simulator", "source_validator", "cache_manager",
-    "emotion_analyzer", "pitch_deck_agent", "cold_outreach_agent", "linkedin_cv_agent",
-}
+# ── Source UNIQUE du rattachement ─────────────────────────────────────────────
+# La table vivait ici ET dans main.py : deux copies divergeraient (fiche E-01).
+# Elle est désormais dans shared/attribution.py, lue par ce contrôle ET par main.py.
+sys.path.insert(0, str(RACINE / "shared"))
+from attribution import ATTRIBUTION, TRANSVERSES, proprietaire  # noqa: E402
 
 PRODUITS = {"caelum", "kmm", "competeiq"}
 RACINE_AUTORISEE = {".claude", ".github", "products", "shared", "scripts", "reports", "assets"}
@@ -105,27 +63,24 @@ def _imports(fichier: Path) -> set[str]:
 
 
 def _apres_migration() -> bool:
+    """Vrai quand products/ existe : la phase 3 est passée."""
     return (RACINE / "products").is_dir()
 
 
 def _modules() -> list[tuple[Path, str, str]]:
     """(fichier, nom de module, propriétaire) — propriétaire ∈ produits ∪ {shared, inconnu}."""
     out: list[tuple[Path, str, str]] = []
-    if _apres_migration():
-        for p in sorted((RACINE / "products").glob("*/agents/*.py")):
-            out.append((p, p.stem, p.parents[1].name))
-        for p in sorted((RACINE / "shared").glob("*.py")):
-            out.append((p, p.stem, "shared"))
-    else:
-        for p in sorted((RACINE / "agents").glob("*.py")):
-            nom = p.stem
-            if nom in ATTRIBUTION:
-                prop = ATTRIBUTION[nom]
-            elif nom in TRANSVERSES:
-                prop = "shared"
-            else:
-                prop = "inconnu"
-            out.append((p, nom, prop))
+    # Sous products/ ou shared/, le propriétaire vient du CHEMIN : c'est la disposition cible.
+    for p in sorted((RACINE / "products").glob("*/agents/*.py")):
+        out.append((p, p.stem, p.parents[1].name))
+    for p in sorted((RACINE / "shared").glob("*.py")):
+        out.append((p, p.stem, "shared"))
+    # Dans agents/ à plat, le propriétaire vient de la table déclarée. Ce cas subsiste
+    # avant la phase 3 et disparaît une fois la migration terminée.
+    for p in sorted((RACINE / "agents").glob("*.py")):
+        if p.stem == "__init__":
+            continue        # marqueur de paquet, pas un module : les imports sont à plat
+        out.append((p, p.stem, proprietaire(p.stem)))
     return out
 
 
