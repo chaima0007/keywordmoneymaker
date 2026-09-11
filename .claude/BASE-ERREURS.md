@@ -34,6 +34,7 @@
 | E-15 | Contenu d'un projet déposé dans le dépôt d'un autre | Tu écris un fichier | BOUSSOLE |
 | E-16 | Service en échec pris pour service inexistant | Un outil ne répond pas | tous |
 | E-17 | Documents internes publiés avec le site | Tu configures une publication, un déploiement | PROTECTEUR · REMPART |
+| E-18 | Deux sources de vérité pour la même question | Tu ajoutes une source d'information à côté d'une existante | ARCHITECTE · GARDIEN |
 
 ---
 
@@ -258,6 +259,38 @@ pas à survoler.
 
 **Leçon transférable.** Une publication se définit par ce qu'on autorise, jamais par ce qu'on interdit.
 Une liste noire est fausse dès le fichier suivant.
+
+## E-18 — Deux sources de vérité ont coexisté dans le dispositif censé l'empêcher
+**Constaté le** 2026-09-11 (par test piégé) · **État** corrigé le jour même
+
+**Ce qui s'est passé.** Le rattachement des modules à un produit était déclaré dans
+`shared/attribution.py`, écrit précisément pour n'avoir qu'une seule table au lieu de deux.
+Après la migration en `products/<produit>/agents/`, le contrôle CI a commencé à attribuer les modules
+**par leur chemin** — c'était plus juste. Mais `main.py` continuait d'interroger la **table** pour
+router la mémoire. Deux sources répondaient donc à la même question, et rien ne les comparait : un
+module déplacé sur le disque aurait gardé son ancien propriétaire pour la mémoire, sans le moindre signal.
+
+**Cause racine.** Une source d'information plus fiable (le disque) a été introduite **à côté** de
+l'ancienne, sans que l'ancienne soit ni supprimée ni subordonnée. C'est la même faute que la fiche
+E-01 — et elle a été commise dans le module écrit pour l'empêcher. La bonne intention ne protège pas :
+seule la subordination explicite d'une source à l'autre protège.
+
+**Comment elle a été trouvée.** Par **test piégé**, pas par relecture. Un piège a échoué à déclencher
+(« module nouveau non déclaré » ne bloquait pas), et c'est ce silence inattendu qui a mis la divergence
+au jour. Une relecture du code n'aurait rien vu : les deux moitiés étaient correctes séparément.
+
+**Signal de détection.** Tu ajoutes une source d'information — table, fichier, index, cache, chemin —
+là où une autre répond déjà à la même question. Ou un contrôle que tu attendais rouge reste vert.
+
+**Contre-mesure.** Quand deux sources peuvent répondre à une même question : en désigner **une** comme
+faisant foi, reléguer l'autre au rang de repli explicite, et **ajouter un contrôle qui compare les
+deux** (ici le contrôle C4 de `scripts/audit_cloisonnement.py`). Sans ce troisième élément, la
+hiérarchie se perd au premier refactor.
+
+**Leçon transférable.** Une source de vérité nouvelle doit soit remplacer l'ancienne, soit la
+subordonner explicitement — et quelque chose doit vérifier qu'elles s'accordent. Deux sources
+d'accord aujourd'hui ne prouvent rien sur demain. Et un piège qui ne se déclenche pas est une
+information, pas un succès.
 
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
