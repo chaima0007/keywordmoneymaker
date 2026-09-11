@@ -35,7 +35,10 @@
 | E-16 | Service en échec pris pour service inexistant | Un outil ne répond pas | tous |
 | E-17 | Documents internes publiés avec le site | Tu configures une publication, un déploiement | PROTECTEUR · REMPART |
 | E-18 | Deux sources de vérité pour la même question | Tu ajoutes une source d'information à côté d'une existante | ARCHITECTE · GARDIEN |
-| E-19 | Défaut annoncé sans avoir été constaté | Tu rapportes un bug que tu n'as pas reproduit | GARANT · tous |
+| E-19 | Manipulation git pendant une fusion en cours | Tu fais autre chose au milieu d'un merge non finalisé | tous |
+| E-20 | Outil d'audit pointé sur la mauvaise cible | Tu lances un scan, un audit, un test de dépendances | tous |
+| E-21 | État d'un site déduit du dépôt, pas du live | Tu conclus sur ce que voit un visiteur | GUETTEUR · verificateur-verite |
+| E-22 | Défaut annoncé sans avoir été constaté | Tu rapportes un bug que tu n'as pas reproduit | GARANT · tous |
 
 ---
 
@@ -293,7 +296,84 @@ subordonner explicitement — et quelque chose doit vérifier qu'elles s'accorde
 d'accord aujourd'hui ne prouvent rien sur demain. Et un piège qui ne se déclenche pas est une
 information, pas un succès.
 
-## E-19 — Un défaut a été annoncé à Chaima sans avoir jamais été constaté
+## E-19 — Une manipulation git a détruit l'état d'une fusion en cours
+**Constaté le** 2026-09-11 · **État** corrigé le jour même, avant tout push
+
+**Ce qui s'est passé.** Au milieu d'un `git merge` non finalisé (conflit en cours de résolution), un
+`git stash -u` puis un `git checkout` d'une autre référence ont été lancés — pour mesurer, légitimement, le
+delta de publication entre les deux branches. Ces commandes ont **détruit `MERGE_HEAD`**. Les modifications
+étaient toujours là, l'index paraissait normal : rien ne signalait le problème. Or committer aurait produit
+un commit **ordinaire**, sans la branche fusionnée comme second parent — donc un historique faux et un
+conflit garanti à la fusion suivante, sur les mêmes fichiers.
+
+**Cause racine.** Une fusion en cours n'est pas un état de travail comme un autre : c'est un état
+**transitoire** que git conserve dans des fichiers de contrôle (`MERGE_HEAD`, `MERGE_MSG`). Toute commande
+qui réécrit l'index ou change de branche les efface, **sans avertissement et sans erreur**. La commande
+réussit, l'information disparaît.
+
+**Comment elle a été trouvée.** Par un contrôle explicite — `test -f .git/MERGE_HEAD` — ajouté par réflexe
+avant de committer, pas par une alerte de git. Sans ce contrôle, l'erreur aurait été poussée.
+
+**Signal de détection.** Tu es au milieu d'une fusion (conflits à résoudre, `MERGE_HEAD` présent) et tu
+t'apprêtes à lancer autre chose que la résolution : `stash`, `checkout`, `reset`, `pull`, changement de
+branche — ou n'importe quelle mesure sur un autre état du dépôt.
+
+**Contre-mesure.** Une fusion se finalise **avant** toute autre opération. Ce qui doit être mesuré sur une
+autre référence se mesure **avant** de lancer le merge, ou depuis un clone séparé, ou avec des commandes de
+lecture seule qui ne touchent pas l'index (`git show ref:chemin`, `git ls-tree`). Et dans tous les cas :
+vérifier `MERGE_HEAD` juste avant le commit de fusion.
+
+**Leçon transférable.** Certains états d'outil sont transitoires et s'effacent en silence quand on fait
+autre chose. Le succès d'une commande ne dit rien sur ce qu'elle a détruit au passage.
+
+## E-20 — Un outil d'audit a inspecté la mauvaise cible pendant plusieurs runs
+**Constaté le** 2026-09-06 · **État** CORRIGÉE (commit `bfe624f`) · *reprise du registre `🔴 ERREURS.md`*
+
+**Ce qui s'est passé.** `pip-audit` était lancé sans `-r`, donc il auditait les paquets préinstallés de
+l'environnement Ubuntu du runner — `cloud-init`, `ufw`, `twisted`… — et non les dépendances du projet.
+Il remontait des CVE **réelles**, ce qui rendait le défaut d'autant plus difficile à voir : la sortie
+avait l'air d'un audit qui travaille. Corrigé en ciblant `uv.lock` (635 dépendances réelles) ; le run
+suivant affiche « Dépendances auditées : 635 » puis « No known vulnerabilities found ».
+
+**Cause racine.** Un outil pointé sur la mauvaise cible ne se tait pas : il produit des résultats vrais
+mais **hors sujet**. Rien dans sa sortie ne dit « je n'ai pas regardé ce que tu crois ».
+
+**Signal de détection.** Tu lances un audit, un scan, un test de dépendances, un linter — et tu lis son
+verdict sans avoir vérifié **ce qu'il a réellement inspecté**.
+
+**Contre-mesure.** Exiger de tout outil de contrôle qu'il imprime sa **cible** et le **nombre d'éléments
+inspectés**, et lire cette ligne avant le verdict. C'est pour cette raison que `audit_code_sur.py` affiche
+« 3 dépendance(s) déclarée(s) » et `audit_cloisonnement.py` « Modules analysés : 35 » : un compte
+inattendu est le seul indice qu'on regarde au mauvais endroit.
+
+**Leçon transférable.** Un outil qui trouve quelque chose n'a pas forcément regardé le bon endroit. Vérifie
+la cible avant le verdict.
+
+## E-21 — L'état du site a été déduit du dépôt, pas de ce que voyait un visiteur
+**Constaté le** 2026-08-10 · **État** CORRIGÉE · *reprise du registre `🔴 ERREURS.md`*
+
+**Ce qui s'est passé.** La racine de `caelumpartners.agency` servait un placeholder `noindex`
+« Redirection en cours » pendant des semaines, alors que la vraie page d'accueil conformité existait dans
+le dépôt. Personne ne l'a vu parce que tout le monde vérifiait le **dépôt**, jamais le **live**. Corrigé :
+`index.html` porte la vraie page, `caelum-index.html` devient une redirection `noindex`, ajout de `404.html`.
+
+**Cause racine.** Le dépôt et le site servi sont deux états distincts, reliés par un déploiement qui peut
+publier autre chose que ce qu'on croit — liste blanche, redirection, cache, configuration Pages. Lire le
+dépôt et conclure sur le site est un saut logique, pas une vérification.
+
+**Signal de détection.** Tu affirmes quelque chose sur ce qu'un visiteur voit — page en ligne, redirection,
+indexation, certificat — en t'appuyant sur des fichiers.
+
+**Contre-mesure.** Vérifier le **live**, ou écrire « NON VÉRIFIÉ » et nommer qui peut le faire. Deuxième
+meilleure preuve quand le live est inaccessible : la liste des fichiers **réellement publiés** par le
+déploiement, imprimée par le workflow. Elle prouve ce qui a été envoyé, pas ce qui est rendu — et il faut
+le dire.
+
+*Note du 2026-09-11 : la sortie réseau de l'environnement d'agent refuse `caelumpartners.agency` (403 au
+gateway du proxy). Aucun agent ne peut donc vérifier le live d'ici. La vérification du rendu appartient
+structurellement à Chaima, et tout rapport qui l'affirmerait sans elle serait faux.*
+
+## E-22 — Un défaut a été annoncé à Chaima sans avoir jamais été constaté
 **Constaté le** 2026-09-11 · **Survenu** 2026-09-11 · **État** corrigé le jour même
 
 **Ce qui s'est passé.** Dans un état des lieux sur la typographie du site de Caelum, j'ai annoncé à
@@ -326,6 +406,7 @@ jamais **VÉRIFIÉ**.
 font pas une conclusion vraie : il faut la question qui les relie, et elle doit être posée avant le
 rapport, pas au moment du correctif. Et quand l'erreur est déjà partie chez Chaima, elle se corrige à
 voix haute, dans le même canal, sans attendre qu'elle la découvre.
+
 
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 

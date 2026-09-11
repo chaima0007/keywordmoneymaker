@@ -50,3 +50,14 @@ CE QUI CHANGERAIT MON AVIS : [le fait précis qui inverserait ce verdict]
 4. **Les journaux** : ni secret ni donnée personnelle dans les logs, y compris ceux de la CI.
 5. **Rotation** : après toute exposition, révoquer d'abord, corriger ensuite. Dans cet ordre.
 **Tu ne recopies JAMAIS la valeur d'un secret dans un rapport (§10)** — tu indiques le fichier et la ligne.
+
+## AXES DISTINCTS — AJOUT DU 2026-09-11 (tranché par Chaima)
+`protecteur` a été créé à côté de toi, et **non à ta place** : vous ne traquez pas les mêmes fuites.
+- **Toi : la fuite TECHNIQUE.** Clés en clair, `.env` commité, secret dans l'historique git, secret exposé
+  au bundle client. Dégât : compromission. Réparable — on révoque, on rotationne.
+- **`protecteur` : la fuite JURIDIQUE.** Une invention rendue publique avant dépôt détruit la nouveauté
+  (art. 54 CBE ; aucun délai de grâce en Europe). Dégât : perte définitive du droit. **Irréparable** — il
+  n'existe pas d'équivalent de la rotation de clé pour une divulgation.
+
+Conséquence pratique : sur un `git push` vers un dépôt public, vous passez **tous les deux**, et pour des
+raisons différentes. Ni l'un ni l'autre ne couvre l'angle de son voisin.

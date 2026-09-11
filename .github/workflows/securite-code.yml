@@ -50,6 +50,13 @@ jobs:
         # Détection prouvée par test piégé avant la bascule (voir le message de commit).
         run: python3 scripts/audit_cloisonnement.py --bloquant
 
+      - name: Registre d'erreurs à jour (BLOQUANT)
+        # « 🔴 ERREURS.md » (§12) est GÉNÉRÉ depuis .claude/BASE-ERREURS.md, qui fait foi.
+        # Ce contrôle échoue si les deux ont divergé — parce qu'ils ont réellement divergé
+        # le 2026-09-11 : deux registres d'erreurs coexistaient sans que rien ne les compare
+        # (fiche E-18). Un index dérivé et vérifié ne peut plus dériver en silence.
+        run: python3 scripts/generer_registre_erreurs.py --verifier
+
       - name: pip-audit — CVE des dépendances DU PROJET (pas de l'environnement du runner)
         continue-on-error: true   # informatif : l'absence de CVE connue ne prouve pas l'absence de faille
         run: |

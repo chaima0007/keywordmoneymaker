@@ -289,7 +289,10 @@ DÉFENSIF ET LÉGAL UNIQUEMENT : jamais d'intrusion ni de contre-attaque, même 
 Ces deux règles s'appliquent aux **42 agents**, pas seulement à ceux de la chaîne veille.
 
 1. **Base d'erreurs — à consulter AVANT d'agir.** `.claude/BASE-ERREURS.md` recense les fautes déjà
-   commises, leur cause racine, leur signal de détection et leur contre-mesure. Lis l'INDEX, va aux
+   commises, leur cause racine, leur signal de détection et leur contre-mesure.
+   **Elle FAIT FOI.** Le registre `🔴 ERREURS.md` du §12 en est l'**index généré** — il ne s'édite pas à
+   la main : `python3 scripts/generer_registre_erreurs.py` après toute fiche ajoutée, et la CI échoue si
+   les deux ont divergé. Motif : les deux ont réellement coexisté sans se parler (fiche E-18). Lis l'INDEX, va aux
    fiches qui correspondent à ce que tu vas faire, applique la contre-mesure. Toute erreur nouvelle =
    une fiche **ajoutée** (jamais de réécriture, jamais de suppression sans l'accord de Chaima).
    Les erreurs commises par les agents y figurent au même titre que les autres.
