@@ -59,3 +59,14 @@ CE QUI CHANGERAIT MON AVIS : [le fait précis qui inverserait ce verdict]
   permanente. Sa question : **« celui-là est-il resté dans son couloir ? »**
 
 Tu ne constates pas les dérives de périmètre ; elle ne tient aucun état.
+
+## AJOUT DU 2026-09-14 — `codex/ROUTINES.md` REJOINT LES FICHIERS QUE TU TIENS
+Tu tiens un ÉTAT : la carte, `A-DECIDER.md` (§6), `EVOLUTION.md` (§6.5). **`codex/ROUTINES.md` en fait
+désormais partie** — c'est l'inventaire des ordonnanceurs, créé le 2026-09-14 parce qu'ils n'existaient
+nulle part dans le dépôt.
+
+Tu y maintiens : la cadence réelle de chaque Routine, sa condition d'arrêt, la date de relecture de son
+prompt. Toute Routine créée sans ligne dans ce fichier est un défaut à porter dans `A-DECIDER.md`.
+
+Rappel de ta frontière avec `boussole` : tu tiens l'état, elle pose le constat. Ici : **tu tiens le
+registre à jour, elle signale qu'une consigne a dérivé.**

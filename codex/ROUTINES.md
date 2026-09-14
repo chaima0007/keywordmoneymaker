@@ -67,3 +67,42 @@ ou par la session qui les a créées — pas devinable depuis ce dépôt.
 - `codex/veille/CHARTE-CHAINE.md` — les 5 règles propres à la chaîne veille que rien d'autre ne couvre
   (divulgation art. 54 CBE, nommage Drive, sauvegarde, cadence des offices, structure Drive).
 - `codex/veille/JOURNAL-CHAINE.md` — l'historique des sessions de la chaîne.
+
+---
+
+## OBJECTION DU CONTRADICTEUR — contre ce dispositif (2026-09-14)
+Le protocole exige une objection sérieuse avant toute décision actée. En voici deux, contre ma propre
+correction, et la seconde est la plus gênante.
+
+### Objection 1 — « Ce registre est lui-même une seconde source de vérité »
+`codex/ROUTINES.md` est un **fichier du dépôt**. Les Routines, elles, vivent **ailleurs** — dans le
+service qui les déclenche. **Rien ne les synchronise.** Si Chaima change une cadence depuis son téléphone
+demain matin, ce registre aura tort sans que rien ne le signale. C'est mot pour mot la fiche **E-18** :
+deux sources qui répondent à la même question, sans contrôle qui les compare.
+
+**Réponse honnête, et elle est partielle.** Pour la base d'erreurs, la contre-mesure était complète : une
+source qui fait foi, un index **généré**, et un contrôle CI qui échoue si les deux divergent. **Ici je ne
+peux pas faire pareil** — les Routines ne sont pas dans le dépôt, la CI n'y a aucun accès, le registre ne
+peut donc pas être généré. Il reste écrit à la main.
+
+Ce qui a été fait à la place : désigner la source qui fait foi (**les Routines réelles**, relues via
+`list_triggers` — jamais ce fichier), et confier la comparaison à `superviseur-vigie` à chaque entrée de
+session. C'est un contrôle **humain et agentique**, pas machine. **C'est plus faible que pour les
+erreurs, et il faut le savoir** : ce registre est aussi fiable que la discipline de sa relecture. La
+discipline seule a déjà perdu deux fois dans ce projet (E-01, E-07).
+
+*Ce qui lèverait l'objection :* un accès en lecture aux Routines depuis la CI. Il n'existe pas aujourd'hui.
+
+### Objection 2 — « Ralentir, c'est détecter plus tard »
+La chaîne veille est passée d'horaire à quotidienne. Or sa consigne lui demandait aussi de vérifier
+qu'aucune information sensible n'est exposée publiquement. Cette vérification passe donc de 24 fois par
+jour à 1.
+
+**Réponse.** Les contrôles qui protègent réellement n'ont pas bougé : le scan de secrets et le
+cloisonnement tournent en **CI, à chaque push**, pas dans la Routine. Ce qui ralentit est la relecture
+d'opportunité côté Drive. Le compromis est acceptable — mais il est réel, et le nier serait malhonnête.
+
+### Ce qui a été retenu
+Les deux objections sont **fondées** et ne sont pas écartées : elles sont inscrites ici pour que le
+prochain qui lit ce fichier sache exactement ce qu'il protège et ce qu'il ne protège pas.
+
