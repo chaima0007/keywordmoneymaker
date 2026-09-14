@@ -102,6 +102,41 @@ Un site de conformité qui rassure à tort est pire qu'un site qui se tait.
 **Corrigé** dans la même PR, avec la référence exacte de l'article et de la directive européenne
 transposée.
 
+## 4 ter. Contre-vérification en NÉERLANDAIS — elle confirme, et elle trouve autre chose
+
+Sur remarque de Chaima : le droit belge est publié en français **et** en néerlandais, les deux
+versions faisant également foi. Vérifier une seule langue, c'est vérifier à moitié.
+
+**La version néerlandaise confirme la correction, mot pour mot** — `etaamb.openjustice.be/nl` :
+
+> « De in het eerste lid bedoelde uitzondering geldt niet voor entiteiten die onder het
+> toepassingsgebied vallen van de bepalingen op het gebied van **financiële diensten, producten
+> en markten** »
+
+Les deux textes authentiques disent la même chose. La correction tient dans les deux langues.
+
+**Et le néerlandais a montré une phrase que l'extrait français n'avait pas rendue** — l'extrait
+FR consulté s'arrêtait juste avant. Le texte précise **comment le seuil de 50 se calcule** : il
+s'agit de la **moyenne** des travailleurs occupés, au sens de l'article 14 de la loi du
+20 septembre 1948 et de l'article 7, § 1er de la loi du 4 décembre 2007 sur les élections
+sociales.
+
+**Conséquence pour le site.** La carte dit aujourd'hui « une obligation qui passe souvent
+inaperçue jusqu'à l'embauche qui fait franchir le seuil ». Ce n'est pas faux, mais cela suggère
+un déclenchement **instantané**. Le seuil est en réalité une **moyenne annuelle**, recalculée au
+1er janvier sur les quatre trimestres de l'année précédente — cette dernière précision provient
+d'un cabinet spécialisé commentant une clarification législative, donc **PLAUSIBLE**, pas
+**VÉRIFIÉ** — absente du texte consulté sur `etaamb.openjustice.be/nl`.
+
+Reformulation **PROPOSÉE**, non écrite : la phrase actuelle n'est pas erronée, et la corriger
+relève d'un arbitrage de rédaction, pas d'un correctif juridique.
+
+**Ce que cet épisode établit comme méthode.** Lire la seconde langue n'a pas servi qu'à confirmer :
+elle a produit une information absente du premier extrait. À partir d'aujourd'hui, toute
+affirmation juridique du site est recoupée en **français et en néerlandais** pour le droit belge,
+et en **anglais** pour le droit européen (EUR-Lex publie souvent la version anglaise en premier,
+et les documents de la Commission y sont plus détaillés).
+
 ## 4 bis. RGPD — non recontrôlé ce jour
 
 Les plafonds de 20 M€ / 4 % (article 83 du RGPD) n'ont pas été recoupés à la source aujourd'hui.
