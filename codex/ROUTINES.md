@@ -63,6 +63,26 @@ Cinq Routines n'ont ni condition d'arrêt écrite ni date de relecture de prompt
 `Jeu Linux Empire Chaima` qui tourne **toutes les heures** sans avoir été auditée ici. À faire par Chaima
 ou par la session qui les a créées — pas devinable depuis ce dépôt.
 
+## TROU DE COUVERTURE DE LA MÉTA-SURVEILLANCE (relevé le 2026-09-14)
+La Routine « Méta-surveillance — gardien du gardien » est le seul dispositif qui contrôle les autres.
+Sa consigne nomme **cinq** Routines à auditer : Coach 09h30 · Point de contrôle de midi 13h00 ·
+Surveillant Drive 18h00 · Feedback honnête 21h30 · La Loi Avec Moi 08h00 (heures de Bruxelles).
+
+Deux défauts, relevés en lisant la consigne elle-même et non sa description :
+
+1. **Cinq Routines sur dix sont hors surveillance** — dont « Caelum — BOUCLE de production »,
+   « Caelum — Chaîne veille brevets & capitaux », « Caelum — contrôle 8 h » et
+   « Jeu Linux Empire Chaima », c'est-à-dire précisément celles qui produisent du code et des
+   documents. Le gardien du gardien ne regarde pas là où le travail se fait.
+2. **Une heure citée est devenue fausse par notre faute** — la consigne attend La Loi Avec Moi à
+   08h00 ; depuis la correction de cadence du 2026-09-14 elle tourne toutes les deux heures.
+   Le gardien auditera donc une Routine muette à 08h00 et conclura à une anomalie inexistante,
+   pendant que douze exécutions réelles passeront inaperçues. C'est le motif de la fiche E-02
+   (un faux positif qui survit parce que personne ne recoupe la consigne avec le monde).
+
+**Ni l'un ni l'autre n'est corrigé ici** : réécrire la consigne d'une Routine, c'est modifier
+l'automatisation de Chaima. Proposition déposée, décision à elle.
+
 ## VOIR AUSSI
 - `codex/veille/CHARTE-CHAINE.md` — les 5 règles propres à la chaîne veille que rien d'autre ne couvre
   (divulgation art. 54 CBE, nommage Drive, sauvegarde, cadence des offices, structure Drive).

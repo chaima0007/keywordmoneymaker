@@ -306,6 +306,16 @@ Ces deux règles s'appliquent aux **42 agents**, pas seulement à ceux de la cha
    Motif historique : une trentaine de journaux quasi identiques produits entre le 28/07 et le 11/08/2026,
    dont un faux positif qui a survécu deux semaines (fiches E-01 et E-02 de la base d'erreurs).
 
+4. **Rapport complet = document déposé, pas seulement un message.** (directive Chaima 14-09-2026 :
+   « je veux que tu sois surveillé aussi pour être sûr ».) Tout rapport complet est déposé dans
+   `codex/rapports/`, nommé selon la convention horodatée, **en plus** d'être dit à Chaima.
+   Motif : une surveillance ne peut contrôler que ce qui est écrit quelque part. Un rapport qui
+   n'existe que dans une conversation est hors d'atteinte de la méta-surveillance du soir, de la CI,
+   et de toute relecture ultérieure — donc invérifiable par construction.
+   Le contrôle `python3 scripts/verifier_rapports.py` est **bloquant en CI** : il recoupe les traces
+   citées (commit, chemin, run, vocabulaire du §13). Il ne juge pas les conclusions — il rend
+   impossible la trace inventée ou périmée. **Quand il échoue, on corrige le rapport, pas le contrôle.**
+
 3. **DEUX SUBSTRATS D'EXÉCUTION — connaître la frontière.** Ce dépôt contient deux systèmes d'agents
    distincts, qui s'ignoraient totalement jusqu'au 2026-09-11 : les **42 définitions Markdown** de
    `.claude/agents/` (lues par Claude Code) et les **33 modules Python** de `agents/` (code exécutable,

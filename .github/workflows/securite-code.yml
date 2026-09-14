@@ -57,6 +57,16 @@ jobs:
         # (fiche E-18). Un index dérivé et vérifié ne peut plus dériver en silence.
         run: python3 scripts/generer_registre_erreurs.py --verifier
 
+      - name: Rapports déposés — traces recoupées (BLOQUANT)
+        # Contrôle de la partie surveillée par la machine. La « phrase de contrôle honnête »
+        # du §2 ter est écrite par l'agent qui se contrôle lui-même : elle ne prouve rien.
+        # Ce contrôle-ci ne juge pas la sincérité, il recoupe les TRACES — commit cité qui
+        # n'existe pas, chemin inventé, run cité sans URL, confiance en pourcentage (interdite
+        # par le §13), « VÉRIFIÉ » affirmé sans preuve. Motif : fiches E-11 et E-13, où l'erreur
+        # n'était pas un mensonge mais une trace jamais recoupée.
+        # Sept pièges posés avant la bascule, sept détectés ; témoin vert (voir le commit).
+        run: python3 scripts/verifier_rapports.py
+
       - name: pip-audit — CVE des dépendances DU PROJET (pas de l'environnement du runner)
         continue-on-error: true   # informatif : l'absence de CVE connue ne prouve pas l'absence de faille
         run: |
