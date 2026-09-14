@@ -36,6 +36,7 @@
 | E-17 | Documents internes publiés avec le site | Tu configures une publication, un déploiement | PROTECTEUR · REMPART |
 | E-18 | Deux sources de vérité pour la même question | Tu ajoutes une source d'information à côté d'une existante | ARCHITECTE · GARDIEN |
 | E-19 | Manipulation git pendant une fusion en cours | Tu fais autre chose au milieu d'un merge non finalisé | tous |
+| E-23 | Règle appliquée aux agents mais pas à l'ordonnanceur qui les déclenche | Tu poses une condition d'arrêt, ou une Routine tourne à vide | croque-mort · superviseur-vigie |
 | E-20 | Outil d'audit pointé sur la mauvaise cible | Tu lances un scan, un audit, un test de dépendances | tous |
 | E-21 | État d'un site déduit du dépôt, pas du live | Tu conclus sur ce que voit un visiteur | GUETTEUR · verificateur-verite |
 | E-22 | Défaut annoncé sans avoir été constaté | Tu rapportes un bug que tu n'as pas reproduit | GARANT · tous |
@@ -407,6 +408,44 @@ font pas une conclusion vraie : il faut la question qui les relie, et elle doit 
 rapport, pas au moment du correctif. Et quand l'erreur est déjà partie chez Chaima, elle se corrige à
 voix haute, dans le même canal, sans attendre qu'elle la découvre.
 
+
+## E-23 — La condition d'arrêt visait les agents, pas l'horloge qui les réveille
+**Constaté le** 2026-09-14 · **Survenu** 2026-09-12 → 2026-09-14 · **État** cause identifiée, correction en attente d'arbitrage
+
+**Ce qui s'est passé.** La règle anti-bruit existe deux fois, et de façon explicite : CODEX §5
+(« un rapport pour dire qu'il n'y a rien à dire est une faute contre le protocole ») et la condition
+d'arrêt de la chaîne veille. Un rôle a même été créé le 2026-09-11 pour la faire appliquer —
+`croque-mort`. Trois jours plus tard, le Drive contient une vingtaine de documents horodatés en 72 h,
+dont au moins huit disent littéralement « INCHANGÉ · 0 nouvelle pièce · SILENCE ». Plusieurs répètent
+depuis le 12/09 « code toujours bloqué (push authentifié requis) », c'est-à-dire qu'ils annoncent toutes
+les deux heures l'attente d'une action humaine déjà signalée.
+
+**Cause racine — et ce n'est pas la désobéissance d'un agent.** La règle s'adresse à celui qui *écrit
+le rapport*. Or ce qui produit le bruit est en amont : **des Routines déclenchées par une horloge.**
+Relevé au 2026-09-14 : deux Routines horaires, deux Routines toutes les deux heures — dont deux
+programmées **à la même minute** (`22 */2 * * *`) sur le même dépôt — et six quotidiennes, soit de
+l'ordre de soixante réveils par jour. Un agent réveillé n'a pas le pouvoir de décider qu'il n'aurait pas
+dû l'être : au mieux il écrit « rien à signaler », et ce message *est* le bruit.
+
+**Une condition d'arrêt posée sur l'agent et pas sur l'ordonnanceur ne s'applique jamais.**
+
+**Signal de détection.** Tu poses une condition d'arrêt, une règle anti-doublon ou une règle anti-bruit.
+Demande-toi : **qui décide que ce travail a lieu ?** Si c'est un `cron`, une Routine ou un planificateur,
+la règle doit porter sur la fréquence, pas sur le contenu du rapport. Autre signal : une Routine dont les
+derniers passages se ressemblent, ou qui attend depuis plus d'un cycle une action humaine.
+
+**Contre-mesure.** Trois niveaux, du plus haut au plus bas :
+1. **L'ordonnanceur d'abord.** Une boucle bloquée sur une décision humaine se met en pause ou passe en
+   cadence longue — elle ne se rappelle pas toutes les deux heures. Une boucle dont le travail de fond
+   est inaccessible (accès réseau fermé, par exemple) s'arrête : elle ne peut produire que du bruit.
+2. **Jamais deux Routines à la même minute sur le même dépôt.** Deux sessions concurrentes sur le même
+   `git` se gênent ; au minimum les décaler.
+3. **L'agent ensuite**, comme aujourd'hui : état inchangé → une ligne dans l'état courant, pas un
+   document neuf.
+
+**Leçon transférable.** Une règle ne vaut que si elle s'adresse à celui qui a le pouvoir de l'appliquer.
+Écrite pour un agent, une condition d'arrêt ne peut pas arrêter l'horloge qui le réveille — il faut la
+poser là où la décision se prend.
 
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
