@@ -96,6 +96,25 @@ class Violation(Exception):
     pass
 
 
+def _depot_superficiel() -> bool:
+    """Vrai si l'historique local est tronqué (clone « --depth »).
+
+    Point capital, et découvert en production le 2026-09-14 : dans un dépôt superficiel,
+    « git cat-file -e » répond NON pour un commit qui existe parfaitement sur le serveur.
+    La règle R3 y produit donc un faux positif — elle accuse le rapport alors que c'est
+    l'outil qui est aveugle. C'est la fiche E-11 sous une autre forme : un historique
+    tronqué pris pour l'historique réel.
+
+    La réponse retenue n'est pas d'adoucir R3 : un contrôle qui ne peut pas voir doit le
+    DIRE et échouer, jamais laisser passer. « Je ne peux pas vérifier » n'est pas « c'est bon ».
+    """
+    resultat = subprocess.run(
+        ["git", "-C", str(RACINE), "rev-parse", "--is-shallow-repository"],
+        capture_output=True, text=True,
+    )
+    return resultat.stdout.strip() == "true"
+
+
 def _commit_existe(sha: str) -> bool:
     resultat = subprocess.run(
         ["git", "-C", str(RACINE), "cat-file", "-e", f"{sha}^{{commit}}"],
@@ -190,6 +209,16 @@ def main() -> int:
     analyseur = argparse.ArgumentParser(description=__doc__)
     analyseur.add_argument("--dossier", default=str(DOSSIER_DEFAUT))
     arguments = analyseur.parse_args()
+
+    if _depot_superficiel():
+        print(
+            "::error::Dépôt SUPERFICIEL (clone « --depth ») : la règle R3 ne peut pas "
+            "distinguer « ce commit n'existe pas » de « ce commit n'a pas été récupéré ». "
+            "Le contrôle refuse de conclure — il n'échoue pas le rapport, il échoue lui-même. "
+            "Correctif : récupérer l'historique complet (retirer --depth du workflow, "
+            "ou « git fetch --unshallow » en local). Fiche E-11."
+        )
+        return 1
 
     dossier = Path(arguments.dossier)
     if not dossier.is_dir():

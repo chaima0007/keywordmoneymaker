@@ -37,6 +37,28 @@ Premier usage, le 2026-09-14 : le contrôle a immédiatement pris son auteur en 
 points — un « pas VÉRIFIÉ » au lieu du « NON VÉRIFIÉ » imposé par le §13, et un chemin cité de
 façon ambiguë. Deux fautes réelles, deux corrections du rapport.
 
+## L'exception à la règle — et elle est arrivée le premier jour
+
+La règle « corriger le rapport, jamais le contrôle » vaut tant que le contrôle a raison. Le
+2026-09-14, à sa **première exécution réelle en intégration continue**, il a eu tort : il a annoncé
+qu'un commit n'existait pas alors qu'il s'agit de la tête de `main`. Le workflow clonait en
+superficiel ; l'outil confondait « je ne vois pas » et « ça n'existe pas ».
+
+La correction a donc porté sur le contrôle — mais dans le seul sens autorisé : **le durcir, jamais
+l'assouplir.** L'historique complet est désormais récupéré, et le script détecte un dépôt superficiel
+pour **s'arrêter en le disant** plutôt que de rendre un verdict qu'il n'a pas les moyens de rendre.
+Un vert signifie maintenant qu'une vérification a réellement eu lieu.
+
+La règle complète, telle qu'elle s'énonce après cet épisode :
+
+> Quand le contrôle échoue, on corrige le rapport. Si le contrôle est **prouvé** faux, on le corrige
+> en le rendant **plus strict ou plus honnête sur ses limites**, jamais plus permissif — et on le
+> signale à Chaima avec la preuve. Un assouplissement non motivé est une régression de sécurité.
+
+Fiche `E-25` de la base d'erreurs. Leçon annexe : le contrôle avait passé sept pièges et un témoin,
+et c'est sa première exécution dans le monde réel qui l'a pris en défaut. Un dispositif n'a pas fait
+ses preuves tant qu'il n'a pas tourné là où il doit vivre.
+
 ## Ce que le contrôle ne fait pas
 
 Il prouve que les traces citées existent. **Il ne prouve pas que les conclusions sont justes.**

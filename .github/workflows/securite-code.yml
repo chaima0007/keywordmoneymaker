@@ -33,7 +33,11 @@ jobs:
           set -euo pipefail
           git init -q .
           git remote add origin "https://github.com/${DEPOT}"
-          git fetch -q --depth 1 origin "${COMMIT}"
+          # Historique COMPLET, pas --depth 1 : le contrôle des rapports doit pouvoir
+          # dire si un commit cité existe réellement. Dans un clone superficiel,
+          # « git cat-file -e » répond non pour un commit qui existe (fiche E-11).
+          # 70 commits, 3,5 Mo : le coût est nul, l'aveuglement ne l'était pas.
+          git fetch -q origin "${COMMIT}"
           git checkout -q FETCH_HEAD
           echo "Commit contrôlé : ${COMMIT}"
 
