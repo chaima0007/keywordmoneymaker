@@ -65,11 +65,11 @@
         t: "Applicable : la loi du 28/11/2022 impose un canal de signalement interne confidentiel aux entreprises d'au moins 50 travailleurs. Vérifiez qu'un dispositif existe et que vos travailleurs le connaissent." });
     } else {
       res.push({ n: "Canal lanceurs d'alerte", s: "non",
-        t: "Non applicable à ce jour : l'obligation commence à 50 travailleurs. À revoir si vous approchez ce seuil." });
+        t: "Non applicable à ce jour : l'obligation commence à 50 travailleurs. DEUX EXCEPTIONS : si vous relevez des dispositions en matière de services, produits et marchés financiers, ou si vous êtes assujetti à la législation anti-blanchiment (fiduciaires, notaires, agents immobiliers en font partie), l'obligation s'applique SANS SEUIL. Vérifiez votre situation. À revoir aussi si vous approchez les 50." });
     }
     // CSRD / DORA — démystification honnête, toujours affichée.
     res.push({ n: "CSRD et DORA — le point honnête", s: "non",
-      t: "CSRD : depuis le paquet Omnibus adopté le 24/02/2026, les seuils ont été fortement relevés (cible ~1 000 salariés) — la grande majorité des PME n'est pas concernée à court terme. DORA : secteur financier et prestataires TIC uniquement. Si on vous vend l'un ou l'autre comme une urgence PME, demandez la source." });
+      t: "CSRD : le paquet Omnibus du 24/02/2026 (directive (UE) 2026/470) relève fortement les seuils — il faudra dépasser À LA FOIS 1 000 salariés ET 450 M€ de chiffre d'affaires net. Cette directive n'est pas encore transposée en droit belge : jusque-là, les seuils de la loi du 02/12/2024 s'appliquent. Dans les deux cas, la grande majorité des PME n'est pas concernée. DORA : secteur financier et prestataires TIC uniquement. Si on vous vend l'un ou l'autre comme une urgence PME, demandez la source." });
 
     var lib = { oui: "S'applique à vous", verifier: "À vérifier", non: "A priori non concerné" };
     var cont = document.getElementById("res-liste");
