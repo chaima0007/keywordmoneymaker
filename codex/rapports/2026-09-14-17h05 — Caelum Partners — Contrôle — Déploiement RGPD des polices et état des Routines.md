@@ -13,6 +13,9 @@ demande de Chaima : la boucle LLAM (§4).
 - **Rédigé par** : session Claude Code `session_01BegfnhBmAVY4yxqcMdeEas`
 - **Destinataire** : Chaima
 
+
+**Consigne n°1 servie : AUCUNE — détour assumé a posteriori.** Ce rapport relève d'une demande ponctuelle de Chaima (fermer la fuite RGPD des polices), pas de la consigne n°1 en vigueur, qui est la chaîne veille/brevets/technologies/capitaux. Mention ajoutée le 2026-09-14 après constat de dérive : le travail était réel et utile, il ne servait pas la mission. Voir `codex/CONSIGNE-N1.md`.
+
 ---
 
 ## 1. Déploiement confirmé en production

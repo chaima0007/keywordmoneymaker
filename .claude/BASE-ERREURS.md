@@ -517,6 +517,54 @@ il fabriquera de faux verts, ce qui est pire. La seule réponse acceptable est q
 incapable — bruyamment. Et un contrôle n'a pas prouvé sa valeur tant qu'il n'a pas tourné là où il
 doit vivre : celui-ci a été pris en défaut par sa première exécution réelle, pas par ses sept pièges.
 
+## E-26 — La dérive de périmètre : quatre fois détectée, jamais empêchée
+**Constaté le** 2026-09-14 · **Survenu** depuis le 2026-07-17 au moins · **État** contre-mesure posée
+
+**Ce qui s'est passé.** La consigne d'origine de Chaima est la **chaîne Veille, Brevets, Technologies
+& Capitaux**. Le 14/09, une session entière a produit de l'infrastructure, un registre d'erreurs, des
+garde-fous et un site web. **Zéro technologie trouvée, zéro brevet analysé, zéro piste de financement.**
+C'est Chaima qui l'a relevé, pas le dispositif.
+
+Et ce n'est pas un accident isolé. La méta-surveillance du soir a détecté exactement la même faute
+**quatre fois**, et elle avait raison quatre fois :
+
+| Date | Extrait de la méta-alerte (Drive) |
+|---|---|
+| 2026-07-17 | « DISPERSION FLOTTE (8 projets) vs décision *sites d'abord* » |
+| 2026-07-25 | « DISPERSION : nouvelle piste *armoire à pharmacie* apparue à J-7, alors que les sites ne sont TOUJOURS pas en ligne » |
+| 2026-09-11 | « DÉRIVE DE PRIORITÉ : flotte de vente construite APRÈS la consigne n°1 *le visuel d'abord, ne pas enchaîner* » |
+| 2026-09-14 | la présente fiche |
+
+**Cause racine — et elle n'est pas le manque d'attention.**
+1. **Le dispositif détecte, il n'empêche pas.** La méta-surveillance passe à 22h30 : elle constate le
+   soir une journée déjà perdue et n'a aucun pouvoir d'arrêter quoi que ce soit. Quatre constats
+   justes, zéro correction structurelle. C'est la fiche E-01 : une règle écrite sans mécanisme cède.
+2. **La dérive est faite de pas légitimes.** Aucun détour du 14/09 n'était absurde ; chacun a été
+   demandé ou validé sur le moment. C'est le cumul qui est la faute, et le cumul ne se voit pas pas à pas.
+3. **Rien n'obligeait à écrire au service de quoi on travaillait.** Tant que personne n'énonce la
+   consigne servie, un travail hors mission est indistinguable d'un travail en mission.
+4. **Un piège de langage :** « continue », « ok », « vas-y » **en réponse à un détour que l'agent a
+   lui-même proposé** ont été pris pour un accord sur la priorité. Ce n'en est pas un.
+
+**Signal de détection.** Tu es sur le point de commencer un travail et tu ne peux pas énoncer, en une
+phrase, la consigne n°1 qu'il sert. Ou : tu enchaînes un troisième sujet sans que Chaima ait rien
+redemandé. Ou : tu réponds à ta propre proposition de détour.
+
+**Contre-mesure — trois pièces, dans l'ordre.**
+1. **`codex/CONSIGNE-N1.md`** : la priorité en vigueur, datée, append-only. **Lue en premier par toute
+   session**, redite avant d'agir. Seule Chaima l'y écrit.
+2. **Règle R8 de `scripts/verifier_rapports.py`**, bloquante en intégration continue : tout rapport
+   déposé doit **nommer la consigne qu'il sert**. Posée le 14/09, elle a immédiatement rejeté les deux
+   rapports du jour — les deux étaient hors mission. Ils ont été annotés « détour assumé », pas maquillés.
+3. **Un détour se nomme.** Travailler hors consigne n'est pas interdit ; le faire en silence l'est.
+   Une phrase, puis l'accord explicite de Chaima.
+
+**Leçon transférable.** Une surveillance qui arrive après coup n'est pas une surveillance, c'est une
+archive. Pour empêcher une dérive, le contrôle doit se placer **à l'entrée** du travail, pas à sa
+sortie. Et la dérive ne se combat pas par la vigilance : elle se combat en rendant **obligatoire
+l'énoncé de ce qu'on sert** — parce qu'une phrase qu'on ne peut pas écrire est un travail qu'on ne
+devrait pas commencer.
+
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
 ```

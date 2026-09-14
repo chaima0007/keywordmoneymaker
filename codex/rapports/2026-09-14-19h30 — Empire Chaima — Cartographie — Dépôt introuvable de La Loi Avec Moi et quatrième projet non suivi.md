@@ -11,6 +11,9 @@ elle-même identifié le 21 juillet et que personne n'a levé.
 - **Catégorie** : Cartographie
 - **Rédigé par** : session Claude Code `session_01BegfnhBmAVY4yxqcMdeEas`
 
+
+**Consigne n°1 servie : AUCUNE — détour assumé a posteriori.** Ce rapport relève du diagnostic des Routines et des projets, pas de la consigne n°1 en vigueur (chaîne veille/brevets/technologies/capitaux). Mention ajoutée le 2026-09-14 après constat de dérive. Voir `codex/CONSIGNE-N1.md`.
+
 ---
 
 ## 1. Les consignes des Routines sont lisibles — ce qui change la surveillance

@@ -23,7 +23,10 @@ Falsifier mécaniquement ce qu'un rapport affirme sur le dépôt lui-même :
   R4  tout chemin de fichier cité existe, sauf s'il est explicitement dit absent ;
   R5  tout run d'intégration continue cité est une URL vérifiable, pas un numéro nu ;
   R6  aucune confiance exprimée en pourcentage (CODEX §13 l'interdit) ;
-  R7  toute ligne qui affirme « VÉRIFIÉ » porte une trace (commande ou URL).
+  R7  toute ligne qui affirme « VÉRIFIÉ » porte une trace (commande ou URL) ;
+  R8  le rapport NOMME la consigne n°1 qu'il sert — la dérive de périmètre est la faute la
+      plus répétée du dispositif (quatre méta-alertes depuis juillet), et elle passait
+      inaperçue parce que rien n'obligeait à écrire au service de quoi on travaillait.
 
 CE QU'IL NE SAIT PAS FAIRE — à dire, pas à taire
 ------------------------------------------------
@@ -58,6 +61,14 @@ CONVENTION = re.compile(
 MARQUEURS_CONTROLE = (
     "phrase de contrôle",
     "contrôle honnête",
+)
+
+# R8 — la consigne servie doit être nommée, en toutes lettres, dans le rapport.
+MARQUEURS_CONSIGNE = (
+    "consigne n°1",
+    "consigne no 1",
+    "consigne n1",
+    "consigne en vigueur",
 )
 
 # Un jeton entre accents graves qui ressemble à un commit : hexadécimal, 7 à 40
@@ -150,6 +161,14 @@ def controler(chemin: Path) -> list[str]:
         fautes.append(
             "R2 aucune phrase de contrôle honnête dans les 15 premières lignes "
             "(CLAUDE.md §2 ter, point 2)"
+        )
+
+    # R8 — au service de quoi ce rapport travaille-t-il ?
+    if not any(m in texte.lower() for m in MARQUEURS_CONSIGNE):
+        fautes.append(
+            "R8 le rapport ne nomme pas la consigne n°1 qu'il sert "
+            "(voir codex/CONSIGNE-N1.md) — une dérive de périmètre passe inaperçue "
+            "tant que personne n'écrit au service de quoi il travaille"
         )
 
     for numero, ligne in enumerate(lignes, start=1):
