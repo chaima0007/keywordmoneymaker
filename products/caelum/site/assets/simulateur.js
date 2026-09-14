@@ -64,8 +64,13 @@
       res.push({ n: "Canal lanceurs d'alerte", s: "oui",
         t: "Applicable : la loi du 28/11/2022 impose un canal de signalement interne confidentiel aux entreprises d'au moins 50 travailleurs. Vérifiez qu'un dispositif existe et que vos travailleurs le connaissent." });
     } else {
-      res.push({ n: "Canal lanceurs d'alerte", s: "non",
-        t: "Non applicable à ce jour : l'obligation commence à 50 travailleurs. DEUX EXCEPTIONS : si vous relevez des dispositions en matière de services, produits et marchés financiers, ou si vous êtes assujetti à la législation anti-blanchiment (fiduciaires, notaires, agents immobiliers en font partie), l'obligation s'applique SANS SEUIL. Vérifiez votre situation. À revoir aussi si vous approchez les 50." });
+      // Verdict « à vérifier » et non « non concerné » : ce questionnaire ne demande PAS
+      // si vous relevez du secteur financier ou de l'anti-blanchiment, où la loi s'applique
+      // sans aucun seuil d'effectif. Rendre « a priori non concerné » à une fiduciaire de
+      // douze personnes serait une affirmation de droit fausse. Le §14 du protocole tranche :
+      // quand les faits ne départagent pas, le verdict le plus prudent gagne.
+      res.push({ n: "Canal lanceurs d'alerte", s: "verifier",
+        t: "À vérifier. En règle générale l'obligation commence à 50 travailleurs — mais elle s'applique SANS SEUIL, quel que soit votre effectif, si vous relevez des dispositions en matière de services, produits et marchés financiers, ou si vous êtes assujetti à la législation anti-blanchiment. Beaucoup de petites structures le sont sans le savoir. Ce test ne vous pose pas la question : vérifiez votre situation. Si aucune des deux ne vous concerne, l'obligation ne commence qu'à 50 travailleurs." });
     }
     // CSRD / DORA — démystification honnête, toujours affichée.
     res.push({ n: "CSRD et DORA — le point honnête", s: "non",
