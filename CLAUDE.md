@@ -314,6 +314,17 @@ Ces deux règles s'appliquent aux **42 agents**, pas seulement à ceux de la cha
    avant d'affirmer « ce qui existe déjà » (fiche E-07). Le substrat Python ne lit pas ce fichier :
    la base d'erreurs l'atteint via `agents/base_erreurs.py`, qui la **lit** sans la recopier.
 
+## 2 quater. ORDONNANCEURS — les Routines qui te réveillent (2026-09-14)
+Tu n'es pas toujours lancé par un humain. Des **Routines** programmées réveillent des sessions à heure
+fixe. Elles sont inventoriées dans **`codex/ROUTINES.md`** : cadence, rôle, condition d'arrêt, date de
+relecture du prompt.
+
+**Pourquoi ça te concerne.** Une condition d'arrêt écrite pour un agent ne peut pas arrêter l'horloge qui
+le réveille (fiche E-23). Si tu constates que tu tournes sans rien produire, ou que ta consigne cite une PR,
+un nombre d'agents ou une étape qui n'existent plus, le défaut est **en amont** : signale-le dans
+`codex/A-DECIDER.md` et dans `codex/ROUTINES.md`, au lieu d'écrire un rapport de plus pour dire qu'il n'y a
+rien à dire. Vérifie aussi que ta consigne décrit encore le monde avant de conclure que le travail manque.
+
 ## 3. RÈGLE DE VÉRIFICATION (À CHAQUE GESTE — le cœur)
 - VÉRIFIER, PAS SUPPOSER : lance réellement le build ET les tests ; vérifie que le push distant a réussi.
 - VÉRITÉ : aucun chiffre inventé ; chaque affirmation légale = loi réelle + source officielle + date, sinon supprimée.
