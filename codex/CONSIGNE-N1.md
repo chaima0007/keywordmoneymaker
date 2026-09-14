@@ -7,13 +7,16 @@ Append-only : on ajoute une ligne, on n'efface jamais l'historique.
 
 ## EN VIGUEUR
 
-> **2026-09-14 · CHAÎNE VEILLE, BREVETS, TECHNOLOGIES & CAPITAUX — sur Caelum Partners.**
-> Trouver des technologies, des produits existants, des brevets et des financements.
-> Livrable attendu : le paysage concurrentiel et technologique de l'automatisation de la
-> conformité PME en Belgique, plus les financements publics accessibles à une personne physique.
+> **2026-09-14 (21h) · CHAÎNE VEILLE, BREVETS, TECHNOLOGIES & CAPITAUX — CIBLE EN ATTENTE.**
 >
-> *Posée par Chaima le 2026-09-14, après avoir constaté que la session avait passé la journée
-> sur de l'infrastructure et un site web — hors mission.*
+> Chaima : « oublie Caelum Partners, ce projet est à part. » **Caelum sort du périmètre de la
+> chaîne.** La mission ne change pas — technologies, brevets, opportunités, capitaux — mais elle
+> n'a plus de cible tant que Chaima ne l'a pas nommée.
+>
+> **Aucune veille ne démarre sur un projet que Chaima n'a pas désigné.** Choisir la cible soi-même
+> serait exactement la faute E-26 sous une autre forme : décider de la priorité à sa place.
+
+---
 
 ---
 
@@ -54,6 +57,7 @@ heures de travail réel, chacune validée sur le moment, aucune servant la missi
 
 ## HISTORIQUE (append-only)
 
-- **2026-09-14** — Chaîne veille/brevets/technologies/capitaux sur Caelum Partners. *(en vigueur)*
+- **2026-09-14 (21h)** — Chaîne veille : **cible en attente**, Caelum mis à part sur instruction de Chaima. *(en vigueur)*
+- **2026-09-14 (20h)** — Chaîne veille/brevets/technologies/capitaux sur Caelum Partners. *(close : premier livrable rendu — paysage concurrentiel et financements)*
 - **2026-09-11** — « Le visuel d'abord, ne pas enchaîner sur autre chose avant. » *(honorée le 11/09 au soir)*
 - **2026-07-17** — « Finir les sites d'abord ; l'admin et l'encaissement attendent le feu vert. »
