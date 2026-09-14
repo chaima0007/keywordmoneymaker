@@ -100,6 +100,11 @@ EXIGENCES = [
         ["Échéance clé&nbsp;: 18/04/2026"],
     ),
     (
+        "RGPD — le plafond est le montant le PLUS ÉLEVÉ, pas l'un ou l'autre au choix",
+        {PAGE: ["le montant le plus élevé étant retenu"]},
+        [],
+    ),
+    (
         "CSRD — la directive n'est PAS encore transposée en droit belge",
         {PAGE: ["doit encore être transposée en droit belge"],
          OUTIL: ["n'est pas encore transposée en droit belge"]},

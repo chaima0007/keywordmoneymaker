@@ -137,10 +137,30 @@ affirmation juridique du site est recoupée en **français et en néerlandais** 
 et en **anglais** pour le droit européen (EUR-Lex publie souvent la version anglaise en premier,
 et les documents de la Commission y sont plus détaillés).
 
-## 4 bis. RGPD — non recontrôlé ce jour
+## 4 bis. RGPD — **VÉRIFIÉ** sur `cnil.fr` : le site sous-estimait la règle
 
-Les plafonds de 20 M€ / 4 % (article 83 du RGPD) n'ont pas été recoupés à la source aujourd'hui.
-**NON VÉRIFIÉ ce jour** — inscrit au prochain passage plutôt que présenté comme contrôlé.
+Source : règlement (UE) 2016/679, **article 83, §§ 4 et 5**, texte publié par la CNIL — autorité de
+contrôle officielle — https://www.cnil.fr/fr/reglement-europeen-protection-donnees/chapitre8 —
+consulté le 2026-09-14. Concordant avec EUR-Lex et gdpr-law.eu.
+
+> « amendes administratives pouvant s'élever jusqu'à 20 000 000 EUR ou, dans le cas d'une
+> entreprise, jusqu'à 4 % du chiffre d'affaires annuel **mondial total** de l'exercice précédent,
+> **le montant le plus élevé étant retenu** »
+
+Le site écrivait « Sanctions jusqu'à 20 M€ ou 4 % du chiffre d'affaires ». Deux omissions :
+le chiffre d'affaires est **mondial total**, et surtout ce n'est pas « l'un ou l'autre » — c'est
+**le plus élevé des deux**.
+
+**Sens de l'erreur : sous-estimation.** Contrairement aux deux autres défauts du jour, personne ne
+risque une sanction à cause de celle-ci : un lecteur en déduit une sanction plus faible, pas une
+obligation inexistante. Elle reste une imprécision sur un site qui vend de la précision.
+**Corrigée**, et la ligne de source porte désormais l'article exact et la date de consultation.
+
+**NON VÉRIFIÉ, et je ne l'ai pas corrigé pour autant** : la carte NIS2 affiche « Sanctions jusqu'à
+10 M€ ou 2 % du chiffre d'affaires ». La directive NIS2 emploie vraisemblablement la même règle du
+montant le plus élevé — mais **vraisemblablement n'est pas vérifié**, et transposer par symétrie
+une règle constatée dans un autre texte est exactement ce que la fiche E-22 interdit. À relire à
+la source au prochain passage.
 
 ## 5. L'e-reporting 2028 — **VÉRIFIÉ** sur `blogitaa.be` (ITAA) : ma suspicion était fausse
 
