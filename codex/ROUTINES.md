@@ -58,10 +58,65 @@ depuis le 2026-09-12 et la réconciliation est faite depuis le 2026-09-11 (56 ag
 chaque heure, sur une consigne sans objet. Une boucle qui ne produit rien n'est pas toujours une boucle
 paresseuse : **regarder d'abord si sa consigne décrit encore le monde.**
 
-## CE QUI RESTE À DÉCLARER
-Cinq Routines n'ont ni condition d'arrêt écrite ni date de relecture de prompt, dont
-`Jeu Linux Empire Chaima` qui tourne **toutes les heures** sans avoir été auditée ici. À faire par Chaima
-ou par la session qui les a créées — pas devinable depuis ce dépôt.
+## AUDIT DES DIX CONSIGNES (2026-09-14, 19h30 Bruxelles)
+
+Les consignes des Routines sont **lisibles** (champ `session_request` de `list_triggers`) — ce qui
+n'était pas su jusqu'ici, et qui change tout : on peut enfin comparer ce qu'une Routine CROIT faire
+à ce que le monde est. Les dix ont été lues intégralement.
+
+| Routine | Condition d'arrêt | Consigne conforme au monde ? |
+|---|---|---|
+| Méta-surveillance | **oui** (« jour sain → ne notifie pas ») | corrigée ce jour (9 Routines au lieu de 5, heure LLAM juste) |
+| Caelum — contrôle 8 h | oui | cite une PR — à recouper |
+| Caelum — Chaîne veille | oui | cite une PR — à recouper |
+| Jeu Linux Empire Chaima | faible (« continue si rien ne bloque ») | **n'indique aucun emplacement de travail** |
+| Caelum — BOUCLE de production | **non** | **périmée** : se décrit « toutes les ~2h », tourne toutes les 8 h |
+| La Loi Avec Moi — BOUCLE contenu | **non** | bloquée en amont (voir ci-dessous) |
+| Surveillant Drive & Orchestrateur | **non** | non recoupée |
+| Point de contrôle de midi | **non** | non recoupée |
+| Feedback quotidien honnête | **non** | non recoupée |
+| Coach quotidien | **non** | non recoupée |
+
+**Six Routines sur dix n'ont aucune condition d'arrêt écrite.** Elles ne peuvent donc pas décider de
+se taire : elles produisent quelque chose à chaque réveil, par construction. C'est le mécanisme exact
+des fiches E-01 et E-02 (une trentaine de journaux quasi identiques).
+
+### Deux consignes périmées, dont une par notre faute
+1. **BOUCLE de production** se présente comme tournant « toutes les ~2h » ; la correction de cadence
+   du 14/09 l'a passée à 8 h. Une Routine qui se trompe sur sa propre fréquence dimensionne mal son
+   travail à chaque passage. **Même défaut que la méta-surveillance, même cause : on a changé
+   l'horloge sans relire la consigne.** La leçon est générale — *changer une cadence oblige à relire
+   la consigne qu'elle réveille.*
+2. **Jeu Linux Empire Chaima** : consigne lue, mystère levé. Ce n'est pas un projet d'Empire, c'est un
+   **jeu d'étude Linux** pour l'examen MQ06/MQ07 (Rocky Linux 9) de Chaima, avec ses propres rôles
+   (pédagogue, expert Linux, angle mort). Légitime. Mais elle tourne **toutes les heures, 24 fois par
+   jour** — la plus grosse consommatrice de réveils de tout le dispositif — et sa consigne
+   **n'indique nulle part où vit le jeu** : ni dépôt, ni dossier, ni document. Rien ne permet donc de
+   vérifier qu'elle produit quoi que ce soit.
+
+### Ce qui reste à déclarer
+Six conditions d'arrêt et dix dates de relecture de prompt. Une condition d'arrêt s'écrit dans la
+consigne de la Routine, donc dans l'automatisation de Chaima : proposée ici, jamais posée d'office.
+
+## TROU DE COUVERTURE DE LA MÉTA-SURVEILLANCE (relevé le 2026-09-14)
+La Routine « Méta-surveillance — gardien du gardien » est le seul dispositif qui contrôle les autres.
+Sa consigne nomme **cinq** Routines à auditer : Coach 09h30 · Point de contrôle de midi 13h00 ·
+Surveillant Drive 18h00 · Feedback honnête 21h30 · La Loi Avec Moi 08h00 (heures de Bruxelles).
+
+Deux défauts, relevés en lisant la consigne elle-même et non sa description :
+
+1. **Cinq Routines sur dix sont hors surveillance** — dont « Caelum — BOUCLE de production »,
+   « Caelum — Chaîne veille brevets & capitaux », « Caelum — contrôle 8 h » et
+   « Jeu Linux Empire Chaima », c'est-à-dire précisément celles qui produisent du code et des
+   documents. Le gardien du gardien ne regarde pas là où le travail se fait.
+2. **Une heure citée est devenue fausse par notre faute** — la consigne attend La Loi Avec Moi à
+   08h00 ; depuis la correction de cadence du 2026-09-14 elle tourne toutes les deux heures.
+   Le gardien auditera donc une Routine muette à 08h00 et conclura à une anomalie inexistante,
+   pendant que douze exécutions réelles passeront inaperçues. C'est le motif de la fiche E-02
+   (un faux positif qui survit parce que personne ne recoupe la consigne avec le monde).
+
+**Ni l'un ni l'autre n'est corrigé ici** : réécrire la consigne d'une Routine, c'est modifier
+l'automatisation de Chaima. Proposition déposée, décision à elle.
 
 ## VOIR AUSSI
 - `codex/veille/CHARTE-CHAINE.md` — les 5 règles propres à la chaîne veille que rien d'autre ne couvre

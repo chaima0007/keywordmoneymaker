@@ -33,7 +33,11 @@ jobs:
           set -euo pipefail
           git init -q .
           git remote add origin "https://github.com/${DEPOT}"
-          git fetch -q --depth 1 origin "${COMMIT}"
+          # Historique COMPLET, pas --depth 1 : le contrôle des rapports doit pouvoir
+          # dire si un commit cité existe réellement. Dans un clone superficiel,
+          # « git cat-file -e » répond non pour un commit qui existe (fiche E-11).
+          # 70 commits, 3,5 Mo : le coût est nul, l'aveuglement ne l'était pas.
+          git fetch -q origin "${COMMIT}"
           git checkout -q FETCH_HEAD
           echo "Commit contrôlé : ${COMMIT}"
 
@@ -56,6 +60,16 @@ jobs:
         # le 2026-09-11 : deux registres d'erreurs coexistaient sans que rien ne les compare
         # (fiche E-18). Un index dérivé et vérifié ne peut plus dériver en silence.
         run: python3 scripts/generer_registre_erreurs.py --verifier
+
+      - name: Rapports déposés — traces recoupées (BLOQUANT)
+        # Contrôle de la partie surveillée par la machine. La « phrase de contrôle honnête »
+        # du §2 ter est écrite par l'agent qui se contrôle lui-même : elle ne prouve rien.
+        # Ce contrôle-ci ne juge pas la sincérité, il recoupe les TRACES — commit cité qui
+        # n'existe pas, chemin inventé, run cité sans URL, confiance en pourcentage (interdite
+        # par le §13), « VÉRIFIÉ » affirmé sans preuve. Motif : fiches E-11 et E-13, où l'erreur
+        # n'était pas un mensonge mais une trace jamais recoupée.
+        # Sept pièges posés avant la bascule, sept détectés ; témoin vert (voir le commit).
+        run: python3 scripts/verifier_rapports.py
 
       - name: pip-audit — CVE des dépendances DU PROJET (pas de l'environnement du runner)
         continue-on-error: true   # informatif : l'absence de CVE connue ne prouve pas l'absence de faille

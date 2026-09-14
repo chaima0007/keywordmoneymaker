@@ -479,6 +479,44 @@ jetable.
 travail qu'il valide, il n'est pas un test : c'est un risque de plus. Et deuxième leçon, née du
 symptôme : quand un témoin échoue, soupçonner d'abord le banc d'essai, pas la pièce testée.
 
+## E-25 — Un contrôle aveugle a accusé le rapport au lieu de s'accuser lui-même
+**Constaté le** 2026-09-14 · **État** corrigé le jour même
+
+**Ce qui s'est passé.** Le contrôle des rapports (`scripts/verifier_rapports.py`, règle R3) vérifie
+que tout commit cité existe, via `git cat-file -e`. Il passait en local. À sa **première exécution
+réelle en intégration continue**, il a échoué en annonçant : « le commit `45b2e4d` n'existe pas dans
+ce dépôt ». Ce commit existe : c'est la tête de `main`, et le site en production en est issu.
+
+Le workflow récupère le code avec `git fetch --depth 1`. Dans un dépôt **superficiel**, `cat-file`
+répond non pour un commit parfaitement réel mais simplement non récupéré. Le contrôle n'a pas menti :
+il a confondu **« je ne vois pas »** avec **« ça n'existe pas »**.
+
+Circonstance aggravante : le même contrôle passait en local *par chance*. Le clone local était lui
+aussi superficiel ; le commit cité se trouvait dans la profondeur récupérée. Un vert obtenu par
+hasard est indistinguable d'un vert mérité — c'est ce qui rendait le défaut invisible.
+
+**Cause racine.** Un outil de vérification a été écrit sans se demander ce qu'il fait quand **il ne
+peut pas voir**. Deux états ont été fondus en un seul : « absent » et « hors de portée ». C'est la
+fiche E-11 sous une autre forme : un historique tronqué pris pour l'historique réel.
+
+**Signal de détection.** Tu écris un contrôle qui interroge l'historique git (`cat-file`, `log`,
+`rev-list`, dates de commit) et qui s'exécutera dans une intégration continue — donc, par défaut,
+dans un clone superficiel. Ou, plus généralement : ton contrôle possède une branche de code où il
+répond « faux » alors que la réponse honnête serait « je ne sais pas ».
+
+**Contre-mesure — deux règles, dans cet ordre.**
+1. **Donner à voir.** L'historique complet est récupéré dans le workflow (`--depth 1` retiré) : 70
+   commits, 3,5 Mo. Le coût était nul ; l'aveuglement ne l'était pas.
+2. **Un contrôle qui ne peut pas voir échoue LUI-MÊME, il n'accuse personne.** Le script détecte
+   désormais un dépôt superficiel et s'arrête en le disant, au lieu de rendre un verdict sur le
+   rapport. « Je ne peux pas vérifier » n'est pas « c'est faux », et n'est surtout pas « c'est bon ».
+
+**Leçon transférable.** Avant de faire confiance à un contrôle, demander : que répond-il quand il est
+aveugle ? S'il répond « faux », il fabriquera des faux positifs (fiche E-02). S'il répond « vrai »,
+il fabriquera de faux verts, ce qui est pire. La seule réponse acceptable est qu'il se déclare
+incapable — bruyamment. Et un contrôle n'a pas prouvé sa valeur tant qu'il n'a pas tourné là où il
+doit vivre : celui-ci a été pris en défaut par sa première exécution réelle, pas par ses sept pièges.
+
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
 ```
