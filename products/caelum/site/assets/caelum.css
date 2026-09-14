@@ -27,48 +27,70 @@
   src:url("fonts/inter-latin.woff2") format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 
 /* ================================================================
-   CAELUM PARTNERS — système de design « Le Greffe »
-   Registre institutionnel et typographique.
+   CAELUM PARTNERS — système de design « LE SIGNAL »
+   Direction C, confirmée par Chaima le 2026-09-11 (indigo #4338CA).
+   Remplace « Le Greffe », rejeté : « on dirait un vieux site des années 2000 »,
+   trop sage, trop vide, sans texture.
 
-   RÈGLE FONDATRICE : LA COULEUR NE SERT QU'À DIRE QUELQUE CHOSE.
-   Aucune couleur décorative. Les boutons sont en encre, pas en couleur.
-   Les trois seules couleurs de la page portent un verdict :
-     terracotta = s'applique · ambre = à vérifier · vert = non concerné.
+   CE QUI CHANGE, ET POURQUOI
+   1. UNE couleur possédée. L'indigo n'est ni le bleu marine par défaut du
+      secteur, ni le violet des secrétariats sociaux belges. Il porte la marque.
+   2. La couleur de SENS reste intouchable. Les trois verdicts du simulateur ne
+      bougent pas d'un octet, et l'indigo s'en tient à 87° de teinte du plus
+      proche : la couleur de marque et la couleur de verdict ne se confondent
+      jamais, même pour un œil qui distingue mal les teintes.
+   3. Fraunces passe en 700 et en GRANDE taille. C'est précisément ce qui
+      manquait : des titres en graisse 400 produisent une page plate. Les
+      polices étant variables (100-900), cela ne coûte aucun téléchargement.
+   4. Du rythme : bandes claires et bandes sombres alternent. Une page
+      uniformément claire s'aplatit.
+   5. Des icônes géométriques, un tracé unique, une par obligation.
+   6. Des micro-interactions au survol — la bordure prend l'indigo, la carte se
+      soulève. Toutes désactivées sous prefers-reduced-motion.
 
-   Deux principes repris du haut de marché :
-   - la profondeur vient du CONTRASTE DE SURFACES, jamais d'une ombre
-     (cartes blanches posées sur papier crème) ;
-   - la hiérarchie se fait par la TAILLE, jamais par le gras.
+   CE QUI NE CHANGE PAS : le contenu, les prix, les disclaimers, la logique du
+   simulateur, le sélecteur FR/NL, le bloc « expert nommé » vide en réserve.
+
+   CONTRASTES : 16 paires calculées, 16 conformes AA. Les valeurs sont notées
+   en commentaire à côté de chaque token concerné.
    ================================================================ */
-
 :root{
-  /* Surfaces */
-  --papier:#FAF8F3;      /* fond de page, crème teinté (jamais blanc clinique) */
-  --surface:#FFFFFF;     /* cartes : le contraste avec le papier EST l'élévation */
-  --filet:#E5E0D6;       /* filets 1 px, à la place des ombres */
-  --filet-fort:#D5CFC1;
+  /* ——— Surfaces : gris froid légèrement bleuté, jamais le crème ——— */
+  --papier:#F7F7FB;        /* fond de page */
+  --surface:#FFFFFF;       /* cartes */
+  --filet:#E2E2EE;         /* filets 1 px */
+  --filet-fort:#C9C9DC;
 
-  /* Encre */
-  --encre:#16232F;       /* texte principal ET boutons (jamais le noir pur) */
-  --encre-douce:#2B3A48;
-  --gris:#545F6B;        /* texte secondaire — AA vérifié sur papier et sur blanc */
+  /* ——— Encre : bleu-nuit, pas le noir ——— */
+  --encre:#14162B;         /* 16,66:1 sur papier */
+  --encre-douce:#1E2240;
+  --gris:#5A5E78;          /* 5,94:1 sur papier — texte secondaire */
 
-  /* Sur fond sombre (en-tête, pied de page) */
-  --sur-sombre:#F6F3EC;
-  --sur-sombre-doux:#C2CBD4;
-  --sur-sombre-tenu:#94A0AC;
+  /* ——— LE SIGNAL : la seule couleur de marque ——— */
+  --signal:#4338CA;        /* 7,90:1 sur blanc — liens, boutons, icônes */
+  --signal-vif:#5B50E8;    /* survol — 5,59:1 en blanc dessus */
+  --signal-clair:#C7D2FE;  /* 11,94:1 sur encre — accent sur fond sombre */
+  --signal-voile:#EEF0FE;  /* pastilles d'icônes */
 
-  /* ——— Les trois seules couleurs de la page : elles portent un SENS ——— */
-  --applique:#B0503C;    /* « s'applique à vous » */
-  --verifier:#8A6D2F;    /* « à vérifier » */
-  --non-concerne:#1E6E50;/* « a priori non concerné » */
+  /* ——— Sur fond sombre ——— */
+  --sur-sombre:#F4F4FA;        /* 16,25:1 */
+  --sur-sombre-doux:#C3C7E0;   /* 10,65:1 */
+  --sur-sombre-tenu:#9DA2C0;   /*  7,09:1 */
 
-  /* Accessibilité : signature de focus (principe repris de GOV.UK) */
-  --focus:#FFDD00;
+  /* ——— Les trois couleurs de SENS : inchangées, non négociables ——— */
+  --applique:#B0503C;      /* « s'applique à vous »        5,17:1 */
+  --verifier:#8A6D2F;      /* « à vérifier »               4,87:1 */
+  --non-concerne:#1E6E50;  /* « a priori non concerné »    6,17:1 */
 
-  --max:1060px;
-  --max-lisible:720px;   /* mesure de lecture : ~70 caractères */
-  --rayon:6px;           /* rayons discrets : registre document, pas application */
+  --focus:#FFDD00;         /* signature de focus, reprise de GOV.UK */
+
+  --max:1080px;
+  --max-lisible:720px;
+  --rayon:10px;            /* plus généreux que Le Greffe : registre produit */
+  --rayon-petit:6px;
+  --pas:clamp(3rem,7vw,5rem);  /* respiration verticale des sections */
+  --ombre:0 1px 2px rgba(20,22,43,.04), 0 8px 24px -12px rgba(20,22,43,.10);
+  --ombre-levee:0 2px 4px rgba(20,22,43,.05), 0 18px 40px -16px rgba(67,56,202,.28);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -85,43 +107,44 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-/* ---------- Typographie : hiérarchie par la TAILLE, pas par le gras ---------- */
+/* ---------- Typographie : la hiérarchie vient de la TAILLE **et** du GRAS ---------- */
 h1,h2,h3,.marque{
   font-family:"Fraunces","Iowan Old Style","Georgia",serif;
-  font-weight:400;            /* volontairement léger : la taille fait la hiérarchie */
-  line-height:1.15;
-  letter-spacing:-.012em;
+  line-height:1.08;
+  letter-spacing:-.025em;
   color:var(--encre);
+  text-wrap:balance;
 }
-h1{font-size:clamp(1.95rem,4.6vw,3rem)}
-h2{font-size:clamp(1.45rem,3vw,1.95rem);margin-bottom:.5rem}
-h3{font-size:1.12rem;font-weight:500;line-height:1.3;margin-bottom:.3rem}
+h1{font-size:clamp(2.3rem,5.6vw,3.7rem);font-weight:700}
+h2{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:700;margin-bottom:.6rem}
+h3{font-size:1.16rem;font-weight:600;line-height:1.3;margin-bottom:.35rem;letter-spacing:-.015em}
 
-a{color:var(--encre);text-decoration:underline;text-underline-offset:.16em;text-decoration-thickness:1px}
-a:hover{text-decoration-thickness:2px}
+a{color:var(--signal);text-decoration:underline;text-underline-offset:.18em;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px;color:var(--signal-vif)}
 
-/* Focus visible et franc — l'accessibilité est un marqueur de sérieux */
 :focus-visible{outline:3px solid var(--focus);outline-offset:2px;background:rgba(255,221,0,.18);border-radius:2px}
 
 .skip{position:absolute;left:-9999px;top:0;background:var(--surface);color:var(--encre);padding:.7rem 1.1rem;z-index:30;border:1px solid var(--encre)}
 .skip:focus{left:0}
 
 /* ---------- Barre de langue — en Belgique, elle précède le contenu ---------- */
-.langues{background:var(--encre);border-bottom:1px solid rgba(246,243,236,.14)}
-.langues-int{max-width:var(--max);margin:0 auto;padding:.35rem 1.2rem;display:flex;align-items:center;gap:.9rem;font-size:.82rem}
-.langues .etiq{color:var(--sur-sombre-tenu);letter-spacing:.04em}
+.langues{background:var(--encre);border-bottom:1px solid rgba(244,244,250,.12)}
+.langues-int{max-width:var(--max);margin:0 auto;padding:.4rem 1.2rem;display:flex;align-items:center;gap:.9rem;font-size:.82rem}
+.langues .etiq{color:var(--sur-sombre-tenu);letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;font-weight:600}
 .langues a,.langues span.actif{color:var(--sur-sombre-doux);text-decoration:none;padding:.15rem .1rem}
-.langues span.actif{color:var(--sur-sombre);border-bottom:2px solid var(--sur-sombre)}
+.langues span.actif{color:var(--sur-sombre);border-bottom:2px solid var(--signal-clair)}
 .langues a:hover{color:var(--sur-sombre);text-decoration:underline}
 
 /* ---------- En-tête ---------- */
-header.site{background:var(--encre);color:var(--sur-sombre);padding:1rem 1.2rem}
-.nav{max-width:var(--max);margin:0 auto;display:flex;align-items:baseline;gap:1.5rem;flex-wrap:wrap}
+header.site{background:var(--encre);color:var(--sur-sombre);padding:1.05rem 1.2rem}
+.nav{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
 .marque{
-  font-size:1.18rem;letter-spacing:.01em;color:var(--sur-sombre);
-  text-decoration:none;text-transform:lowercase;   /* bas de casse, sans symbole */
+  font-size:1.2rem;font-weight:600;letter-spacing:-.015em;color:var(--sur-sombre);
+  text-decoration:none;text-transform:lowercase;
+  display:inline-flex;align-items:center;gap:.6rem;
 }
 .marque:hover{text-decoration:none;color:#fff}
+.marque svg{flex:none}
 .nav .spacer{flex:1}
 .nav a.lien{color:var(--sur-sombre-doux);text-decoration:none;font-size:.94rem}
 .nav a.lien:hover{color:var(--sur-sombre);text-decoration:underline;text-underline-offset:.2em}
@@ -129,170 +152,233 @@ header.site{background:var(--encre);color:var(--sur-sombre);padding:1rem 1.2rem}
 /* ---------- Structure ---------- */
 main{max-width:var(--max);margin:0 auto;padding:0 1.2rem}
 main.lisible{max-width:var(--max-lisible)}
-section{padding:3.2rem 0;border-top:1px solid var(--filet)}
+section{padding:var(--pas) 0;border-top:1px solid var(--filet)}
 section:first-of-type{border-top:none}
 
 .eyebrow{
-  font-family:"Inter",sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--gris);margin-bottom:.8rem;
+  font-family:"Inter",sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--signal);margin-bottom:.85rem;
 }
-.intro{color:var(--gris);max-width:62ch}
-p+p{margin-top:.9rem}
+.intro{color:var(--gris);max-width:62ch;font-size:1.03rem}
+p+p{margin-top:.95rem}
 
-/* ---------- Héros : une question, pas un slogan. Sur papier, sans mise en scène. ---------- */
-.hero{border-bottom:1px solid var(--filet);background:var(--papier)}
-.hero-int{max-width:var(--max);margin:0 auto;padding:4rem 1.2rem 3.4rem}
-.hero h1{max-width:19ch}
-.hero .chapo{margin-top:1.2rem;max-width:60ch;color:var(--gris);font-size:clamp(1rem,2vw,1.08rem)}
-.hero small{display:block;margin-top:1rem;color:var(--gris);font-size:.86rem}
-.filet-titre{width:54px;height:2px;background:var(--encre);margin-bottom:1.6rem}
+/* ---------- Héros : sombre, avec une trame géométrique discrète ---------- */
+.hero{background:var(--encre);color:var(--sur-sombre);position:relative;overflow:hidden}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--encre-douce) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--encre-douce) 1px,transparent 1px);
+  background-size:46px 46px;opacity:.5;
+  -webkit-mask-image:radial-gradient(120% 90% at 84% 8%,#000 0%,transparent 66%);
+          mask-image:radial-gradient(120% 90% at 84% 8%,#000 0%,transparent 66%);
+}
+.hero-int{max-width:var(--max);margin:0 auto;padding:clamp(3.4rem,8vw,5.6rem) 1.2rem clamp(3rem,6vw,4.4rem);position:relative;z-index:1}
+.hero h1{max-width:17ch;color:var(--sur-sombre)}
+.hero .eyebrow{color:var(--signal-clair)}
+.hero .chapo{margin-top:1.35rem;max-width:58ch;color:var(--sur-sombre-doux);font-size:clamp(1.02rem,2vw,1.14rem)}
+.hero small{display:block;margin-top:1.1rem;color:var(--sur-sombre-tenu);font-size:.86rem}
+.hero .filet-titre{background:var(--signal-clair)}
+.filet-titre{width:58px;height:3px;background:var(--signal);margin-bottom:1.7rem;border-radius:2px}
 
-/* ---------- Actions : UN SEUL bouton plein par bande, en encre ---------- */
+/* ---------- Actions : UN SEUL bouton plein par bande, en indigo ---------- */
 .cta{
-  display:inline-block;background:var(--encre);color:var(--sur-sombre);
-  text-decoration:none;padding:.82rem 1.5rem;border-radius:var(--rayon);
-  font-family:"Inter",sans-serif;font-weight:500;font-size:1rem;
-  border:1px solid var(--encre);
+  display:inline-block;background:var(--signal);color:#fff;
+  text-decoration:none;padding:.86rem 1.6rem;border-radius:var(--rayon-petit);
+  font-family:"Inter",sans-serif;font-weight:600;font-size:1rem;
+  border:1px solid var(--signal);
+  transition:background .18s ease,transform .18s ease,box-shadow .18s ease;
 }
-.cta:hover{background:#0E1822;color:#fff;text-decoration:none}
-.cta.secondaire{background:transparent;color:var(--encre);border-color:var(--filet-fort)}
-.cta.secondaire:hover{background:var(--surface);color:var(--encre);border-color:var(--encre)}
-.cta-rangee{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.9rem;align-items:center}
+.cta:hover{background:var(--signal-vif);border-color:var(--signal-vif);color:#fff;text-decoration:none;transform:translateY(-2px);box-shadow:var(--ombre-levee)}
+.cta.secondaire{background:transparent;color:var(--signal);border-color:var(--filet-fort)}
+.cta.secondaire:hover{background:var(--signal-voile);color:var(--signal);border-color:var(--signal);box-shadow:none}
+.hero .cta.secondaire{color:var(--sur-sombre);border-color:#3A3F63;background:transparent}
+.hero .cta.secondaire:hover{background:#232744;color:#fff}
+.cta-rangee{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem;align-items:center}
 
-/* ---------- Cartes : blanc sur crème. AUCUNE ombre. ---------- */
-.grille{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));margin-top:1.8rem}
+/* ---------- Cartes : relief léger, et le survol répond ---------- */
+.grille{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));margin-top:2rem}
+/* Quatre éléments se rangent en 2×2, jamais en 3+1 qui laisse le dernier seul.
+   Écrit en :has() plutôt qu'en classe dédiée : la règle suit le NOMBRE réel
+   d'éléments, donc elle reste juste si une obligation est ajoutée ou retirée
+   demain. Navigateur sans :has() → on retombe sur auto-fit ci-dessus, qui
+   fonctionne, simplement moins bien équilibré. */
+@media (min-width:760px){
+  .grille:has(> :nth-child(4):last-child){grid-template-columns:repeat(2,1fr)}
+}
 .carte{
   background:var(--surface);border:1px solid var(--filet);border-radius:var(--rayon);
-  padding:1.4rem 1.5rem;
+  padding:1.5rem 1.6rem;box-shadow:var(--ombre);
+  transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease;
 }
+.carte:hover{border-color:var(--signal);transform:translateY(-3px);box-shadow:var(--ombre-levee)}
 .carte p{font-size:.95rem;color:var(--gris)}
-.carte h3{margin-top:.55rem}
+.carte h3{margin-top:.6rem}
 
-/* Étiquette d'échéance : information datée, en encre — pas un ornement */
+/* Pastille d'icône : le tracé est identique d'une obligation à l'autre */
+.chip{
+  width:44px;height:44px;border-radius:12px;background:var(--signal-voile);
+  display:grid;place-items:center;margin-bottom:1rem;
+  transition:background .18s ease;
+}
+.carte:hover .chip{background:var(--signal-clair)}
+.chip svg{width:22px;height:22px;fill:none;stroke:var(--signal);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* Étiquette d'échéance : information datée, pas un ornement */
 .date{
-  display:inline-block;font-family:"Inter",sans-serif;font-size:.75rem;font-weight:600;
-  letter-spacing:.05em;text-transform:uppercase;color:var(--gris);
-  border-bottom:1px solid var(--filet-fort);padding-bottom:.22rem;
+  display:inline-block;font-family:"Inter",sans-serif;font-size:.72rem;font-weight:600;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--signal);
+  background:var(--signal-voile);border-radius:999px;padding:.24rem .7rem;
 }
 
 /* ---------- Note de base légale : le motif graphique récurrent du site ---------- */
 .source{
-  margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--filet);
+  margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--filet);
   font-size:.8rem;color:var(--gris);line-height:1.5;
 }
 .source b{font-weight:600;color:var(--encre-douce)}
 
 /* ---------- Encarts ---------- */
-.encadre{background:var(--surface);border:1px solid var(--filet);border-radius:var(--rayon);padding:1.4rem 1.6rem;margin-top:1.5rem}
-.encadre.marque-gauche{border-left:3px solid var(--encre)}
+.encadre{background:var(--surface);border:1px solid var(--filet);border-radius:var(--rayon);padding:1.5rem 1.7rem;margin-top:1.6rem;box-shadow:var(--ombre)}
+.encadre.marque-gauche{border-left:3px solid var(--signal)}
 .encadre p{color:var(--gris);font-size:.96rem}
 .encadre h3{color:var(--encre)}
 
-/* ---------- Étapes numérotées ---------- */
-ol.pas{list-style:none;counter-reset:p;margin-top:1.6rem;display:grid;gap:1.3rem}
-ol.pas li{counter-increment:p;position:relative;padding-left:2.9rem;color:var(--gris)}
+/* ---------- Bande sombre : la rupture de rythme au milieu de la page ---------- */
+.bande{background:var(--encre);color:var(--sur-sombre);border-radius:var(--rayon);
+  padding:clamp(1.8rem,4vw,2.6rem) clamp(1.6rem,4vw,2.6rem);margin-top:1.8rem}
+.bande .eyebrow{color:var(--signal-clair)}
+.bande h2,.bande h3{color:var(--sur-sombre)}
+.bande p{color:var(--sur-sombre-doux);max-width:62ch}
+.bande .source{border-top-color:rgba(244,244,250,.18);color:var(--sur-sombre-tenu)}
+.bande .source b{color:var(--sur-sombre-doux)}
+
+/* ---------- Étapes numérotées : le chiffre devient un repère fort ---------- */
+ol.pas{list-style:none;counter-reset:p;margin-top:2rem;display:grid;gap:1.5rem}
+ol.pas li{counter-increment:p;position:relative;padding-left:3.4rem;color:var(--gris)}
 ol.pas li::before{
-  content:counter(p);position:absolute;left:0;top:0;
-  width:1.9rem;height:1.9rem;display:grid;place-items:center;
-  border:1px solid var(--filet-fort);border-radius:50%;
-  font-family:"Fraunces",serif;font-size:.95rem;color:var(--encre);background:var(--surface);
+  content:counter(p);position:absolute;left:0;top:-.15rem;
+  font-family:"Fraunces",serif;font-size:1.9rem;font-weight:700;
+  color:var(--signal);line-height:1;letter-spacing:-.04em;
 }
 ol.pas li strong{color:var(--encre);font-weight:600}
 
-/* ---------- Bloc « expert nommé » — en réserve, masqué tant qu'il est vide ---------- */
-.expert{display:grid;grid-template-columns:auto 1fr;gap:1.3rem;align-items:start;
-  background:var(--surface);border:1px solid var(--filet);border-radius:var(--rayon);padding:1.5rem}
+/* ---------- Bloc « expert nommé » — en réserve, vide, aucune biographie inventée ---------- */
+.expert{display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:start;
+  background:var(--surface);border:1px solid var(--filet);border-radius:var(--rayon);padding:1.6rem;box-shadow:var(--ombre)}
 .expert .portrait{width:92px;height:92px;border-radius:50%;border:1px solid var(--filet-fort);
   background:var(--papier);display:grid;place-items:center;color:var(--gris);font-size:.7rem;text-align:center;padding:.4rem}
 .expert p{color:var(--gris);font-size:.96rem}
 @media (max-width:520px){.expert{grid-template-columns:1fr}}
 
 /* ================================================================
-   Simulateur — c'est ici que la couleur reprend ses droits,
-   parce qu'ici elle signifie quelque chose.
+   Simulateur — ici la couleur de SENS reprend ses droits.
+   La logique n'est pas touchée : seule l'apparence change.
    ================================================================ */
 fieldset{border:1px solid var(--filet);border-radius:var(--rayon);background:var(--surface);
-  padding:1.4rem 1.5rem;margin-bottom:1.1rem}
-fieldset:focus-within{border-color:var(--filet-fort)}
-legend{font-family:"Fraunces",serif;font-weight:500;font-size:1.06rem;color:var(--encre);padding:0 .45rem;line-height:1.35}
-.aide{font-size:.87rem;color:var(--gris);margin:.4rem 0 .85rem}
-label.opt{display:flex;align-items:flex-start;gap:.65rem;padding:.5rem .5rem;cursor:pointer;border-radius:4px}
-label.opt:hover{background:var(--papier)}
-label.opt input{margin-top:.3rem;accent-color:var(--encre);flex:none;width:1.05rem;height:1.05rem}
+  padding:1.5rem 1.6rem;margin-bottom:1.2rem;box-shadow:var(--ombre);transition:border-color .18s ease}
+fieldset:focus-within{border-color:var(--signal)}
+legend{font-family:"Fraunces",serif;font-weight:600;font-size:1.12rem;color:var(--encre);padding:0 .45rem;line-height:1.3;letter-spacing:-.015em}
+.aide{font-size:.87rem;color:var(--gris);margin:.45rem 0 .9rem}
+label.opt{display:flex;align-items:flex-start;gap:.7rem;padding:.55rem;cursor:pointer;border-radius:var(--rayon-petit);transition:background .15s ease}
+label.opt:hover{background:var(--signal-voile)}
+label.opt input{margin-top:.3rem;accent-color:var(--signal);flex:none;width:1.05rem;height:1.05rem}
 
 button{
-  background:var(--encre);color:var(--sur-sombre);border:1px solid var(--encre);
-  padding:.82rem 1.6rem;border-radius:var(--rayon);
-  font-family:"Inter",sans-serif;font-size:1rem;font-weight:500;cursor:pointer;
+  background:var(--signal);color:#fff;border:1px solid var(--signal);
+  padding:.86rem 1.7rem;border-radius:var(--rayon-petit);
+  font-family:"Inter",sans-serif;font-size:1rem;font-weight:600;cursor:pointer;
+  transition:background .18s ease,transform .18s ease,box-shadow .18s ease;
 }
-button:hover{background:#0E1822;color:#fff}
+button:hover{background:var(--signal-vif);border-color:var(--signal-vif);transform:translateY(-2px);box-shadow:var(--ombre-levee)}
 
-.progress{display:flex;gap:.35rem;margin-top:1.5rem;max-width:280px}
-.progress span{height:3px;flex:1;background:var(--filet-fort)}
-.progress span.on{background:var(--encre)}
+.progress{display:flex;gap:.35rem;margin-top:1.6rem;max-width:280px}
+.progress span{height:4px;flex:1;background:var(--filet-fort);border-radius:2px;transition:background .25s ease}
+.progress span.on{background:var(--signal)}
 
-#resultat{margin-top:2.4rem}
-.res-carte{background:var(--surface);border:1px solid var(--filet);border-left-width:4px;
-  border-radius:var(--rayon);padding:1.2rem 1.4rem;margin-bottom:.9rem}
+#resultat{margin-top:2.6rem}
+.res-carte{background:var(--surface);border:1px solid var(--filet);border-left-width:5px;
+  border-radius:var(--rayon);padding:1.3rem 1.5rem;margin-bottom:1rem;box-shadow:var(--ombre)}
 .res-oui{border-left-color:var(--applique)}
 .res-verifier{border-left-color:var(--verifier)}
 .res-non{border-left-color:var(--non-concerne)}
-.res-carte h3{margin-bottom:.35rem}
+.res-carte h3{margin-bottom:.4rem}
 .res-carte p{font-size:.94rem;color:var(--gris)}
-.etiquette{font-family:"Inter",sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;display:inline-block;margin-bottom:.3rem}
+.etiquette{font-family:"Inter",sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;display:inline-block;margin-bottom:.35rem}
 .res-oui .etiquette{color:var(--applique)}
 .res-verifier .etiquette{color:var(--verifier)}
 .res-non .etiquette{color:var(--non-concerne)}
 
 .suite{background:var(--surface);border:1px solid var(--filet);border-radius:var(--rayon);
-  padding:1.4rem 1.6rem;margin-top:1.6rem;font-size:.95rem}
+  padding:1.5rem 1.7rem;margin-top:1.7rem;font-size:.95rem;box-shadow:var(--ombre)}
 .suite p{color:var(--gris)}
 [hidden]{display:none !important}
 
 /* ---------- Légende des couleurs : rendre la règle explicite ---------- */
-.legende{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1.2rem;font-size:.82rem;color:var(--gris)}
+.legende{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1.3rem;font-size:.82rem;color:var(--gris)}
 .legende span{display:inline-flex;align-items:center;gap:.4rem}
-.legende i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.legende i{width:10px;height:10px;border-radius:3px;display:inline-block}
 
 /* ================================================================
-   Offres
+   Offres — les prix restent « à confirmer » tant que Chaima n'a pas tranché
    ================================================================ */
 .offre{background:var(--surface);border:1px solid var(--filet);border-radius:var(--rayon);
-  padding:1.6rem;display:flex;flex-direction:column}
-.offre h2{font-size:1.3rem;margin-bottom:.2rem}
-.prix{font-family:"Fraunces",serif;font-size:1.15rem;color:var(--encre);
-  margin:.5rem 0 1.1rem;padding-bottom:.7rem;border-bottom:1px solid var(--filet)}
-.offre ul{list-style:none;margin:0 0 1.2rem;font-size:.94rem;color:var(--gris);display:grid;gap:.5rem}
-.offre li{position:relative;padding-left:1.15rem}
-.offre li::before{content:"—";position:absolute;left:0;color:var(--filet-fort)}
+  padding:1.7rem;display:flex;flex-direction:column;box-shadow:var(--ombre);
+  transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+.offre:hover{border-color:var(--signal);transform:translateY(-3px);box-shadow:var(--ombre-levee)}
+.offre h2{font-size:1.32rem;margin-bottom:.2rem}
+.prix{font-family:"Fraunces",serif;font-weight:600;font-size:1.18rem;color:var(--signal);
+  margin:.55rem 0 1.2rem;padding-bottom:.75rem;border-bottom:1px solid var(--filet)}
+.offre ul{list-style:none;margin:0 0 1.3rem;font-size:.94rem;color:var(--gris);display:grid;gap:.55rem}
+.offre li{position:relative;padding-left:1.3rem}
+.offre li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--signal-clair)}
 .offre .note{font-size:.86rem;color:var(--gris);margin:auto 0 1rem;font-style:italic}
 .avis{background:var(--surface);border:1px solid var(--filet);border-left:3px solid var(--verifier);
-  border-radius:var(--rayon);padding:1.1rem 1.4rem;margin:1.4rem 0 2rem;font-size:.95rem}
+  border-radius:var(--rayon);padding:1.2rem 1.5rem;margin:1.5rem 0 2rem;font-size:.95rem;box-shadow:var(--ombre)}
 
 /* ================================================================
    Pages légales
    ================================================================ */
-.legal h2{font-size:1.2rem;margin:2.2rem 0 .5rem}
+.legal h2{font-size:1.32rem;margin:2.4rem 0 .6rem}
 .legal p,.legal li{color:var(--encre-douce);font-size:.97rem}
 .legal ul{margin-left:1.1rem;display:grid;gap:.45rem}
 .attention{background:var(--surface);border:1px solid var(--filet);border-left:3px solid var(--verifier);
-  border-radius:var(--rayon);padding:1.1rem 1.4rem;margin:1rem 0;font-size:.94rem}
+  border-radius:var(--rayon);padding:1.2rem 1.5rem;margin:1.1rem 0;font-size:.94rem;box-shadow:var(--ombre)}
 
 /* ================================================================
    Pied de page — identification légale complète et visible
    ================================================================ */
-footer.site{background:var(--encre);color:var(--sur-sombre-doux);padding:2.6rem 1.2rem;font-size:.88rem;margin-top:3rem}
+footer.site{background:var(--encre);color:var(--sur-sombre-doux);padding:2.8rem 1.2rem;font-size:.88rem;margin-top:3.4rem}
 .pied{max-width:var(--max);margin:0 auto;display:grid;gap:1rem}
 .pied.lisible{max-width:var(--max-lisible)}
 footer.site strong{color:var(--sur-sombre);font-weight:600}
 footer.site a{color:var(--sur-sombre-doux)}
 footer.site a:hover{color:#fff}
-.disclaimer{border-top:1px solid rgba(246,243,236,.16);padding-top:1rem;color:var(--sur-sombre-tenu);font-style:italic}
+.disclaimer{border-top:1px solid rgba(244,244,250,.16);padding-top:1.1rem;color:var(--sur-sombre-tenu);font-style:italic}
 
-/* ---------- Apparition au défilement : discrète, et désactivable ---------- */
-.reveal{opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease}
-.reveal.is-visible{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+/* ---------- Apparition au défilement : discrète, désactivable, et SÛRE ----------
+   RÈGLE : l'état AU REPOS est VISIBLE. Un élément n'est masqué que si le script
+   a réellement démarré et posé « js-anim » sur <html>.
 
-.mt2{margin-top:1.6rem}
+   Pourquoi c'est écrit dans ce sens et pas l'inverse : la version précédente
+   posait opacity:0 par défaut et comptait sur le JS pour révéler. Mesuré au
+   navigateur le 2026-09-14 — JavaScript désactivé : 17 blocs sur 17 à opacité 0,
+   c'est-à-dire TOUT le corps de la page d'accueil invisible, héros et pied de
+   page mis à part. Même résultat si le script échoue à charger pour une raison
+   quelconque. Un site de conformité illisible sans JavaScript, c'est un site
+   cassé pour qui bloque les scripts — et pour tout robot qui n'exécute rien.
+
+   Le mode de défaillance est désormais dans le bon sens : si quoi que ce soit
+   casse, le visiteur voit le contenu. Il perd l'animation, jamais le texte. */
+.reveal{opacity:1;transform:none}
+.js-anim .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.js-anim .reveal.is-visible{opacity:1;transform:none}
+
+/* Toutes les micro-interactions tombent d'un bloc si le visiteur les refuse. */
+@media (prefers-reduced-motion:reduce){
+  .js-anim .reveal{opacity:1;transform:none;transition:none}
+  .cta,.carte,.offre,button,.chip,fieldset,.progress span,label.opt{transition:none}
+  .cta:hover,.carte:hover,.offre:hover,button:hover{transform:none}
+}
+
+.mt2{margin-top:1.7rem}
