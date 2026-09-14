@@ -290,9 +290,24 @@ footer.site a{color:var(--sur-sombre-doux)}
 footer.site a:hover{color:#fff}
 .disclaimer{border-top:1px solid rgba(246,243,236,.16);padding-top:1rem;color:var(--sur-sombre-tenu);font-style:italic}
 
-/* ---------- Apparition au défilement : discrète, et désactivable ---------- */
-.reveal{opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease}
-.reveal.is-visible{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+/* ---------- Apparition au défilement : discrète, désactivable, et SÛRE ----------
+   RÈGLE : l'état AU REPOS est VISIBLE. Un élément n'est masqué que si le script a
+   réellement démarré et posé « js-anim » sur <html>.
+
+   Pourquoi c'est écrit dans ce sens et pas l'inverse : la version précédente posait
+   opacity:0 par défaut et comptait sur le JS pour révéler. Mesuré au navigateur le
+   2026-09-14, JavaScript désactivé : 17 blocs sur 17 à opacité 0 sur index.html,
+   c'est-à-dire TOUT le corps de la page d'accueil invisible, en-tête et pied de page
+   mis à part. Même résultat si assets/caelum.js échoue à charger, pour n'importe
+   quelle raison. Et parmi ces blocs, le SEUL appel à l'action de la page — « Commencer
+   le test », l'entrée du simulateur — était invisible lui aussi : le visiteur ne voyait
+   pas un site dégradé, il voyait du blanc, sans rien sur quoi cliquer.
+
+   Le mode de défaillance est désormais dans le bon sens : si quoi que ce soit casse,
+   le visiteur perd l'animation, jamais le texte. */
+.reveal{opacity:1;transform:none}
+.js-anim .reveal{opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease}
+.js-anim .reveal.is-visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js-anim .reveal{opacity:1;transform:none;transition:none}}
 
 .mt2{margin-top:1.6rem}

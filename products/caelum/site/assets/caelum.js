@@ -3,12 +3,13 @@
 (function () {
   "use strict";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !("IntersectionObserver" in window)) return;  // rien à faire : le CSS laisse tout visible
+
+  // Le drapeau est posé AVANT d'observer quoi que ce soit : tant qu'il n'est pas là,
+  // le CSS n'a le droit de rien cacher. Si ce fichier ne se charge pas, la page reste
+  // intégralement lisible — elle perd l'animation, pas le contenu.
+  document.documentElement.classList.add("js-anim");
   var els = document.querySelectorAll(".reveal");
-  if (reduce || !("IntersectionObserver" in window)) {
-    // Pas d'animation : tout est visible immédiatement.
-    for (var i = 0; i < els.length; i++) els[i].classList.add("is-visible");
-    return;
-  }
   var obs = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) {
