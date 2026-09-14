@@ -90,6 +90,16 @@ EXIGENCES = [
         ["1&nbsp;000 salariés OU", "1 000 salariés OU", "salariés ou 450"],
     ),
     (
+        "CSRD — le verdict du simulateur n'est pas « non concerné »",
+        {OUTIL: ['n: "CSRD et DORA — le point honnête", s: "verifier"']},
+        ['n: "CSRD et DORA — le point honnête", s: "non"'],
+    ),
+    (
+        "NIS2 — l'échéance du 18/04/2026 est présentée comme PASSÉE, pas à venir",
+        {PAGE: ["Échéance passée"], OUTIL: ["est passée"]},
+        ["Échéance clé&nbsp;: 18/04/2026"],
+    ),
+    (
         "CSRD — la directive n'est PAS encore transposée en droit belge",
         {PAGE: ["doit encore être transposée en droit belge"],
          OUTIL: ["n'est pas encore transposée en droit belge"]},
@@ -144,8 +154,11 @@ def main() -> int:
         print(f"  ✅ {libelle}")
     print()
     print("  " + "─" * 72)
-    print("  VERDICT : ✅ aucune des 5 affirmations n'a été supprimée, inversée, ni")
-    print("  appliquée à un seul support.")
+    # Le compte est LU, jamais écrit en dur : la version précédente annonçait « 5 »
+    # alors qu'il y en avait 7. Un chiffre faux SUR NOUS est ce que le §13 désigne
+    # comme le plus dangereux, parce que personne ne pense à le vérifier.
+    print(f"  VERDICT : ✅ aucune des {len(EXIGENCES)} affirmations n'a été supprimée,")
+    print("  inversée, ni appliquée à un seul support.")
     print("  Rappel honnête : ce contrôle COMPARE DES CHAÎNES, il ne lit pas le droit.")
     print("  Une formulation juridiquement fausse contenant les bons mots passerait.")
     print("  Seul un recoupement à la source primaire établit qu'une affirmation est exacte.")

@@ -73,8 +73,12 @@
         t: "À vérifier. En règle générale l'obligation commence à 50 travailleurs — mais elle s'applique SANS SEUIL, quel que soit votre effectif, si vous relevez des dispositions en matière de services, produits et marchés financiers, ou si vous êtes assujetti à la législation anti-blanchiment. Beaucoup de petites structures le sont sans le savoir. Ce test ne vous pose pas la question : vérifiez votre situation. Si aucune des deux ne vous concerne, l'obligation ne commence qu'à 50 travailleurs." });
     }
     // CSRD / DORA — démystification honnête, toujours affichée.
-    res.push({ n: "CSRD et DORA — le point honnête", s: "non",
-      t: "CSRD : le paquet Omnibus du 24/02/2026 (directive (UE) 2026/470) relève fortement les seuils — il faudra dépasser À LA FOIS 1 000 salariés ET 450 M€ de chiffre d'affaires net. Cette directive n'est pas encore transposée en droit belge : jusque-là, les seuils de la loi du 02/12/2024 s'appliquent. Dans les deux cas, la grande majorité des PME n'est pas concernée. DORA : secteur financier et prestataires TIC uniquement. Si on vous vend l'un ou l'autre comme une urgence PME, demandez la source." });
+    // « à vérifier » et non « non concerné » : ce questionnaire ne mesure NI le chiffre
+    // d'affaires NI le total de bilan. Tant que l'Omnibus n'est pas transposé, ce sont
+    // les seuils nettement plus bas de la loi du 02/12/2024 qui s'appliquent — une
+    // société belge peut donc être concernée AUJOURD'HUI et lire « non concerné ».
+    res.push({ n: "CSRD et DORA — le point honnête", s: "verifier",
+      t: "CSRD : le paquet Omnibus du 24/02/2026 (directive (UE) 2026/470) relève fortement les seuils — il faudra dépasser À LA FOIS 1 000 salariés ET 450 M€ de chiffre d'affaires net. Cette directive n'est pas encore transposée en droit belge : jusque-là, ce sont les seuils, nettement plus bas, de la loi du 02/12/2024 qui s'appliquent. Ce test ne mesure ni votre chiffre d'affaires ni votre total de bilan : il ne peut donc pas trancher à votre place. La grande majorité des PME n'est pas concernée ; si vous êtes une grande société au sens du Code des sociétés et des associations, vérifiez avec votre réviseur. DORA : secteur financier et prestataires TIC uniquement. Si on vous vend l'un ou l'autre comme une urgence PME, demandez la source." });
 
     var lib = { oui: "S'applique à vous", verifier: "À vérifier", non: "A priori non concerné" };
     var cont = document.getElementById("res-liste");
