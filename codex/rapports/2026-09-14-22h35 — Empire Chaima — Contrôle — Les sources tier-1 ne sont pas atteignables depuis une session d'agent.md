@@ -76,7 +76,12 @@ Il faut le dire sans dramatiser et sans l'escamoter.
 
 **Correction de vocabulaire à appliquer partout** : tant que l'accès direct n'existe pas, le mot
 juste est **CONFIRMÉ** (recoupé par deux sources indépendantes) — jamais **VÉRIFIÉ**, qui suppose
-d'avoir constaté soi-même à la source (§13 du CODEX).
+d'avoir constaté soi-même à la source. Définitions : `CLAUDE.md` §13.
+
+*(Note : le contrôle des rapports a signalé cette ligne, parce qu'elle contient le mot « VÉRIFIÉ »
+sans trace. Il a raison de ne pas savoir distinguer le mot EMPLOYÉ du mot CITÉ — c'est le motif de
+la fiche E-28, un contrôle qui se déclenche sur un texte parlant de lui-même. La ligne porte donc
+maintenant sa référence, plutôt que d'assouplir la règle.)*
 
 ## 5. LE REMÈDE — il est entre les mains de Chaima, et seulement elles
 
