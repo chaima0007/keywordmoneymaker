@@ -565,6 +565,106 @@ sortie. Et la dérive ne se combat pas par la vigilance : elle se combat en rend
 l'énoncé de ce qu'on sert** — parce qu'une phrase qu'on ne peut pas écrire est un travail qu'on ne
 devrait pas commencer.
 
+## E-27 — Un heredoc non cité a EXÉCUTÉ le texte qu'il devait écrire
+**Constaté le** 2026-09-14 · **État** corrigé le jour même
+
+**Ce qui s'est passé.** Écriture de deux définitions d'agents avec `cat > fichier <<AGENTEOF`.
+Le délimiteur n'était **pas** entre apostrophes. Le shell a donc interprété le contenu avant de
+l'écrire : chaque nom d'agent entre accents graves — `` `protecteur` ``, `` `deposant` ``,
+`` `horloger` `` — a été traité comme une **commande à exécuter**. Résultat : sept
+`command not found`, et un fichier livré avec un bloc « à qui tu passes la main » **vide** :
+
+```
+-  — dès qu'une divulgation est envisagée. Son veto prime sur ton analyse.
+-  — si la trouvaille mérite un droit : c'est lui qui tient les droits, pas toi.
+```
+
+Un agent qui ne sait plus à qui passer la main. Le second fichier, dont les accents graves étaient
+échappés, est sorti intact — ce qui rendait la panne **partielle**, donc facile à ne pas voir.
+
+**Cause racine.** En shell, `<<FIN` interpole ; `<<'FIN'` n'interpole pas. Or le Markdown de ce
+dépôt est **plein** d'accents graves : c'est ainsi qu'on y nomme les agents, les fichiers et les
+commandes. Le format d'écriture le plus courant du dépôt est donc précisément celui qui déclenche
+le piège.
+
+**Signal de détection.** Des `command not found` portant des noms qui sont **du contenu** et non des
+commandes. Ou un fichier écrit dont il manque justement les portions qui contenaient du code.
+
+**Contre-mesure.** **Tout heredoc qui écrit du Markdown est cité** : `<<'FIN'`, sans exception.
+La règle vaut même quand le contenu « n'a pas l'air » de contenir du code — un seul accent grave
+suffit. Et la sortie d'écriture se relit : sept messages d'erreur défilaient à l'écran pendant que
+le fichier se créait « avec succès ».
+
+**Comment ça a été réglé.** Les sept renvois ont été réinsérés un par un, puis un contrôle a cherché
+les motifs de dégât (`^-\s+—`, `au .**`) pour vérifier qu'il n'en restait aucun. Le fichier a été
+relu avant commit, et la faute est écrite dans le message de commit plutôt que passée sous silence.
+
+**Leçon transférable.** Une commande qui réussit n'a pas forcément fait ce qu'on croit. `cat` a
+« réussi » : il a écrit un fichier. C'est son **contenu** qui était amputé. Vérifier le code de
+sortie ne suffit jamais à vérifier le résultat.
+
+## E-28 — Un contrôle qui se déclenche sur sa propre documentation
+**Constaté le** 2026-09-14 · **État** corrigé le jour même
+
+**Ce qui s'est passé.** Contrôle rapide des motifs RGPD interdits dans un script de recherche :
+`grep localStorage`, `grep innerHTML`, `grep pushState`. Tous ont répondu **PRÉSENT**, alors que le
+script ne les utilisait pas. Ils figuraient dans ses **commentaires**, qui expliquent précisément
+pourquoi ces motifs sont interdits.
+
+Le même piège a frappé une seconde fois dans la même journée, ailleurs : un contrôle de chemins
+inexistants absolvait un fichier nommé `inexistant.html`, parce qu'il cherchait le mot « inexistant »
+dans la ligne entière — nom de fichier compris.
+
+**Cause racine.** Le contrôle analysait le fichier **brut**, sans distinguer le code de ce qui
+l'entoure. Or un dépôt qui documente sérieusement ses interdits les **écrit en toutes lettres** dans
+ses commentaires. Plus la documentation est bonne, plus le contrôle naïf produit de faux positifs.
+
+**Signal de détection.** Un contrôle qui échoue sur un fichier dont tu sais qu'il est correct. Ou,
+plus insidieux : un contrôle qui n'a **jamais** été vert depuis sa création.
+
+**Contre-mesure.** Les commentaires (`/* */`, `//`, `<!-- -->`) sont retirés avant toute analyse de
+motif, et les portions citées (entre accents graves) sont exclues des recherches de mots-clés.
+Un contrôle doit lire ce que la machine exécute, pas ce que l'humain explique.
+
+**Comment ça a été réglé.** `_sans_commentaires()` a été ajouté à `verifier_site.py` et appliqué
+avant chaque test de motif ; la recherche d'aveu d'absence se fait hors des accents graves. Les deux
+correctifs sont commentés dans le code avec le piège qui les a motivés, pour qu'on ne les
+« simplifie » pas plus tard.
+
+**Leçon transférable.** **Un contrôle qui crie au loup sur sa propre documentation apprend aux gens
+à l'ignorer.** Un faux positif répété ne coûte pas seulement du temps : il détruit la crédibilité du
+contrôle, et c'est ainsi qu'un vrai signal finit par passer inaperçu (fiche E-02).
+
+## E-29 — Un lien mort écrit dans l'heure qui suivait l'écriture de la règle l'interdisant
+**Constaté le** 2026-09-14 · **État** corrigé le jour même
+
+**Ce qui s'est passé.** Le brief de construction du site La Loi Avec Moi consacre une section
+entière aux 26 liens morts de l'ancien site et pose la règle : *aucune carte ne pointe vers le
+vide*. **Moins d'une heure plus tard**, le gabarit de navigation que j'ai écrit pointait vers
+`#recherche` — une ancre qui n'existe que sur la page d'accueil. Sur les quatre autres pages :
+lien mort.
+
+Ce n'est pas l'ignorance de la règle. Je venais de l'écrire.
+
+**Cause racine.** Une ancre relative est valide **là où sa cible existe** et morte partout ailleurs ;
+rien dans l'écriture ne le signale. Mais la cause profonde est ailleurs : **connaître une règle
+n'empêche pas de l'enfreindre.** L'attention ne tient pas à l'échelle d'une journée de travail.
+
+**Signal de détection.** Tu écris un lien relatif, une ancre ou un chemin dans un gabarit **partagé
+entre plusieurs pages**. Ce qui est vrai depuis une page ne l'est pas depuis toutes.
+
+**Contre-mesure.** Un contrôle automatique des liens internes, **bloquant**, qui résout chaque
+référence depuis la page qui la contient — et qui vérifie l'existence de l'ancre, pas seulement du
+fichier.
+
+**Comment ça a été réglé.** `scripts/verifier_site.py` a été écrit **avant** la mise en ligne et a
+détecté les quatre liens morts en trente secondes. Les gabarits pointent désormais vers
+`index.html#recherche`, valide depuis n'importe quelle profondeur. Contrôle vert sur les sept pages.
+
+**Leçon transférable.** C'est la démonstration la plus nette de la journée : **celui qui écrit la
+règle l'enfreint aussi.** La discipline n'est pas un mécanisme. Un dispositif ne vaut que par ce qui
+tourne sans qu'on y pense — et le meilleur moment pour l'écrire est juste avant d'avoir besoin de lui.
+
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
 ```
