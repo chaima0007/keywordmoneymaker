@@ -100,7 +100,8 @@ EXIGENCES = [
         ["Échéance clé&nbsp;: 18/04/2026"],
     ),
     (
-        "RGPD — le plafond est le montant le PLUS ÉLEVÉ, pas l'un ou l'autre au choix",
+        "RGPD et NIS2 — le plafond est le montant le PLUS ÉLEVÉ, pas l'un ou l'autre",
+        # Deux occurrences attendues : une par carte. Le compte est contrôlé plus bas.
         {PAGE: ["le montant le plus élevé étant retenu"]},
         [],
     ),
@@ -128,6 +129,18 @@ def main() -> int:
         contenus[rel] = f.read_text(encoding="utf-8")
 
     manques: list[str] = []
+
+    # Contrôle de COMPTE, et pas seulement de présence : les deux cartes à sanction
+    # (RGPD et NIS2) doivent chacune porter la règle du montant le plus élevé. Une
+    # seule occurrence signifierait qu'une des deux l'a perdue — ce qu'un simple
+    # test de présence ne verrait pas.
+    n = contenus[PAGE].count("le montant le plus élevé étant retenu")
+    if n < 2:
+        manques.append(
+            "RGPD et NIS2 — règle du montant le plus élevé\n"
+            f"       ATTENDUE 2 fois dans {PAGE} (une par carte à sanction), trouvée {n} fois"
+        )
+
     for libelle, exiges, interdits in EXIGENCES:
         for rel, motifs in exiges.items():
             for motif in motifs:

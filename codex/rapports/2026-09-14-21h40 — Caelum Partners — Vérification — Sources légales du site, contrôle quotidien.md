@@ -156,11 +156,29 @@ risque une sanction à cause de celle-ci : un lecteur en déduit une sanction pl
 obligation inexistante. Elle reste une imprécision sur un site qui vend de la précision.
 **Corrigée**, et la ligne de source porte désormais l'article exact et la date de consultation.
 
-**NON VÉRIFIÉ, et je ne l'ai pas corrigé pour autant** : la carte NIS2 affiche « Sanctions jusqu'à
-10 M€ ou 2 % du chiffre d'affaires ». La directive NIS2 emploie vraisemblablement la même règle du
-montant le plus élevé — mais **vraisemblablement n'est pas vérifié**, et transposer par symétrie
-une règle constatée dans un autre texte est exactement ce que la fiche E-22 interdit. À relire à
-la source au prochain passage.
+**Le même point pour NIS2 — d'abord laissé NON VÉRIFIÉ, puis lu, puis corrigé.**
+
+J'avais refusé de le corriger par symétrie : transposer une règle constatée dans un autre texte
+est exactement ce que la fiche E-22 interdit. Le texte a ensuite été lu.
+
+Directive **(UE) 2022/2555, article 34, § 4** — https://eur-lex.europa.eu/eli/dir/2022/2555/oj/fra
+— consulté le 2026-09-14 :
+
+> « des amendes administratives d'un montant maximal d'au moins 10 000 000 EUR ou d'un montant
+> maximal d'au moins 2 % du chiffre d'affaires annuel **mondial total** réalisé au cours de
+> l'exercice précédent […], **le montant le plus élevé étant retenu** »
+
+Et le **§ 5** pour les entités importantes : 7 000 000 EUR ou 1,4 %, même règle.
+
+La prudence était justifiée dans son principe, et la vérification a confirmé la règle. La carte
+NIS2 est corrigée dans les mêmes termes que la carte RGPD, la mention des entités importantes est
+ajoutée, et la ligne de source porte l'article exact.
+
+**Ce que la lecture a appris en plus.** La directive fixe un **plancher pour le plafond** : « un
+montant maximal d'**au moins** » 10 M€. C'est le droit national qui arrête le chiffre réel. Le
+site écrit « jusqu'à 10 M€ », qui est l'usage courant et reste juste au regard de la directive —
+mais le montant exact retenu par la **loi belge du 26 avril 2024** n'a **pas** été lu.
+**NON VÉRIFIÉ** : inscrit au prochain passage.
 
 ## 5. L'e-reporting 2028 — **VÉRIFIÉ** sur `blogitaa.be` (ITAA) : ma suspicion était fausse
 
