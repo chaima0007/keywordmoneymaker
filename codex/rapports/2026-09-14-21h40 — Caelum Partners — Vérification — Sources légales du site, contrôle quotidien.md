@@ -73,26 +73,73 @@ entre des assujettis TVA belges. La modification de la loi a été publiée au M
 C'est l'information la plus concrète pour une PME, et elle manque. Ajout PROPOSÉ, non écrit :
 ajouter un chiffre de sanction est une modification de texte public, donc une décision de Chaima.
 
-## 4. Lanceurs d'alerte et RGPD — non recontrôlés ce jour
+## 4. Lanceurs d'alerte — **VÉRIFIÉ** sur `ejustice.just.fgov.be`, et une exception manquait
 
-La loi du 28 novembre 2022 et le seuil de 50 travailleurs, ainsi que les plafonds RGPD
-(20 M€ / 4 %), n'ont pas été recoupés à la source aujourd'hui. Ils sont stables depuis leur
-publication et ne figuraient pas parmi les affirmations à risque de dérive. **NON VÉRIFIÉ ce
-jour** — à inscrire au prochain passage plutôt qu'à présenter comme contrôlé.
+Source primaire : le **texte de la loi lui-même**, banque de données Justel —
+https://ejustice.just.fgov.be/eli/loi/2022/11/28/2022042980/justel — consulté le 2026-09-14.
+Pas un commentaire de cabinet : l'article de loi.
 
-## 5. Une affirmation que je n'ai pas pu établir
+La loi du 28 novembre 2022 transpose la **directive (UE) 2019/1937** du 23 octobre 2019. Elle a
+été publiée au Moniteur belge le 15 décembre 2022 et est entrée en vigueur le 15 février 2023.
+Le seuil de 50 travailleurs est exact — **article 11, § 2, alinéa 1er** : « le paragraphe 1er ne
+s'applique pas aux entités juridiques du secteur privé qui comptent moins de cinquante
+travailleurs ».
 
-« Un e-reporting est prévu pour 2028 » (carte e-facturation). Aucune des sources primaires
-consultées aujourd'hui ne l'établit. C'est cohérent avec le calendrier ViDA de la Commission,
-mais **cohérent n'est pas vérifié**. Statut : **NON VÉRIFIÉ**. À trancher au prochain contrôle :
-sourcer ou retirer.
+**Mais l'alinéa suivant dit ceci, et le site l'ignorait :**
+
+> « L'exception visée à l'alinéa 1er ne s'applique pas aux entités relevant du champ
+> d'application des dispositions en matière de services, produits et marchés financiers »
+
+Autrement dit : **une entité du secteur financier est tenue d'avoir le canal de signalement quel
+que soit son effectif**, y compris à dix salariés.
+
+**Pourquoi c'est plus grave que l'imprécision CSRD.** L'erreur CSRD allait dans le sens de
+l'inquiétude inutile — désagréable, mais sans conséquence juridique. Celle-ci va dans le sens
+inverse : un courtier en assurances ou un intermédiaire financier de dix personnes lisait
+« Dès 50 travailleurs », en concluait qu'il n'était pas concerné, et **restait en infraction**.
+Un site de conformité qui rassure à tort est pire qu'un site qui se tait.
+
+**Corrigé** dans la même PR, avec la référence exacte de l'article et de la directive européenne
+transposée.
+
+## 4 bis. RGPD — non recontrôlé ce jour
+
+Les plafonds de 20 M€ / 4 % (article 83 du RGPD) n'ont pas été recoupés à la source aujourd'hui.
+**NON VÉRIFIÉ ce jour** — inscrit au prochain passage plutôt que présenté comme contrôlé.
+
+## 5. L'e-reporting 2028 — **VÉRIFIÉ** sur `blogitaa.be` (ITAA) : ma suspicion était fausse
+
+J'avais laissé cette affirmation en **NON VÉRIFIÉ**, et j'ai d'abord soupçonné une confusion avec
+le calendrier européen. **Cette suspicion était fausse**, et la vérification l'a montrée avant que
+je n'accuse le site à tort.
+
+**Le cadre européen** — paquet ViDA, directive **(UE) 2025/516** adoptée le 11 mars 2025, publiée
+au Journal officiel le 25 mars 2025, en vigueur le 14 avril 2025. Les exigences de déclaration
+numérique transfrontalière s'y appliquent au **1er juillet 2030**, et les États disposant d'un
+reporting national en temps réel doivent s'aligner pour le **1er janvier 2035**. Source :
+Commission européenne — https://taxation-customs.ec.europa.eu/news/adoption-vat-digital-age-package-2025-03-11_en
+
+**Le calendrier belge est distinct, et c'est lui que le site cite.** L'e-reporting belge est une
+décision de l'accord de gouvernement, visant le **1er janvier 2028**, bâtie sur la même
+infrastructure Peppol que l'e-facturation et sur le *ViDA Tax Data Document*. L'Institut des
+Experts-comptables et Conseils fiscaux le confirme en mai 2026 : projet de loi en phase finale
+pré-parlementaire, publication de la loi attendue à l'automne 2026, arrêté royal d'exécution
+début 2027.
+
+**La nuance qui manque au site.** Au 14 septembre 2026, cet e-reporting repose sur un **projet de
+loi non encore publié**. Le mot « prévu » employé par le site est donc exact — mais dire
+explicitement que la loi n'est pas encore publiée serait plus honnête encore. Ajout **PROPOSÉ**,
+non écrit : c'est une modification de texte public.
+
+**Ce que le site ne dit nulle part** : ViDA existe, et fixe l'horizon européen à 2030 puis 2035.
+Pour une PME belge qui facture hors de Belgique, c'est une information réelle. Ajout **PROPOSÉ**.
 
 ---
 
     DE : session Claude Code                POUR : CHAIMA
-    OBJET : Fusionner la correction du seuil CSRD — deux critères cumulatifs, pas un seul.
+    OBJET : Fusionner PR #23 — deux corrections juridiques, dont une qui rassurait à tort.
     VERDICT : VÉRIFIÉ — directive `(UE) 2026/470` au JOUE du 26/02/2026 : 1 000 salariés ET 450 M€.
     PARCE QUE : le site énonçait le seul seuil d'effectif, ce qui élargit à tort le périmètre.
-    NON VÉRIFIÉ : l'e-reporting 2028, et les affirmations lanceurs d'alerte / RGPD non recontrôlées ce jour.
+    NON VÉRIFIÉ : les plafonds RGPD de l'article 83, non recontrôlés ce jour.
     CE QUI CHANGERAIT MON AVIS : la clause de revoyure de 2031 peut rouvrir ces seuils — ce contrôle
     est à refaire, il n'est pas acquis.
