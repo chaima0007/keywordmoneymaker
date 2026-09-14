@@ -62,3 +62,8 @@ paresseuse : **regarder d'abord si sa consigne décrit encore le monde.**
 Cinq Routines n'ont ni condition d'arrêt écrite ni date de relecture de prompt, dont
 `Jeu Linux Empire Chaima` qui tourne **toutes les heures** sans avoir été auditée ici. À faire par Chaima
 ou par la session qui les a créées — pas devinable depuis ce dépôt.
+
+## VOIR AUSSI
+- `codex/veille/CHARTE-CHAINE.md` — les 5 règles propres à la chaîne veille que rien d'autre ne couvre
+  (divulgation art. 54 CBE, nommage Drive, sauvegarde, cadence des offices, structure Drive).
+- `codex/veille/JOURNAL-CHAINE.md` — l'historique des sessions de la chaîne.
