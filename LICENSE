@@ -1,0 +1,28 @@
+Tous droits réservés — All rights reserved
+Copyright (c) 2026 Chaima
+
+Ce dépôt est public en consultation. Aucune licence d'utilisation n'est accordée.
+
+Ce que cela signifie concrètement :
+  - Le code, les textes, la structure et la documentation de ce dépôt sont protégés
+    par le droit d'auteur (Code de droit économique belge, livre XI). La protection
+    est acquise sans formalité : l'absence de licence ne place rien dans le domaine
+    public, elle signifie « tous droits réservés ».
+  - Consulter et forker au sein de GitHub est permis par les conditions d'utilisation
+    de la plateforme. Rien de plus : ni usage commercial, ni modification, ni
+    redistribution hors de GitHub, ni réutilisation des textes.
+  - Pour toute autre utilisation : demander une autorisation écrite à
+    chaima.caelumpartners@gmail.com
+
+Exceptions — éléments tiers sous leur propre licence :
+  - Les polices Fraunces et Inter (products/caelum/site/assets/fonts/) sont sous
+    SIL Open Font License 1.1, qui autorise l'auto-hébergement et la redistribution
+    avec l'œuvre. Elles ne sont pas couvertes par la présente mention.
+
+Pourquoi ce fichier existe : le dépôt était public SANS licence, ce qui laissait les
+tiers dans l'ambiguïté — un tiers de bonne foi n'ose rien faire, un tiers de mauvaise
+foi plaide qu'il croyait le code libre. Cette mention lève l'ambiguïté sans rien
+concéder et laisse tous les choix ouverts. Voir la fiche E-08 de la base d'erreurs.
+
+À COMPLÉTER : le nom légal complet du titulaire, quand Chaima l'aura communiqué.
+Le droit d'auteur n'en dépend pas ; la lisibilité de cette mention, oui.

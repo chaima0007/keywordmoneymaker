@@ -2,7 +2,7 @@
 
 > Le seul fichier à ouvrir pour savoir ce qui bloque (CODEX §6). Trié par ancienneté, le plus vieux en haut.
 > ⚠️ = en attente depuis plus de 14 jours (mis en évidence). Une ligne ne disparaît que lorsque Chaima a
-> tranché (→ consignée avec sa date), jamais parce qu'elle a vieilli. Aujourd'hui : 2026-09-11.
+> tranché (→ consignée avec sa date), jamais parce qu'elle a vieilli. Aujourd'hui : **2026-09-14**.
 
 | Quoi | Projet | Type | En attente depuis | Résumé en 1 ligne |
 |---|---|---|---|---|
@@ -11,7 +11,9 @@
 | ⚠️ Déclaration C1/C1C ONEM → débloque Stripe | Caelum | Admin / paiement | 2026-07-17 | aucun encaissement possible avant |
 | ⚠️ Compte Brevo + LEADS_WEBHOOK_URL | Caelum | Marketing / tech | 2026-07-17 | capture de lead = mailto en attendant l'endpoint |
 | Épingler par SHA les 4 actions de deploy.yml | Caelum | Sécurité | 2026-09-06 | **Blocage levé le 2026-09-11** : les 4 SHA sont en main (voir sous le tableau). Arbitrage réel à trancher, pas un simple correctif |
-| Auto-héberger Fraunces et Inter (RGPD) | Caelum | Données personnelles | 2026-09-11 | Servies par fonts.gstatic.com → l'IP de chaque visiteur part chez Google sans consentement. Pas un défaut de licence. Remède autorisé par l'OFL |
+| Mentions légales : nom de l'éditeur + BCE | Caelum | Légal / obligation | 2026-07-17 | **Vérifié le 14/09 : toujours « à compléter » ×2 dans le fichier publié.** Obligation légale pour un site commercial belge — un conseil en conformité non conforme |
+| Condition d'arrêt des 5 Routines non déclarées | Transverse | Automatisation | 2026-09-14 | `codex/ROUTINES.md` créé ; 5 Routines sans condition d'arrêt ni relecture de prompt, dont une **horaire** non auditée |
+| Accès aux registres de brevets | Caelum | Accès / outillage | 2026-09-14 | Espacenet, Patentscope, USPTO, DPMA, EUIPO : **HTTP 000**, refusés au proxy. Le rôle SCANNER ne peut pas démarrer. Sa Routine est passée en quotidienne en attendant |
 | Verdict sur le spécimen « Le Signal » | Caelum | Design | 2026-09-11 | Consultable : https://claude.ai/code/artifact/8413c51c-4b28-44fc-ba24-cd76d5619392 — débloque la refonte du corps du site, toujours en « Le Greffe » |
 
 ---
@@ -46,6 +48,7 @@ de contenu, pour que le déploiement soit vérifiable isolément.
 
 ---
 ## Décisions tranchées (consignées, ne pas supprimer)
+- 2026-09-14 — **PR #19 (identité de marque)** : FUSIONNÉE, `main` = 7163653. Ligne retirée du tableau, vérifiée sur le dépôt.
 - 2026-07-17 — **POSITIONNEMENT (Étape 0)** : RegTech conformité PME belges (comparatif Drive doc 17). TRANCHÉ PAR CHAIMA.
 - 2026-09-06 — **Installation CODEX** : « protocole + structure d'abord », agents non touchés pour l'instant. TRANCHÉ PAR CHAIMA.
 - 2026-09-06 — **PR #4 (passation CompeteIQ)** : à refaire sur main à jour. TRANCHÉ PAR CHAIMA.
@@ -65,3 +68,10 @@ de contenu, pour que le déploiement soit vérifiable isolément.
 - 2026-09-11 — **PR #19 — identité de marque** : FUSIONNÉE (merge `7163653`), sur autorisation explicite
   de Chaima (« Merge PR #19 maintenant — aucune décision requise, elle est verte »). Déploiement GitHub
   Pages en succès ; les 5 fichiers d'identité figurent dans l'archive publiée. TRANCHÉ PAR CHAIMA.
+- 2026-09-14 — **Auto-hébergement de Fraunces et Inter (RGPD)** : **EXÉCUTÉ sur main** par une autre
+  session (commit `b7082f4`), sans passer par cette file. VÉRIFIÉ le 2026-09-14 : 4 fichiers `.woff2`
+  servis depuis `/assets/fonts/`, `@font-face` local dans `caelum.css`, tous les `<link>` vers
+  `fonts.googleapis.com` retirés des 5 pages, et un **garde-fou 4** ajouté au déploiement qui échoue
+  le build sur tout appel externe non inscrit en liste blanche. Zéro appel externe subsiste.
+  **NON TRANCHÉ PAR CHAIMA** — la ligne quitte la file parce que le remède est en production, pas
+  parce qu'une décision a été prise. À confirmer a posteriori.

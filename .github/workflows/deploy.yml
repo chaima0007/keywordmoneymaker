@@ -120,6 +120,27 @@ jobs:
             fi
           done
 
+          # ── Garde-fou 4 : AUCUN APPEL EXTERNE dans le site publié ──
+          # Posé le 2026-09-14 avec l'auto-hébergement des polices. Corriger une fois ne
+          # suffit pas : n'importe quel <link>, <script>, <img> ou url() ajouté demain
+          # rouvrirait la fuite en silence. Ce contrôle l'interdit.
+          # LISTE BLANCHE, jamais liste noire (fiche E-17) : un hôte non listé échoue le
+          # déploiement. En autoriser un demande de l'ajouter sciemment — et de se demander
+          # à ce moment-là ce qu'il apprend de nos visiteurs.
+          #   caelumpartners.agency : nos canoniques et hreflang, jamais chargés
+          #   www.sitemaps.org / www.w3.org : espaces de noms XML, jamais téléchargés
+          HOTES_AUTORISES='caelumpartners\.agency|www\.sitemaps\.org|www\.w3\.org'
+          EXTERNES=$(grep -rhoE 'https?://[a-zA-Z0-9.-]+' _site 2>/dev/null \
+                     | sed -E 's#https?://##' | sort -u \
+                     | grep -vE "^($HOTES_AUTORISES)$" || true)
+          if [ -n "$EXTERNES" ]; then
+            echo "::error::Appel externe dans le site publie — fuite de donnees visiteur :"
+            echo "$EXTERNES"
+            echo "::error::Heberge la ressource, ou ajoute l'hote a HOTES_AUTORISES sciemment."
+            exit 1
+          fi
+          echo "Aucun appel externe : les visiteurs ne sont exposes a aucun tiers."
+
           # ── Garde-fou 2 : sans CNAME, le domaine personnalisé casse ──
           if [ ! -f _site/CNAME ]; then
             echo "::error::CNAME absent du contenu public — le domaine casserait"; exit 1

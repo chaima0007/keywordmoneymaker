@@ -306,6 +306,16 @@ Ces deux règles s'appliquent aux **42 agents**, pas seulement à ceux de la cha
    Motif historique : une trentaine de journaux quasi identiques produits entre le 28/07 et le 11/08/2026,
    dont un faux positif qui a survécu deux semaines (fiches E-01 et E-02 de la base d'erreurs).
 
+4. **Rapport complet = document déposé, pas seulement un message.** (directive Chaima 14-09-2026 :
+   « je veux que tu sois surveillé aussi pour être sûr ».) Tout rapport complet est déposé dans
+   `codex/rapports/`, nommé selon la convention horodatée, **en plus** d'être dit à Chaima.
+   Motif : une surveillance ne peut contrôler que ce qui est écrit quelque part. Un rapport qui
+   n'existe que dans une conversation est hors d'atteinte de la méta-surveillance du soir, de la CI,
+   et de toute relecture ultérieure — donc invérifiable par construction.
+   Le contrôle `python3 scripts/verifier_rapports.py` est **bloquant en CI** : il recoupe les traces
+   citées (commit, chemin, run, vocabulaire du §13). Il ne juge pas les conclusions — il rend
+   impossible la trace inventée ou périmée. **Quand il échoue, on corrige le rapport, pas le contrôle.**
+
 3. **DEUX SUBSTRATS D'EXÉCUTION — connaître la frontière.** Ce dépôt contient deux systèmes d'agents
    distincts, qui s'ignoraient totalement jusqu'au 2026-09-11 : les **42 définitions Markdown** de
    `.claude/agents/` (lues par Claude Code) et les **33 modules Python** de `agents/` (code exécutable,
@@ -313,6 +323,17 @@ Ces deux règles s'appliquent aux **42 agents**, pas seulement à ceux de la cha
    archivage. Qui possède quoi, et la règle d'arbitrage : `.claude/FRONTIERE-SUBSTRATS.md` — à lire
    avant d'affirmer « ce qui existe déjà » (fiche E-07). Le substrat Python ne lit pas ce fichier :
    la base d'erreurs l'atteint via `agents/base_erreurs.py`, qui la **lit** sans la recopier.
+
+## 2 quater. ORDONNANCEURS — les Routines qui te réveillent (2026-09-14)
+Tu n'es pas toujours lancé par un humain. Des **Routines** programmées réveillent des sessions à heure
+fixe. Elles sont inventoriées dans **`codex/ROUTINES.md`** : cadence, rôle, condition d'arrêt, date de
+relecture du prompt.
+
+**Pourquoi ça te concerne.** Une condition d'arrêt écrite pour un agent ne peut pas arrêter l'horloge qui
+le réveille (fiche E-23). Si tu constates que tu tournes sans rien produire, ou que ta consigne cite une PR,
+un nombre d'agents ou une étape qui n'existent plus, le défaut est **en amont** : signale-le dans
+`codex/A-DECIDER.md` et dans `codex/ROUTINES.md`, au lieu d'écrire un rapport de plus pour dire qu'il n'y a
+rien à dire. Vérifie aussi que ta consigne décrit encore le monde avant de conclure que le travail manque.
 
 ## 3. RÈGLE DE VÉRIFICATION (À CHAQUE GESTE — le cœur)
 - VÉRIFIER, PAS SUPPOSER : lance réellement le build ET les tests ; vérifie que le push distant a réussi.

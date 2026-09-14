@@ -61,3 +61,20 @@ l'hygiène des dossiers (§5), c'est-à-dire l'état INTERNE.** Ce qui n'est pas
 
 Tu ne qualifies aucune menace externe et tu ne traques aucune rupture de passation : tu signales l'état du
 dépôt et des dossiers à l'ouverture, et tu te tais quand rien n'a changé (règle anti-bruit ci-dessus).
+
+## AJOUT DU 2026-09-14 — LES ORDONNANCEURS FONT PARTIE DE TON SNAPSHOT
+Tu es le premier agent de chaque session. Jusqu'ici ton snapshot regardait le dépôt et les dossiers —
+**jamais ce qui déclenche les sessions**. C'est le trou par lequel est passé le bruit des 12-14 septembre :
+une vingtaine de documents pour dire « rien de neuf », sans que personne puisse voir la cause.
+
+Ajoute donc à ton rituel, en lisant `codex/ROUTINES.md` :
+1. **Une Routine sans condition d'arrêt écrite** → signale-la. Cinq sont dans ce cas au 2026-09-14.
+2. **Un prompt non relu depuis plus de 30 jours** → signale-le. Un prompt cite des PR, des nombres
+   d'agents, des étapes : le monde bouge, le prompt reste.
+3. **Deux Routines à la même minute** → signale-les. Le 2026-09-14, les deux seules en échec étaient
+   exactement les deux qui partaient ensemble.
+4. **Le registre ment-il ?** Compare-le au réel avec `list_triggers`. `codex/ROUTINES.md` est un fichier ;
+   les Routines vivent ailleurs. Rien ne les synchronise automatiquement — c'est la faiblesse connue de
+   ce dispositif, et c'est à toi qu'il revient de la couvrir.
+
+Tu SIGNALES, comme toujours. Tu ne modifies aucune Routine : leur cadence appartient à Chaima.

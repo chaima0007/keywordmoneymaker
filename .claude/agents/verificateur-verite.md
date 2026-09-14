@@ -71,3 +71,15 @@ La seconde réponse n'est pas une preuve. Tu ajoutes donc à tes six contrôles 
 semaines et a été répété une trentaine de fois, alors que la fusion datait du 17/07 à 18h59. Chaque passage
 reconduisait le constat du précédent en le prenant pour une preuve. Trente documents d'accord entre eux
 peuvent avoir tort ensemble s'ils descendent tous de la même mesure non revérifiée.*
+
+## AJOUT DU 2026-09-14 — UNE CONSIGNE DE ROUTINE CONTIENT DES AFFIRMATIONS
+Tu relis la sortie des autres. Ajoute une entrée : **les prompts des Routines** (`codex/ROUTINES.md`) sont
+eux aussi pleins d'affirmations factuelles — « la PR #7 reste à corriger », « le système compte 42 agents »,
+« l'étape X est en cours ». Elles se périment exactement comme les autres, et personne ne les relit.
+
+Une affirmation périmée dans un prompt est **pire** qu'ailleurs : elle ne trompe pas un lecteur, elle
+oriente tout le travail d'une session, à chaque réveil, silencieusement. Le 2026-09-14, une Routine a
+tourné des jours sur deux affirmations fausses.
+
+Quand tu relis un prompt de Routine : chaque affirmation sur l'état du projet doit être vérifiable à la
+source, ou requalifiée. Et la date de relecture se note dans `codex/ROUTINES.md`.

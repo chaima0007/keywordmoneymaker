@@ -11,7 +11,10 @@
 
 | Date | Erreur | Statut | Fiche complète |
 |---|---|---|---|
-| 2026-09-11 | Une livraison a été annoncée à Chaima alors qu'elle n'existait pas | ✅ CORRIGÉE | [`E-23`](.claude/BASE-ERREURS.md) |
+| 2026-09-11 | Une livraison a été annoncée à Chaima alors qu'elle n'existait pas | ✅ CORRIGÉE | [`E-26`](.claude/BASE-ERREURS.md) |
+| 2026-09-14 | Un contrôle aveugle a accusé le rapport au lieu de s'accuser lui-même | ✅ CORRIGÉE | [`E-25`](.claude/BASE-ERREURS.md) |
+| 2026-09-14 | Un test piégé a détruit le travail qu'il devait valider | ✅ CORRIGÉE | [`E-24`](.claude/BASE-ERREURS.md) |
+| 2026-09-14 | La condition d'arrêt visait les agents, pas l'horloge qui les réveille | ▫️ DOCUMENTÉE | [`E-23`](.claude/BASE-ERREURS.md) |
 | 2026-09-11 | Un défaut a été annoncé à Chaima sans avoir jamais été constaté | ✅ CORRIGÉE | [`E-22`](.claude/BASE-ERREURS.md) |
 | 2026-08-10 | L'état du site a été déduit du dépôt, pas de ce que voyait un visiteur | ✅ CORRIGÉE | [`E-21`](.claude/BASE-ERREURS.md) |
 | 2026-09-06 | Un outil d'audit a inspecté la mauvaise cible pendant plusieurs runs | ✅ CORRIGÉE | [`E-20`](.claude/BASE-ERREURS.md) |
@@ -35,4 +38,4 @@
 | 2026-08-10 | Un faux positif a survécu deux semaines et a été répété ~30 fois | ✅ CORRIGÉE | [`E-02`](.claude/BASE-ERREURS.md) |
 | 2026-09-11 | Une règle écrite le 13/07 a été ignorée pendant un mois | ▫️ DOCUMENTÉE | [`E-01`](.claude/BASE-ERREURS.md) |
 
-*23 fiches. Généré depuis `.claude/BASE-ERREURS.md`.*
+*26 fiches. Généré depuis `.claude/BASE-ERREURS.md`.*

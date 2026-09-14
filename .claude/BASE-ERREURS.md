@@ -36,10 +36,13 @@
 | E-17 | Documents internes publiés avec le site | Tu configures une publication, un déploiement | PROTECTEUR · REMPART |
 | E-18 | Deux sources de vérité pour la même question | Tu ajoutes une source d'information à côté d'une existante | ARCHITECTE · GARDIEN |
 | E-19 | Manipulation git pendant une fusion en cours | Tu fais autre chose au milieu d'un merge non finalisé | tous |
+| E-23 | Règle appliquée aux agents mais pas à l'ordonnanceur qui les déclenche | Tu poses une condition d'arrêt, ou une Routine tourne à vide | croque-mort · superviseur-vigie |
+| E-24 | Un test a détruit le travail non commité | Tu écris un test qui touche à l'état du dépôt | tous |
 | E-20 | Outil d'audit pointé sur la mauvaise cible | Tu lances un scan, un audit, un test de dépendances | tous |
 | E-21 | État d'un site déduit du dépôt, pas du live | Tu conclus sur ce que voit un visiteur | GUETTEUR · verificateur-verite |
 | E-22 | Défaut annoncé sans avoir été constaté | Tu rapportes un bug que tu n'as pas reproduit | GARANT · tous |
-| E-23 | Livraison annoncée sans vérifier qu'elle existe | Tu dis « c'est poussé / la PR t'attend / c'est en ligne » | GARDIEN-CONTRÔLE-FINAL · tous |
+| E-25 | Contrôle aveugle qui accuse au lieu de s'accuser | Tu écris un contrôle qui conclut sur ce qu'il ne voit pas | tous |
+| E-26 | Livraison annoncée sans vérifier qu'elle existe | Tu dis « c'est poussé / la PR t'attend / c'est en ligne » | GARDIEN-CONTRÔLE-FINAL · tous |
 
 ---
 
@@ -409,7 +412,114 @@ rapport, pas au moment du correctif. Et quand l'erreur est déjà partie chez Ch
 voix haute, dans le même canal, sans attendre qu'elle la découvre.
 
 
-## E-23 — Une livraison a été annoncée à Chaima alors qu'elle n'existait pas
+## E-23 — La condition d'arrêt visait les agents, pas l'horloge qui les réveille
+**Constaté le** 2026-09-14 · **Survenu** 2026-09-12 → 2026-09-14 · **État** cause identifiée, correction en attente d'arbitrage
+
+**Ce qui s'est passé.** La règle anti-bruit existe deux fois, et de façon explicite : CODEX §5
+(« un rapport pour dire qu'il n'y a rien à dire est une faute contre le protocole ») et la condition
+d'arrêt de la chaîne veille. Un rôle a même été créé le 2026-09-11 pour la faire appliquer —
+`croque-mort`. Trois jours plus tard, le Drive contient une vingtaine de documents horodatés en 72 h,
+dont au moins huit disent littéralement « INCHANGÉ · 0 nouvelle pièce · SILENCE ». Plusieurs répètent
+depuis le 12/09 « code toujours bloqué (push authentifié requis) », c'est-à-dire qu'ils annoncent toutes
+les deux heures l'attente d'une action humaine déjà signalée.
+
+**Cause racine — et ce n'est pas la désobéissance d'un agent.** La règle s'adresse à celui qui *écrit
+le rapport*. Or ce qui produit le bruit est en amont : **des Routines déclenchées par une horloge.**
+Relevé au 2026-09-14 : deux Routines horaires, deux Routines toutes les deux heures — dont deux
+programmées **à la même minute** (`22 */2 * * *`) sur le même dépôt — et six quotidiennes, soit de
+l'ordre de soixante réveils par jour. Un agent réveillé n'a pas le pouvoir de décider qu'il n'aurait pas
+dû l'être : au mieux il écrit « rien à signaler », et ce message *est* le bruit.
+
+**Une condition d'arrêt posée sur l'agent et pas sur l'ordonnanceur ne s'applique jamais.**
+
+**Signal de détection.** Tu poses une condition d'arrêt, une règle anti-doublon ou une règle anti-bruit.
+Demande-toi : **qui décide que ce travail a lieu ?** Si c'est un `cron`, une Routine ou un planificateur,
+la règle doit porter sur la fréquence, pas sur le contenu du rapport. Autre signal : une Routine dont les
+derniers passages se ressemblent, ou qui attend depuis plus d'un cycle une action humaine.
+
+**Contre-mesure.** Trois niveaux, du plus haut au plus bas :
+1. **L'ordonnanceur d'abord.** Une boucle bloquée sur une décision humaine se met en pause ou passe en
+   cadence longue — elle ne se rappelle pas toutes les deux heures. Une boucle dont le travail de fond
+   est inaccessible (accès réseau fermé, par exemple) s'arrête : elle ne peut produire que du bruit.
+2. **Jamais deux Routines à la même minute sur le même dépôt.** Deux sessions concurrentes sur le même
+   `git` se gênent ; au minimum les décaler.
+3. **L'agent ensuite**, comme aujourd'hui : état inchangé → une ligne dans l'état courant, pas un
+   document neuf.
+
+**Leçon transférable.** Une règle ne vaut que si elle s'adresse à celui qui a le pouvoir de l'appliquer.
+Écrite pour un agent, une condition d'arrêt ne peut pas arrêter l'horloge qui le réveille — il faut la
+poser là où la décision se prend.
+
+## E-24 — Un test piégé a détruit le travail qu'il devait valider
+**Constaté le** 2026-09-14 · **État** corrigé le jour même, travail refait
+
+**Ce qui s'est passé.** Pour éprouver un nouveau garde-fou de déploiement, un test enchaînait plusieurs
+pièges. Entre deux pièges, il remettait l'environnement à zéro avec `git checkout -q -- .` — commande qui
+**écrase tout le travail non commité de l'arbre**. Une heure de modifications (quatre `@font-face`, six
+pages nettoyées, le garde-fou lui-même) a disparu. Seuls les fichiers non suivis par git ont survécu, par
+chance et non par conception.
+
+Symptôme trompeur : le témoin du test, censé passer, a échoué. J'ai d'abord cru à un défaut du garde-fou.
+Il était correct — c'est le monde autour de lui qui venait d'être réinitialisé.
+
+**Cause racine.** Le test agissait sur **l'arbre de travail** alors qu'il n'avait besoin d'agir que sur
+`_site`, un artefact de build reconstructible. Un test qui partage son état avec le travail qu'il valide
+peut le détruire, et la commande de nettoyage la plus naturelle (`git checkout -- .`, `git reset --hard`,
+`git clean -fd`) est précisément celle qui fait le plus de dégâts.
+
+**Signal de détection.** Tu écris un test, un script de vérification ou une boucle de pièges qui contient
+`git checkout`, `git reset`, `git clean`, `git stash` — ou qui écrit ailleurs que dans un répertoire
+jetable.
+
+**Contre-mesure — deux règles, dans cet ordre.**
+1. **Commiter AVANT de tester.** Le travail devient inatteignable par un test mal isolé. C'est gratuit et
+   ça aurait suffi ici.
+2. **Un test n'agit que sur des artefacts jetables.** Ici : reconstruire `_site` entre chaque piège, ne
+   jamais toucher aux fichiers sources. Aucune commande git de remise à zéro dans un test.
+
+**Leçon transférable.** Un test doit pouvoir échouer sans rien casser. S'il partage son état avec le
+travail qu'il valide, il n'est pas un test : c'est un risque de plus. Et deuxième leçon, née du
+symptôme : quand un témoin échoue, soupçonner d'abord le banc d'essai, pas la pièce testée.
+
+## E-25 — Un contrôle aveugle a accusé le rapport au lieu de s'accuser lui-même
+**Constaté le** 2026-09-14 · **État** corrigé le jour même
+
+**Ce qui s'est passé.** Le contrôle des rapports (`scripts/verifier_rapports.py`, règle R3) vérifie
+que tout commit cité existe, via `git cat-file -e`. Il passait en local. À sa **première exécution
+réelle en intégration continue**, il a échoué en annonçant : « le commit `45b2e4d` n'existe pas dans
+ce dépôt ». Ce commit existe : c'est la tête de `main`, et le site en production en est issu.
+
+Le workflow récupère le code avec `git fetch --depth 1`. Dans un dépôt **superficiel**, `cat-file`
+répond non pour un commit parfaitement réel mais simplement non récupéré. Le contrôle n'a pas menti :
+il a confondu **« je ne vois pas »** avec **« ça n'existe pas »**.
+
+Circonstance aggravante : le même contrôle passait en local *par chance*. Le clone local était lui
+aussi superficiel ; le commit cité se trouvait dans la profondeur récupérée. Un vert obtenu par
+hasard est indistinguable d'un vert mérité — c'est ce qui rendait le défaut invisible.
+
+**Cause racine.** Un outil de vérification a été écrit sans se demander ce qu'il fait quand **il ne
+peut pas voir**. Deux états ont été fondus en un seul : « absent » et « hors de portée ». C'est la
+fiche E-11 sous une autre forme : un historique tronqué pris pour l'historique réel.
+
+**Signal de détection.** Tu écris un contrôle qui interroge l'historique git (`cat-file`, `log`,
+`rev-list`, dates de commit) et qui s'exécutera dans une intégration continue — donc, par défaut,
+dans un clone superficiel. Ou, plus généralement : ton contrôle possède une branche de code où il
+répond « faux » alors que la réponse honnête serait « je ne sais pas ».
+
+**Contre-mesure — deux règles, dans cet ordre.**
+1. **Donner à voir.** L'historique complet est récupéré dans le workflow (`--depth 1` retiré) : 70
+   commits, 3,5 Mo. Le coût était nul ; l'aveuglement ne l'était pas.
+2. **Un contrôle qui ne peut pas voir échoue LUI-MÊME, il n'accuse personne.** Le script détecte
+   désormais un dépôt superficiel et s'arrête en le disant, au lieu de rendre un verdict sur le
+   rapport. « Je ne peux pas vérifier » n'est pas « c'est faux », et n'est surtout pas « c'est bon ».
+
+**Leçon transférable.** Avant de faire confiance à un contrôle, demander : que répond-il quand il est
+aveugle ? S'il répond « faux », il fabriquera des faux positifs (fiche E-02). S'il répond « vrai »,
+il fabriquera de faux verts, ce qui est pire. La seule réponse acceptable est qu'il se déclare
+incapable — bruyamment. Et un contrôle n'a pas prouvé sa valeur tant qu'il n'a pas tourné là où il
+doit vivre : celui-ci a été pris en défaut par sa première exécution réelle, pas par ses sept pièges.
+
+## E-26 — Une livraison a été annoncée à Chaima alors qu'elle n'existait pas
 
 **Constaté le** 2026-09-11 · **Survenu** 2026-09-11 · **État** corrigé le soir même
 
@@ -439,6 +549,7 @@ dernier maillon de la chaîne se vérifie explicitement, jamais par déduction d
 
 **Leçon transférable.** Le succès d'une étape ne prouve que cette étape. Une livraison n'est pas ce qu'on a
 lancé, c'est ce qu'on a vu exister — et c'est sur son propre travail que l'on vérifie le moins.
+
 
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
