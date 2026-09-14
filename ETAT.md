@@ -66,6 +66,17 @@
 - Livré via : branche `design/caelum-premium-refonte` + PR #3 vers main (JAMAIS de push direct sur le site). Fusion = décision de Chaima.
 - Limite honnête : le rendu visuel réel (chargement Google Fonts + responsive dans un navigateur) n'est PAS vérifiable depuis ce sandbox (sortie réseau restreinte) — RESTE : revue visuelle par Chaima avant fusion.
 - Besoin du suivant : Chaima relit la PR #3, vérifie le rendu, fusionne si OK → déploiement GitHub Pages automatique.
+### 2026-09-14 21h22 (Europe/Brussels) — Seconde collision de fiches + arbitrage RGPD exécuté sans décision (session Claude Code)
+- Tâche : résoudre le conflit apparu sur la PR #20 après que main a avancé de 10 commits, et remettre le registre des décisions en accord avec la réalité.
+- Ce que j'ai fait : fusionné main ; renuméroté MA fiche E-23 → E-26 (main avait publié un E-23 différent, comme pour E-19 le 11/09 — renuméroter une fiche diffusée casserait une référence) ; comblé la ligne d'index manquante de E-25 (fiche E-05 en situation réelle) ; retiré de la file la ligne « auto-héberger les polices » devenue contradictoire avec la production.
+- Fichiers touchés : .claude/BASE-ERREURS.md, 🔴 ERREURS.md (régénéré), codex/A-DECIDER.md, codex/rapports/2026-09-14-21h22…md, ETAT.md.
+- POINT PORTÉ À CHAIMA SANS ATTENDRE SA DEMANDE : l'auto-hébergement des polices (commit b7082f4) a été EXÉCUTÉ en production par une autre session alors qu'il figurait comme décision EN ATTENTE dans sa file. Le remède est réel et verrouillé (4 woff2, @font-face local, zéro appel externe, garde-fou en liste blanche au déploiement) et correspond à ce qui était recommandé — mais Chaima n'a jamais dit oui. Consigné explicitement « NON TRANCHÉ PAR CHAIMA » : la ligne quitte la file parce que le correctif est déployé, pas parce qu'une décision a été prise.
+- SIGNAL RÉPÉTÉ, non corrigé : deux collisions de numéros de fiches en trois jours (E-19 puis E-23). Une numérotation séquentielle ne tient pas à deux sessions parallèles. Changer la convention est une décision de protocole, donc de Chaima.
+- Vérifié (preuve) : generer_registre_erreurs.py --verifier → 26 fiches, exit 0 ; audit_cloisonnement.py --bloquant → exit 0 ; audit_code_sur.py → vert ; verifier_rapports.py → 3 rapports, 0 violation (il avait d'abord relevé 3 violations dans mon propre rapport : R4 ×2, R7 ×1 — rapport corrigé, pas le contrôle) ; CI sur 8437b1f → audit success ; PR #20 mergeable/clean.
+- Limite honnête, inchangée : je n'ai PAS vu le site rendu (fiche E-21). Le listing du déploiement prouve ce qui a été envoyé, pas ce qui est rendu.
+- Reste / risques : 2 décisions en file (verdict « Le Signal », épinglage SHA) ; 2 PR ouvertes (#20, #18) ; convention de numérotation des fiches à trancher.
+- Besoin du suivant : Chaima confirme ou conteste l'auto-hébergement exécuté sans elle, rend son verdict sur « Le Signal », et vérifie le rendu réel du site.
+
 ### 2026-09-11 22h31 (Europe/Brussels) — PR #19 fusionnée et DÉPLOYÉE (session Claude Code)
 - Tâche : fusionner la PR #19 sur autorisation explicite de Chaima, puis prouver que le site se déploie réellement.
 - Ce que j'ai fait : résolu un conflit apparu entre-temps (main avait avancé de 2 commits pendant l'attente — 56 agents, registre d'erreurs généré) ; fusionné (merge 7163653) ; vérifié le déploiement.
