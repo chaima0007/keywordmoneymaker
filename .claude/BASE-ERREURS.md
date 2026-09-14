@@ -37,6 +37,7 @@
 | E-18 | Deux sources de vérité pour la même question | Tu ajoutes une source d'information à côté d'une existante | ARCHITECTE · GARDIEN |
 | E-19 | Manipulation git pendant une fusion en cours | Tu fais autre chose au milieu d'un merge non finalisé | tous |
 | E-23 | Règle appliquée aux agents mais pas à l'ordonnanceur qui les déclenche | Tu poses une condition d'arrêt, ou une Routine tourne à vide | croque-mort · superviseur-vigie |
+| E-24 | Un test a détruit le travail non commité | Tu écris un test qui touche à l'état du dépôt | tous |
 | E-20 | Outil d'audit pointé sur la mauvaise cible | Tu lances un scan, un audit, un test de dépendances | tous |
 | E-21 | État d'un site déduit du dépôt, pas du live | Tu conclus sur ce que voit un visiteur | GUETTEUR · verificateur-verite |
 | E-22 | Défaut annoncé sans avoir été constaté | Tu rapportes un bug que tu n'as pas reproduit | GARANT · tous |
@@ -446,6 +447,37 @@ derniers passages se ressemblent, ou qui attend depuis plus d'un cycle une actio
 **Leçon transférable.** Une règle ne vaut que si elle s'adresse à celui qui a le pouvoir de l'appliquer.
 Écrite pour un agent, une condition d'arrêt ne peut pas arrêter l'horloge qui le réveille — il faut la
 poser là où la décision se prend.
+
+## E-24 — Un test piégé a détruit le travail qu'il devait valider
+**Constaté le** 2026-09-14 · **État** corrigé le jour même, travail refait
+
+**Ce qui s'est passé.** Pour éprouver un nouveau garde-fou de déploiement, un test enchaînait plusieurs
+pièges. Entre deux pièges, il remettait l'environnement à zéro avec `git checkout -q -- .` — commande qui
+**écrase tout le travail non commité de l'arbre**. Une heure de modifications (quatre `@font-face`, six
+pages nettoyées, le garde-fou lui-même) a disparu. Seuls les fichiers non suivis par git ont survécu, par
+chance et non par conception.
+
+Symptôme trompeur : le témoin du test, censé passer, a échoué. J'ai d'abord cru à un défaut du garde-fou.
+Il était correct — c'est le monde autour de lui qui venait d'être réinitialisé.
+
+**Cause racine.** Le test agissait sur **l'arbre de travail** alors qu'il n'avait besoin d'agir que sur
+`_site`, un artefact de build reconstructible. Un test qui partage son état avec le travail qu'il valide
+peut le détruire, et la commande de nettoyage la plus naturelle (`git checkout -- .`, `git reset --hard`,
+`git clean -fd`) est précisément celle qui fait le plus de dégâts.
+
+**Signal de détection.** Tu écris un test, un script de vérification ou une boucle de pièges qui contient
+`git checkout`, `git reset`, `git clean`, `git stash` — ou qui écrit ailleurs que dans un répertoire
+jetable.
+
+**Contre-mesure — deux règles, dans cet ordre.**
+1. **Commiter AVANT de tester.** Le travail devient inatteignable par un test mal isolé. C'est gratuit et
+   ça aurait suffi ici.
+2. **Un test n'agit que sur des artefacts jetables.** Ici : reconstruire `_site` entre chaque piège, ne
+   jamais toucher aux fichiers sources. Aucune commande git de remise à zéro dans un test.
+
+**Leçon transférable.** Un test doit pouvoir échouer sans rien casser. S'il partage son état avec le
+travail qu'il valide, il n'est pas un test : c'est un risque de plus. Et deuxième leçon, née du
+symptôme : quand un témoin échoue, soupçonner d'abord le banc d'essai, pas la pièce testée.
 
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
