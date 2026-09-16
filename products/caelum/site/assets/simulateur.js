@@ -64,12 +64,21 @@
       res.push({ n: "Canal lanceurs d'alerte", s: "oui",
         t: "Applicable : la loi du 28/11/2022 impose un canal de signalement interne confidentiel aux entreprises d'au moins 50 travailleurs. Vérifiez qu'un dispositif existe et que vos travailleurs le connaissent." });
     } else {
-      res.push({ n: "Canal lanceurs d'alerte", s: "non",
-        t: "Non applicable à ce jour : l'obligation commence à 50 travailleurs. À revoir si vous approchez ce seuil." });
+      // Verdict « à vérifier » et non « non concerné » : ce questionnaire ne demande PAS
+      // si vous relevez du secteur financier ou de l'anti-blanchiment, où la loi s'applique
+      // sans aucun seuil d'effectif. Rendre « a priori non concerné » à une fiduciaire de
+      // douze personnes serait une affirmation de droit fausse. Le §14 du protocole tranche :
+      // quand les faits ne départagent pas, le verdict le plus prudent gagne.
+      res.push({ n: "Canal lanceurs d'alerte", s: "verifier",
+        t: "À vérifier. En règle générale l'obligation commence à 50 travailleurs — mais elle s'applique SANS SEUIL, quel que soit votre effectif, si vous relevez des dispositions en matière de services, produits et marchés financiers, ou si vous êtes assujetti à la législation anti-blanchiment. Beaucoup de petites structures le sont sans le savoir. Ce test ne vous pose pas la question : vérifiez votre situation. Si aucune des deux ne vous concerne, l'obligation ne commence qu'à 50 travailleurs." });
     }
     // CSRD / DORA — démystification honnête, toujours affichée.
-    res.push({ n: "CSRD et DORA — le point honnête", s: "non",
-      t: "CSRD : depuis le paquet Omnibus adopté le 24/02/2026, les seuils ont été fortement relevés (cible ~1 000 salariés) — la grande majorité des PME n'est pas concernée à court terme. DORA : secteur financier et prestataires TIC uniquement. Si on vous vend l'un ou l'autre comme une urgence PME, demandez la source." });
+    // « à vérifier » et non « non concerné » : ce questionnaire ne mesure NI le chiffre
+    // d'affaires NI le total de bilan. Tant que l'Omnibus n'est pas transposé, ce sont
+    // les seuils nettement plus bas de la loi du 02/12/2024 qui s'appliquent — une
+    // société belge peut donc être concernée AUJOURD'HUI et lire « non concerné ».
+    res.push({ n: "CSRD et DORA — le point honnête", s: "verifier",
+      t: "CSRD : le paquet Omnibus du 24/02/2026 (directive (UE) 2026/470) relève fortement les seuils — il faudra dépasser À LA FOIS 1 000 salariés ET 450 M€ de chiffre d'affaires net. Cette directive n'est pas encore transposée en droit belge : jusque-là, ce sont les seuils, nettement plus bas, de la loi du 02/12/2024 qui s'appliquent. Ce test ne mesure ni votre chiffre d'affaires ni votre total de bilan : il ne peut donc pas trancher à votre place. La grande majorité des PME n'est pas concernée ; si vous êtes une grande société au sens du Code des sociétés et des associations, vérifiez avec votre réviseur. DORA : secteur financier et prestataires TIC uniquement. Si on vous vend l'un ou l'autre comme une urgence PME, demandez la source." });
 
     var lib = { oui: "S'applique à vous", verifier: "À vérifier", non: "A priori non concerné" };
     var cont = document.getElementById("res-liste");

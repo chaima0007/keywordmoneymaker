@@ -41,6 +41,10 @@
 | E-20 | Outil d'audit pointé sur la mauvaise cible | Tu lances un scan, un audit, un test de dépendances | tous |
 | E-21 | État d'un site déduit du dépôt, pas du live | Tu conclus sur ce que voit un visiteur | GUETTEUR · verificateur-verite |
 | E-22 | Défaut annoncé sans avoir été constaté | Tu rapportes un bug que tu n'as pas reproduit | GARANT · tous |
+| E-25 | Contrôle aveugle qui accuse au lieu de s'accuser | Tu écris un contrôle qui conclut sur ce qu'il ne voit pas | tous |
+| E-26 | Livraison annoncée sans vérifier qu'elle existe | Tu dis « c'est poussé / la PR t'attend / c'est en ligne » | GARDIEN-CONTRÔLE-FINAL · tous |
+| E-27 | Brochure corrigée, produit laissé faux | Tu corriges une affirmation présente à plusieurs endroits | tous |
+| E-28 | Garde-fou aveugle à la faute qu'il devait empêcher | Tu écris un contrôle après une erreur | testeur-adverse · contre-verificateur-securite |
 
 ---
 
@@ -516,6 +520,104 @@ aveugle ? S'il répond « faux », il fabriquera des faux positifs (fiche E-02).
 il fabriquera de faux verts, ce qui est pire. La seule réponse acceptable est qu'il se déclare
 incapable — bruyamment. Et un contrôle n'a pas prouvé sa valeur tant qu'il n'a pas tourné là où il
 doit vivre : celui-ci a été pris en défaut par sa première exécution réelle, pas par ses sept pièges.
+
+## E-26 — Une livraison a été annoncée à Chaima alors qu'elle n'existait pas
+
+**Constaté le** 2026-09-11 · **Survenu** 2026-09-11 · **État** corrigé le soir même
+
+**Ce qui s'est passé.** Après la fusion de la PR #19, la journalisation (registre, passation, rapport) a
+été commitée et **poussée** sur la branche de travail. J'ai ensuite écrit à Chaima : « Je n'ai pas non plus
+fusionné la PR du journal. Elle t'attend, c'est un clic. » **Cette PR n'avait jamais été créée.** La
+branche était bien poussée — l'étape suivante, l'ouverture de la PR, n'avait pas été faite. Chaima s'est
+endormie en croyant qu'un travail l'attendait au réveil ; il n'y avait rien à cliquer.
+
+**Cause racine.** Le `git push` a réussi, et ce succès a été pris pour l'aboutissement de la chaîne. Une
+chaîne de livraison a plusieurs maillons (commit → push → PR ouverte → CI verte → fusionnable) et le succès
+d'un maillon ne dit rien des suivants. C'est la même racine que la fiche **E-22** — affirmer sans avoir
+constaté — mais appliquée à **son propre travail**, qui est l'angle mort le plus difficile à voir : on sait
+ce qu'on a voulu faire, et on le confond avec ce qu'on a fait.
+
+**Le coût réel.** L'erreur est partie chez Chaima dans un message de fin de session, juste avant son départ.
+Une affirmation fausse sur l'état d'une livraison est plus coûteuse qu'une affirmation fausse sur un fait
+technique : elle organise le temps de quelqu'un d'autre.
+
+**Signal de détection.** Tu écris « c'est poussé », « la PR t'attend », « c'est en ligne », « il n'y a plus
+qu'à cliquer » — et tu t'appuies sur le succès de l'étape **précédente**, pas sur l'observation de l'état
+que tu annonces.
+
+**Contre-mesure.** Avant d'annoncer l'existence d'un livrable, l'**observer** : `list_pull_requests` pour
+une PR, le listing du déploiement pour un fichier en ligne, `git log origin/<branche>` pour un push. Le
+dernier maillon de la chaîne se vérifie explicitement, jamais par déduction depuis l'avant-dernier.
+
+**Leçon transférable.** Le succès d'une étape ne prouve que cette étape. Une livraison n'est pas ce qu'on a
+lancé, c'est ce qu'on a vu exister — et c'est sur son propre travail que l'on vérifie le moins.
+
+
+## E-27 — La brochure a été corrigée et le produit laissé faux
+
+**Constaté le** 2026-09-14 · **Survenu** 2026-09-14 · **État** corrigé le jour même
+
+**Ce qui s'est passé.** Une affirmation juridique fausse a été corrigée dans `index.html` — l'exception
+qui oblige les entités financières et anti-blanchiment à un canal de signalement sans seuil d'effectif.
+La correction a été annoncée comme « le site est corrigé ». Le contradicteur a montré que
+`assets/simulateur.js` portait **encore les deux formulations fautives**, et rendait un verdict **vert
+« a priori non concerné »** à une entité que la loi oblige.
+
+**Cause racine.** La même affirmation vivait à deux endroits — une carte de la page d'accueil et le
+moteur du simulateur — et seul le premier a été cherché. La recherche s'est arrêtée au fichier où
+l'erreur avait été *repérée*, au lieu de balayer tous les supports qui *portent* l'affirmation.
+
+**Pourquoi c'est pire que ça n'en a l'air.** Le support oublié était le **produit**, pas la brochure.
+Un visiteur fait davantage confiance à un simulateur qu'à une carte, parce qu'il lui répond
+personnellement — et le verdict fautif était recopié dans le courriel de lead, donc archivé.
+Corriger la page et pas l'outil, c'est corriger ce qui rassure et laisser ce qui engage.
+
+**Signal de détection.** Tu corriges une affirmation — un seuil, une date, un chiffre, une exception —
+et tu ne t'es pas demandé **combien de fichiers la portent**.
+
+**Contre-mesure.** Avant de corriger, `grep` l'affirmation dans **tout** le périmètre publié, pas dans
+le fichier où tu l'as trouvée. Puis poser un contrôle automatique qui exige la correction **dans chaque
+support** — c'est ce que fait `scripts/verifier_coherence_juridique.py`, né de cette erreur.
+
+**Leçon transférable.** Une correction n'est pas finie quand le fichier est juste : elle est finie quand
+tous les supports qui portent l'affirmation sont justes. Et le support le plus important est celui qui
+répond personnellement à l'utilisateur.
+
+## E-28 — Un garde-fou était aveugle à la faute exacte qu'il devait empêcher
+
+**Constaté le** 2026-09-14 · **Survenu** 2026-09-14 · **État** corrigé le jour même
+
+**Ce qui s'est passé.** Après l'erreur E-27, un contrôle a été écrit pour empêcher qu'une correction
+juridique soit appliquée à un support et pas à l'autre. Le contradicteur l'a attaqué, et les deux
+pièges ont été **reproduits** : ils passaient au **vert**.
+
+- « 1 000 salariés **OU** 450 millions » — le contrôle cherchait la chaîne « 450 M€ », jamais la
+  conjonction. Or le OU mis pour le ET **était la faute d'origine**.
+- « cette directive **est désormais** transposée » — l'empreinte cherchée, « transposée en droit
+  belge », survivait à l'inversion complète du sens.
+
+Le contrôle rendait donc impossible **une seule chose** : la suppression pure et simple de quatre
+chaînes. Sous un intitulé — « cohérence juridique » — qui promettait bien davantage.
+
+**Cause racine.** Un contrôle écrit en **motifs affirmatifs** ne peut pas détecter une négation ni une
+substitution de conjonction : la sous-chaîne survit aux deux. Écrire ce qui doit être présent est
+facile ; écrire ce qui doit être **absent** demande de se représenter la faute, pas la correction.
+
+**Aggravant.** Le message de succès annonçait « la page et l'outil portent les mêmes corrections »,
+puis « aucune des **5** affirmations » alors qu'il en contrôlait 7. Un contrôle qui exagère ce qu'il
+prouve est pire que pas de contrôle : il crée une confiance qu'il ne mérite pas. C'est le §13 sur les
+affirmations **à propos de nous**.
+
+**Signal de détection.** Tu écris un contrôle après une erreur, et tu ne l'as pas éprouvé **sur cette
+erreur-là**. Ou son message de sortie affirme plus que ce que son code teste.
+
+**Contre-mesure.** Tout contrôle se pose avec ses **pièges** : on reproduit la faute d'origine, on
+vérifie qu'il échoue, on la retire, on vérifie qu'il passe. Des motifs **interdits** en plus des motifs
+exigés. Un compte, pas seulement une présence. Et un message de sortie qui ne promet que ce que le code
+établit — les chiffres LUS, jamais écrits en dur.
+
+**Leçon transférable.** Un contrôle jamais vu échouer n'est pas un contrôle. Et le premier piège à lui
+poser est l'erreur pour laquelle il a été écrit.
 
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 

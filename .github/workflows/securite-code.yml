@@ -71,6 +71,15 @@ jobs:
         # Sept pièges posés avant la bascule, sept détectés ; témoin vert (voir le commit).
         run: python3 scripts/verifier_rapports.py
 
+      - name: Cohérence juridique — la page et l'outil disent-ils la même chose ?
+        # Ajouté le 2026-09-14 après une trouvaille du contradicteur : une correction
+        # juridique avait été appliquée à index.html et PAS à assets/simulateur.js, qui
+        # rendait un verdict vert « non concerné » à une entité que la loi oblige.
+        # Aucun contrôle ne lisait le contenu juridique du site — ils lisent le code, les
+        # secrets, les dépendances et les rapports. Celui-ci comble ce trou.
+        # Fiche E-01 : une règle sans mécanisme d'application n'est pas une règle.
+        run: python3 scripts/verifier_coherence_juridique.py
+
       - name: pip-audit — CVE des dépendances DU PROJET (pas de l'environnement du runner)
         continue-on-error: true   # informatif : l'absence de CVE connue ne prouve pas l'absence de faille
         run: |
