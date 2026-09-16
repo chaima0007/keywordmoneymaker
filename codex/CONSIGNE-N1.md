@@ -7,13 +7,18 @@ Append-only : on ajoute une ligne, on n'efface jamais l'historique.
 
 ## EN VIGUEUR
 
-> **2026-09-16 · UNE BASE DE DONNÉES UNIQUE ET COMPLÈTE, RÉPLIQUÉE EN TROIS ENDROITS.**
-> Drive + dépôt GitHub + copie locale. Tout ce que possède l'Empire y figure : projets, dépôts,
-> documents, agents, routines, erreurs, décisions — avec, pour chaque élément, **où il vit
-> réellement** et **s'il est sauvegardé trois fois**.
+> **2026-09-16 (16h50) · VEILLE TECHNOLOGIQUE ET BREVETS — sur le droit accessible aux citoyens.**
 >
-> *Posée par Chaima le 2026-09-16 : « il nous faut une base de données parfaite dans le Drive,
-> en local et sur GitHub ».*
+> Chaima, en me rattrapant pour la deuxième fois : « tu es dans les brevets, technologique, donc
+> je ne comprends pas ce que tu fais ». Elle a raison. La base de données était un **chantier**,
+> pas la mission. Le rapatriement de fiches juridiques était du **rangement**.
+>
+> La mission reste celle du premier jour : **technologies, brevets, opportunités, capitaux**.
+> Caelum étant mis à part, la cible est le seul domaine encore actif : **rendre le droit belge
+> accessible aux citoyens**.
+>
+> *Chantiers en attente, non abandonnés : la base unique (bloquée sur la création de
+> `empire-codex` par Chaima), le site La Loi (5 situations sur 14).*
 
 ### RÈGLE DE MARCHE, posée le même jour
 > **« Quand tu termines un projet, tu en commences un autre sans arrêter. »**
@@ -63,6 +68,8 @@ heures de travail réel, chacune validée sur le moment, aucune servant la missi
 ---
 
 ## HISTORIQUE (append-only)
+
+- **2026-09-16 (16h50)** — Veille technologies & brevets, cible : le droit accessible aux citoyens. *(en vigueur)*
 
 - **2026-09-16** — Base de données unique, répliquée Drive + GitHub + local. *(en vigueur)*
 

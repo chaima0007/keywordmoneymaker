@@ -31,8 +31,8 @@ C'est la seule question qui compte. Tout ce qui a été perdu n'existait qu'à u
 |---|---|---|---|---|
 | `TEST` | claude/adoring-albattani-ue4vtz | b4fb9db 2026-09-11 | — | propre |
 | `droit-citoyen-app` | master | e8f14b3 2026-06-19 | — | propre |
-| `keywordmoneymaker` | claude/consigne-n1 | ef12b00 2026-09-16 | — | modifié |
-| `la-loi-avec-moi` | claude/site-initial | f841543 2026-09-14 | — | propre |
+| `keywordmoneymaker` | claude/consigne-n1 | e6e2c15 2026-09-16 | — | modifié |
+| `la-loi-avec-moi` | claude/site-initial | 782ffb2 2026-09-16 | — | propre |
 
 ## 3. DOSSIERS DRIVE
 
@@ -67,13 +67,13 @@ C'est la seule question qui compte. Tout ce qui a été perdu n'existait qu'à u
 | Registre | Volume |
 |---|---|
 | `.claude/agents/` | 59 rôles |
-| `codex/rapports/` | 4 rapports déposés |
+| `codex/rapports/` | 5 rapports déposés |
 | `.claude/BASE-ERREURS.md` | 686 lignes |
 | `🔴 ERREURS.md` | 44 lignes |
 | `codex/ROUTINES.md` | 163 lignes |
 | `codex/A-DECIDER.md` | 68 lignes |
 | `codex/DEBATS.md` | 144 lignes |
-| `codex/CONSIGNE-N1.md` | 72 lignes |
+| `codex/CONSIGNE-N1.md` | 79 lignes |
 | `codex/agents-correspondance.md` | 97 lignes |
 | `codex/PROMPT-MAITRE-CHAINE.md` | 146 lignes |
 
