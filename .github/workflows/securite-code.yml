@@ -61,6 +61,14 @@ jobs:
         # (fiche E-18). Un index dérivé et vérifié ne peut plus dériver en silence.
         run: python3 scripts/generer_registre_erreurs.py --verifier
 
+      - name: Inventaire de la base à jour (BLOQUANT)
+        # « codex/BASE/INVENTAIRE.md » est ENGENDRÉ depuis les dépôts réels et le relevé Drive.
+        # Il répond à la seule question qui a compté jusqu'ici : combien d'endroits gardent chaque
+        # chose ? Deux projets ont été perdus parce qu'ils n'existaient qu'à un seul endroit (le
+        # site La Loi, le code v0.2 du 06/09). Un inventaire écrit à la main cesse d'être vrai en
+        # silence — celui-ci échoue bruyamment dès qu'il a dérivé.
+        run: python3 scripts/inventorier.py --verifier
+
       - name: Rapports déposés — traces recoupées (BLOQUANT)
         # Contrôle de la partie surveillée par la machine. La « phrase de contrôle honnête »
         # du §2 ter est écrite par l'agent qui se contrôle lui-même : elle ne prouve rien.

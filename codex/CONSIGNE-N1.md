@@ -7,14 +7,21 @@ Append-only : on ajoute une ligne, on n'efface jamais l'historique.
 
 ## EN VIGUEUR
 
-> **2026-09-14 (21h) · CHAÎNE VEILLE, BREVETS, TECHNOLOGIES & CAPITAUX — CIBLE EN ATTENTE.**
+> **2026-09-16 · UNE BASE DE DONNÉES UNIQUE ET COMPLÈTE, RÉPLIQUÉE EN TROIS ENDROITS.**
+> Drive + dépôt GitHub + copie locale. Tout ce que possède l'Empire y figure : projets, dépôts,
+> documents, agents, routines, erreurs, décisions — avec, pour chaque élément, **où il vit
+> réellement** et **s'il est sauvegardé trois fois**.
 >
-> Chaima : « oublie Caelum Partners, ce projet est à part. » **Caelum sort du périmètre de la
-> chaîne.** La mission ne change pas — technologies, brevets, opportunités, capitaux — mais elle
-> n'a plus de cible tant que Chaima ne l'a pas nommée.
+> *Posée par Chaima le 2026-09-16 : « il nous faut une base de données parfaite dans le Drive,
+> en local et sur GitHub ».*
+
+### RÈGLE DE MARCHE, posée le même jour
+> **« Quand tu termines un projet, tu en commences un autre sans arrêter. »**
 >
-> **Aucune veille ne démarre sur un projet que Chaima n'a pas désigné.** Choisir la cible soi-même
-> serait exactement la faute E-26 sous une autre forme : décider de la priorité à sa place.
+> L'enchaînement est désormais **autorisé et attendu**. Je ne m'arrête plus entre deux chantiers
+> pour demander une cible. **Ce qui reste interdit** : changer de priorité **en silence**. Un
+> enchaînement se nomme en une ligne au moment où il commence — c'est la fiche E-26, qui garde
+> tout son sens : la dérive n'est pas de travailler, c'est de travailler sans le dire.
 
 ---
 
@@ -56,6 +63,8 @@ heures de travail réel, chacune validée sur le moment, aucune servant la missi
 ---
 
 ## HISTORIQUE (append-only)
+
+- **2026-09-16** — Base de données unique, répliquée Drive + GitHub + local. *(en vigueur)*
 
 - **2026-09-14 (21h)** — Chaîne veille : **cible en attente**, Caelum mis à part sur instruction de Chaima. *(en vigueur)*
 - **2026-09-14 (20h)** — Chaîne veille/brevets/technologies/capitaux sur Caelum Partners. *(close : premier livrable rendu — paysage concurrentiel et financements)*

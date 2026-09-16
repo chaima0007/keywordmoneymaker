@@ -1,0 +1,31 @@
+{
+  "_lisez_moi": "Relevé du Drive pris par une session d'agent. Le script d'inventaire ne peut pas interroger le Drive lui-même : il lit ce relevé. La date ci-dessous dit donc à quel point l'inventaire est frais — un relevé vieux ment silencieusement.",
+  "releve_le": "2026-09-16",
+  "racine": "0AKkOPXSGOpPEUk9PVA",
+  "dossiers": [
+    {"id": "1qXUj9D9r7HSmIMzMcsScz4Ynlv4auP4G", "titre": "COMPILATION & SYNOPSIS — Empire Chaima", "role": "source de vérité + journaux des boucles", "projet": "transverse"},
+    {"id": "1M3ta4OZ4gYEI3aI3eUDFHo1v-tyVN4pG", "titre": "CODEX — Empire Chaima (protocole maître)", "role": "protocole", "projet": "transverse"},
+    {"id": "1TN4TrQHCgqw_bOEk0HnVie5iWp_YcK8Z", "titre": "00 — PROTOCOLE (Agents & Projets)", "role": "protocole", "projet": "transverse"},
+    {"id": "16AljpQP62sBoDfTzkfbz6KCwchW0XK1W", "titre": "Veille & Opportunités", "role": "chaîne veille — structure mère", "projet": "transverse"},
+    {"id": "1KvQIjF8lvKDELq99Ch2XHCrTBXJ7C2dn", "titre": "Bibliothèque brevets internationale", "role": "veille brevets (≈20 pays)", "projet": "transverse"},
+    {"id": "1Mm0Pl5IZ1SKgdSB1h84UAPId1QL8ZsXG", "titre": "Brevetabilité de nos projets", "role": "veille brevets", "projet": "transverse"},
+    {"id": "18zRHqS1gJOVcs7FHNYh_TfERMELJu6I9", "titre": "Technologies exploitables (externes)", "role": "veille technologies", "projet": "transverse"},
+    {"id": "1ujLa20HjukzbHSi0MNcIYj50MLMnbCmH", "titre": "Financement & Capitaux", "role": "veille capitaux", "projet": "transverse"},
+    {"id": "1cTCVjiNd9iu85sd5ICGvE6CG_fRYEmRF", "titre": "Synergies inter-agents", "role": "rôles et coordination", "projet": "transverse"},
+    {"id": "1sJBtFB2bMcxx1ijYmhgVtUiGODj87_Ia", "titre": "Plans de mise en œuvre", "role": "exécution", "projet": "transverse"},
+    {"id": "12lLRotUAAQaRIxPOdxxzhdy9j5jJniUR", "titre": "Communication & Marketing", "role": "diffusion", "projet": "transverse"},
+    {"id": "1pfFtLa5zEpYokRUaqieVTRte8YwA9sqV", "titre": "Coffre confidentiel", "role": "sensible — ne sort jamais en dépôt public", "projet": "transverse"},
+    {"id": "1iMF5ndAz_UA8JVbfpRwApBeag1dU-gVp", "titre": "Caelum — Direction, Stratégie & Conformité", "role": "projet", "projet": "caelum"},
+    {"id": "1pr827nvAlkn_0r1Q1v1AAA8EIcemibfl", "titre": "Caelum — Flotte d'agents & Orchestration", "role": "projet", "projet": "caelum"},
+    {"id": "1WLUPeevFjclRvRqWfIAcsNAMHBkSJjp-", "titre": "Caelum — Infrastructure & Web", "role": "projet", "projet": "caelum"},
+    {"id": "1a9dROkr2k6N-KWqgOQrj17Gy3IsJUX1I", "titre": "LA LOI AVEC MOI — Base d'infos sourcées", "role": "contenu (100+ fiches)", "projet": "la-loi-avec-moi"},
+    {"id": "1m8xPJYUlGG1FRFocRQWXezNw8knDqHk7", "titre": "CompeteIQ — Audits & Livrables", "role": "projet", "projet": "competeiq"},
+    {"id": "1OMXa_Wkht_HWOf5DOzfNKNhjgVQN1ZRQ", "titre": "SOLEA — Audit", "role": "projet", "projet": "solea"},
+    {"id": "1coqchVPn2GQEESujFfj1BeoMIymeBhPN", "titre": "CV Booster — Application CV anti-ATS", "role": "projet", "projet": "cv-booster"},
+    {"id": "1t-jBq9yHNMSC_o12Z0EZvxB2P7yUNwRF", "titre": "Patchou — Projet Dropshipping", "role": "projet", "projet": "patchou"},
+    {"id": "1qV3s3teAqONZHOwD6kGWr0eerflNuiGw", "titre": "retrouvetonsmile — idées produits perso (HORS Caelum)", "role": "projet", "projet": "perso"},
+    {"id": "1yOQtlkKzYb_4rw-FUMJy0xEd0fsw0gsr", "titre": "Réalisations & Preuves — Dossier école", "role": "preuves", "projet": "perso"},
+    {"id": "1raDydTYvBYw0YbOPSH55Y3tAs9FsGlai", "titre": "Droit Citoyen — produits numériques", "role": "projet", "projet": "droit-citoyen-app"}
+  ],
+  "non_releve": "Le nombre exact de documents par dossier n'est pas relevé : il demanderait une requête par dossier. À ajouter si le besoin apparaît."
+}
