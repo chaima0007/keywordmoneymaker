@@ -11,6 +11,8 @@
 
 | Date | Erreur | Statut | Fiche complète |
 |---|---|---|---|
+| 2026-09-14 | Un garde-fou était aveugle à la faute exacte qu'il devait empêcher | ✅ CORRIGÉE | [`E-28`](.claude/BASE-ERREURS.md) |
+| 2026-09-14 | La brochure a été corrigée et le produit laissé faux | ✅ CORRIGÉE | [`E-27`](.claude/BASE-ERREURS.md) |
 | 2026-09-11 | Une livraison a été annoncée à Chaima alors qu'elle n'existait pas | ✅ CORRIGÉE | [`E-26`](.claude/BASE-ERREURS.md) |
 | 2026-09-14 | Un contrôle aveugle a accusé le rapport au lieu de s'accuser lui-même | ✅ CORRIGÉE | [`E-25`](.claude/BASE-ERREURS.md) |
 | 2026-09-14 | Un test piégé a détruit le travail qu'il devait valider | ✅ CORRIGÉE | [`E-24`](.claude/BASE-ERREURS.md) |
@@ -38,4 +40,4 @@
 | 2026-08-10 | Un faux positif a survécu deux semaines et a été répété ~30 fois | ✅ CORRIGÉE | [`E-02`](.claude/BASE-ERREURS.md) |
 | 2026-09-11 | Une règle écrite le 13/07 a été ignorée pendant un mois | ▫️ DOCUMENTÉE | [`E-01`](.claude/BASE-ERREURS.md) |
 
-*26 fiches. Généré depuis `.claude/BASE-ERREURS.md`.*
+*28 fiches. Généré depuis `.claude/BASE-ERREURS.md`.*
