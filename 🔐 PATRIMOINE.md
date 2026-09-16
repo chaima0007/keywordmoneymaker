@@ -3,7 +3,7 @@
 > **Document unique de référence.** Un seul endroit, pas vingt fichiers.
 > Tenu par le DÉPOSANT (état des droits) et l'HORLOGER (dates et antériorité).
 > Règle : **ajout, jamais écrasement.** Chaque ligne porte son statut, sa date et sa source.
-> Dernière mise à jour : **2026-09-11 17h06 (Europe/Brussels)**.
+> Dernière mise à jour : **2026-09-11 20h16 (Europe/Brussels)** — section E (i-DEPOT) complétée par l'HORLOGER.
 
 ---
 
@@ -100,17 +100,57 @@ Dates de création **vérifiées par l'historique git** (premier commit de chaqu
 
 | Document | Numéro | Statut | Source |
 |---|---|---|---|
-| **i-DEPOT** | **n° 160988** | 🟡 **POSSÉDÉ — NON VÉRIFIÉ** | Déclaré par Chaima. Registre BOIP **non consultable** depuis cette session (sortie réseau bloquée par le proxy). |
+| **i-DEPOT** | **n° 160988** | 🟡 **POSSÉDÉ — NON VÉRIFIÉ** | Déclaré par Chaima. **Aucun tiers ne peut le vérifier** — voir ci-dessous. |
 
-**Trois questions ouvertes, à renseigner par Chaima :**
-1. **Que couvre-t-il exactement ?** Quel contenu a été déposé, et sous quel nom ?
-2. **Quelle est sa date de dépôt ?** C'est elle qui fait la preuve d'antériorité.
-3. 🔴 **Quand expire-t-il ?** Le BOIP indique une conservation de **5 ou 10 ans selon le choix au dépôt**, prolongeable par périodes de 5 ans. **Un i-DEPOT non renouvelé perd sa valeur de preuve.**
+### ⚠️ Pourquoi personne d'autre que Chaima ne peut vérifier ce dépôt
 
-> **Ce qu'un i-DEPOT est, et n'est pas** — source BOIP : c'est « comparable à un sceau daté » qui établit l'existence d'une idée à une date donnée. Mais il **« ne confère pas de droits de propriété intellectuelle et ne fournit donc aucune protection »** et **« ne donne pas un monopole, contrairement à une marque »**.
-> Source : [BOIP — Déposer un i-DEPOT](https://www.boip.int/en/entrepreneurs/ideas/submit-an-i-depot) et [BOIP — Idées](https://www.boip.int/fr/entrepreneurs/idees/idees), consultés le 2026-09-11.
+**Un i-DEPOT est confidentiel par conception.** Le BOIP l'écrit : « **par défaut, nous gardons votre
+i-DEPOT confidentiel** » et son contenu est « tenu sous le sceau de la confidentialité ». Il n'existe
+donc **aucun registre public** où consulter le n° 160988. Il ne devient consultable que si son
+titulaire choisit lui-même de le publier dans i-D Space — et dans ce cas l'information publiée
+devient accessible à tous.
+*Constaté le 2026-09-11 · Source : [BOIP — i-DEPOT hors Benelux / FAQ confidentialité](https://www.boip.int/en/entrepreneurs/registration-maintenance/outside-benelux/idea).*
 
----
+**Conséquence pour ce document** : la date de dépôt et l'échéance du n° 160988 ne peuvent venir que
+de Chaima. Ce n'est pas une limite d'outil, c'est la nature même de l'instrument.
+
+### Où Chaima retrouve la date en deux minutes
+1. Se connecter à **My BOIP** (`my.boip.int`) — le compte créé lors du dépôt.
+2. Ouvrir l'**aperçu i-DEPOT** : il liste les i-DEPOTs déposés et en cours, avec leurs dates.
+3. Télécharger le **certificat i-DEPOT** — un PDF signé électroniquement portant le numéro unique et
+   l'horodatage. Il est **téléchargeable sans limite**.
+4. À défaut : l'**e-mail de confirmation** reçu au dépôt contient le lien vers My BOIP.
+
+### Règle d'échéance — à appliquer dès que la date sera connue
+| Paramètre | Valeur | Source |
+|---|---|---|
+| Durée choisie au dépôt | **5 ans** (par défaut) ou **10 ans** | BOIP |
+| Prolongation | par périodes de **5 ans**, renouvelable sans limite | BOIP |
+| Tarif indicatif (à revérifier) | 37 € (5 ans) · 53 € (10 ans) · **26 € la prolongation de 5 ans** | business.gov.nl, relayant le BOIP — *montants NON REVÉRIFIÉS auprès du BOIP à ce jour* |
+
+**Calcul** : `échéance = date de dépôt + 5 ans` (ou + 10 ans si cette durée a été choisie).
+
+🟢 **Point rassurant, et il compte** : à l'approche du terme, **le BOIP envoie un avertissement** et
+propose la prolongation, qui se fait depuis My BOIP. Le risque n'est donc pas d'oublier dans le vide —
+il est que **l'adresse e-mail du compte My BOIP ne soit plus relevée**. À vérifier : quelle adresse
+est enregistrée sur le compte ?
+*Source : fiche i-DEPOT de VLAIO (Agentschap Innoveren & Ondernemen), consultée le 2026-09-11.*
+
+> **Ce qu'un i-DEPOT est, et n'est pas** — source BOIP : c'est « comparable à un sceau daté » qui
+> établit l'existence d'une idée à une date donnée. Mais il **« ne confère pas de droits de propriété
+> intellectuelle et ne fournit donc aucune protection »** et **« ne donne pas un monopole,
+> contrairement à une marque »**. Précision utile : l'i-DEPOT est un **moyen de preuve inscrit dans la
+> Convention Benelux en matière de propriété intellectuelle (CBPI)**, signé électroniquement selon le
+> règlement européen eIDAS (910/2014) — il est donc **recevable comme preuve dans toute l'UE**.
+> Sources : [BOIP — Déposer un i-DEPOT](https://www.boip.int/en/entrepreneurs/ideas/submit-an-i-depot) ·
+> [BOIP — Idées](https://www.boip.int/fr/entrepreneurs/idees/idees) ·
+> [BOIP — i-DEPOT hors Benelux](https://www.boip.int/en/entrepreneurs/registration-maintenance/outside-benelux/idea), consultés le 2026-09-11.
+
+**Reste à renseigner par Chaima** (l'HORLOGER calcule et inscrit l'échéance dès réception) :
+1. La **date de dépôt** du n° 160988.
+2. La **durée choisie** : 5 ou 10 ans.
+3. Le **contenu couvert** — quelle création, sous quel nom.
+4. L'**adresse e-mail** du compte My BOIP, pour être sûr que l'avertissement arrivera.
 
 ## F. CE QUE CHAIMA DOIT TRANCHER
 
