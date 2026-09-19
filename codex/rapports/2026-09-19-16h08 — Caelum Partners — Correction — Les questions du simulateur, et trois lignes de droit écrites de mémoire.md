@@ -110,10 +110,10 @@ de Chaima, deux « je ne sais pas » → 4 « à vérifier ».
 
 ## NON VÉRIFIÉ
 
-- La **comparaison mot pour mot** des annexes de la loi belge du 26 avril 2024 avec celles de la
-  directive, dans les deux versions qui font foi (FR et NL). Tant qu'elle n'est pas faite, la page ne
-  dit pas « la liste belge » mais « les annexes de la directive, transposée en Belgique par la loi du
-  26 avril 2024 », et renvoie à ccb.belgium.be pour les cas particuliers belges.
+- La comparaison des annexes belges est **faite au niveau des secteurs** depuis l'addendum du
+  2026-09-19 17h05, et elle est concordante. Ce qui reste non fait : le diff **mot pour mot de la
+  colonne « type d'entité »** des tableaux annexés au Moniteur, que je n'ai pas pu ouvrir
+  directement. La page dit donc ce qui est établi, et rien de plus.
 - Le décompte des **intérimaires** pour le seuil de 50 travailleurs de la loi du 28 novembre 2022 : la
   loi ne renvoie qu'au § 1er de l'article 7 de la loi du 4 décembre 2007.
 - La **règle de comptage** annoncée par la question 2 (« sous contrat de travail, temps partiel
@@ -135,3 +135,74 @@ de 50 travailleurs.
 Signalé sans être traité, parce que ce n'est pas mon mandat : le seul contact du site est une adresse
 Gmail sur un domaine `.agency` payant. Pour un dirigeant méfiant, c'est un signal plus fort que
 n'importe quelle maladresse de formulation.
+
+---
+
+# Addendum — 2026-09-19, 17h10 : la comparaison des annexes belges
+
+Demandée par Chaima. Elle portait sur le premier des trois points laissés NON VÉRIFIÉS ce matin.
+Addendum daté, pas réécriture : le corps du rapport reste tel qu'il a été déposé.
+
+**Correction d'un fait du synopsis, périmé depuis :** le synopsis dit « aucune PR n'est ouverte ».
+C'était vrai à 16h08. La PR https://github.com/chaima0007/keywordmoneymaker/pull/26 a été ouverte
+depuis, **en brouillon**, sur demande de Chaima. Rien n'est déployé pour autant : le déploiement ne
+se déclenche que sur `main`.
+
+## Résultat de la comparaison
+
+Les annexes de la loi belge du 26 avril 2024 portent **les mêmes 11 + 7 secteurs** que celles de la
+directive (UE) 2022/2555. Aucun secteur ajouté, aucun retiré. La liste affichée sur la page vaut donc
+pour un lecteur belge — ce que je ne pouvais pas affirmer ce matin.
+
+VÉRIFIÉ le 2026-09-19 sur https://www.ejustice.just.fgov.be/eli/wet/2024/04/26/2024202344/justel
+(Justel, texte néerlandais authentique, mis à jour au 19-01-2026) — l'article 3, § 1er, vise les
+entités « van een in bijlage I of II bedoelde soort » et renvoie au critère de taille de la
+recommandation 2003/361/CE, comme la directive.
+
+VÉRIFIÉ le 2026-09-19 sur https://atwork.safeonweb.be/sites/default/files/2024-10/NIS2%20Brochure%20FR.pdf
+(brochure du CCB, autorité nationale de cybersécurité) — l'énumération des annexes I et II de la
+**loi belge** reprend les onze secteurs hautement critiques et les sept autres secteurs critiques,
+dans le même ordre et sous les mêmes intitulés que la directive.
+
+VÉRIFIÉ le 2026-09-19 sur https://atwork.safeonweb.be/fr/media/780/download?inline= (FAQ NIS2 du
+CCB) — l'article 3, § 6, permet au Roi d'ajouter des secteurs par arrêté délibéré en Conseil des
+ministres. Le CCB en parle au **conditionnel** : « Le Roi pourrait ajouter des secteurs ou
+sous-secteurs aux annexes I et II ». Aucun arrêté d'extension pris à ce jour. La page le dit.
+
+## Ce que la comparaison a trouvé en plus — et que personne n'avait vu
+
+VÉRIFIÉ le 2026-09-19 sur https://atwork.safeonweb.be/fr/media/780/download?inline= (FAQ NIS2 du
+CCB) — « le champ d'application de la loi NIS2 porte sur l'ensemble de l'entité concernée et non
+uniquement sur ses activités reprises dans les annexes de la loi. Sauf si la définition du type
+d'entité (service) repris dans les annexes prend en considération le caractère accessoire ou
+non-essentiel de l'activité concernée, une entité tombe dans le champ d'application de la loi même
+si le service concerné qu'elle fournit n'est qu'une partie accessoire ou non-essentielle de toutes
+ses activités. »
+
+C'est le défaut que ni l'avocat du client ni le gardien juridique n'avaient relevé, et il est plus
+conséquent que les trois lignes corrigées ce matin : un dirigeant qui exerce une activité listée à
+titre secondaire répondait « non » en toute bonne foi, et le simulateur le confortait en vert. La
+question 3 porte désormais ce piège en toutes lettres, avec sa source.
+
+VÉRIFIÉ le 2026-09-19 sur https://refli.be/fr/lex/2024202344 (texte français de la loi) — l'article
+11 permet à l'autorité nationale de cybersécurité d'identifier une entité **quelle que soit sa
+taille**, notamment lorsqu'elle est la seule en Belgique à fournir un service essentiel. Le droit
+belge élargit donc les entrées sans seuil au-delà de l'article 2, § 2, de la directive. Porté sur la
+page.
+
+VÉRIFIÉ le 2026-09-19 sur https://refli.be/fr/lex/2024202344 — l'article 3, § 4, fait entrer dans le
+champ, quelle que soit leur taille, les entités identifiées comme critiques au sens de la loi du
+19 décembre 2025 relative à la résilience des entités critiques. **Non** porté sur la page : c'est
+une désignation individuelle, qu'une entreprise connaît si elle la reçoit.
+
+## Contrôle honnête
+
+VÉRIFIÉ — les cinq contrôles bloquants passent après modification depuis `scripts/`, chacun rendant 0 : `scripts/audit_code_sur.py`, `scripts/audit_cloisonnement.py`,
+`scripts/generer_registre_erreurs.py`, `scripts/verifier_rapports.py`,
+`scripts/verifier_coherence_juridique.py`
+
+VÉRIFIÉ — dans `products/caelum/site/simulateur.html`, les trois profils de test rendent les mêmes
+verdicts qu'avant cette modification : le texte d'aide a changé, le moteur n'a pas bougé.
+
+Ce que cet addendum ne lève pas : le diff mot pour mot de la colonne « type d'entité » des tableaux
+annexés au Moniteur, et les deux autres points NON VÉRIFIÉS du rapport.
