@@ -57,7 +57,7 @@
         t: "Applicable — comme pour toute entreprise qui traite des données personnelles, quelle que soit sa taille. Les trois chantiers concrets : savoir quelles données vous détenez et où, documenter pourquoi et combien de temps vous les gardez, encadrer vos sous-traitants. Source officielle : autoriteprotectiondonnees.be." });
     } else {
       res.push({ n: "RGPD (données personnelles)", s: "verifier",
-        t: "Réponse rare : la quasi-totalité des entreprises traite des données personnelles (une boîte mail professionnelle ou des fiches de paie suffisent). Revérifiez — si vous en traitez, le RGPD s'applique." });
+        t: "Sur la base de votre réponse, le RGPD ne s'appliquerait pas. C'est possible, mais rare : une boîte mail professionnelle, un carnet d'adresses ou un seul bulletin de paie suffisent à faire de vous un responsable de traitement — et dans ce cas il s'applique, quelle que soit votre taille." });
     }
     // Lanceurs d'alerte — loi 28/11/2022, ≥50 travailleurs.
     if (q2 === "plus50") {

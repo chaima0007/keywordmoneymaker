@@ -57,7 +57,7 @@
 <main class="lisible">
   <form id="simu" novalidate>
     <fieldset>
-      <legend>1. Avez-vous un numéro de TVA belge, et facturez-vous au moins un client professionnel&nbsp;?</legend>
+      <legend>Question 1 sur 4 — Avez-vous un numéro de TVA belge, et des clients professionnels&nbsp;?</legend>
       <p class="aide">Prenez une de vos factures. Le numéro de TVA y figure, au format BE&nbsp;0123.456.789. Un «&nbsp;client professionnel&nbsp;», c'est une autre entreprise, une association ou une administration — pas un particulier.</p>
       <label class="opt"><input type="radio" name="q1" value="oui" required /> <span>Oui — numéro de TVA belge, et je facture au moins un professionnel</span></label>
       <label class="opt"><input type="radio" name="q1" value="non" /> <span>Non — je facture uniquement des particuliers, ou je n'ai pas de numéro de TVA belge</span></label>
@@ -65,49 +65,49 @@
     </fieldset>
 
     <fieldset>
-      <legend>2. Combien de travailleurs compte votre entreprise&nbsp;?</legend>
+      <legend>Question 2 sur 4 — Combien de travailleurs compte votre entreprise&nbsp;?</legend>
       <p class="aide">Les personnes qui travaillent chez vous sous contrat de travail, temps partiel compris. Si personne n'est salarié chez vous, répondez «&nbsp;moins de 50&nbsp;».</p>
       <label class="opt"><input type="radio" name="q2" value="moins50" required /> <span>Moins de 50 travailleurs</span></label>
       <label class="opt"><input type="radio" name="q2" value="plus50" /> <span>50 travailleurs ou plus</span></label>
     </fieldset>
 
     <fieldset>
-      <legend>3. Votre activité relève-t-elle d'un des secteurs visés par NIS2&nbsp;?</legend>
-      <p class="aide">Voici la liste complète — 18 secteurs, annexes I et II de la directive (UE) 2022/2555. Si le vôtre n'y est pas, vous pouvez répondre non sans hésiter.</p>
+      <legend>Question 3 sur 4 — Votre activité relève-t-elle d'un des secteurs visés par NIS2&nbsp;?</legend>
+      <p class="aide">Voici les 18 secteurs concernés, en entier&nbsp;: si le vôtre n'y figure pas, vous pouvez répondre non sans hésiter. Et y figurer ne suffit pas — la taille de l'entreprise compte aussi (question précédente). Liste officielle et cas particuliers belges&nbsp;: ccb.belgium.be. Source européenne&nbsp;: annexes I et II de la directive (UE) 2022/2555.</p>
       <ul class="secteurs">
-        <li>Énergie&nbsp;: électricité, gaz, pétrole, hydrogène, chaleur</li>
-        <li>Transports&nbsp;: aérien, ferroviaire, par eau, routier</li>
-        <li>Banque</li>
-        <li>Infrastructures des marchés financiers</li>
         <li>Santé&nbsp;: soins, laboratoires, médicaments</li>
-        <li>Eau potable</li>
-        <li>Eaux usées</li>
-        <li>Infrastructure numérique&nbsp;: centres de données, cloud, DNS, télécoms, services de confiance</li>
-        <li>Gestion de services TIC pour des entreprises&nbsp;: infogérance, sécurité managée</li>
-        <li>Administration publique</li>
-        <li>Espace</li>
-        <li>Services postaux et d'expédition</li>
-        <li>Gestion des déchets</li>
-        <li>Produits chimiques&nbsp;: fabrication, distribution</li>
         <li>Denrées alimentaires&nbsp;: production, transformation, distribution</li>
         <li>Fabrication&nbsp;: dispositifs médicaux, électronique, machines, véhicules</li>
+        <li>Transports&nbsp;: aérien, ferroviaire, par eau, routier</li>
+        <li>Gestion des déchets</li>
+        <li>Gestion de services TIC pour des entreprises&nbsp;: infogérance, sécurité managée</li>
+        <li>Infrastructure numérique&nbsp;: centres de données, cloud, DNS, télécoms, services de confiance</li>
+        <li>Produits chimiques&nbsp;: fabrication, distribution</li>
         <li>Fournisseurs numériques&nbsp;: places de marché, moteurs de recherche, réseaux sociaux</li>
+        <li>Services postaux et d'expédition</li>
+        <li>Énergie&nbsp;: électricité, gaz, pétrole, hydrogène, chaleur</li>
+        <li>Eau potable</li>
+        <li>Eaux usées</li>
         <li>Recherche</li>
+        <li>Banque</li>
+        <li>Infrastructures des marchés financiers</li>
+        <li>Administration publique</li>
+        <li>Espace</li>
       </ul>
-      <p class="aide">Y figurer ne suffit pas&nbsp;: la taille de l'entreprise compte aussi (question 2). Liste officielle et cas particuliers belges&nbsp;: ccb.belgium.be.</p>
       <label class="opt"><input type="radio" name="q3" value="oui" required /> <span>Oui — mon secteur est dans cette liste</span></label>
       <label class="opt"><input type="radio" name="q3" value="non" /> <span>Non — aucun de ces secteurs</span></label>
       <label class="opt"><input type="radio" name="q3" value="nsp" /> <span>Je ne sais pas — mon activité est à la frontière de l'un d'eux</span></label>
     </fieldset>
 
     <fieldset>
-      <legend>4. Enregistrez-vous le nom, l'e-mail ou le téléphone de personnes&nbsp;?</legend>
-      <p class="aide">Clients, prospects, fournisseurs, salariés, candidats. Un carnet d'adresses, un fichier de contacts, des fiches de paie ou simplement votre boîte mail professionnelle suffisent pour répondre oui.</p>
+      <legend>Question 4 sur 4 — Conservez-vous le nom ou les coordonnées de personnes&nbsp;?</legend>
+      <p class="aide">Clients, prospects, fournisseurs, salariés, candidats. Une boîte mail professionnelle, un carnet d'adresses, un fichier Excel ou des fiches de paie comptent. C'est le cas de presque toutes les entreprises&nbsp;: ce n'est ni une faute ni un piège, cela veut simplement dire que le RGPD vous concerne, comme tout le monde.</p>
       <label class="opt"><input type="radio" name="q4" value="oui" required /> <span>Oui</span></label>
-      <label class="opt"><input type="radio" name="q4" value="non" /> <span>Non — aucun nom, aucune adresse, aucun numéro de téléphone, nulle part</span></label>
+      <label class="opt"><input type="radio" name="q4" value="non" /> <span>Non — je ne conserve aucune donnée nominative</span></label>
     </fieldset>
 
-    <button type="submit">Voir mon résultat</button>
+    <button type="submit">Voir ce qui s'applique à mon entreprise</button>
+    <p class="aide" style="margin-top:.7rem">Résultat affiché immédiatement sur cette page. Aucune adresse e-mail demandée.</p>
   </form>
 
   <section id="resultat" hidden aria-live="polite">
