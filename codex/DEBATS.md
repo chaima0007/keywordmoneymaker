@@ -142,3 +142,67 @@ Créer un dépôt **PRIVÉ** nommé `empire-codex` (l'intégration ne peut pas c
 4. **Coffre confidentiel — JAMAIS, nulle part ailleurs qu'au Drive**, sauf décision explicite de
    Chaima sur un support chiffré.
 
+
+---
+
+## D-02 — Faut-il continuer à chercher des brevets à vendre dans le domaine du droit accessible ?
+
+**Date** 2026-09-19 · **Consigne n°1 en vigueur** veille technologique et brevets sur le droit
+accessible aux citoyens · **Réversible ?** Oui, mais chaque semaine passée dans un domaine saturé
+est une semaine non passée ailleurs. Coût du retour en arrière : le temps déjà dépensé.
+
+**Convoqué par** `conciliateur`, à la suite de trois recherches d'antériorité du 2026-09-19 qui ont
+toutes ramené de l'art antérieur sur les idées visées.
+
+**POUR — continuer ici** (`avocat`)
+C'est le domaine que Chaima connaît, où elle a déjà un produit en construction et une motivation
+personnelle. Un inventeur qui comprend le problème mieux que les déposants existants a un avantage
+réel : Intuit optimise la fiscalité américaine, personne n'a travaillé la Belgique à trois régions
+et deux communautés. Le coût de ne pas continuer : abandonner un terrain où elle est experte pour
+un terrain où elle ne l'est pas, et où sa capacité à juger une invention s'effondre.
+
+**CONTRE — chercher ailleurs** (`contradicteur`)
+Le scénario d'échec le plus probable n'est pas spectaculaire, il est lent. Trois recherches, trois
+murs :
+- entrée par la situation en langage ordinaire → US6931394B2, priorité 2000 ;
+- ordonnancement des questions d'éligibilité → US10872315B1, priorité 2016 ;
+- extraction de règles exécutables depuis un texte de loi et resynchronisation quand la loi
+  change → US12561629, US12536214, US10650190, US10885442, entre autres ;
+- gestion du répondant qui ne peut pas répondre → US10095682, dont la revendication 2 porte
+  littéralement sur le recalcul de l'arbre « to compensate for questions that a user may not be
+  able to answer ».
+
+Ce domaine est travaillé depuis vingt-cinq ans par Intuit, Thomson Reuters, LexisNexis et leurs
+concurrents. Ce ne sont pas des trous, ce sont des zones déjà ratissées.
+
+S'y ajoute un obstacle structurel, et c'est lui le vrai : art. 52 CBE et COMVIK T 641/00. Une
+invention dont l'apport est de mieux orienter un citoyen vers ses droits produit un meilleur
+résultat **administratif**, pas un effet **technique**. C'est exactement la catégorie où l'OEB
+refuse. Autrement dit : même en trouvant une nouveauté ici, la probabilité de délivrance en Europe
+reste basse, et un brevet non délivré ne se vend ni ne se loue.
+
+**SCÉNARIOS**
+- *Optimiste* — une niche étroite subsiste, formulée avec un effet technique défendable (par
+  exemple un gain mesurable de ressources machine, pas un gain de confort pour l'usager). Dépôt
+  possible, valeur de revente faible à modérée car le marché acheteur est composé des quelques
+  acteurs qui détiennent déjà les brevets de base.
+- *Réaliste* — plusieurs semaines de recherche d'antériorité aboutissent à des candidats tous
+  antériorisés ou tous refusés à l'art. 52. Le produit La Loi Avec Moi avance, le portefeuille de
+  brevets reste vide.
+- *Pessimiste* — un dépôt est préparé, payé, puis refusé à l'examen sur un motif d'exclusion
+  qu'on pouvait voir dès le départ. Perte sèche, et perte de confiance dans le dispositif.
+
+**ARBITRAGE** — Séparer les deux objectifs qui ont été confondus : **La Loi Avec Moi reste un
+produit** et continue, sans ambition de brevet ; **la chasse aux brevets change de domaine** pour
+un domaine où l'effet technique est évident par nature et non à défendre. Le choix du domaine
+revient à Chaima, pas à l'arbitre — c'est une décision de §10.
+
+**CE QUE LE CAMP PERDANT A OBTENU** — La lecture du domaine juridique n'est pas jetée. Les deux
+brevets tombés identifiés le 19/09 servent désormais de **preuve de liberté d'exploitation** pour
+La Loi Avec Moi : ce que nous voulions construire est enseigné par des brevets tombés, donc utilisable.
+Ce qui échoue comme invention réussit comme protection du produit. Et la méthode éprouvée ici —
+trois recherches d'antériorité en une matinée, avec numéros et dates — est transposable telle
+quelle au domaine suivant, quel qu'il soit.
+
+**DÉCIDÉ PAR** — En attente de Chaima. Proposition soumise, rien n'est changé tant qu'elle n'a pas
+répondu : changer de priorité en silence reste interdit.
