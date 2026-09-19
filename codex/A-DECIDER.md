@@ -2,7 +2,7 @@
 
 > Le seul fichier à ouvrir pour savoir ce qui bloque (CODEX §6). Trié par ancienneté, le plus vieux en haut.
 > ⚠️ = en attente depuis plus de 14 jours (mis en évidence). Une ligne ne disparaît que lorsque Chaima a
-> tranché (→ consignée avec sa date), jamais parce qu'elle a vieilli. Aujourd'hui : **2026-09-16**.
+> tranché (→ consignée avec sa date), jamais parce qu'elle a vieilli. Aujourd'hui : **2026-09-19**.
 
 | Quoi | Projet | Type | En attente depuis | Résumé en 1 ligne |
 |---|---|---|---|---|
@@ -15,7 +15,8 @@
 | Condition d'arrêt des 5 Routines non déclarées | Transverse | Automatisation | 2026-09-14 | `codex/ROUTINES.md` créé ; 5 Routines sans condition d'arrêt ni relecture de prompt, dont une **horaire** non auditée |
 | Accès aux registres de brevets | Caelum | Accès / outillage | 2026-09-14 | Espacenet, Patentscope, USPTO, DPMA, EUIPO : **HTTP 000**, refusés au proxy. Le rôle SCANNER ne peut pas démarrer. Sa Routine est passée en quotidienne en attendant |
 | Verdict sur le spécimen « Le Signal » | Caelum | Design | 2026-09-11 | Consultable : https://claude.ai/code/artifact/8413c51c-4b28-44fc-ba24-cd76d5619392 — débloque la refonte du corps du site, toujours en « Le Greffe » |
-| **Fusionner les 4 PR ouvertes** | Caelum | Livraison | 2026-09-11 | **C'est le blocage n°1.** #18 i-DEPOT · #22 refonte « Le Signal » · #23 corrections juridiques · #24 contenu visible sans JS. Toutes vertes et fusionnables. Rien de ce qui a été fait depuis le 11/09 n'est en production |
+| ~~Fusionner les 4 PR ouvertes~~ | Caelum | Livraison | 2026-09-11 | **TRANCHÉ PAR CHAIMA — fusionnées.** #18, #22, #23, #24 et #25 sont dans `main` ; aucune PR ouverte au 2026-09-19, déploiement en succès. Ligne conservée, comme le veut le §6 : une décision prise se consigne, elle ne s'efface pas |
+| Formulation des questions du simulateur | Caelum | Produit / livraison | 2026-09-19 | Branche `ux/questions-simulateur` : questions rendues répondables, liste NIS2 recopiée depuis les annexes après trois erreurs constatées (fiche E-29), exclusions Peppol ajoutées. Relue par avocat-du-client et gardien-juridique-verite. Attend ton feu vert pour la PR |
 | Cinquième question du simulateur | Caelum | Produit | 2026-09-14 | Les 4 questions ne détectent pas l'assujettissement anti-blanchiment. Sans elle, le verdict reste « à vérifier » pour toutes les PME de moins de 50. Modification du produit, pas correctif juridique |
 
 ---

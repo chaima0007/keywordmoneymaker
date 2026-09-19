@@ -619,6 +619,46 @@ exigés. Un compte, pas seulement une présence. Et un message de sortie qui ne 
 **Leçon transférable.** Un contrôle jamais vu échouer n'est pas un contrôle. Et le premier piège à lui
 poser est l'erreur pour laquelle il a été écrit.
 
+## E-29 — Une liste de secteurs juridiques écrite de mémoire, puis annoncée « complète »
+
+**Constaté le** 2026-09-19 · **Survenu** 2026-09-19 · **État** corrigé avant toute publication
+
+**Ce qui s'est passé.** Pour rendre la question 3 du simulateur répondable, la liste des 18 secteurs
+NIS2 a été écrite directement dans `products/caelum/site/simulateur.html`, de mémoire, sans ouvrir les
+annexes de la directive (UE) 2022/2555 — puis présentée au visiteur comme « la liste complète ». Trois
+lignes étaient fausses, vérification faite aux annexes le 2026-09-19 :
+- « Transports : … routier » : l'annexe I, sous-secteur routier, vise les **autorités routières**
+  chargées du contrôle de la gestion du trafic et les **opérateurs de systèmes de transport
+  intelligents**. Le transport routier de marchandises n'y figure pas. Un transporteur belge se serait
+  déclaré concerné à tort ;
+- « Denrées alimentaires : … distribution » : l'annexe II vise les entreprises du secteur alimentaire
+  « engaged in wholesale distribution and industrial production and processing ». Le commerce de détail
+  en est exclu ;
+- « Infrastructure numérique » : l'énumération omettait les points d'échange internet, les registres de
+  noms de domaine de premier niveau et les réseaux de diffusion de contenu — omission du sens
+  **rassurant**, donc la plus dangereuse.
+Le nombre, lui, était exact : 11 secteurs à l'annexe I, 7 à l'annexe II.
+Preuve : annexes I et II reproduites intégralement, consultées le 2026-09-19.
+
+**Cause racine.** Le mot « complète » a été écrit pour un motif d'ergonomie — on ne peut pas exclure une
+liste qu'on ne voit pas — sans que personne ne traite ce mot comme ce qu'il est : une affirmation
+juridique **sur nous**, au sens du §13. Écrire « exemples de secteurs (~18) » n'engageait à rien ; écrire
+« la liste complète » engage à l'avoir lue. Le passage de l'un à l'autre n'a déclenché aucune
+vérification, parce que le contrôle `verifier_coherence_juridique.py` compare des chaînes qu'on lui a
+données et ne sait pas qu'une liste neuve est apparue.
+
+**Signal de détection.** Tu remplaces une formulation prudente et vague par une formulation ferme et
+précise pour améliorer l'ergonomie. Le gain de confort du lecteur est exactement la mesure de ce que tu
+viens de promettre. Mots déclencheurs : « complète », « tous les », « la liste des », « il suffit de ».
+
+**Contre-mesure.** Toute énumération présentée comme exhaustive est recopiée depuis la source primaire
+**pendant** qu'on l'écrit, pas relue après. `gardien-juridique-verite` est saisi avant le commit, pas
+avant la fusion. Et quand l'accès réseau manque, on écrit « exemples » — jamais « complète ».
+
+**Leçon transférable.** Rendre une question plus facile à répondre, c'est promettre davantage au
+lecteur. L'ergonomie et l'exactitude ne sont pas deux sujets séparés : le confort qu'on offre est une
+dette de preuve qu'on contracte.
+
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
 ```

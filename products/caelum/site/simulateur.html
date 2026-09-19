@@ -58,8 +58,8 @@
   <form id="simu" novalidate>
     <fieldset>
       <legend>Question 1 sur 4 — Avez-vous un numéro de TVA belge, et des clients professionnels&nbsp;?</legend>
-      <p class="aide">Prenez une de vos factures. Le numéro de TVA y figure, au format BE&nbsp;0123.456.789. Un «&nbsp;client professionnel&nbsp;», c'est une autre entreprise, une association ou une administration — pas un particulier.</p>
-      <label class="opt"><input type="radio" name="q1" value="oui" required /> <span>Oui — numéro de TVA belge, et je facture au moins un professionnel</span></label>
+      <p class="aide">Prenez une de vos factures&nbsp;: le numéro de TVA y figure, au format BE&nbsp;0123.456.789. Le régime de la franchise (moins de 25&nbsp;000&nbsp;€ de chiffre d'affaires) n'y échappe pas. Quelques régimes en sont dispensés — article&nbsp;44 du Code TVA, forfait, faillite, assujetti non établi en Belgique&nbsp;: votre résultat vous les rappellera. Source&nbsp;: efacture.belgium.be, consulté le 19/09/2026.</p>
+      <label class="opt"><input type="radio" name="q1" value="oui" required /> <span>Oui — numéro de TVA belge, et je facture au moins un professionnel établi en Belgique</span></label>
       <label class="opt"><input type="radio" name="q1" value="non" /> <span>Non — je facture uniquement des particuliers, ou je n'ai pas de numéro de TVA belge</span></label>
       <label class="opt"><input type="radio" name="q1" value="nsp" /> <span>Je ne sais pas</span></label>
     </fieldset>
@@ -73,30 +73,31 @@
 
     <fieldset>
       <legend>Question 3 sur 4 — Votre activité relève-t-elle d'un des secteurs visés par NIS2&nbsp;?</legend>
-      <p class="aide">Voici les 18 secteurs concernés, en entier&nbsp;: si le vôtre n'y figure pas, vous pouvez répondre non sans hésiter. Et y figurer ne suffit pas — la taille de l'entreprise compte aussi (question précédente). Liste officielle et cas particuliers belges&nbsp;: ccb.belgium.be. Source européenne&nbsp;: annexes I et II de la directive (UE) 2022/2555.</p>
+      <p class="aide">Voici les secteurs en entier&nbsp;: les 11 de l'annexe I et les 7 de l'annexe II de la directive (UE) 2022/2555, transposée en Belgique par la loi du 26 avril 2024. Lisez la précision après chaque deux-points&nbsp;: c'est elle qui décide, pas le nom du secteur. La liste est complète au niveau des secteurs, mais pas des cas particuliers belges (administration locale, zones de secours, intercommunales) — c'est ccb.belgium.be qui tranche.</p>
+      <p class="aide">Y figurer ne suffit pas&nbsp;: la taille de l'entreprise compte aussi (question précédente). À l'inverse, quelques activités sont visées quelle que soit la taille&nbsp;: services DNS, registres de noms de domaine de premier niveau, services de confiance, réseaux et services de communications électroniques publics.</p>
       <ul class="secteurs">
-        <li>Santé&nbsp;: soins, laboratoires, médicaments</li>
-        <li>Denrées alimentaires&nbsp;: production, transformation, distribution</li>
-        <li>Fabrication&nbsp;: dispositifs médicaux, électronique, machines, véhicules</li>
-        <li>Transports&nbsp;: aérien, ferroviaire, par eau, routier</li>
-        <li>Gestion des déchets</li>
+        <li>Santé&nbsp;: prestataires de soins, laboratoires de référence de l'UE, recherche et fabrication de médicaments, dispositifs médicaux critiques</li>
+        <li>Denrées alimentaires&nbsp;: production et transformation industrielles, distribution en gros — le commerce de détail n'est pas visé à ce titre</li>
+        <li>Fabrication&nbsp;: dispositifs médicaux, informatique et électronique, équipements électriques, machines, véhicules, autres matériels de transport</li>
+        <li>Transports&nbsp;: aérien, ferroviaire, par eau — et, pour le routier, les autorités routières chargées de la gestion du trafic et les opérateurs de systèmes de transport intelligents. Le transport routier de marchandises n'est pas visé à ce titre</li>
+        <li>Gestion des déchets, à titre d'activité principale</li>
         <li>Gestion de services TIC pour des entreprises&nbsp;: infogérance, sécurité managée</li>
-        <li>Infrastructure numérique&nbsp;: centres de données, cloud, DNS, télécoms, services de confiance</li>
-        <li>Produits chimiques&nbsp;: fabrication, distribution</li>
-        <li>Fournisseurs numériques&nbsp;: places de marché, moteurs de recherche, réseaux sociaux</li>
-        <li>Services postaux et d'expédition</li>
-        <li>Énergie&nbsp;: électricité, gaz, pétrole, hydrogène, chaleur</li>
-        <li>Eau potable</li>
-        <li>Eaux usées</li>
-        <li>Recherche</li>
-        <li>Banque</li>
-        <li>Infrastructures des marchés financiers</li>
-        <li>Administration publique</li>
-        <li>Espace</li>
+        <li>Infrastructure numérique&nbsp;: centres de données, cloud, services DNS, registres de noms de domaine de premier niveau, points d'échange internet, réseaux de diffusion de contenu, réseaux et services de communications électroniques publics, services de confiance</li>
+        <li>Produits chimiques&nbsp;: fabrication de substances, distribution, production d'articles</li>
+        <li>Fournisseurs numériques&nbsp;: places de marché en ligne, moteurs de recherche, plateformes de réseaux sociaux</li>
+        <li>Services postaux et de courrier, services d'expédition compris</li>
+        <li>Énergie&nbsp;: électricité — y compris stockage, agrégation et points de recharge —, gaz, pétrole, hydrogène, réseaux de chaleur et de froid</li>
+        <li>Eau potable&nbsp;: fourniture et distribution</li>
+        <li>Eaux usées&nbsp;: collecte, évacuation, traitement</li>
+        <li>Recherche&nbsp;: organismes de recherche</li>
+        <li>Banque&nbsp;: établissements de crédit</li>
+        <li>Infrastructures des marchés financiers&nbsp;: plates-formes de négociation, contreparties centrales</li>
+        <li>Administration publique&nbsp;: entités des gouvernements centraux et du niveau régional</li>
+        <li>Espace&nbsp;: exploitants d'infrastructures terrestres soutenant des services spatiaux</li>
       </ul>
-      <label class="opt"><input type="radio" name="q3" value="oui" required /> <span>Oui — mon secteur est dans cette liste</span></label>
-      <label class="opt"><input type="radio" name="q3" value="non" /> <span>Non — aucun de ces secteurs</span></label>
-      <label class="opt"><input type="radio" name="q3" value="nsp" /> <span>Je ne sais pas — mon activité est à la frontière de l'un d'eux</span></label>
+      <label class="opt"><input type="radio" name="q3" value="oui" required /> <span>Oui — mon activité correspond à l'une de ces lignes</span></label>
+      <label class="opt"><input type="radio" name="q3" value="non" /> <span>Non — aucune de ces lignes ne décrit mon activité</span></label>
+      <label class="opt"><input type="radio" name="q3" value="nsp" /> <span>Je ne sais pas — mon activité est à la frontière de l'une d'elles</span></label>
     </fieldset>
 
     <fieldset>
