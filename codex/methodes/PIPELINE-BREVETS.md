@@ -10,24 +10,36 @@ pourra déposer, vendre ou louer.
 
 ---
 
-## 0. Le blocage qui commande tout
+## 0. Ce qui est accessible, et ce qui ne l'est pas
 
-**Je ne peux lire aucun brevet depuis cet environnement.**
-Onze registres sont refusés par la politique réseau (relevé du 14/09, preuve
-par journal de proxy) : Espacenet, Register EPO, api.epo.org, data.epo.org,
-Patentscope, Google Patents, BOIP, TMview, EUIPO, ejustice, economie.fgov.be.
+**Corrigé le 2026-09-19, le jour même de la première rédaction.** La première version de ce
+paragraphe disait « je ne peux lire aucun brevet ». C'était faux, et l'erreur est documentée
+en fiche E-30. Voici l'état mesuré, voie par voie.
 
-La méthode entière repose sur la lecture des sections « arrière-plan » des
-brevets — c'est la matière première. Sans elle, les étapes 1 à 4 ci-dessous
-tournent à vide.
+| Voie | Testée le | Résultat |
+|---|---|---|
+| Accès direct à Espacenet, Google Patents, Register EPO, Patentscope (11 registres) | 14/09 puis 19/09 | **REFUSÉ** — `connect_rejected`, politique réseau, preuve par journal de proxy |
+| Google Patents via `web_fetch_exa` (récupération sur serveurs tiers) | 19/09 | **PASSE** — texte intégral : description, revendications, et section arrière-plan avec la critique de l'art antérieur. Éprouvé sur US9280603B2 et EP2887236A1 |
+| Register EPO via `web_fetch_exa` | 19/09 | **ÉCHEC** — `CRAWL_UNKNOWN_ERROR` |
+| Espacenet via `web_fetch_exa` | 19/09 | **ÉCHEC** — `CRAWL_LIVECRAWL_TIMEOUT` |
 
-**Contournement immédiat, sans attendre personne :** Chaima ouvre Espacenet,
-cherche par code CPC, télécharge les PDF, les dépose dans le Drive. Le Drive
-n'est pas bloqué. Je lis depuis là.
+**Ce que ça change, précisément.**
 
-État : NON RÉSOLU au 2026-09-19.
+- **Lire un brevet est possible.** La matière première du pipeline — les sections arrière-plan,
+  où les déposants décrivent les défauts que personne n'a résolus — est atteignable. Les
+  **étapes 2, 3 et 4 sont débloquées** et peuvent tourner dès aujourd'hui.
+- **Vérifier un statut juridique reste impossible.** Google Patents inscrit lui-même sur chaque
+  fiche que le statut affiché est une supposition et non une conclusion juridique. Or l'étape 1
+  repose entièrement sur le registre : distinguer un brevet expiré (définitif) d'un brevet déchu
+  pour annuités impayées (restaurable) ne se fait que là. **L'étape 1 reste suspendue.**
 
----
+**Conséquence opérationnelle :** `eclaireur-brevets-libres` ne conclut « libre » sur aucune
+base actuellement disponible. Il peut **présélectionner** des candidats depuis Google Patents et
+les marquer PLAUSIBLE, jamais VÉRIFIÉ. La levée du doute passe par Chaima : ouvrir le Registre
+EPO sur les numéros présélectionnés, ou déposer les PDF dans le Drive, qui n'est pas bloqué.
+
+C'est une charge beaucoup plus légère qu'annoncée pendant cinq jours : non plus « télécharge
+toute la matière première », mais « vérifie le statut d'une liste courte que je t'aurai préparée ».
 
 ## 1. Les huit étapes
 
@@ -41,6 +53,9 @@ archivé. Aucune étape ne passe à la suivante sans son contradicteur.
 - **Contredit :** `verificateur-verite` — exige le registre pour chaque
   mention « libre ». Un brevet déchu peut être restauré ; un brevet expiré
   ne l'est pas. La confusion des deux est l'erreur qui coûte le plus cher.
+- **Limite en vigueur (19/09) :** le registre n'est pas atteignable d'ici.
+  Cette étape produit donc une liste PLAUSIBLE, jamais VÉRIFIÉE, et ne
+  débloque rien seule. Voir §0.
 - **Surveille :** `superviseur-vigie` prend l'instantané d'entrée (quelles
   sources, quelle date d'interrogation, quel périmètre territorial).
 - **Archive :** `archiviste-preuves` — capture datée de chaque fiche registre.
@@ -157,7 +172,8 @@ reprend la main pendant plus de sept jours est signalée à `pilote`.
 
 | Sujet | État | Qui débloque |
 |---|---|---|
-| Accès aux registres de brevets | NON RÉSOLU | Chaima (PDF vers Drive, ou élargissement de la politique réseau) |
+| Lecture du texte des brevets | **RÉSOLU le 19/09** (Google Patents via Exa) | — |
+| Vérification du statut juridique (registre) | NON RÉSOLU | Chaima — Registre EPO sur une liste courte que je prépare |
 | Dépôt privé `empire-codex` | N'EXISTE PAS | Chaima (création — 403 pour moi) |
 | Domaine technique à attaquer en premier | NON DÉCIDÉ | Chaima — je fournis les codes CPC exacts dès qu'il est nommé |
 | Cinq groupes de projets en un seul emplacement | NON RÉSOLU | dépend de `empire-codex` |

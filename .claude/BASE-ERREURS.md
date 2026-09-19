@@ -665,6 +665,52 @@ détecté les quatre liens morts en trente secondes. Les gabarits pointent déso
 règle l'enfreint aussi.** La discipline n'est pas un mécanisme. Un dispositif ne vaut que par ce qui
 tourne sans qu'on y pense — et le meilleur moment pour l'écrire est juste avant d'avoir besoin de lui.
 
+## E-30 — « Aucun accès aux brevets » était faux : je n'avais pas testé le contournement
+
+**Constaté le** 2026-09-19 · **Survenu** du 2026-09-14 au 2026-09-19 (cinq jours) · **État** corrigé
+
+**Ce qui s'est passé.** Le 14/09 j'ai mesuré que onze registres de brevets sont refusés par la
+politique réseau. La mesure était juste, preuve par journal de proxy, re-confirmée le 19/09
+(`connect_rejected` sur Espacenet et Google Patents). J'en ai tiré une conclusion beaucoup plus
+large : « je ne peux lire aucun brevet ». Je l'ai répétée à Chaima pendant cinq jours, je l'ai
+écrite en §0 de `codex/methodes/PIPELINE-BREVETS.md` comme « le blocage qui commande tout », et
+j'ai décrit tout le pipeline comme tournant à vide.
+
+Une heure après avoir écrit ce §0, j'ai testé `web_fetch_exa` sur une page Google Patents.
+Le texte intégral est revenu : description, revendications, et surtout la section arrière-plan
+avec la critique de l'art antérieur — exactement la matière première que je déclarais hors de
+portée. Testé sur deux brevets (US9280603B2, EP2887236A1), les deux fois.
+
+Le contournement fonctionne parce que la récupération a lieu sur les serveurs d'Exa, pas ici.
+C'est le mécanisme que j'avais moi-même écrit le 14/09 pour expliquer pourquoi les API de
+recherche répondent — et je ne l'ai pas appliqué à la lecture des brevets.
+
+**Cause racine.** J'ai confondu **« cette route est fermée »** avec **« il n'y a pas de route »**.
+Une mesure exacte sur un chemin unique a été généralisée en impossibilité. Aucun contrôle ne
+surveille l'écart entre ce qui a été mesuré et ce qui en est conclu : la mesure est tracée et
+datée, la généralisation ne l'est pas. Aggravant : un blocage est confortable. Il explique
+l'absence de résultat sans qu'on ait à produire de résultat, donc il n'est pas réinterrogé.
+
+**Signal de détection.** Tu t'apprêtes à écrire qu'une chose est impossible, et cette phrase
+dispense la chaîne de travailler. Compte alors les voies testées. Une seule voie testée ne
+démontre jamais une impossibilité — elle démontre qu'une voie est fermée.
+
+**Contre-mesure.** Toute déclaration d'impossibilité doit porter la liste des voies éprouvées,
+avec la date de chaque essai, et être réinterrogée à chaque fois qu'elle est citée. Rôle qui en
+répond : `contradicteur`, dont c'est exactement le travail — un blocage est une affirmation, et
+une affirmation se contredit. `verificateur-verite` rejette toute impossibilité à une seule voie.
+
+**Ce qui reste vrai après correction.** Le blocage n'est pas nul, il est plus étroit :
+Google Patents passe par Exa ; le Registre EPO et Espacenet ne passent pas (`CRAWL_UNKNOWN_ERROR`
+et `CRAWL_LIVECRAWL_TIMEOUT`, testés le 19/09). Conséquence précise : **lire** un brevet est
+possible, **vérifier son statut juridique** ne l'est pas. Google Patents l'écrit lui-même sur
+chaque fiche : le statut affiché est une supposition, pas une conclusion juridique. Donc les
+étapes 2 et 3 du pipeline sont débloquées, l'étape 1 reste suspendue au registre.
+
+**Leçon transférable.** Une impossibilité annoncée est la plus rentable des erreurs : elle
+justifie l'inaction. C'est pour ça qu'elle doit être la mieux contredite. **Mesurer une porte
+fermée n'est pas mesurer le bâtiment.**
+
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
 ```

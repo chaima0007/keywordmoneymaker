@@ -11,6 +11,7 @@
 
 | Date | Erreur | Statut | Fiche complète |
 |---|---|---|---|
+| 2026-09-19 | « Aucun accès aux brevets » était faux : je n'avais pas testé le contournement | ✅ CORRIGÉE | [`E-30`](.claude/BASE-ERREURS.md) |
 | 2026-09-14 | Un lien mort écrit dans l'heure qui suivait l'écriture de la règle l'interdisant | ✅ CORRIGÉE | [`E-29`](.claude/BASE-ERREURS.md) |
 | 2026-09-14 | Un contrôle qui se déclenche sur sa propre documentation | ✅ CORRIGÉE | [`E-28`](.claude/BASE-ERREURS.md) |
 | 2026-09-14 | Un heredoc non cité a EXÉCUTÉ le texte qu'il devait écrire | ✅ CORRIGÉE | [`E-27`](.claude/BASE-ERREURS.md) |
@@ -41,4 +42,4 @@
 | 2026-08-10 | Un faux positif a survécu deux semaines et a été répété ~30 fois | ✅ CORRIGÉE | [`E-02`](.claude/BASE-ERREURS.md) |
 | 2026-09-11 | Une règle écrite le 13/07 a été ignorée pendant un mois | ▫️ DOCUMENTÉE | [`E-01`](.claude/BASE-ERREURS.md) |
 
-*29 fiches. Généré depuis `.claude/BASE-ERREURS.md`.*
+*30 fiches. Généré depuis `.claude/BASE-ERREURS.md`.*

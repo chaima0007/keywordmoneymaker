@@ -31,7 +31,7 @@ C'est la seule question qui compte. Tout ce qui a été perdu n'existait qu'à u
 |---|---|---|---|---|
 | `TEST` | claude/adoring-albattani-ue4vtz | b4fb9db 2026-09-11 | — | propre |
 | `droit-citoyen-app` | master | e8f14b3 2026-06-19 | — | propre |
-| `keywordmoneymaker` | claude/consigne-n1 | 7a844c8 2026-09-19 | — | modifié |
+| `keywordmoneymaker` | claude/consigne-n1 | f4eefc9 2026-09-19 | — | modifié |
 | `la-loi-avec-moi` | claude/site-initial | 782ffb2 2026-09-16 | — | propre |
 
 ## 3. DOSSIERS DRIVE
@@ -68,8 +68,8 @@ C'est la seule question qui compte. Tout ce qui a été perdu n'existait qu'à u
 |---|---|
 | `.claude/agents/` | 61 rôles |
 | `codex/rapports/` | 5 rapports déposés |
-| `.claude/BASE-ERREURS.md` | 686 lignes |
-| `🔴 ERREURS.md` | 44 lignes |
+| `.claude/BASE-ERREURS.md` | 732 lignes |
+| `🔴 ERREURS.md` | 45 lignes |
 | `codex/ROUTINES.md` | 163 lignes |
 | `codex/A-DECIDER.md` | 68 lignes |
 | `codex/DEBATS.md` | 144 lignes |
