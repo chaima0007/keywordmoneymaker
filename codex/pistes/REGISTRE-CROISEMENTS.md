@@ -74,3 +74,51 @@ restent des problèmes décrits par des déposants, indépendamment de ce croise
 transférable : dans les trois carnets, **la « référence connue récurrente » est un terrain déjà
 dense**. Tout croisement futur qui repose dessus part avec un handicap, et doit être soumis à
 l'antériorité en premier, pas en dernier.
+
+---
+
+## X-02 — ouvert et mort le 2026-09-19, dans la même recherche
+
+**Ouvert** sur un principe du carnet 1, tiré de US5426969 : *« technological limitations are of
+secondary importance »* — remplacer la précision de fabrication par un protocole qui annule
+l'imperfection en prenant une différence entre deux états.
+
+**Transfert supposé** vers `P-12` (carnet 3) : plutôt que de mesurer le produit à l'intérieur d'un
+contenant scellé — ce que le déposant de US9241510 déclare virtuellement impossible, d'où le
+sur-traitement de la majorité pour garantir le minimum — appliquer deux conditions connues
+différentes et déduire la propriété thermique individuelle du contenant de l'écart entre ses
+réponses observables.
+
+**Mort immédiatement.**
+
+- **US9927304**, Philips, publié 2018 — détermination de la température à cœur d'un aliment dans un
+  contenant fermé : on **fait varier délibérément la puissance de chauffe** d'un niveau P1 à un
+  niveau P2, on mesure la vitesse de variation de température qui en résulte, et on en déduit la
+  température à cœur par des relations préétablies. C'est exactement le protocole supposé.
+- **US9109960**, Philips, publié 2015 — détermination d'un paramètre d'inertie thermique par
+  comparaison de la **vitesse de variation de la puissance fournie** à des valeurs connues, puis
+  estimation de la température. Explicitement sans capteur au contact du contenu.
+- **US4468135** (1984) et **US7213967** (2007) occupent la variante par objet simulateur calibré.
+
+---
+
+## CE QUE DEUX MORTS LE MÊME JOUR DISENT DE LA MÉTHODE
+
+Et c'est plus important que les deux croisements réunis.
+
+J'ai proposé trois domaines en les présentant comme éloignés : capteurs et signal, énergie et
+bâtiment, procédés et agroalimentaire. **Ils ne sont pas éloignés.** Les trois portent sur la
+mesure et la conduite de processus thermiques et physiques. C'est un seul super-domaine, avec une
+seule communauté d'ingénieurs, une seule littérature, un seul homme du métier.
+
+Conséquence directe, à l'art. 56 CBE : l'argument du domaine éloigné — qui était **toute** la
+raison d'ouvrir trois chemins — ne tient pas entre ces trois-là. X-01 transférait de
+l'instrumentation vers l'instrumentation. X-02 transférait du chauffage d'aliment vers le
+chauffage d'aliment. Aucun des deux n'a jamais eu l'avantage que je lui prêtais.
+
+Ce n'est pas une erreur de recherche, c'est une erreur dans la proposition que j'ai faite à Chaima
+le matin même. Elle est inscrite en fiche `E-31`.
+
+**Ce que ça ne remet pas en cause :** le principe du transfert de domaine reste juste, et les
+quatorze problèmes des carnets restent valides. C'est le choix des trois domaines qui est à revoir,
+pas la méthode.

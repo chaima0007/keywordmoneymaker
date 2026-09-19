@@ -66,3 +66,64 @@ propres déposants. Les croisements sont confidentiels parce qu'ils sont, eux, n
 
 C'est `protecteur` qui tient cette frontière, avec droit de veto, et c'est la leçon de l'incident
 du 11/09 : 77 fichiers internes exposés pendant des semaines.
+
+---
+
+# AJOUT DU 2026-09-19 (soir) — LE TEST DE DISTANCE
+
+Ce qui précède reste vrai et n'est pas réécrit. Ce qui suit corrige la faute qui l'accompagnait.
+
+## 5. Pourquoi cet ajout existe
+
+Les trois domaines proposés le matin même — capteurs, énergie, procédés — **ne sont pas
+éloignés**. Deux croisements ouverts dans l'après-midi, deux morts, les deux fois parce que le
+transfert se faisait à l'intérieur d'un même domaine. Fiche `E-31`.
+
+Cause : les trois avaient été choisis sur un **critère unique**, l'effet technique évident, pour
+échapper à l'art. 52 CBE. Optimiser sur une seule propriété produit un ensemble qui partage cette
+propriété — donc homogène. Échapper à l'art. 52 a fait tomber sur l'art. 56.
+
+## 6. Le test, et il est bloquant
+
+Deux domaines ne sont **pas** déclarés éloignés parce qu'ils portent des noms différents. Ils le
+sont si, pour la paire, on peut écrire ce qui **empêche matériellement** un ingénieur de l'un de
+lire la littérature de l'autre :
+
+1. **Codes CPC disjoints.** Pas seulement des sous-classes différentes : des sections différentes.
+2. **Revues et congrès sans recouvrement.** Où publient-ils, et est-ce que l'autre y va ?
+3. **Formations différentes.** Le même diplôme mène-t-il aux deux ?
+4. **Vocabulaire qui ne se traduit pas.** Si les deux appellent la même chose du même nom, ils se
+   lisent déjà.
+
+Tant que ces quatre lignes ne sont pas écrites **pour chaque paire**, « éloigné » est une
+affirmation NON VÉRIFIÉE, et le croisement qui en sortira n'a aucun avantage à l'art. 56.
+
+Point crucial, et c'est lui qui a manqué : le test porte sur la **paire**, jamais sur un domaine
+seul. Un domaine n'est pas éloigné dans l'absolu.
+
+## 7. Vérification du choix actuel
+
+| Paire | Codes CPC | Revues | Formations | Vocabulaire | Verdict |
+|---|---|---|---|---|---|
+| Capteurs × Procédés | G01 et G05 se recouvrent largement | mêmes congrès d'instrumentation | même génie | « dérive », « calibration », « en ligne » : identiques | **PROCHES** |
+| Capteurs × Énergie-bâtiment | recouvrement par la régulation | partiel | proche | « capteur », « régulation » : identiques | **PROCHES** |
+| Procédés × Énergie-bâtiment | recouvrement thermique | partiel | proche | « échangeur », « cycle » : identiques | **PROCHES** |
+
+Trois paires sur trois échouent. Le choix du matin est mauvais, et le test le dit en quatre lignes
+— il aurait coûté dix minutes avant, au lieu d'une journée après.
+
+## 8. Ce qui est proposé à Chaima, et qu'elle seule tranche
+
+Garder **un seul** des trois carnets comme réservoir de problèmes — ils restent valides, ce sont
+des défauts décrits par leurs propres déposants — et lui adjoindre un domaine qui passe le test de
+distance avec lui. Les candidats à examiner, non tranchés :
+
+- **le vivant** (agronomie, biologie appliquée) contre un domaine physique : sections CPC
+  distinctes, revues sans recouvrement, formations sans recouvrement, vocabulaire non traduisible ;
+- **la logistique et la manutention** contre un domaine de mesure : même remarque ;
+- **les matériaux et la mise en forme** contre un domaine de conduite de processus.
+
+Aucune de ces paires n'a été testée. Les écrire ici n'est pas les valider : c'est ouvrir le test.
+
+**Rien n'est changé tant que Chaima n'a pas répondu.** Changer de priorité en silence reste
+interdit, et c'est d'autant plus vrai quand c'est ma propre proposition qui a échoué.

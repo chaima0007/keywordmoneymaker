@@ -711,6 +711,47 @@ chaque fiche : le statut affiché est une supposition, pas une conclusion juridi
 justifie l'inaction. C'est pour ça qu'elle doit être la mieux contredite. **Mesurer une porte
 fermée n'est pas mesurer le bâtiment.**
 
+## E-31 — J'ai proposé trois domaines « éloignés » qui sont le même domaine
+
+**Constaté le** 2026-09-19 · **Survenu** le 2026-09-19, quelques heures plus tôt · **État** corrigé
+
+**Ce qui s'est passé.** Le matin du 19/09, après avoir établi que le domaine juridique était
+ratissé, j'ai proposé à Chaima trois domaines de repli : capteurs et traitement du signal,
+énergie et bâtiment, procédés et agroalimentaire. Elle a demandé de mener les trois de front pour
+pouvoir les fusionner. J'ai fondé toute la méthode du transfert de domaine sur l'art. 56 CBE :
+un enseignement venu d'un domaine **éloigné** est moins susceptible d'être jugé évident.
+
+L'après-midi, deux croisements ouverts, deux croisements morts. X-01 transférait de
+l'instrumentation de mesure vers l'instrumentation de procédé. X-02 transférait du chauffage
+d'aliment en contenant fermé vers le chauffage d'aliment en contenant fermé. Dans les deux cas
+l'antériorité était immédiate, et dans les deux cas pour la même raison : **les domaines n'étaient
+pas éloignés.**
+
+Les trois carnets portent tous sur la mesure et la conduite de processus thermiques et physiques.
+Un seul super-domaine, une seule communauté d'ingénieurs, une seule littérature — donc un seul
+homme du métier, et l'avantage que je prêtais au transfert n'a jamais existé.
+
+**Cause racine.** J'ai choisi les trois domaines sur un critère juste mais unique : **l'effet
+technique évident**, pour échapper à l'art. 52 CBE qui avait tué le domaine juridique. Optimiser
+sur une seule contrainte a produit trois domaines qui se ressemblent, précisément parce qu'ils
+partagent la propriété sur laquelle j'optimisais. Échapper à l'art. 52 m'a fait tomber sur
+l'art. 56. Les deux articles tirent en sens contraire et je n'ai regardé qu'un seul des deux.
+
+**Signal de détection.** Tu proposes plusieurs options en les qualifiant de différentes, et tu les
+as choisies sur un même critère. Ce critère les rend semblables **par construction**. Demande-toi
+ce qui les distingue, pas ce qui les qualifie.
+
+**Contre-mesure.** Un ensemble de domaines n'est déclaré « éloigné » que si on peut nommer, pour
+chaque paire, **ce qui empêche un ingénieur de l'un de lire la littérature de l'autre** : pas les
+mêmes revues, pas les mêmes codes CPC, pas les mêmes salons, pas les mêmes formations. Tant que
+cette phrase n'est pas écrite pour chaque paire, « éloigné » est une affirmation non vérifiée.
+Rôle qui en répond : `contradicteur`, à convoquer sur la **proposition de domaines**, et pas
+seulement sur les croisements qui en sortent.
+
+**Leçon transférable.** Optimiser sur une seule contrainte produit un ensemble homogène, et
+l'homogénéité est exactement ce qu'on voulait éviter. **Quand deux règles tirent en sens
+contraire, choisir en ne regardant qu'une seule des deux donne l'illusion d'un bon choix.**
+
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
 ```
