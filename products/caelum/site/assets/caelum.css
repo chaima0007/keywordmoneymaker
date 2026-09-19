@@ -283,6 +283,16 @@ label.opt{display:flex;align-items:flex-start;gap:.7rem;padding:.55rem;cursor:po
 label.opt:hover{background:var(--signal-voile)}
 label.opt input{margin-top:.3rem;accent-color:var(--signal);flex:none;width:1.05rem;height:1.05rem}
 
+/* Liste des secteurs NIS2 dans le simulateur. Un paragraphe en prose se lit mal
+   et fait cocher « je ne sais pas » ; la liste complète, elle, permet de répondre
+   « non » avec certitude. Deux colonnes dès 600px pour qu'elle tienne d'un coup d'œil. */
+ul.secteurs{list-style:none;margin:.2rem 0 1rem;padding:0;display:grid;gap:.34rem .9rem;
+  font-size:.86rem;line-height:1.45;color:var(--gris)}
+ul.secteurs li{position:relative;padding-left:1rem}
+ul.secteurs li::before{content:"";position:absolute;left:0;top:.55em;width:5px;height:5px;
+  border-radius:50%;background:var(--signal-clair)}
+@media (min-width:600px){ul.secteurs{grid-template-columns:1fr 1fr}}
+
 button{
   background:var(--signal);color:#fff;border:1px solid var(--signal);
   padding:.86rem 1.7rem;border-radius:var(--rayon-petit);
