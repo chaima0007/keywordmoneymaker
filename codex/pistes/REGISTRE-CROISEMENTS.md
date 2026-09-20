@@ -122,3 +122,132 @@ le matin même. Elle est inscrite en fiche `E-31`.
 **Ce que ça ne remet pas en cause :** le principe du transfert de domaine reste juste, et les
 quatorze problèmes des carnets restent valides. C'est le choix des trois domaines qui est à revoir,
 pas la méthode.
+
+---
+
+## X-03 — paire VIVANT × STOCKAGE THERMIQUE — forme large MORTE, ligne étroite VIVANTE
+
+**Ouverte le 2026-09-20.** Première paire à **passer le test de distance** : sections CPC distinctes
+(A23/C12 contre F28/C09), revues sans recouvrement (cryobiologie contre physique du bâtiment),
+formations sans recouvrement, vocabulaire non traduisible (« nucléation extracellulaire »,
+« protéine InaZ » contre « surfusion », « capsule »).
+
+**Problème visé** — `P-07` (carnet 2) : le matériau à changement de phase se dilate et fracture le
+béton ; la surfusion figure dans la liste de défauts du déposant lui-même.
+
+**Enseignement source** — le domaine du gel biologique ne subit pas la surfusion, il la **règle**.
+US4978540 (1990) et US5194269 (1993), tous deux anciens : un agent nucléant permet de congeler à
+−5/−30 °C au lieu de −20/−40 °C, en supprimant la surfusion. US11477981 va plus loin et donne une
+**méthode de conception** : on choisit la température de nucléation voulue, puis on détermine le
+nombre de particules, leur volume et la concentration locale d'agent à partir d'une courbe
+d'étalonnage.
+
+### Forme large : MORTE
+
+Les quatre composantes de l'hypothèse sont déjà revendiquées, séparément :
+
+- **US11378345** (2022) — contrôle actif de la cristallisation d'un PCM par **point froid maintenu**
+  qui garde l'agent nucléant sous sa température de désactivation, pour une cristallisation
+  *« consistent, predictive and selectable »*. Écrit noir sur blanc : *« The use of nucleating
+  agents can be optimised by controlling where they are located and how they are contained, i.e.
+  in a mesh or porous material. »* C'est le contrôle spatial supposé.
+- **US10718573** (2020) — corps absorbant comprimable dans la capsule ; le PCM solidifie de la
+  périphérie vers le centre et comprime ce corps. C'est diriger la dilatation vers un vide conçu.
+  Cite FR2732453 comme antérieur pour la version sphérique.
+- **US9046308** (2015) — volume de base plus volume de dilatation dimensionnés d'avance, et
+  solidification en **microzones spatialement distribuées** par structure capillaire, pour éviter
+  les poches de fondu emprisonnées qui endommagent le boîtier.
+- **US11241733** (2022) — géométrie interne accordée qui pilote les chemins du front de
+  solidification, avec vide interne pour la dilatation.
+
+### Ligne étroite : VIVANTE, et non testée
+
+Une chose est absente des quatre : **aucun n'emploie de nucléant biologique, et aucun n'emploie la
+méthode de conception quantitative de la cryobiologie.** Le domaine PCM choisit ses nucléants
+empiriquement — « un hydrate spécifique » — et les protège par un **point froid actif**, c'est-à-dire
+un dispositif thermoélectrique alimenté en permanence. US11378345 décrit lui-même pourquoi :
+*« If a PCM has no known sufficient method to ensure consistent nucleation, then that may prevent
+its use. »* Toute son architecture existe **parce qu'il leur manque un nucléant fiable sans
+protection active**.
+
+La ligne : un stockage thermique à base aqueuse — la glace, précisément le domaine de `P-06` et de
+US7827807B2 — dont la température de nucléation serait un **paramètre de conception du matériau**,
+fixé par une population calibrée de particules nucléantes, et non un paramètre d'exploitation
+maintenu par un appareil sous tension.
+
+**État : HYPOTHÈSE. Recherche d'antériorité NON FAITE.** Le fond est au coffre.
+
+**Ce qui la menace en premier** — et il faut le chercher avant tout le reste : la stabilité d'une
+protéine sur des milliers de cycles thermiques. La cryobiologie congèle **une fois**. Un mur en
+fait un par jour pendant trente ans. Si la protéine se dénature, la ligne meurt sur la physique et
+non sur le droit.
+
+---
+
+## VERDICT X-03 LIGNE ÉTROITE — MORTE le 2026-09-20
+
+Le document d'ouverture disait : vérifier **la physique avant le droit**, parce qu'il est inutile de
+savoir si c'est brevetable si ça ne fonctionne pas. Fait dans cet ordre. Résultat inattendu : **la
+physique répond oui, et c'est le droit qui tue.**
+
+### La physique tient
+
+- Une étude de durabilité au cyclage donne : *Erwinia ananas* stérilisée aux UV conserve sa capacité
+  de rupture de surfusion à environ −1 °C sur **2000 cycles gel-dégel**. *P. syringae* et *E. ananas*
+  tiennent une activité constante **jusqu'à environ 150 cycles**, puis dérivent.
+- PNAS, octobre 2024 : le mécanisme de dégradation est compris. Les gros agrégats se désassemblent
+  en dimères, ce qui abaisse la température de nucléation — mais **aucun nucléateur n'est perdu**, ils
+  sont transformés. Et un tampon phosphate salin multiplie par deux cents la population de gros
+  agrégats et **protège contre la perte d'activité au cyclage**.
+- eLife, 2023 : les multimères résistent à 99 °C pendant dix minutes en ne perdant pas plus de 6 °C
+  d'activité, et restent actifs de pH 2 à pH 11.
+
+Autrement dit : le risque physique que je jugeais premier est réel mais **borné et pilotable**.
+L'idée était bonne.
+
+### Le droit tue
+
+- **US5770102** (1998), « Ice nucleating-active materials and ice bank system ». Sa propre section
+  d'arrière-plan cite les **bactéries à activité nucléante** pour les systèmes de stockage par glace,
+  en renvoyant à la publication japonaise **JP 2-44133**, donc **1990**.
+- **Yamamoto et coll., 1993** — protéine nucléante de *Xanthomonas campestris* employée dans un
+  système de stockage de glace, remontant le point de rupture de surfusion de −5/−8 °C à −1/−3 °C,
+  avec la conclusion explicite que la protéine est recommandée comme substance nucléante organique
+  inoffensive et reproductible pour ce système. **C'est exactement la ligne étroite, publiée il y a
+  trente-trois ans.**
+- **US10487252** (2019) — gel de refroidissement aqueux revendiqué comme matériau à changement de
+  phase, comprenant cellulose, **protéine nucléante** et biocide, avec les plages de concentration.
+  C'est la revendication matériau moderne.
+
+**X-03 est close.** Forme large morte, ligne étroite morte.
+
+---
+
+# CE QUE TROIS CROISEMENTS DISENT, ET IL FAUT L'ÉCRIRE
+
+Trois hypothèses, trois morts, en deux jours. Mais les causes ne sont pas les mêmes, et c'est la
+troisième qui est instructive :
+
+| | Cause de la mort | Ce que ça révélait |
+|---|---|---|
+| X-01 | domaines trop proches | erreur de choix de domaines — `E-31` |
+| X-02 | domaines trop proches | même erreur, même journée |
+| X-03 | **domaines correctement éloignés, idée juste, déjà faite depuis 1990** | le test de distance fonctionne ; le problème est ailleurs |
+
+**Le test de distance a marché.** X-03 était une vraie invention combinatoire, physiquement fondée,
+dans une paire authentiquement éloignée. Elle est morte parce que **quelqu'un l'avait déjà faite,
+il y a trente-trois ans**, dans une littérature japonaise que le domaine du bâtiment européen ne lit
+pas plus que la cryobiologie.
+
+C'est le constat qui compte : **quand l'idée est bonne, elle a déjà été faite.** Ce n'est pas de la
+malchance, c'est la définition d'un domaine technique mûr. Un croisement qui survit à
+l'antériorité est, presque par construction, un croisement que personne n'a voulu faire — donc
+souvent un croisement sans marché, ou physiquement faux.
+
+Ce que ça ne dit pas : que c'est impossible. Ce que ça dit : que le **taux de réussite est bas**,
+que chaque tentative coûte des heures, et qu'il faut compter en dizaines de tentatives, pas en trois.
+
+**À décider par Chaima**, et rien n'est changé sans elle : continuer à ce rythme en acceptant le
+taux, ou réorienter le dispositif vers ce qu'il a produit de plus utile en deux jours — la liberté
+d'exploitation. Les deux brevets tombés du 19/09 valent immédiatement quelque chose pour son
+produit. Aucun croisement n'a rien valu.

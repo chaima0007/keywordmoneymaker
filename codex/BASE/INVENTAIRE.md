@@ -3,7 +3,7 @@
 > **FICHIER ENGENDRÉ — ne pas éditer à la main.**
 > `python3 scripts/inventorier.py` le régénère ; la CI échoue s'il a dérivé.
 
-Engendré le **2026-09-19**. Relevé Drive du **2026-09-16** (3 j).
+Engendré le **2026-09-20**. Relevé Drive du **2026-09-16** (4 j).
 
 ---
 
@@ -31,7 +31,7 @@ C'est la seule question qui compte. Tout ce qui a été perdu n'existait qu'à u
 |---|---|---|---|---|
 | `TEST` | claude/adoring-albattani-ue4vtz | b4fb9db 2026-09-11 | — | propre |
 | `droit-citoyen-app` | master | e8f14b3 2026-06-19 | — | propre |
-| `keywordmoneymaker` | claude/consigne-n1 | 7fc861d 2026-09-19 | — | modifié |
+| `keywordmoneymaker` | claude/consigne-n1 | 2d9c4b6 2026-09-19 | — | modifié |
 | `la-loi-avec-moi` | claude/site-initial | 782ffb2 2026-09-16 | — | propre |
 
 ## 3. DOSSIERS DRIVE
