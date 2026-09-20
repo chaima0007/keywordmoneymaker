@@ -206,3 +206,34 @@ verdicts qu'avant cette modification : le texte d'aide a changé, le moteur n'a 
 
 Ce que cet addendum ne lève pas : le diff mot pour mot de la colonne « type d'entité » des tableaux
 annexés au Moniteur, et les deux autres points NON VÉRIFIÉS du rapport.
+
+
+---
+
+# Addendum — 2026-09-20 : la question 2, tranchée
+
+TRANCHÉ PAR CHAIMA le 2026-09-20. Le troisième point NON VÉRIFIÉ du rapport n'était pas une
+vérification manquante mais un arbitrage en attente : la question 2 annonce une règle de comptage
+plus simple que la loi.
+
+**Décision : formulation simple conservée, avec une réserve pour le cas limite.** L'aide de la
+question 2 ajoute : « Si vous êtes proche de 50, le calcul légal est plus fin (moyenne annuelle,
+temps partiels comptés autrement) : votre comptable tranchera. »
+
+**Le fait qui a emporté la décision.** Sous 40 travailleurs ou au-dessus de 60, toutes les règles de
+calcul — moyenne des élections sociales, équivalents temps plein de la recommandation 2003/361/CE —
+donnent la même réponse. L'écart ne se manifeste qu'autour du seuil. Écrire les deux règles en
+entier aurait alourdi la page pour tous les visiteurs afin de servir la minorité qui, de toute
+façon, doit faire vérifier son décompte.
+
+Ce que cela ne règle pas, et qui est dit sur la page : le simulateur ne calcule pas l'effectif légal
+et ne prétend pas le faire.
+
+VÉRIFIÉ — les cinq contrôles bloquants passent après modification depuis `scripts/`, chacun rendant 0.
+
+VÉRIFIÉ — dans `products/caelum/site/simulateur.html`, les trois profils de test rendent les mêmes
+verdicts qu'avant : seule l'aide a changé, le moteur n'a pas bougé.
+
+Restent NON VÉRIFIÉS, inchangés : le décompte des intérimaires pour le seuil de 50 (la loi du
+28/11/2022 ne renvoie qu'au § 1er de l'article 7 de la loi du 04/12/2007), et le diff mot pour mot
+de la colonne « type d'entité » des tableaux annexés au Moniteur.
