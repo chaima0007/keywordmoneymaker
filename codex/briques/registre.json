@@ -1,0 +1,218 @@
+{
+  "schema": 1,
+  "ouvert_le": "2026-09-20",
+  "regle": "AJOUT UNIQUEMENT. Une brique n'est jamais réécrite : on ajoute une entrée au journal.",
+  "etats": {
+    "SAS": "entrée obligatoire. Isolée. Aucun usage, aucune exécution hors bac à sable.",
+    "VERIFIEE": "les six contrôles ont été passés et consignés. Toujours pas admise.",
+    "ADMISE": "utilisable dans un assemblage. Exige VERIFIEE et six contrôles au vert.",
+    "REFUSEE": "un contrôle bloquant a échoué. Le motif est écrit. Rien n'est supprimé.",
+    "RETIREE": "était admise, ne l'est plus. Le motif et la date sont écrits."
+  },
+  "controles": {
+    "licence_permissive": "MIT, Apache-2.0, BSD, ISC. Copyleft (GPL/AGPL/LGPL) = refus sauf dérogation écrite de Chaima.",
+    "provenance": "dépôt réel, propriétaire identifié, historique non vide. Neutre en origine : Chine, Russie, Inde et États-Unis passent le même contrôle.",
+    "entite_non_sanctionnee": "contrôle juridique SÉPARÉ du contrôle technique. Porte sur l'organisation, jamais sur le pays.",
+    "empreinte": "commit exact relevé. Une brique sans commit épinglé n'est pas une brique, c'est une promesse.",
+    "execution_isolee": "a tourné en bac à sable à egress refusé par défaut. Ce qu'elle a tenté de joindre est consigné.",
+    "fonctionne_reellement": "construit et passe ses propres tests. « Ça a l'air bien » n'est pas un contrôle."
+  },
+  "briques": [
+    {
+      "id": "B-01",
+      "nom": "NVIDIA/OpenShell",
+      "url": "https://github.com/nvidia/openShell",
+      "origine": "États-Unis · NVIDIA",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": null,
+      "etat": "SAS",
+      "releve_le": "2026-09-20",
+      "controles": {
+        "licence_permissive": true,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {
+        "licence_permissive": "Apache-2.0 sur la fiche du dépôt, relevé 2026-09-20 ; concession de brevet incluse"
+      },
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-20 11h40",
+          "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-20 11h40",
+          "evenement": "contrôle licence_permissive : VERT — Apache-2.0 sur la fiche du dépôt, relevé 2026-09-20 ; concession de brevet incluse"
+        }
+      ]
+    },
+    {
+      "id": "B-02",
+      "nom": "winsenlabs/platos",
+      "url": "https://github.com/winsenlabs/platos",
+      "origine": "Winsen Labs",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": null,
+      "etat": "SAS",
+      "releve_le": "2026-09-20",
+      "controles": {
+        "licence_permissive": null,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {},
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-20 11h40",
+          "evenement": "entrée en SAS"
+        }
+      ]
+    },
+    {
+      "id": "B-03",
+      "nom": "adenhq/hive",
+      "url": "https://github.com/adenhq/hive",
+      "origine": "Aden HQ",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": null,
+      "etat": "SAS",
+      "releve_le": "2026-09-20",
+      "controles": {
+        "licence_permissive": null,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {},
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-20 11h40",
+          "evenement": "entrée en SAS"
+        }
+      ]
+    },
+    {
+      "id": "B-04",
+      "nom": "HKUDS/OpenSpace",
+      "url": "https://github.com/HKUDS/OpenSpace",
+      "origine": "Hong Kong · HKUDS",
+      "licence_declaree": "MIT",
+      "commit_epingle": null,
+      "etat": "SAS",
+      "releve_le": "2026-09-20",
+      "controles": {
+        "licence_permissive": null,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {},
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-20 11h40",
+          "evenement": "entrée en SAS"
+        }
+      ]
+    },
+    {
+      "id": "B-05",
+      "nom": "alibaba/open-code-review",
+      "url": "https://github.com/alibaba/open-code-review",
+      "origine": "Chine · Alibaba",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": null,
+      "etat": "SAS",
+      "releve_le": "2026-09-20",
+      "controles": {
+        "licence_permissive": null,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {},
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-20 11h40",
+          "evenement": "entrée en SAS"
+        }
+      ]
+    },
+    {
+      "id": "B-06",
+      "nom": "Huangruiteng/loopx",
+      "url": "https://github.com/Huangruiteng/loopx",
+      "origine": "Chine · indépendant",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": null,
+      "etat": "SAS",
+      "releve_le": "2026-09-20",
+      "controles": {
+        "licence_permissive": null,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {},
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-20 11h40",
+          "evenement": "entrée en SAS"
+        }
+      ]
+    },
+    {
+      "id": "B-07",
+      "nom": "openai/symphony",
+      "url": "https://github.com/openai/symphony",
+      "origine": "États-Unis · OpenAI",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": null,
+      "etat": "SAS",
+      "releve_le": "2026-09-20",
+      "controles": {
+        "licence_permissive": null,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {},
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-20 11h40",
+          "evenement": "entrée en SAS"
+        }
+      ]
+    }
+  ],
+  "reactions": []
+}

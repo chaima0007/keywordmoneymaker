@@ -69,6 +69,20 @@ jobs:
         # silence — celui-ci échoue bruyamment dès qu'il a dérivé.
         run: python3 scripts/inventorier.py --verifier
 
+      - name: Registre des briques — sas non contourné (BLOQUANT)
+        # Chaima, 2026-09-20 : « il faut toujours isoler les nouveaux codes le temps de savoir
+        # si c'est safe et que ça fonctionne réellement ». Ce contrôle vérifie que le sas n'a
+        # pas été contourné : aucune brique ADMISE sans ses six contrôles au vert, aucune
+        # licence copyleft admise sans dérogation écrite, aucune brique admise sans commit
+        # épinglé — une brique non épinglée n'est pas reproductible, donc pas vérifiable —,
+        # aucun journal raccourci (le registre est en ajout seul), et aucune réaction combinant
+        # une brique non admise : une réaction avec un réactif non vérifié ne se distingue pas
+        # d'un accident.
+        # Le contrôle de sécurité est NEUTRE EN ORIGINE. Le contrôle de sanctions porte sur
+        # l'entité, jamais sur le pays : un dépôt d'NVIDIA passe le même sas qu'un dépôt
+        # inconnu hébergé sur Gitee.
+        run: python3 scripts/briques.py --verifier
+
       - name: Rapports déposés — traces recoupées (BLOQUANT)
         # Contrôle de la partie surveillée par la machine. La « phrase de contrôle honnête »
         # du §2 ter est écrite par l'agent qui se contrôle lui-même : elle ne prouve rien.
