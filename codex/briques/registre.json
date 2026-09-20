@@ -24,19 +24,20 @@
       "url": "https://github.com/nvidia/openShell",
       "origine": "États-Unis · NVIDIA",
       "licence_declaree": "Apache-2.0",
-      "commit_epingle": null,
+      "commit_epingle": "29e89a2f2289ad538c195e136baaaac2a92a3a2e",
       "etat": "SAS",
       "releve_le": "2026-09-20",
       "controles": {
         "licence_permissive": true,
         "provenance": null,
         "entite_non_sanctionnee": null,
-        "empreinte": null,
+        "empreinte": true,
         "execution_isolee": null,
         "fonctionne_reellement": null
       },
       "preuves": {
-        "licence_permissive": "Apache-2.0 sur la fiche du dépôt, relevé 2026-09-20 ; concession de brevet incluse"
+        "licence_permissive": "Apache-2.0 lue dans LICENSE, 402 déclarations SPDX concordantes (scripts/sas_licence.py, 2026-09-20)",
+        "empreinte": "commit 29e89a2f2289ad538c195e136baaaac2a92a3a2e relevé au clone du 2026-09-20"
       },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
@@ -48,6 +49,14 @@
         {
           "date": "2026-09-20 11h40",
           "evenement": "contrôle licence_permissive : VERT — Apache-2.0 sur la fiche du dépôt, relevé 2026-09-20 ; concession de brevet incluse"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "contrôle licence_permissive : VERT — Apache-2.0 lue dans LICENSE, 402 déclarations SPDX concordantes (scripts/sas_licence.py, 2026-09-20)"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "commit épinglé : 29e89a2f2289ad538c195e136baaaac2a92a3a2e"
         }
       ]
     },
@@ -68,13 +77,19 @@
         "execution_isolee": null,
         "fonctionne_reellement": null
       },
-      "preuves": {},
+      "preuves": {
+        "licence_permissive": "LECTURE HUMAINE REQUISE — 13 fichiers LICENSE, licences MIXTES Apache-2.0 et MIT selon le paquet (trigger-sdk, core, build, python, otlp-importer sont MIT ; le reste Apache-2.0). Les deux sont permissives, donc pas bloquant — mais les obligations d'attribution diffèrent par paquet. Lire avant d'assembler."
+      },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
       "journal": [
         {
           "date": "2026-09-20 11h40",
           "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "contrôle licence_permissive : NE CONCLUT PAS — 13 fichiers LICENSE, licences MIXTES Apache-2.0 et MIT selon le paquet (trigger-sdk, core, build, python, otlp-importer sont MIT ; le reste Apache-2.0). Les deux sont permissives, donc pas bloquant — mais les obligations d'attribution diffèrent par paquet. Lire avant d'assembler."
         }
       ]
     },
@@ -84,24 +99,35 @@
       "url": "https://github.com/adenhq/hive",
       "origine": "Aden HQ",
       "licence_declaree": "Apache-2.0",
-      "commit_epingle": null,
+      "commit_epingle": "6193aea7eb06",
       "etat": "SAS",
       "releve_le": "2026-09-20",
       "controles": {
-        "licence_permissive": null,
+        "licence_permissive": true,
         "provenance": null,
         "entite_non_sanctionnee": null,
-        "empreinte": null,
+        "empreinte": true,
         "execution_isolee": null,
         "fonctionne_reellement": null
       },
-      "preuves": {},
+      "preuves": {
+        "licence_permissive": "Apache-2.0 lue dans LICENSE (2026-09-20)",
+        "empreinte": "commit 6193aea7eb06 relevé au clone du 2026-09-20"
+      },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
       "journal": [
         {
           "date": "2026-09-20 11h40",
           "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "contrôle licence_permissive : VERT — Apache-2.0 lue dans LICENSE (2026-09-20)"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "commit épinglé : 6193aea7eb06"
         }
       ]
     },
@@ -111,24 +137,35 @@
       "url": "https://github.com/HKUDS/OpenSpace",
       "origine": "Hong Kong · HKUDS",
       "licence_declaree": "MIT",
-      "commit_epingle": null,
+      "commit_epingle": "38277815ed44a53d757973c2bc4454c3b6426698",
       "etat": "SAS",
       "releve_le": "2026-09-20",
       "controles": {
-        "licence_permissive": null,
+        "licence_permissive": true,
         "provenance": null,
         "entite_non_sanctionnee": null,
-        "empreinte": null,
+        "empreinte": true,
         "execution_isolee": null,
         "fonctionne_reellement": null
       },
-      "preuves": {},
+      "preuves": {
+        "licence_permissive": "MIT lue dans LICENSE, 2 déclarations SPDX concordantes (2026-09-20)",
+        "empreinte": "commit 38277815ed44a53d757973c2bc4454c3b6426698 relevé au clone du 2026-09-20"
+      },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
       "journal": [
         {
           "date": "2026-09-20 11h40",
           "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "contrôle licence_permissive : VERT — MIT lue dans LICENSE, 2 déclarations SPDX concordantes (2026-09-20)"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "commit épinglé : 38277815ed44a53d757973c2bc4454c3b6426698"
         }
       ]
     },
@@ -149,13 +186,19 @@
         "execution_isolee": null,
         "fonctionne_reellement": null
       },
-      "preuves": {},
+      "preuves": {
+        "licence_permissive": "LECTURE HUMAINE REQUISE — LICENSE est Apache-2.0 mais internal/viewer/static/icons/NOTICE nomme MIT : code amont sous d'autres termes. Les deux permissives. Identifier quel code est concerné."
+      },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
       "journal": [
         {
           "date": "2026-09-20 11h40",
           "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "contrôle licence_permissive : NE CONCLUT PAS — LICENSE est Apache-2.0 mais internal/viewer/static/icons/NOTICE nomme MIT : code amont sous d'autres termes. Les deux permissives. Identifier quel code est concerné."
         }
       ]
     },
@@ -176,13 +219,19 @@
         "execution_isolee": null,
         "fonctionne_reellement": null
       },
-      "preuves": {},
+      "preuves": {
+        "licence_permissive": "LECTURE HUMAINE REQUISE — LICENSE est Apache-2.0 mais NOTICE nomme MIT. Cohérent avec le fait que les versions jusqu'à v0.4.7 étaient MIT. Vérifier quelle version on prend."
+      },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
       "journal": [
         {
           "date": "2026-09-20 11h40",
           "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "contrôle licence_permissive : NE CONCLUT PAS — LICENSE est Apache-2.0 mais NOTICE nomme MIT. Cohérent avec le fait que les versions jusqu'à v0.4.7 étaient MIT. Vérifier quelle version on prend."
         }
       ]
     },
@@ -192,24 +241,35 @@
       "url": "https://github.com/openai/symphony",
       "origine": "États-Unis · OpenAI",
       "licence_declaree": "Apache-2.0",
-      "commit_epingle": null,
+      "commit_epingle": "be10a1b79df7",
       "etat": "SAS",
       "releve_le": "2026-09-20",
       "controles": {
-        "licence_permissive": null,
+        "licence_permissive": true,
         "provenance": null,
         "entite_non_sanctionnee": null,
-        "empreinte": null,
+        "empreinte": true,
         "execution_isolee": null,
         "fonctionne_reellement": null
       },
-      "preuves": {},
+      "preuves": {
+        "licence_permissive": "Apache-2.0 lue dans LICENSE et NOTICE concordants (2026-09-20)",
+        "empreinte": "commit be10a1b79df7 relevé au clone du 2026-09-20"
+      },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
       "journal": [
         {
           "date": "2026-09-20 11h40",
           "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "contrôle licence_permissive : VERT — Apache-2.0 lue dans LICENSE et NOTICE concordants (2026-09-20)"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "commit épinglé : be10a1b79df7"
         }
       ]
     },
@@ -230,13 +290,19 @@
         "execution_isolee": null,
         "fonctionne_reellement": null
       },
-      "preuves": {},
+      "preuves": {
+        "licence_permissive": "LECTURE HUMAINE REQUISE — LICENSE est un Apache-2.0 RETYPÉ À LA MAIN : en-tête « LICENSE：Apache2.0 » avec deux-points pleine largeur, guillemets typographiques, 72 lignes au lieu du texte canonique. Un texte retypé peut différer sur le fond. Lecture humaine obligatoire, comparaison au texte canonique."
+      },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
       "journal": [
         {
           "date": "2026-09-20 11h41",
           "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "contrôle licence_permissive : NE CONCLUT PAS — LICENSE est un Apache-2.0 RETYPÉ À LA MAIN : en-tête « LICENSE：Apache2.0 » avec deux-points pleine largeur, guillemets typographiques, 72 lignes au lieu du texte canonique. Un texte retypé peut différer sur le fond. Lecture humaine obligatoire, comparaison au texte canonique."
         }
       ]
     },
@@ -283,24 +349,35 @@
       "url": "https://github.com/zhikunqingtao/zhikuncode",
       "origine": "Chine · indépendant",
       "licence_declaree": "MIT",
-      "commit_epingle": null,
+      "commit_epingle": "38513f7f5cc2",
       "etat": "SAS",
       "releve_le": "2026-09-20",
       "controles": {
-        "licence_permissive": null,
+        "licence_permissive": true,
         "provenance": null,
         "entite_non_sanctionnee": null,
-        "empreinte": null,
+        "empreinte": true,
         "execution_isolee": null,
         "fonctionne_reellement": null
       },
-      "preuves": {},
+      "preuves": {
+        "licence_permissive": "MIT lue dans LICENSE (2026-09-20)",
+        "empreinte": "commit 38513f7f5cc2 relevé au clone du 2026-09-20"
+      },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
       "journal": [
         {
           "date": "2026-09-20 11h41",
           "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "contrôle licence_permissive : VERT — MIT lue dans LICENSE (2026-09-20)"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "commit épinglé : 38513f7f5cc2"
         }
       ]
     },
@@ -347,24 +424,35 @@
       "url": "https://github.com/zzycxz/momapeer",
       "origine": "Chine · écosystème China Mobile",
       "licence_declaree": "MIT",
-      "commit_epingle": null,
+      "commit_epingle": "7c9e46ddbc19",
       "etat": "SAS",
       "releve_le": "2026-09-20",
       "controles": {
-        "licence_permissive": null,
+        "licence_permissive": true,
         "provenance": null,
         "entite_non_sanctionnee": null,
-        "empreinte": null,
+        "empreinte": true,
         "execution_isolee": null,
         "fonctionne_reellement": null
       },
-      "preuves": {},
+      "preuves": {
+        "licence_permissive": "MIT lue dans LICENSE (2026-09-20)",
+        "empreinte": "commit 7c9e46ddbc19 relevé au clone du 2026-09-20"
+      },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
       "journal": [
         {
           "date": "2026-09-20 11h41",
           "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "contrôle licence_permissive : VERT — MIT lue dans LICENSE (2026-09-20)"
+        },
+        {
+          "date": "2026-09-20 13h26",
+          "evenement": "commit épinglé : 7c9e46ddbc19"
         }
       ]
     }

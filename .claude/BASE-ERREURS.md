@@ -752,6 +752,55 @@ seulement sur les croisements qui en sortent.
 l'homogénéité est exactement ce qu'on voulait éviter. **Quand deux règles tirent en sens
 contraire, choisir en ne regardant qu'une seule des deux donne l'illusion d'un bon choix.**
 
+## E-33 — Le contrôle de licence a été pris en défaut à son premier usage réel
+
+**Constaté le** 2026-09-20 · **Survenu** le 2026-09-20, dans l'heure suivant son écriture
+· **État** corrigé, et le contrôle en sort plus capable qu'avant
+
+**Ce qui s'est passé.** `scripts/sas_licence.py` a été écrit pour lire les FICHIERS de licence
+plutôt que l'étiquette affichée par le dépôt — leçon du piège CodeGeeX4. Première exécution
+réelle sur dix briques : **quatre refus dont trois étaient faux**.
+
+Trois défauts distincts :
+1. Il prenait les *sidecars* REUSE `*.license` et les scripts d'outillage
+   (`resolve_licenses.py`, `update_license_headers.py`) pour des textes de licence, et déclarait
+   NVIDIA/OpenShell multi-licencié — alors qu'il ne l'est pas.
+2. Son motif SPDX avalait la fin du commentaire qui portait l'identifiant : `Apache-2.0 -->` en
+   HTML devenait l'identifiant « Apache-2.0 -- », discordant avec « Apache-2.0 ». Le dépôt était
+   déclaré en contradiction **avec lui-même**.
+3. Il traitait `NOTICE` comme un texte de licence. Sous Apache-2.0, `NOTICE` est un fichier
+   d'**attribution**. Trois briques refusées pour ça.
+
+**Cause racine.** J'ai confondu « fichier qui EST une licence » et « fichier qui PARLE de
+licences ». Les deux se ressemblent par le nom et ne se ressemblent en rien par la fonction. La
+cause profonde est plus générale : **un contrôle écrit sans données réelles est une hypothèse sur
+les données.** Celui-ci n'avait jamais vu un vrai dépôt quand il a été écrit.
+
+**Signal de détection.** Tu écris un contrôle par filtrage de noms de fichiers, sans l'avoir fait
+tourner sur au moins cinq cas réels. Le taux de faux positifs est alors inconnu, pas nul.
+
+**Contre-mesure — et c'est le point.** La règle du projet interdit de desserrer un contrôle pris
+en défaut : on le **durcit**. Desserrer aurait été d'ignorer les sidecars et les NOTICE. On a fait
+l'inverse :
+- les sidecars REUSE sont désormais **lus** et leurs identifiants SPDX comparés au texte principal
+  — une déclaration discordante est précisément ce qu'on cherche ;
+- `NOTICE` devient une catégorie propre, analysée pour les **noms de licences qu'elle cite**, et
+  une attribution nommant une licence autre que celle du `LICENSE` lève un drapeau ;
+- une licence **retypée à la main** — guillemets typographiques, deux-points pleine largeur — est
+  reconnue et **signalée comme non canonique**, parce qu'un texte retypé peut différer sur le fond.
+
+**Ce que le contrôle durci a trouvé le jour même.** Trois choses qu'aucune étiquette n'affichait :
+`winsenlabs/platos` porte **treize** fichiers LICENSE aux licences **mixtes** Apache-2.0 et MIT
+selon le paquet ; `alibaba/open-code-review` et `Huangruiteng/loopx` incorporent du code amont
+sous MIT alors que leur LICENSE est Apache-2.0 ; `JoyAgent-JDGenie` publie un Apache-2.0 **retypé
+à la main**. Aucune n'est bloquante — toutes ces licences sont permissives — mais aucune n'était
+visible sur la fiche du dépôt.
+
+**Leçon transférable.** Un contrôle pris en défaut est une information, pas une honte : il dit où
+la réalité diffère du modèle qu'on s'en faisait. **Le durcir le rend plus capable ; le desserrer
+le rend inutile.** Et un contrôle qui n'a jamais vu de données réelles n'a pas encore été écrit,
+il a été imaginé.
+
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
 ```

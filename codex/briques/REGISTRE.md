@@ -16,16 +16,16 @@ l'entité, jamais sur le pays.
 
 | Id | Nom | Origine | Licence | Contrôles au vert |
 |---|---|---|---|---|
-| B-01 | [NVIDIA/OpenShell](https://github.com/nvidia/openShell) | États-Unis · NVIDIA | Apache-2.0 | 1/6 |
-| B-02 | [winsenlabs/platos](https://github.com/winsenlabs/platos) | Winsen Labs | Apache-2.0 | 0/6 |
-| B-03 | [adenhq/hive](https://github.com/adenhq/hive) | Aden HQ | Apache-2.0 | 0/6 |
-| B-04 | [HKUDS/OpenSpace](https://github.com/HKUDS/OpenSpace) | Hong Kong · HKUDS | MIT | 0/6 |
-| B-05 | [alibaba/open-code-review](https://github.com/alibaba/open-code-review) | Chine · Alibaba | Apache-2.0 | 0/6 |
-| B-06 | [Huangruiteng/loopx](https://github.com/Huangruiteng/loopx) | Chine · indépendant | Apache-2.0 | 0/6 |
-| B-07 | [openai/symphony](https://github.com/openai/symphony) | États-Unis · OpenAI | Apache-2.0 | 0/6 |
-| B-08 | [jd-opensource/JoyAgent-JDGenie](https://github.com/jd-opensource/JoyAgent-JDGenie) | Chine · JD.com | Apache-2.0 | 0/6 |
-| B-10 | [zhikunqingtao/zhikuncode](https://github.com/zhikunqingtao/zhikuncode) | Chine · indépendant | MIT | 0/6 |
-| B-12 | [zzycxz/momapeer](https://github.com/zzycxz/momapeer) | Chine · écosystème China Mobile | MIT | 0/6 |
+| B-01 | [NVIDIA/OpenShell](https://github.com/nvidia/openShell) | États-Unis · NVIDIA | Apache-2.0 | 2/6 |
+| B-02 | [winsenlabs/platos](https://github.com/winsenlabs/platos) | Winsen Labs | Apache-2.0 | 0/6 · ⏸ 1 |
+| B-03 | [adenhq/hive](https://github.com/adenhq/hive) | Aden HQ | Apache-2.0 | 2/6 |
+| B-04 | [HKUDS/OpenSpace](https://github.com/HKUDS/OpenSpace) | Hong Kong · HKUDS | MIT | 2/6 |
+| B-05 | [alibaba/open-code-review](https://github.com/alibaba/open-code-review) | Chine · Alibaba | Apache-2.0 | 0/6 · ⏸ 1 |
+| B-06 | [Huangruiteng/loopx](https://github.com/Huangruiteng/loopx) | Chine · indépendant | Apache-2.0 | 0/6 · ⏸ 1 |
+| B-07 | [openai/symphony](https://github.com/openai/symphony) | États-Unis · OpenAI | Apache-2.0 | 2/6 |
+| B-08 | [jd-opensource/JoyAgent-JDGenie](https://github.com/jd-opensource/JoyAgent-JDGenie) | Chine · JD.com | Apache-2.0 | 0/6 · ⏸ 1 |
+| B-10 | [zhikunqingtao/zhikuncode](https://github.com/zhikunqingtao/zhikuncode) | Chine · indépendant | MIT | 2/6 |
+| B-12 | [zzycxz/momapeer](https://github.com/zzycxz/momapeer) | Chine · écosystème China Mobile | MIT | 2/6 |
 
 ## REFUSEE — 2
 

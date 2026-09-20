@@ -113,6 +113,46 @@ def controler(identifiant: str, controle: str, verdict: str, preuve: str) -> Non
     sys.exit(f"brique inconnue : {identifiant}")
 
 
+def attente(identifiant: str, controle: str, motif: str) -> None:
+    """Un contrôle qui NE PEUT PAS conclure. Ce n'est ni vert ni rouge.
+
+    Confondre « je ne peux pas conclure » avec « refusé » est une faute de
+    modélisation : la première se lève par une lecture humaine, la seconde non.
+    Le contrôle reste à None — donc l'admission reste impossible — et le motif
+    est consigné pour que l'humain sache exactement quoi lire.
+    """
+    if controle not in CONTROLES:
+        sys.exit(f"contrôle inconnu : {controle}")
+    donnees = charger()
+    for brique in donnees["briques"]:
+        if brique["id"] != identifiant:
+            continue
+        brique["controles"][controle] = None
+        brique["preuves"][controle] = f"LECTURE HUMAINE REQUISE — {motif}"
+        brique["journal"].append(
+            {"date": _horodatage(), "evenement": f"contrôle {controle} : NE CONCLUT PAS — {motif}"}
+        )
+        ecrire(donnees)
+        print(f"  ⏸  {identifiant} · {controle} · lecture humaine requise")
+        return
+    sys.exit(f"brique inconnue : {identifiant}")
+
+
+def epingler(identifiant: str, sha: str) -> None:
+    donnees = charger()
+    for brique in donnees["briques"]:
+        if brique["id"] != identifiant:
+            continue
+        brique["commit_epingle"] = sha
+        brique["controles"]["empreinte"] = True
+        brique["preuves"]["empreinte"] = f"commit {sha} relevé au clone du {date.today()}"
+        brique["journal"].append({"date": _horodatage(), "evenement": f"commit épinglé : {sha}"})
+        ecrire(donnees)
+        print(f"  📌 {identifiant} épinglée sur {sha[:12]}")
+        return
+    sys.exit(f"brique inconnue : {identifiant}")
+
+
 def admettre(identifiant: str) -> None:
     donnees = charger()
     for brique in donnees["briques"]:
@@ -189,9 +229,12 @@ def engendrer_vue() -> None:
         lignes += ["| Id | Nom | Origine | Licence | Contrôles au vert |", "|---|---|---|---|---|"]
         for brique in lot:
             verts = sum(1 for c in CONTROLES if brique["controles"][c] is True)
+            attentes = sum(1 for c in CONTROLES
+                           if str(brique["preuves"].get(c, "")).startswith("LECTURE HUMAINE"))
             lignes.append(
                 f"| {brique['id']} | [{brique['nom']}]({brique['url']}) | {brique['origine']} "
-                f"| {brique['licence_declaree']} | {verts}/{len(CONTROLES)} |"
+                f"| {brique['licence_declaree']} | {verts}/{len(CONTROLES)}"
+                + (f" · ⏸ {attentes}" if attentes else "") + " |"
             )
         lignes.append("")
 
@@ -293,6 +336,12 @@ def main() -> None:
         engendrer_vue()
     elif args[0] == "--controler":
         controler(args[1], args[2], args[3], args[4])
+        engendrer_vue()
+    elif args[0] == "--attente":
+        attente(args[1], args[2], args[3])
+        engendrer_vue()
+    elif args[0] == "--epingler":
+        epingler(args[1], args[2])
         engendrer_vue()
     elif args[0] == "--admettre":
         admettre(args[1])
