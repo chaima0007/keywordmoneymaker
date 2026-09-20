@@ -212,6 +212,161 @@
           "evenement": "entrée en SAS"
         }
       ]
+    },
+    {
+      "id": "B-08",
+      "nom": "jd-opensource/JoyAgent-JDGenie",
+      "url": "https://github.com/jd-opensource/JoyAgent-JDGenie",
+      "origine": "Chine · JD.com",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": null,
+      "etat": "SAS",
+      "releve_le": "2026-09-20",
+      "controles": {
+        "licence_permissive": null,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {},
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-20 11h41",
+          "evenement": "entrée en SAS"
+        }
+      ]
+    },
+    {
+      "id": "B-09",
+      "nom": "zai-org/CodeGeeX4",
+      "url": "https://github.com/zai-org/CodeGeeX4",
+      "origine": "Chine · Zhipu/ZAI",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": null,
+      "etat": "REFUSEE",
+      "releve_le": "2026-09-20",
+      "controles": {
+        "licence_permissive": false,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {
+        "licence_permissive": "PIÈGE. Le CODE est Apache-2.0 mais les POIDS du modèle sont sous « Model License » distincte, ouverte à la recherche académique et exigeant un formulaire d'enregistrement pour tout usage commercial. La fiche du dépôt n'affiche qu'Apache-2.0. Une brique dont le code et les poids n'ont pas la même licence n'est pas une brique : ce sont deux."
+      },
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-20 11h41",
+          "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-20 11h41",
+          "evenement": "contrôle licence_permissive : ROUGE — PIÈGE. Le CODE est Apache-2.0 mais les POIDS du modèle sont sous « Model License » distincte, ouverte à la recherche académique et exigeant un formulaire d'enregistrement pour tout usage commercial. La fiche du dépôt n'affiche qu'Apache-2.0. Une brique dont le code et les poids n'ont pas la même licence n'est pas une brique : ce sont deux."
+        },
+        {
+          "date": "2026-09-20 11h41",
+          "evenement": "REFUSÉE sur licence_permissive"
+        }
+      ]
+    },
+    {
+      "id": "B-10",
+      "nom": "zhikunqingtao/zhikuncode",
+      "url": "https://github.com/zhikunqingtao/zhikuncode",
+      "origine": "Chine · indépendant",
+      "licence_declaree": "MIT",
+      "commit_epingle": null,
+      "etat": "SAS",
+      "releve_le": "2026-09-20",
+      "controles": {
+        "licence_permissive": null,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {},
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-20 11h41",
+          "evenement": "entrée en SAS"
+        }
+      ]
+    },
+    {
+      "id": "B-11",
+      "nom": "qiangyt/MonkeyCode",
+      "url": "https://github.com/qiangyt/MonkeyCode",
+      "origine": "Chine · indépendant",
+      "licence_declaree": "AGPL-3.0",
+      "commit_epingle": null,
+      "etat": "REFUSEE",
+      "releve_le": "2026-09-20",
+      "controles": {
+        "licence_permissive": false,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {
+        "licence_permissive": "AGPL-3.0 sur la fiche du dépôt, relevé 2026-09-20. Contamine tout code lié et interdit la distribution fermée. REFUS sauf dérogation écrite."
+      },
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-20 11h41",
+          "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-20 11h41",
+          "evenement": "contrôle licence_permissive : ROUGE — AGPL-3.0 sur la fiche du dépôt, relevé 2026-09-20. Contamine tout code lié et interdit la distribution fermée. REFUS sauf dérogation écrite."
+        },
+        {
+          "date": "2026-09-20 11h41",
+          "evenement": "REFUSÉE sur licence_permissive"
+        }
+      ]
+    },
+    {
+      "id": "B-12",
+      "nom": "zzycxz/momapeer",
+      "url": "https://github.com/zzycxz/momapeer",
+      "origine": "Chine · écosystème China Mobile",
+      "licence_declaree": "MIT",
+      "commit_epingle": null,
+      "etat": "SAS",
+      "releve_le": "2026-09-20",
+      "controles": {
+        "licence_permissive": null,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {},
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-20 11h41",
+          "evenement": "entrée en SAS"
+        }
+      ]
     }
   ],
   "reactions": []

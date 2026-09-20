@@ -3,7 +3,7 @@
 **Ne pas modifier à la main.** Engendré par `scripts/briques.py` depuis
 `codex/briques/registre.json`, qui est la source.
 
-Relevé du 2026-09-20 · 7 brique(s) · 0 réaction(s)
+Relevé du 2026-09-20 · 12 brique(s) · 0 réaction(s)
 
 ## Règle d'entrée
 
@@ -12,7 +12,7 @@ son prestige : un dépôt d'NVIDIA passe le même sas qu'un dépôt inconnu sur 
 Le contrôle de sécurité est **neutre en origine** ; le contrôle de sanctions porte sur
 l'entité, jamais sur le pays.
 
-## SAS — 7
+## SAS — 10
 
 | Id | Nom | Origine | Licence | Contrôles au vert |
 |---|---|---|---|---|
@@ -23,6 +23,16 @@ l'entité, jamais sur le pays.
 | B-05 | [alibaba/open-code-review](https://github.com/alibaba/open-code-review) | Chine · Alibaba | Apache-2.0 | 0/6 |
 | B-06 | [Huangruiteng/loopx](https://github.com/Huangruiteng/loopx) | Chine · indépendant | Apache-2.0 | 0/6 |
 | B-07 | [openai/symphony](https://github.com/openai/symphony) | États-Unis · OpenAI | Apache-2.0 | 0/6 |
+| B-08 | [jd-opensource/JoyAgent-JDGenie](https://github.com/jd-opensource/JoyAgent-JDGenie) | Chine · JD.com | Apache-2.0 | 0/6 |
+| B-10 | [zhikunqingtao/zhikuncode](https://github.com/zhikunqingtao/zhikuncode) | Chine · indépendant | MIT | 0/6 |
+| B-12 | [zzycxz/momapeer](https://github.com/zzycxz/momapeer) | Chine · écosystème China Mobile | MIT | 0/6 |
+
+## REFUSEE — 2
+
+| Id | Nom | Origine | Licence | Contrôles au vert |
+|---|---|---|---|---|
+| B-09 | [zai-org/CodeGeeX4](https://github.com/zai-org/CodeGeeX4) | Chine · Zhipu/ZAI | Apache-2.0 | 0/6 |
+| B-11 | [qiangyt/MonkeyCode](https://github.com/qiangyt/MonkeyCode) | Chine · indépendant | AGPL-3.0 | 0/6 |
 
 ---
 
