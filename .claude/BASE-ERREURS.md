@@ -801,6 +801,47 @@ la réalité diffère du modèle qu'on s'en faisait. **Le durcir le rend plus ca
 le rend inutile.** Et un contrôle qui n'a jamais vu de données réelles n'a pas encore été écrit,
 il a été imaginé.
 
+## E-34 — E-27 s'est reproduite : le shell a exécuté les accents graves, une troisième fois
+
+**Constaté le** 2026-09-20 · **Survenu** le 2026-09-20 · **État** corrigé
+· **Cite** E-27 (2026-09-16) et E-29 (2026-09-16)
+
+**Ce qui s'est passé.** Création de quatre rôles d'agent par une fonction shell prenant le texte
+de la mission en paramètre, entre guillemets doubles. Le shell a fait deux dégâts distincts :
+
+1. **Les accents graves ont été exécutés.** `scripts/sas_licence.py` entre accents graves a été
+   lancé comme une commande — « No such file or directory ». Le fichier `gardien-du-sas.md` est
+   sorti à 49 lignes au lieu de 83 : **toute sa section « Les six contrôles » avait disparu**.
+2. **Les apostrophes ont été perdues.** Pour contourner le premier problème j'avais écrit
+   « qu on », « l air », « ce qu elles » sans apostrophe. Trente et une élisions mutilées dans
+   trois fichiers, restituées ensuite par expression régulière.
+
+**Cause racine.** E-27 avait déjà établi la contre-mesure : **heredoc entre quotes**. Je le
+savais, je l'avais écrit, et j'ai quand même construit le contenu dans une chaîne shell — parce
+qu'une fonction paramétrée paraissait plus élégante pour créer quatre fichiers d'un coup.
+L'élégance a coûté un fichier mutilé et une correction par expression régulière.
+
+C'est exactement la leçon d'E-29 : **celui qui écrit la règle l'enfreint aussi.** Deuxième
+démonstration, sur la même règle, en quatre jours.
+
+**Signal de détection.** Tu t'apprêtes à mettre du texte destiné à un FICHIER dans une variable
+shell, un paramètre de fonction, ou une chaîne entre guillemets doubles. Le contenu contient des
+accents graves, des apostrophes, des `$`, ou du markdown. Arrête-toi là.
+
+**Contre-mesure, et elle est plus dure que celle d'E-27.** E-27 disait « utilise un heredoc entre
+quotes ». Insuffisant : la règle se contourne dès qu'on veut factoriser. La règle durcie est :
+**le contenu d'un fichier ne transite JAMAIS par le shell.** On l'écrit avec Python — `Write`,
+`pathlib.write_text` — ou avec un heredoc entre quotes écrit en toutes lettres, jamais paramétré.
+Une fonction shell qui prend du contenu en paramètre est le signal d'alarme lui-même.
+
+**Contrôle qui aurait attrapé ça.** Compter les accents graves et les lignes du fichier produit,
+et comparer au contenu attendu. Fait après coup ici : 8 accents graves pour 49 lignes contre 32
+pour 83 attendues. Un écart visible en une seconde, à condition de regarder.
+
+**Leçon transférable.** Une contre-mesure qui repose sur la discipline est une contre-mesure qui
+sera contournée le jour où elle gêne. **Une règle n'est tenue que si la manière commode de faire
+est aussi la manière correcte.**
+
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
 ```

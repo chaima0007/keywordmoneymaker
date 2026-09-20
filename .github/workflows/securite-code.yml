@@ -69,6 +69,14 @@ jobs:
         # silence — celui-ci échoue bruyamment dès qu'il a dérivé.
         run: python3 scripts/inventorier.py --verifier
 
+      - name: Experts de domaine engendrés à jour (BLOQUANT)
+        # Chaima, 2026-09-20 : « des agents experts en chacun des domaines que nous TROUVERONS ».
+        # Les experts ne sont pas écrits, ils sont ENGENDRÉS depuis codex/briques/registre.json :
+        # un domaine qui apparaît fait naître son expert, un domaine qui disparaît l'emporte.
+        # Un expert écrit à la main serait figé le jour de son écriture. Ce contrôle échoue si
+        # un expert a dérivé du registre ou s'il est devenu orphelin.
+        run: python3 scripts/experts.py --verifier
+
       - name: Registre des briques — sas non contourné (BLOQUANT)
         # Chaima, 2026-09-20 : « il faut toujours isoler les nouveaux codes le temps de savoir
         # si c'est safe et que ça fonctionne réellement ». Ce contrôle vérifie que le sas n'a

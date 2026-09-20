@@ -57,8 +57,14 @@
         {
           "date": "2026-09-20 13h26",
           "evenement": "commit épinglé : 29e89a2f2289ad538c195e136baaaac2a92a3a2e"
+        },
+        {
+          "date": "2026-09-20 15h30",
+          "evenement": "domaine assigné : isolation-et-bac-a-sable"
         }
-      ]
+      ],
+      "domaine": "isolation-et-bac-a-sable",
+      "domaine_description": "Isolation d'exécution, politique d'egress, gestion des identifiants"
     },
     {
       "id": "B-02",
@@ -90,8 +96,14 @@
         {
           "date": "2026-09-20 13h26",
           "evenement": "contrôle licence_permissive : NE CONCLUT PAS — 13 fichiers LICENSE, licences MIXTES Apache-2.0 et MIT selon le paquet (trigger-sdk, core, build, python, otlp-importer sont MIT ; le reste Apache-2.0). Les deux sont permissives, donc pas bloquant — mais les obligations d'attribution diffèrent par paquet. Lire avant d'assembler."
+        },
+        {
+          "date": "2026-09-20 15h30",
+          "evenement": "domaine assigné : runtime-agents"
         }
-      ]
+      ],
+      "domaine": "runtime-agents",
+      "domaine_description": "Runtimes d'agents : exécution durable, passerelles d'outils, observabilité"
     },
     {
       "id": "B-03",
@@ -128,8 +140,14 @@
         {
           "date": "2026-09-20 13h26",
           "evenement": "commit épinglé : 6193aea7eb06"
+        },
+        {
+          "date": "2026-09-20 15h30",
+          "evenement": "domaine assigné : runtime-agents"
         }
-      ]
+      ],
+      "domaine": "runtime-agents",
+      "domaine_description": "Runtimes d'agents : exécution durable, passerelles d'outils, observabilité"
     },
     {
       "id": "B-04",
@@ -166,8 +184,14 @@
         {
           "date": "2026-09-20 13h26",
           "evenement": "commit épinglé : 38277815ed44a53d757973c2bc4454c3b6426698"
+        },
+        {
+          "date": "2026-09-20 15h30",
+          "evenement": "domaine assigné : memoire-et-competences"
         }
-      ]
+      ],
+      "domaine": "memoire-et-competences",
+      "domaine_description": "Mémoire, compétences réutilisables, évolution jugée sur résultats"
     },
     {
       "id": "B-05",
@@ -199,8 +223,14 @@
         {
           "date": "2026-09-20 13h26",
           "evenement": "contrôle licence_permissive : NE CONCLUT PAS — LICENSE est Apache-2.0 mais internal/viewer/static/icons/NOTICE nomme MIT : code amont sous d'autres termes. Les deux permissives. Identifier quel code est concerné."
+        },
+        {
+          "date": "2026-09-20 15h30",
+          "evenement": "domaine assigné : revue-et-qualite-code"
         }
-      ]
+      ],
+      "domaine": "revue-et-qualite-code",
+      "domaine_description": "Revue de code assistée, pipelines déterministes et agents, contextes isolés"
     },
     {
       "id": "B-06",
@@ -220,7 +250,8 @@
         "fonctionne_reellement": null
       },
       "preuves": {
-        "licence_permissive": "LECTURE HUMAINE REQUISE — LICENSE est Apache-2.0 mais NOTICE nomme MIT. Cohérent avec le fait que les versions jusqu'à v0.4.7 étaient MIT. Vérifier quelle version on prend."
+        "licence_permissive": "LECTURE HUMAINE REQUISE — LICENSE est Apache-2.0 mais NOTICE nomme MIT. Cohérent avec le fait que les versions jusqu'à v0.4.7 étaient MIT. Vérifier quelle version on prend.",
+        "fonctionne_reellement": "LECTURE HUMAINE REQUISE — Clone au commit 04ba65ac1a37. Déclare 0 dépendance — la revendication « no runtime dependencies outside the standard library » est VÉRIFIÉE. Mais les tests échouent réseau coupé sur EffectRuntimeStartupError : un runtime TypeScript est requis et tente de joindre le réseau. Le PAQUET est sans dépendance, le SYSTÈME non. À connaître avant tout assemblage."
       },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
@@ -232,8 +263,18 @@
         {
           "date": "2026-09-20 13h26",
           "evenement": "contrôle licence_permissive : NE CONCLUT PAS — LICENSE est Apache-2.0 mais NOTICE nomme MIT. Cohérent avec le fait que les versions jusqu'à v0.4.7 étaient MIT. Vérifier quelle version on prend."
+        },
+        {
+          "date": "2026-09-20 13h31",
+          "evenement": "contrôle fonctionne_reellement : NE CONCLUT PAS — Clone au commit 04ba65ac1a37. Déclare 0 dépendance — la revendication « no runtime dependencies outside the standard library » est VÉRIFIÉE. Mais les tests échouent réseau coupé sur EffectRuntimeStartupError : un runtime TypeScript est requis et tente de joindre le réseau. Le PAQUET est sans dépendance, le SYSTÈME non. À connaître avant tout assemblage."
+        },
+        {
+          "date": "2026-09-20 15h30",
+          "evenement": "domaine assigné : etat-long-horizon"
         }
-      ]
+      ],
+      "domaine": "etat-long-horizon",
+      "domaine_description": "État persistant sur longue durée : objectifs, preuves, quotas, reprises"
     },
     {
       "id": "B-07",
@@ -270,8 +311,14 @@
         {
           "date": "2026-09-20 13h26",
           "evenement": "commit épinglé : be10a1b79df7"
+        },
+        {
+          "date": "2026-09-20 15h30",
+          "evenement": "domaine assigné : etat-long-horizon"
         }
-      ]
+      ],
+      "domaine": "etat-long-horizon",
+      "domaine_description": "État persistant sur longue durée : objectifs, preuves, quotas, reprises"
     },
     {
       "id": "B-08",
@@ -303,8 +350,14 @@
         {
           "date": "2026-09-20 13h26",
           "evenement": "contrôle licence_permissive : NE CONCLUT PAS — LICENSE est un Apache-2.0 RETYPÉ À LA MAIN : en-tête « LICENSE：Apache2.0 » avec deux-points pleine largeur, guillemets typographiques, 72 lignes au lieu du texte canonique. Un texte retypé peut différer sur le fond. Lecture humaine obligatoire, comparaison au texte canonique."
+        },
+        {
+          "date": "2026-09-20 15h30",
+          "evenement": "domaine assigné : runtime-agents"
         }
-      ]
+      ],
+      "domaine": "runtime-agents",
+      "domaine_description": "Runtimes d'agents : exécution durable, passerelles d'outils, observabilité"
     },
     {
       "id": "B-09",
@@ -340,8 +393,14 @@
         {
           "date": "2026-09-20 11h41",
           "evenement": "REFUSÉE sur licence_permissive"
+        },
+        {
+          "date": "2026-09-20 15h30",
+          "evenement": "domaine assigné : modeles-de-code"
         }
-      ]
+      ],
+      "domaine": "modeles-de-code",
+      "domaine_description": "Modèles de génération de code et leurs licences de poids"
     },
     {
       "id": "B-10",
@@ -378,8 +437,14 @@
         {
           "date": "2026-09-20 13h26",
           "evenement": "commit épinglé : 38513f7f5cc2"
+        },
+        {
+          "date": "2026-09-20 15h30",
+          "evenement": "domaine assigné : assistants-de-code"
         }
-      ]
+      ],
+      "domaine": "assistants-de-code",
+      "domaine_description": "Assistants de code auto-hébergés, multi-modèles, sandbox applicative"
     },
     {
       "id": "B-11",
@@ -415,8 +480,14 @@
         {
           "date": "2026-09-20 11h41",
           "evenement": "REFUSÉE sur licence_permissive"
+        },
+        {
+          "date": "2026-09-20 15h30",
+          "evenement": "domaine assigné : assistants-de-code"
         }
-      ]
+      ],
+      "domaine": "assistants-de-code",
+      "domaine_description": "Assistants de code auto-hébergés, multi-modèles, sandbox applicative"
     },
     {
       "id": "B-12",
@@ -453,8 +524,14 @@
         {
           "date": "2026-09-20 13h26",
           "evenement": "commit épinglé : 7c9e46ddbc19"
+        },
+        {
+          "date": "2026-09-20 15h30",
+          "evenement": "domaine assigné : assistants-de-code"
         }
-      ]
+      ],
+      "domaine": "assistants-de-code",
+      "domaine_description": "Assistants de code auto-hébergés, multi-modèles, sandbox applicative"
     }
   ],
   "reactions": []
