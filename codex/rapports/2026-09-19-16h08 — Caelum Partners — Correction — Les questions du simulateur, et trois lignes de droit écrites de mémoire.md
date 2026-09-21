@@ -237,3 +237,98 @@ verdicts qu'avant : seule l'aide a changé, le moteur n'a pas bougé.
 Restent NON VÉRIFIÉS, inchangés : le décompte des intérimaires pour le seuil de 50 (la loi du
 28/11/2022 ne renvoie qu'au § 1er de l'article 7 de la loi du 04/12/2007), et le diff mot pour mot
 de la colonne « type d'entité » des tableaux annexés au Moniteur.
+
+---
+
+# Addendum — 2026-09-21 : les intérimaires, et une formulation que je dois corriger
+
+Recherche demandée par Chaima. Elle portait sur les deux derniers points NON VÉRIFIÉS.
+
+## 1. Le décompte des intérimaires : l'ambiguïté est localisée, pas levée
+
+L'article 11, § 2, de la loi du 28 novembre 2022 renvoie à **l'article 7, § 1er**, de la loi du
+4 décembre 2007 — et à ce paragraphe seul. Or cet article a quatre paragraphes, et ils ne disent pas
+la même chose :
+
+- **§ 1er** : la moyenne se calcule en divisant par 365 le total des jours civils de chaque
+  travailleur sur quatre trimestres ;
+- **§ 2** : quand l'horaire effectif n'atteint pas les trois quarts d'un temps plein, ce total est
+  **divisé par deux** ;
+- **§ 3** : transfert conventionnel d'entreprise ;
+- **§ 4** : les **intérimaires** sont comptabilisés chez l'utilisateur, en divisant par 92 les jours
+  d'un seul trimestre de référence, à l'exclusion de ceux qui remplacent un travailleur permanent
+  dont le contrat est suspendu.
+
+VÉRIFIÉ le 2026-09-21 sur https://www.ejustice.just.fgov.be/eli/loi/2007/12/04/2007012768/justel
+(Justel, texte coordonné) — les quatre paragraphes ci-dessus, cités dans leur ordre. L'article qui
+précède l'article 7 dispose par ailleurs que « pour l'application du présent article et de l'article 7,
+ne sont pas considérés comme des travailleurs de leur employeur : 1° le travailleur lié par un contrat
+de remplacement ; 2° le travailleur intérimaire ».
+
+VÉRIFIÉ le 2026-09-21 sur https://emploi.belgique.be/sites/default/files/content/documents/Concertation%20sociale/R%C3%A9glementation/Loi%20du%204%20d%C3%A9cembre%202007%20relative%20aux%20%C3%A9lections%20sociales%20%28version%20coordonn%C3%A9e%20officieuse%29.pdf
+(SPF Emploi, version coordonnée officieuse) — même texte, ce qui écarte une erreur de transcription
+d'une seule source.
+
+VÉRIFIÉ le 2026-09-21 sur https://www.securex.be/fr/lex4you/employeur/actualites/nouvelle-periode-de-reference-pour-le-calcul-du-seuil-pour-les-lanceurs-d-alerte
+— depuis 2025, le seuil se recontrôle **chaque 1er janvier** sur les quatre trimestres de l'année
+civile précédente (article 199 de la loi du 9 février 2024, Moniteur belge du 21 mars 2024).
+
+**Conclusion, et elle n'est pas confortable.** Lu à la lettre, le renvoi au seul § 1er exclut les
+intérimaires (§ 4) — et exclurait aussi la règle des trois quarts (§ 2). Lu comme le font les
+secrétariats sociaux, c'est toute la méthode des élections sociales qui s'applique. Un commentaire
+de cabinet (reliancelaw.be) retient une troisième lecture : les intérimaires seraient comptés, mais
+sur l'année entière et non sur un trimestre, « a priori » — son propre mot.
+
+Statut §13 : **NON TRANCHÉ**, confiance FAIBLE dans chacune des trois lectures. Ce n'est pas un
+manque de recherche : c'est une ambiguïté du texte, que seule une circulaire ou un juge lèvera.
+L'écart n'a d'effet pratique qu'autour de 50 travailleurs, et seulement pour une entreprise qui
+recourt à l'intérim.
+
+## 2. Ce que cette recherche m'oblige à corriger sur la page
+
+La réserve ajoutée hier disait : « le calcul légal est plus fin (moyenne annuelle, **temps partiels
+comptés autrement**) ». Cette parenthèse cite la règle du § 2. Si le renvoi au § 1er est lu à la
+lettre, elle est fausse. J'affirmais donc plus que ce que le texte établit — exactement le défaut de
+la fiche E-29, à une échelle plus petite.
+
+Corrigé en : « le calcul légal est plus fin — une moyenne sur l'année civile précédente, selon les
+règles des élections sociales : votre comptable tranchera. » Ce qui reste est ce qui est certain :
+l'article 11, § 2, parle bien d'une moyenne, et la période de référence annuelle est acquise depuis
+2025. La décision de Chaima du 2026-09-20 (rester simple, avec une réserve) est respectée : seule la
+parenthèse change.
+
+## 3. Les annexes belges, colonne « type d'entité » : toujours pas lues, mais l'indice est fort
+
+VÉRIFIÉ le 2026-09-21 sur https://ccb.belgium.be/nl/open-media/780/download?inline= (FAQ NIS2 du CCB,
+version néerlandaise) — son sommaire comporte, sous « Bijlage I - 2. Vervoer », les questions
+« Wat valt er onder het begrip "weg" » et « Wat valt onder "exploitanten van intelligente
+vervoerssystemen" ». Le sous-secteur routier belge et son type d'entité sont donc bien ceux de la
+directive — autorités routières et exploitants de systèmes de transport intelligents — ce qui
+confirme, sur le point précis où j'avais écrit une ligne fausse, que la loi belge ne s'écarte pas.
+
+Statut : **CONFIRMÉ au niveau des secteurs et des sous-secteurs. PLAUSIBLE, confiance ÉLEVÉE, pour
+chaque type d'entité.** Les tableaux annexés au Moniteur ne sont toujours pas lus ligne à ligne : les
+outils dont je dispose tronquent un document long depuis son début, et les annexes sont à la fin.
+Je le dis plutôt que de laisser croire à un diff que je n'ai pas fait.
+
+## 4. Corroboration en néerlandais de la règle de l'activité accessoire
+
+VÉRIFIÉ le 2026-09-21 sur https://ccb.belgium.be/nl/open-media/780/download?inline= — « Tenzij de
+definitie van het type entiteit (dienst) in de bijlage rekening houdt met het bijkomstige of
+niet-essentiële karakter van de betrokken activiteit, valt een entiteit binnen het toepassingsgebied
+van de wet, zelfs als de betrokken dienst die zij verleent alleen een bijkomstig of niet-essentieel
+onderdeel is van al haar activiteiten. »
+
+C'est mot pour mot l'équivalent néerlandais de la phrase française sur laquelle s'appuie le
+paragraphe « le piège à connaître » de la question 3. Les deux versions font foi en droit belge :
+le point le plus conséquent de cette PR est désormais établi dans les deux langues.
+
+## Contrôle honnête
+
+VÉRIFIÉ — les cinq contrôles bloquants passent après modification depuis `scripts/`, chacun rendant 0.
+
+VÉRIFIÉ — seule l'aide de la question 2 a changé dans `products/caelum/site/simulateur.html` ; ni le
+moteur ni les libellés de réponse ne sont touchés.
+
+Reste NON VÉRIFIÉ : la lecture ligne à ligne des tableaux annexés au Moniteur. Et NON TRANCHÉ, ce qui
+est différent : le sort des intérimaires dans le seuil de 50.
