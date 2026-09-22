@@ -69,6 +69,15 @@ jobs:
         # silence — celui-ci échoue bruyamment dès qu'il a dérivé.
         run: python3 scripts/inventorier.py --verifier
 
+      - name: Fiches d'agent — mutilations et périmètre (BLOQUANT)
+        # Fiches E-27, E-29, E-34 : trois fois en quatre jours, du contenu de fichier est
+        # passé par le shell et en est ressorti abîmé. La garde .claude/garde-ecriture.py
+        # EMPÊCHE le geste ; ce contrôle-ci CONSTATE les dégâts. On garde les deux : une
+        # garde peut être contournée, un contrôle bloquant ne l'est pas sans que ça se voie.
+        # Il vérifie aussi le PÉRIMÈTRE, qui est la faute la plus silencieuse : une fiche
+        # parfaitement formée qui envoie l'agent sur un projet sorti du périmètre.
+        run: python3 scripts/verifier_agents.py --verifier
+
       - name: Experts de domaine engendrés à jour (BLOQUANT)
         # Chaima, 2026-09-20 : « des agents experts en chacun des domaines que nous TROUVERONS ».
         # Les experts ne sont pas écrits, ils sont ENGENDRÉS depuis codex/briques/registre.json :

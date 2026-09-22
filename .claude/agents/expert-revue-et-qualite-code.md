@@ -50,7 +50,7 @@ disparaît du registre, tu disparais. Si une brique arrive, elle apparaît ci-de
 sans que personne ne t'édite. C'est voulu : un expert écrit à la main est figé le jour
 de son écriture.
 
-## Les briques de ton domaine au 2026-09-20
+## Les briques de ton domaine au 2026-09-22
 
 | Id | Brique | État | Licence | Ce qu'il faut savoir |
 |---|---|---|---|---|

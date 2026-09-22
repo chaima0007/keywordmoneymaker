@@ -842,6 +842,46 @@ pour 83 attendues. Un écart visible en une seconde, à condition de regarder.
 sera contournée le jour où elle gêne. **Une règle n'est tenue que si la manière commode de faire
 est aussi la manière correcte.**
 
+## E-35 — 29 fiches d'agent envoient l'agent sur un projet sorti du périmètre
+
+**Constaté le** 2026-09-22 · **Survenu** depuis le 2026-09-19 · **État** SIGNALÉ, non corrigé —
+rien n'est supprimé ni réécrit sans l'accord de Chaima
+
+**Ce qui s'est passé.** Écriture d'un contrôle des fiches d'agent. À sa première exécution il
+accuse trente fiches d'être mutilées. Vérification avant de conclure — c'est la leçon d'E-25 —
+et le contrôle avait tort sur le motif : il exigeait le socle CODEX de toutes les fiches alors
+que **deux familles cohabitent**, 43 au socle CODEX et 29 sous une charte antérieure.
+
+Mais en corrigeant le contrôle, la vraie faute est apparue, et elle est plus grave que celle
+qu'il annonçait. L'article 1 de cette charte antérieure dit :
+
+> « PÉRIMÈTRE : Caelum Partners uniquement. Interdit de démarrer un autre projet. »
+
+Caelum Partners est **sorti du périmètre le 2026-09-19**. Vingt-neuf agents sur soixante-douze
+s'instruisent donc eux-mêmes de travailler sur un projet qui n'existe plus pour nous — et
+d'interdire tout autre projet, dont celui-ci.
+
+**Cause racine.** Un périmètre a été changé **en conversation** et jamais dans les fiches qui le
+portent. Rien ne reliait la décision aux fichiers qui l'appliquent. La décision était datée, la
+propagation n'existait pas.
+
+**Signal de détection.** Tu changes le périmètre, la priorité ou le nom d'un projet. Demande
+immédiatement : **quels fichiers répètent l'ancienne version ?** Une consigne dupliquée dans
+soixante-douze fichiers ne se change pas en la disant une fois.
+
+**Contre-mesure.** Contrôle A6 dans `scripts/verifier_agents.py`, bloquant en CI : toute fiche
+nommant un projet hors périmètre échoue, avec la date de sortie. Le contrôle **signale et ne
+supprime pas** — §10, rien n'est supprimé sans l'accord de Chaima.
+
+**Ce qui reste à trancher, et c'est à elle.** Trois options sur les 29 fiches : les retirer, les
+réécrire au périmètre du projet actuel, ou les archiver telles quelles pour le jour où Caelum
+reprendra. Tant qu'elle n'a pas répondu, le contrôle reste rouge — et un contrôle rouge qu'on
+laisse rouge est une dette visible, ce qui vaut mieux qu'une dette invisible.
+
+**Leçon transférable.** Une décision prise en conversation ne se propage pas toute seule dans les
+fichiers qui l'appliquent. **Changer une règle sans chercher ses copies, c'est créer une
+contradiction, pas une mise à jour.**
+
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
 ```

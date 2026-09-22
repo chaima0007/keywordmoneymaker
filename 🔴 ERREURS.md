@@ -11,6 +11,7 @@
 
 | Date | Erreur | Statut | Fiche complète |
 |---|---|---|---|
+| 2026-09-22 | 29 fiches d'agent envoient l'agent sur un projet sorti du périmètre | ⚠️ NON CORRIGÉE | [`E-35`](.claude/BASE-ERREURS.md) |
 | 2026-09-20 | E-27 s'est reproduite : le shell a exécuté les accents graves, une troisième fois | ✅ CORRIGÉE | [`E-34`](.claude/BASE-ERREURS.md) |
 | 2026-09-20 | Le contrôle de licence a été pris en défaut à son premier usage réel | ✅ CORRIGÉE | [`E-33`](.claude/BASE-ERREURS.md) |
 | 2026-09-19 | J'ai proposé trois domaines « éloignés » qui sont le même domaine | ✅ CORRIGÉE | [`E-31`](.claude/BASE-ERREURS.md) |
@@ -45,4 +46,4 @@
 | 2026-08-10 | Un faux positif a survécu deux semaines et a été répété ~30 fois | ✅ CORRIGÉE | [`E-02`](.claude/BASE-ERREURS.md) |
 | 2026-09-11 | Une règle écrite le 13/07 a été ignorée pendant un mois | ▫️ DOCUMENTÉE | [`E-01`](.claude/BASE-ERREURS.md) |
 
-*33 fiches. Généré depuis `.claude/BASE-ERREURS.md`.*
+*34 fiches. Généré depuis `.claude/BASE-ERREURS.md`.*

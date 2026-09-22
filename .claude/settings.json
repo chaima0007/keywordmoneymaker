@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/garde-ecriture.py\"",
+            "timeout": 10,
+            "statusMessage": "Garde d'écriture"
+          }
+        ]
+      }
+    ]
+  }
+}
