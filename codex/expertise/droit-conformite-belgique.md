@@ -1,8 +1,9 @@
 # Domaine : droit de la conformité — Belgique
 
-> **Maturité : CONFIRMÉ** (10 fiches, un seul projet à ce jour — Caelum Partners).
-> Passera EXPERT au-delà de 10 fiches **et** sur 2 projets (CODEX §4).
-> Dernière passe : 2026-09-21.
+> **Maturité : CONFIRMÉ** (12 fiches, un seul projet à ce jour — Caelum Partners).
+> Le seuil de 10 fiches est franchi, mais EXPERT exige **aussi** un deuxième projet (CODEX §4) :
+> le domaine reste donc CONFIRMÉ. Une maturité qu'on s'accorde à soi-même ne vaut rien.
+> Dernière passe : 2026-09-22.
 
 Ce fichier est **transverse** : ce que Caelum apprend du droit belge, tout projet de l'Empire le sait.
 On consigne le **principe** et la **source primaire**, jamais un avis. Chaque fiche porte sa date de
@@ -191,14 +192,30 @@ vaut pour le RGPD (20 millions / 4 %).
 https://ccb.belgium.be/nl/node/521 (l'autorité nationale, reprenant les montants de l'article 34 de
 la directive). Les sanctions belges figurent au titre 4, chapitre 2, de la loi du 26 avril 2024.
 
-**NON VÉRIFIÉ** : le **numéro d'article** de la loi belge portant le barème. Deux sites commerciaux
-le situent l'un à l'article 56, l'autre à l'article 59 ; je n'ai pas lu l'article lui-même. Citer
-« titre 4, chapitre 2 » tant que ce n'est pas tranché.
+**Où se trouve le barème — tranché le 2026-09-22 par la table des matières de Justel.** Le titre 4,
+chapitre 2, de la loi se divise en deux sections : **articles 51 à 57, « Procédure »** ; **articles 58
+à 61, « Mesures administratives et amendes »**. Le barème est donc dans les articles **58 à 61**. Le
+site qui titre « Article 56 — Amendes administratives » se trompe : l'article 56 appartient à la
+section Procédure — ce qui cadre d'ailleurs avec le fait qu'on lui prête ailleurs le recouvrement par
+contrainte et l'opposition devant le juge des saisies.
+
+**Méthode à retenir**, transférable : quand un document est trop long pour être lu en entier, sa
+**table des matières** suffit souvent à départager deux commentateurs. Elle est en tête, donc
+atteignable, et elle donne les bornes d'articles par section.
+
+**Encore PLAUSIBLE, confiance MODÉRÉE** : l'attribution fine à l'intérieur de 58-61 (article 58 pour
+l'outillage de mesures, 59 pour le barème, 60 pour l'escalade réservée aux entités essentielles). Un
+seul commentateur la propose, mais elle est cohérente avec l'intitulé de la section.
+
+**Sources liées.** Table des matières de la loi, texte néerlandais authentique —
+https://www.ejustice.just.fgov.be/eli/wet/2024/04/26/2024202344/justel : « HOOFDSTUK 2. - De
+administratieve maatregelen en geldboetes — Afdeling 1. Procedure Art. 51-57 — Afdeling 2.
+Administratieve maatregelen en geldboetes Art. 58-61 ».
 
 **Projets où appliqué** : Caelum Partners (cartes de sanction de la page d'accueil, contrôlées par
 `scripts/verifier_coherence_juridique.py`, qui exige deux occurrences de la règle du plus élevé).
-**Fiabilité** : ÉLEVÉE pour les montants, FAIBLE pour la numérotation d'article.
-**Dernière confirmation** : 2026-09-21.
+**Fiabilité** : ÉLEVÉE pour les montants et pour la section ; MODÉRÉE pour l'article exact.
+**Dernière confirmation** : 2026-09-22.
 
 ---
 
@@ -306,12 +323,88 @@ datée, pas d'un principe général. **Dernière confirmation** : 2026-09-21.
 
 ---
 
+## E-BE-11 — Lanceurs d'alerte : les deux délais que tout canal interne doit tenir
+
+**Principe appris.** Un canal de signalement interne n'est pas une boîte mail. L'article 12, § 1er, de
+la loi du 28 novembre 2022 énumère ce qu'il doit comporter, et deux délais y sont chiffrés :
+
+- **7 jours** pour l'accusé de réception adressé à l'auteur du signalement (art. 12, § 1er, 2°) ;
+- **3 mois maximum** pour le retour d'informations, comptés depuis l'accusé de réception — ou, si
+  aucun accusé n'a été envoyé, depuis l'expiration du délai de sept jours (art. 12, § 1er, 5°).
+
+Le reste de l'article est tout aussi contraignant et se vend mal en une ligne : des canaux **sécurisés
+garantissant la confidentialité** de l'auteur et des tiers cités, empêchant l'accès du personnel non
+autorisé ; la possibilité de signaler **par écrit ou oralement**, par téléphone ou messagerie vocale,
+et **en personne sur demande** dans un délai raisonnable ; la désignation d'un **gestionnaire de
+signalement** nommé ; un **suivi diligent, y compris des signalements anonymes** ; et la mise à
+disposition d'informations sur les canaux **externes** (coordinateur fédéral, autorités compétentes).
+
+**Deux points pratiques pour une PME.** Les entités de 50 à 249 travailleurs peuvent **mutualiser**
+les ressources de réception et d'investigation — utile pour une petite structure. Et l'échéance de
+mise en conformité est passée depuis longtemps : 250 travailleurs et plus dès l'entrée en vigueur en
+décembre 2022, 50 à 249 au plus tard le **17 décembre 2023**.
+
+**Le défaut subtil du délai de retour.** Ne pas accuser réception ne repousse pas l'échéance : le
+délai de trois mois court alors depuis l'expiration des sept jours. Le silence ne fait pas gagner de
+temps, il en fait perdre.
+
+**Sources liées.** Texte de l'article 12 —
+https://etaamb.openjustice.be/fr/loi-du-28-novembre-2022_n2022042980.html · Guide de l'Institut
+fédéral pour la protection et la promotion des droits humains —
+https://institutfederaldroitshumains.be/sites/default/files/2024-12/Guide%20lanceurs%20d%27alerte.pdf
+
+**NON VÉRIFIÉ** : la **nature exacte des sanctions** encourues par l'employeur qui n'instaure pas de
+canal, entrave un signalement ou exerce des représailles. Les commentaires parlent de « sanctions
+pénales et administratives » sans citer d'article ; le Code pénal social prévoit quatre niveaux, dont
+le niveau 4 (emprisonnement de 6 mois à 3 ans et/ou amende pénale de 600 à 7 000 EUR), mais **rien
+dans ce que j'ai lu ne rattache la loi lanceurs d'alerte à un niveau précis**. Ne pas citer de montant
+tant que l'article n'est pas lu.
+
+**Projets où appliqué** : aucun encore — matière première pour la carte « canal lanceurs d'alerte » et
+pour une offre d'accompagnement.
+**Fiabilité** : ÉLEVÉE pour les délais et le contenu de l'article 12 ; NON VÉRIFIÉ pour les sanctions.
+**Dernière confirmation** : 2026-09-22.
+
+---
+
+## E-BE-12 — Un chiffre qui circule sans son texte est un chiffre en sursis
+
+**Principe appris**, tiré de trois cas rencontrés le même mois et qui se ressemblent trop pour être
+des accidents.
+
+1. **« 1 500 € par facture »** (e-facturation). L'arrêté punit la non-disposition des moyens
+   techniques ; le « par facture » n'y est pas. Des calculs à six chiffres en ont été tirés.
+2. **« 3 000 € si vous récidivez dans les trois mois »** (même arrêté). Le texte dit l'inverse : trois
+   mois est un délai **minimum** avant que l'échelon supérieur puisse s'appliquer.
+3. **« Article 56 — Amendes administratives »** (NIS2 belge). La table des matières de la loi place
+   l'article 56 dans la section « Procédure » ; le barème est aux articles 58 à 61.
+
+**Ce que les trois ont en commun** : le chiffre est exact, c'est son **rattachement** qui est faux —
+à quoi il s'applique, à partir de quand, dans quel article. Un chiffre juste mal rattaché est plus
+trompeur qu'un chiffre faux, parce qu'il résiste à la vérification paresseuse : on retrouve bien
+« 1 500 € » dans l'arrêté, donc on cesse de chercher.
+
+**Contre-mesure.** Pour tout chiffre repris d'un tiers, vérifier trois choses avant de l'écrire :
+**à quoi** il se rattache (l'infraction exacte), **quand** il s'applique (le déclencheur, le délai),
+et **où** il se trouve (l'article). Si l'une des trois manque, écrire le chiffre avec sa réserve, ou
+ne pas l'écrire.
+
+**Pourquoi c'est un actif commercial.** Ces trois erreurs circulent chez des éditeurs de logiciels et
+des consultants qui les reprennent les uns aux autres. Un acteur de la conformité qui cite le texte
+là où les autres citent un confrère se distingue sans rien dénigrer.
+
+**Projets où appliqué** : Caelum Partners. **Fiabilité** : ÉLEVÉE — chaque cas est daté et sourcé
+dans les fiches E-BE-03 et E-BE-07. **Dernière confirmation** : 2026-09-22.
+
+---
+
 ## Ce qui reste ouvert dans ce domaine
 
 | Question | Pourquoi elle n'est pas tranchée | Prochain pas |
 |---|---|---|
 | Décompte des intérimaires pour le seuil de 50 (lanceurs d'alerte) | Ambiguïté du renvoi au seul § 1er de l'article 7 | Une circulaire ou une décision de justice ; sinon, rester au niveau de précision de la fiche E-BE-08 |
-| Numéro d'article du barème de sanctions NIS2 dans la loi belge | Deux sources commerciales se contredisent (56 / 59) | Lire le titre 4, chapitre 2, de la loi sur Justel |
+| ~~Numéro d'article du barème de sanctions NIS2~~ | **Fermé le 2026-09-22** : section « Mesures administratives et amendes » = articles 58 à 61 (table des matières de Justel) | Reste à confirmer l'article exact dans cette fourchette |
+| Sanctions encourues par l'employeur — loi lanceurs d'alerte | Aucun commentaire consulté ne cite l'article ; le rattachement à un niveau du Code pénal social n'est pas établi | Lire les articles de sanction de la loi du 28/11/2022 |
 | Colonne « type d'entité » des annexes de la loi belge NIS2, lue ligne à ligne | Les tableaux sont à la fin du Moniteur ; les outils tronquent depuis le début | Chercher les formules distinctives une par une, ou obtenir le PDF paginé |
-| Sanctions et délais de la loi lanceurs d'alerte | Jamais recherchés | Une passe dédiée |
+| ~~Délais de la loi lanceurs d'alerte~~ | **Fermé le 2026-09-22** : 7 jours pour l'accusé de réception, 3 mois pour le retour (fiche E-BE-11) | — |
 | RGPD : durées de conservation et DPA sous-traitants, pour un usage opérationnel | Hors du périmètre des passes faites jusqu'ici | À ouvrir si un contenu ou une offre le demande |

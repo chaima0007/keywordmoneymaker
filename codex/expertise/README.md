@@ -13,7 +13,7 @@ Maturité d'un domaine (en-tête du fichier de domaine) : DÉBUTANT (< 3 fiches)
 
 | Domaine | Fichier | Maturité | Fiches | Dernière passe |
 |---|---|---|---|---|
-| Droit de la conformité — Belgique | `droit-conformite-belgique.md` | CONFIRMÉ | 10 | 2026-09-21 |
+| Droit de la conformité — Belgique | `droit-conformite-belgique.md` | CONFIRMÉ | 12 | 2026-09-22 |
 
 Plafond du CODEX §4 : **2 domaines actifs en parallèle**, ajustable par Chaima seule. Un domaine
 ouvert ici compte dans ce plafond.
