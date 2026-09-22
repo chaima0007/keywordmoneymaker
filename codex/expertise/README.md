@@ -9,4 +9,11 @@ ID / Domaine / Principe appris / Sources liées / Projets où appliqué / Fiabil
 
 Maturité d'un domaine (en-tête du fichier de domaine) : DÉBUTANT (< 3 fiches) / CONFIRMÉ (3-10) / EXPERT (> 10, sur 2+ projets).
 
-_(Aucun domaine pour l'instant.)_
+## Domaines ouverts
+
+| Domaine | Fichier | Maturité | Fiches | Dernière passe |
+|---|---|---|---|---|
+| Droit de la conformité — Belgique | `droit-conformite-belgique.md` | CONFIRMÉ | 12 | 2026-09-22 |
+
+Plafond du CODEX §4 : **2 domaines actifs en parallèle**, ajustable par Chaima seule. Un domaine
+ouvert ici compte dans ce plafond.
