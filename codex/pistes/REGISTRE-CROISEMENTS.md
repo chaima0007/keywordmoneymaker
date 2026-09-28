@@ -379,3 +379,178 @@ sûrement qu'un dépôt.
 **C'est la raison qui rend le virage quantique sensé, et pas seulement différent.** En photonique
 quantique, PsiQuantum, Xanadu, Quandela et Photonic déposent massivement : le domaine se protège
 par brevet, pas par publication. La logique du terrain y est inverse.
+
+
+---
+
+## X-06 — la métrique de coût des réseaux de fusion — OUVERTE ET MORTE le 2026-09-28
+
+Chaima : « vasy ». Ouverte sur `P-18`, le seul problème du carnet 4 qui ne demande qu'un ordinateur.
+
+**Ce que X-06 n'est PAS, et il faut le dire avant de commencer.** Ce n'est pas un croisement de
+domaines. Les cinq premiers transféraient un enseignement d'un domaine vers un autre, et le test de
+distance d'`E-31` portait sur la **paire**. X-06 n'a pas de paire : c'est une attaque frontale sur un
+besoin ouvert énoncé par les auteurs eux-mêmes. Le test de distance ne s'applique donc pas, et je ne
+vais pas en fabriquer un pour faire joli.
+
+En échange, X-06 partait avec un handicap que les cinq autres n'avaient pas, et je ne l'ai pas pesé :
+**quand des auteurs écrivent publiquement qu'il leur manque un outil, ils ont déjà cherché — et ils
+citent ce qu'ils ont trouvé.**
+
+Ils citaient. Référence **[22]**.
+
+### Mort n°1 — le besoin est comblé par du libre publié, que l'article du besoin cite lui-même
+
+**OptGraphState** — Lee & Jeong, *Graph-theoretical optimization of fusion-based graph state
+generation*, **Quantum 7, 1212 (2023)**, arXiv:2304.11988 (v1 24/04/2023). Dépôt
+`seokhyung-lee/OptGraphState`, **MIT lue dans le fichier** au commit `4f7c563634cf`, créé le
+2023-04-03. Le paquet fait, d'après sa propre documentation :
+
+- trouver une méthode efficace en ressources pour générer un état de graphe donné **par fusions de
+  type II à partir d'états ressources de base à trois qubits** ;
+- **« calculer le coût en ressources correspondant, quantifié par le nombre moyen d'états ressources
+  de base requis ou de tentatives de fusion »** ;
+- calculer la probabilité de succès lorsque le nombre d'états ressources fournis est limité ;
+- construire et visualiser le **réseau de fusion** et l'ordre des fusions.
+
+C'est la métrique que `P-18` appelle, publiée il y a trois ans, en MIT. Et le détail qui tue : la
+référence **[22]** de arXiv:2506.11975 — l'article de PsiQuantum qui énonce le besoin — **est ce
+papier**, et à propos de son propre heuristique de coût l'article écrit : *« Une optimisation
+similaire a été présentée dans [22]. »*
+
+**Les auteurs du besoin ouvert citent l'outil qui le comble.** Le trou que j'ai lu dans leur phrase
+n'était pas un trou dans l'état de l'art — c'était un trou dans *leur* annexe, qu'ils signalent
+eux-mêmes en note.
+
+### Mort n°2 — la version améliorée est BREVETÉE, par la même équipe, et le brevet est en vigueur
+
+**US12596949B2** — *Method and apparatus for linear optical quantum computing*. Titulaire **SNU
+R&DB Foundation** (Seoul National University). Inventeurs **Hyunseok Jeong, Seok-Hyung Lee, Yong
+Siah Teo, Srikrishna Omkar** — les deux premiers sont les auteurs d'OptGraphState. Priorité KR
+10-2022-0120561 du **2022-09-23**, demande US 18/075,327 du 2022-12-05, publication
+US20240119334A1 du 2024-04-11, **délivré le 2026-04-07**, expiration ajustée affichée
+**2044-12-16**. CPC : **G06N 10/00, G06N 10/20, G06N 10/40, B82Y 10/00**.
+
+Revendication 13, sur le point qui nous concerne, verbatim :
+
+> « determining a sequence of a plurality of single photon fusions and a plurality of single photon
+> Bell-state measurements (BSMs) expressed by a shape of the combination graph and one or more lines
+> between the vertices **by performing a resource optimization algorithm for the combination graph**
+> consisting of a plurality of vertices representing an arbitrary microcluster and lines connecting
+> the vertices ; configuring **at least two first Greenberger-Horne-Zeilinger (GHZ) states consisting
+> of three photons** based on the shape of the combination graph ; […] defined by **(n, m)
+> parity-state encoding** […] »
+
+Et la description **donne la métrique** : un coût `M_v = 1` par sommet, un coût par arête
+
+    M_e = 2 (1 − η)^(−2) (M_v1 + M_v2)
+
+où **η est le taux de perte de photons**, puis contraction itérative de l'arête de coût minimal
+jusqu'à ce qu'il ne reste qu'un sommet.
+
+Ce coût-là est **plus** que ce que `P-18` demande, pas moins. Celui de PsiQuantum compte des états
+3-GHZ « en faisant les hypothèses optimistes d'un multiplexage efficace et d'une fusion sans
+perte ». Celui du brevet **intègre le taux de perte dans le coût**. La seule chose que je pouvais
+ajouter — rendre la métrique consciente de la perte tout en la gardant indépendante du niveau
+d'encodage — est la revendication délivrée d'un brevet qui court jusqu'en 2044.
+
+**Et la combinaison des deux ne sauve rien**, au contraire : OptGraphState donne l'indépendance au
+niveau d'encodage, le brevet donne la conscience de la perte, et **les deux sortent de la même
+équipe de Séoul**. À l'art. 56 CBE, il n'existe pas de combinaison plus évidente pour l'homme du
+métier que celle de deux travaux du même laboratoire qui se citent.
+
+### Mort n°3 — art. 52 CBE, et c'est celle qui compte
+
+Une métrique de coût calculée sur un ordinateur, qui ne commande aucun appareil et ne produit aucun
+effet physique, est une méthode mathématique. L'art. 52(2) CBE l'exclut ; il faut un effet technique
+pour en sortir (COMVIK T 641/00, G 1/19).
+
+Or le carnet 4 écrit, noir sur blanc, que `P-18` est **le seul problème qui ne demande qu'un
+ordinateur**. C'est exactement pour cela qu'il est **le seul problème du carnet sur lequel l'art. 52
+mord**. `P-15`, `P-16`, `P-17`, `P-19` ont un effet physique et pas de laboratoire chez nous.
+`P-18` n'a pas besoin de laboratoire et n'a pas d'effet physique.
+
+**C'est une tenaille, et ce n'est pas une tenaille propre au quantique : c'est la même que dans le
+logiciel.** Ce que je peux faire seule, l'art. 52 l'exclut. Ce que l'art. 52 admet, je ne peux pas
+le faire seule. Le virage quantique n'a pas supprimé cette géométrie, il l'a déplacée d'un cran —
+et je ne l'avais pas vu en ouvrant le carnet.
+
+La preuve est dans le brevet lui-même, et elle est instructive : SNU a obtenu la délivrance parce
+que l'algorithme d'optimisation est revendiqué **à l'intérieur** d'une méthode qui finit par
+« measuring at least one central qubit of the RHG lattice ». La métrique passe l'art. 52 en étant
+attachée à un procédé physique. **Pour breveter une métrique, il faut un dispositif — donc un
+laboratoire.**
+
+### Antériorité secondaire, relevée au passage et non exhaustive
+
+Libre publié, en plus d'OptGraphState :
+
+- **`TeamGraphix/graphix`** (Apache-2.0, lue au commit `2b30fdf18c09`) — `extraction.graph_to_fusion_network`
+  décompose un état de graphe cible en états ressources GHZ et cluster linéaires, avec contrainte de
+  taille maximale disponible (`max_ghz`, `max_lin`) pour un ordonnancement réaliste.
+- **arXiv:2606.02880** — *Cost-aware Fusion-based Decomposition* : surcoût en ressources défini comme
+  le nombre total de photons consommés, équivalence Clifford locale comme proxy, −84,6 % de surcoût.
+- **arXiv:2509.14794** — coût photonique moyen par état GHZ-like, optimisation sur les séquences de
+  fusion.
+- **`benchq`**, **Rigetti RRE**, **Azure QRE**, **`qlass` ResourceAwareCompiler** (celui-ci modélise
+  perte par composant, probabilité de succès de fusion et visibilité HOM) — l'estimation de
+  ressources pour calcul tolérant aux fautes est un marché d'outils, pas un trou.
+
+Brevets voisins, non lus en entier :
+
+- **US11681845** — *Quantum circuit valuation* : score d'un circuit quantique avec un « resource
+  factor » fonction du pré-traitement et de la correction d'erreurs requis. Revendication large sur
+  l'idée même de **valoriser** un circuit par ses ressources.
+- **US11501198** (PsiQuantum) — génération d'un état photonique intriqué à partir de « primates »,
+  présentée comme « une réduction spectaculaire du nombre de ressources requises ».
+- **US12468970**, **US12694322**, **US11341428** — architectures photoniques à états ressources,
+  lignes à retard, multiplexage.
+
+### Ce qui n'est pas prouvé, et ne doit pas être cru prouvé
+
+- Registres **EPO et Espacenet toujours inatteignables** depuis cette session. US12596949B2 lu sur
+  Google Patents via `mcp__Exa__web_fetch_exa` le 2026-09-28. Est VÉRIFIÉ, par cette lecture à
+  `https://patents.google.com/patent/US12596949B2/en` : l'existence, le titre, le titulaire, les
+  inventeurs, les dates, les codes CPC, et le texte cité de la revendication 13 et de la
+  description.
+- **NON VÉRIFIÉ** : l'étendue réelle de la famille (continuations, équivalents EP / CN / JP), la
+  validité, et la portée exacte des revendications indépendantes 1 et 7 que je n'ai pas lues mot à
+  mot.
+- Le statut « actif, expire 2044-12-16 » est un **affichage** Google Patents, qui écrit lui-même que
+  c'est une hypothèse et non une conclusion juridique.
+- **Aucune recherche CPC exhaustive.** G06N 10/ compte des milliers de documents. Ce verdict tue le
+  croisement ; il ne prouverait pas l'inverse.
+- Ceci n'est **pas un conseil juridique**. Un conseil en PI humain est requis avant tout dépôt réel.
+
+---
+
+# SIX MORTS — ET LE MOTIF A CHANGÉ DE NATURE
+
+| | Cause de la mort |
+|---|---|
+| X-01, X-02 | domaines trop proches — ma faute, `E-31` |
+| X-03 | idée juste, faite depuis 1990 |
+| X-04 | domaine rendu inbrevetable **en temps réel** par publication défensive |
+| X-05 | outil déjà publié, en code libre et en documentation |
+| X-06 | **libre publié MIT *et* brevet délivré en vigueur — par la MÊME équipe** |
+
+**Pour la première fois, les deux barrières sont debout en même temps.** Dans le logiciel (X-04,
+X-05), le libre publié détruisait la nouveauté mais laissait la liberté d'exploitation : on ne
+pouvait pas breveter, on pouvait utiliser. Ici l'équipe de Séoul a fait les deux — elle a **publié
+en MIT** ce qui détruit la nouveauté, et **breveté** la version améliorée jusqu'en 2044. On ne peut
+ni déposer, ni progresser librement dans la direction évidente.
+
+**Et cela corrige une affirmation que j'ai écrite le matin même.** Le carnet 4 et le verdict X-05
+disent : « en photonique quantique la logique du terrain est **inverse**, les acteurs déposent
+massivement au lieu de publier ». C'est **faux par moitié**, et la moitié fausse est précisément
+celle qui servait d'argument au virage. Ils déposent **et** ils publient. Fiche `E-36`.
+
+### Ce qui reste, et qui n'est pas un brevet
+
+Les deux antériorités sont des **briques utilisables**, entrées au sas le jour même :
+`B-21 seokhyung-lee/OptGraphState` (MIT, `4f7c563634cf`) et `B-22 TeamGraphix/graphix` (Apache-2.0,
+`2b30fdf18c09`). C'est la troisième fois que la recherche d'antériorité rapporte un outil plutôt
+qu'un candidat — et c'est, à ce stade, le seul rendement mesurable du dispositif.
+
+**X-06 est close.** Aucune ligne étroite ne survit : celle qui survivrait est la revendication 13 de
+US12596949B2.

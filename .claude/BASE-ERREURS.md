@@ -41,6 +41,22 @@
 | E-20 | Outil d'audit pointé sur la mauvaise cible | Tu lances un scan, un audit, un test de dépendances | tous |
 | E-21 | État d'un site déduit du dépôt, pas du live | Tu conclus sur ce que voit un visiteur | GUETTEUR · verificateur-verite |
 | E-22 | Défaut annoncé sans avoir été constaté | Tu rapportes un bug que tu n'as pas reproduit | GARANT · tous |
+| E-25 | Un contrôle aveugle accuse le rapport au lieu de s'accuser lui-même | Tu écris un contrôle et il rougit du premier coup | GARANT · contradicteur |
+| E-26 | Dérive de périmètre : quatre fois détectée, jamais empêchée | Tu commences autre chose que la consigne n°1 | BOUSSOLE · superviseur-vigie |
+| E-27 | Un heredoc non cité a EXÉCUTÉ le texte qu'il devait écrire | Tu écris du contenu de fichier depuis le shell | tous |
+| E-28 | Un contrôle se déclenche sur sa propre documentation | Tu documentes un motif que ton contrôle cherche | GARANT |
+| E-29 | Lien mort écrit dans l'heure suivant la règle l'interdisant | Tu cites une URL dans un document | BIBLIOTHÉCAIRE |
+| E-30 | « Aucun accès aux brevets » était faux : contournement non testé | Tu conclus à une impossibilité d'accès | GUETTEUR · verificateur-verite |
+| E-31 | Trois domaines « éloignés » qui sont le même domaine | Tu proposes des domaines pour un transfert | contradicteur · recolteur-problemes |
+| E-33 | Le contrôle de licence pris en défaut à son premier usage réel | Tu fais tourner un contrôle neuf sur du réel | gardien-du-sas |
+| E-34 | E-27 reproduite une troisième fois, par une fonction shell | Tu factorises une écriture de fichier | tous |
+| E-35 | 29 fiches d'agent envoient l'agent sur un projet hors périmètre | Tu changes un périmètre ou un nom de projet | ARCHITECTE · GARDIEN |
+| E-36 | Un virage de domaine justifié par une affirmation à moitié fausse | Tu écris « ils font X plutôt que Y » sur un domaine | contradicteur · veilleur-amont |
+
+> **Trous de numérotation, constatés le 2026-09-28 et laissés visibles :** il n'existe pas de fiche
+> `E-32`. L'index ci-dessus s'était arrêté à `E-24` alors que onze fiches avaient été écrites
+> ensuite — c'est la fiche `E-05` (index censé être à jour, laissé obsolète) commise dans le fichier
+> qui la décrit. Les onze lignes manquantes sont ajoutées ici, aucune n'est supprimée.
 
 ---
 
@@ -901,3 +917,58 @@ contradiction, pas une mise à jour.**
   commises par un agent le 2026-09-11, pas des fautes héritées. Une base qui ne contient que les erreurs
   des autres est fausse.
 - **Rien n'est supprimé** sans l'accord explicite de Chaima.
+
+## E-36 — j'ai justifié un virage de domaine par une affirmation à moitié fausse, le jour même
+
+**Constaté le** 2026-09-28 (21h) · **Survenu le** 2026-09-28 (matin) · **État** CORRIGÉ par ajout daté
+
+**Ce que j'ai écrit.** En ouvrant le carnet 4 et en clôturant X-05, j'ai écrit deux fois la même
+phrase, comme **raison** du virage vers le quantique :
+
+> « En photonique quantique la logique du terrain est **inverse** : PsiQuantum, Xanadu, Quandela,
+> Photonic et les grands laboratoires déposent massivement. »
+
+**Ce que la recherche d'antériorité de X-06 a montré, huit heures plus tard.** L'équipe de Séoul
+(Jeong, Lee, Teo, Omkar) a fait **les deux, sur le même objet** : elle a publié `OptGraphState` en
+**MIT** — ce qui détruit la nouveauté de toute métrique de coût de réseau de fusion — et elle a
+obtenu **US12596949B2**, délivré le 2026-04-07, qui revendique l'algorithme d'optimisation de
+ressources sur le graphe de combinaison et court jusqu'en 2044.
+
+La phrase n'est pas fausse : ils déposent bien. Elle est **fausse par moitié**, et c'est la moitié
+manquante qui portait l'argument. « Ils déposent » ne veut pas dire « ils ne publient pas », et
+c'est **pire pour nous que le logiciel**, pas mieux : dans le logiciel le libre publié tue la
+nouveauté mais laisse la liberté d'exploitation ; ici les deux barrières sont debout en même temps.
+
+**Cause racine — et c'est exactement `E-30` sous une autre forme.** `E-30` disait : *« mesurer une
+porte fermée n'est pas mesurer le bâtiment »*. J'ai mesuré que les industriels du quantique
+déposent — c'est vrai et vérifiable — et j'en ai conclu qu'ils ne publiaient pas, ce que je n'avais
+pas mesuré. **Un fait observé plus une inférence non observée, présentés comme un seul constat.**
+C'est le même geste, à douze jours d'intervalle, dans le sens inverse.
+
+Aggravant : cette phrase ne décorait pas un rapport, elle **justifiait un changement de domaine**.
+Elle a été écrite dans la même journée que la recherche qui la contredit, et elle avait le statut
+d'argument, pas d'observation.
+
+**Signal de détection.** Tu écris qu'un terrain se comporte « à l'inverse » d'un autre, ou qu'un
+acteur fait X « au lieu de » Y. Demande immédiatement : **ai-je mesuré Y, ou seulement X ?** Une
+comparaison entre deux terrains exige deux mesures. Une seule mesure plus un contraste rhétorique
+n'est pas une comparaison, c'est une figure de style avec un numéro de brevet dedans.
+
+Second signal, plus étroit et plus utile : tu lis dans un article *« tel outil serait précieux »* et
+tu y vois un trou. **Va d'abord voir les références de la phrase elle-même.** Dans X-06, l'outil
+manquant était en référence [22] du même paragraphe.
+
+**Contre-mesure.** Deux, et aucune n'est un desserrage :
+
+1. Toute affirmation de la forme « dans ce domaine ils font X **plutôt que** Y » exige deux traces
+   datées, une pour X et une pour Y, sur la même ligne, ou bien elle est marquée **NON VÉRIFIÉ**.
+   `R7` de `scripts/verifier_rapports.py` couvre déjà « VÉRIFIÉ sans trace » ; il ne couvre pas
+   l'inférence par contraste. **Proposition à Chaima, non appliquée sans son accord** : ajouter
+   `R9` — toute ligne contenant « au lieu de », « plutôt que » ou « à l'inverse » appliquée à un
+   comportement de domaine doit porter deux traces.
+2. Correction **par ajout daté** dans les deux documents qui portent la phrase — `CARNET-04` et le
+   verdict X-05 — jamais par réécriture. Un document = un événement.
+
+**Leçon transférable.** **Un argument qui justifie un changement de direction doit être vérifié
+avant le changement, pas après.** Les cinq croisements morts coûtaient chacun des heures ; celui-ci
+a coûté un virage de domaine entier, décidé sur une phrase que je n'avais pas testée.

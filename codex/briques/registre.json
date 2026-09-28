@@ -898,6 +898,96 @@
       "domaine": "quantique-correction-erreurs",
       "domaine_description": "Simulation de stabilisateurs et correction d'erreurs quantiques",
       "licence_verifiee": "MIT"
+    },
+    {
+      "id": "B-21",
+      "nom": "seokhyung-lee/OptGraphState",
+      "url": "https://github.com/seokhyung-lee/OptGraphState",
+      "origine": "Corée du Sud · Seoul National University (Lee & Jeong)",
+      "licence_declaree": "MIT",
+      "commit_epingle": "4f7c563634cffd632438ba516dfafece941643aa",
+      "etat": "SAS",
+      "releve_le": "2026-09-28",
+      "controles": {
+        "licence_permissive": true,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": true,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {
+        "licence_permissive": "MIT lue dans LICENSE au commit 4f7c563634cf (sas_licence.py, 2026-09-28) — 0 licence secondaire, 0 déclaration SPDX discordante",
+        "empreinte": "commit 4f7c563634cffd632438ba516dfafece941643aa relevé au clone du 2026-09-28"
+      },
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-28 19h57",
+          "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-28 19h57",
+          "evenement": "licence VÉRIFIÉE dans les fichiers : MIT"
+        },
+        {
+          "date": "2026-09-28 19h57",
+          "evenement": "commit épinglé : 4f7c563634cffd632438ba516dfafece941643aa"
+        },
+        {
+          "date": "2026-09-28 21h10",
+          "evenement": "domaine assigné : quantique-photonique-et-fusion"
+        }
+      ],
+      "licence_verifiee": "MIT",
+      "domaine": "quantique-photonique-et-fusion",
+      "domaine_description": "Photonique linéaire, états de graphe, mesures de fusion et superposition"
+    },
+    {
+      "id": "B-22",
+      "nom": "TeamGraphix/graphix",
+      "url": "https://github.com/TeamGraphix/graphix",
+      "origine": "Japon · TeamGraphix (Unitary Foundation)",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": "2b30fdf18c097a8c81eb1cb661bb794262d529ac",
+      "etat": "SAS",
+      "releve_le": "2026-09-28",
+      "controles": {
+        "licence_permissive": true,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": true,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {
+        "licence_permissive": "Apache-2.0 lue dans LICENSE au commit 2b30fdf18c09 (sas_licence.py, 2026-09-28) — 0 licence secondaire, 0 déclaration SPDX discordante",
+        "empreinte": "commit 2b30fdf18c097a8c81eb1cb661bb794262d529ac relevé au clone du 2026-09-28"
+      },
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-28 19h57",
+          "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-28 19h57",
+          "evenement": "licence VÉRIFIÉE dans les fichiers : Apache-2.0"
+        },
+        {
+          "date": "2026-09-28 19h57",
+          "evenement": "commit épinglé : 2b30fdf18c097a8c81eb1cb661bb794262d529ac"
+        },
+        {
+          "date": "2026-09-28 21h10",
+          "evenement": "domaine assigné : quantique-photonique-et-fusion"
+        }
+      ],
+      "licence_verifiee": "Apache-2.0",
+      "domaine": "quantique-photonique-et-fusion",
+      "domaine_description": "Photonique linéaire, états de graphe, mesures de fusion et superposition"
     }
   ],
   "reactions": []

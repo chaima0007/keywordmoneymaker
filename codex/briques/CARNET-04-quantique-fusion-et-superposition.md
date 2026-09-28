@@ -151,3 +151,72 @@ la recherche d'antériorité passe avant.
 ---
 
 *Un carnet ne contient jamais de solution. Dès qu'il propose, il contamine le croisement.*
+
+---
+
+## AJOUT DU 2026-09-28, 21h15 — P-18 : antériorité FAITE, et le problème est fermé
+
+**Ajout, pas réécriture.** Ce qui est au-dessus reste tel qu'écrit à 16h30, y compris ce qui est
+maintenant contredit — c'est la règle du carnet et elle vaut plus que mon confort.
+
+### Ce qui est corrigé dans l'en-tête de ce carnet
+
+L'en-tête dit, comme justification du domaine : « en photonique quantique la logique du terrain est
+**inverse** : PsiQuantum, Xanadu, Quandela, Photonic et les grands laboratoires déposent
+massivement ». **Faux par moitié.** Ils déposent *et* ils publient, et sur `P-18` précisément la
+même équipe a fait les deux. Fiche `E-36`.
+
+### Ce que la recherche a trouvé sur P-18
+
+`X-06` au registre des croisements. Trois causes de mort, indépendantes :
+
+1. **OptGraphState** — Lee & Jeong, Quantum 7, 1212 (2023), **MIT**, dépôt
+   `seokhyung-lee/OptGraphState` : calcule le coût en ressources d'un état de graphe généré par
+   fusions de type II, **quantifié par le nombre moyen d'états ressources de base à trois qubits
+   requis**. C'est la métrique demandée, publiée en 2023. Et arXiv:2506.11975 — l'article qui énonce
+   le besoin — **la cite en référence [22]** et écrit de son propre heuristique : « une optimisation
+   similaire a été présentée dans [22] ».
+2. **US12596949B2** (SNU R&DB Foundation, mêmes auteurs), délivré le **2026-04-07**, en vigueur
+   jusqu'en 2044 : revendique « performing a resource optimization algorithm for the combination
+   graph », avec un coût par arête `M_e = 2(1−η)^(−2)(M_v1 + M_v2)` où **η est le taux de perte**.
+   La version « améliorée » que P-18 appelle est donc **déjà brevetée, en mieux** que ce que P-18
+   demande.
+3. **Art. 52(2) CBE.** Une métrique calculée sans effet physique est une méthode mathématique, donc
+   exclue. Et c'est structurel : ce carnet dit que P-18 est **le seul problème qui ne demande qu'un
+   ordinateur** — c'est pour cela qu'il est **le seul sur lequel l'art. 52 mord**.
+
+### La tenaille, et il faut la regarder en face
+
+|  | Effet physique (passe l'art. 52) | Faisable sans laboratoire |
+|---|---|---|
+| P-15 perte de photons | oui | **non** |
+| P-16 compromis du boosting | oui | **non** |
+| P-17 états ressources | oui | **non** |
+| P-19 erreurs de mesure de fusion | oui | **non** |
+| P-18 métrique de coût | **non** | oui |
+
+**Aucune case du carnet n'a les deux.** Ce n'est pas un hasard de sélection : c'est la même tenaille
+que dans le logiciel, déplacée d'un cran. Ce qu'on peut faire depuis un bureau, l'art. 52 l'exclut ;
+ce que l'art. 52 admet demande un laboratoire.
+
+US12596949B2 montre par où l'on sort : SNU a obtenu la délivrance parce que l'algorithme est
+revendiqué **à l'intérieur** d'un procédé qui finit par « measuring at least one central qubit of
+the RHG lattice ». La métrique passe l'art. 52 en étant attachée à un dispositif. **Pour breveter du
+calcul, il faut de la matière.**
+
+### Ce que le carnet garde, et ce qu'il perd
+
+**Perdu :** P-18 comme piste de brevet, définitivement. Et la justification du virage quantique,
+telle qu'écrite.
+
+**Gardé :** les cinq problèmes restent des problèmes réels, décrits par leurs déposants, avec leurs
+chiffres. P-15, P-16, P-17 et P-19 ne sont pas touchés par cette recherche — **leur antériorité n'a
+pas été cherchée**, et ils restent hors de portée sans physicien. Les briques du domaine restent
+utilisables, et deux se sont ajoutées le jour même : `B-21 OptGraphState` (MIT) et
+`B-22 graphix` (Apache-2.0).
+
+**À trancher par Chaima, et rien ne change sans elle.** Le carnet 4 avait été ouvert parce que P-18
+était « le seul par lequel commencer ». Il est fermé. Les quatre autres demandent un physicien.
+La question n'est donc plus quel problème, mais **avec qui** — ou bien s'il faut arrêter de chercher
+des brevets et garder du dispositif ce qui rapporte vraiment, c'est-à-dire les briques vérifiées et
+la liberté d'exploitation.

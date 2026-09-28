@@ -3,7 +3,7 @@
 **Ne pas modifier à la main.** Engendré par `scripts/briques.py` depuis
 `codex/briques/registre.json`, qui est la source.
 
-Relevé du 2026-09-28 · 20 brique(s) · 0 réaction(s)
+Relevé du 2026-09-28 · 22 brique(s) · 0 réaction(s)
 
 ## Règle d'entrée
 
@@ -12,7 +12,7 @@ son prestige : un dépôt d'NVIDIA passe le même sas qu'un dépôt inconnu sur 
 Le contrôle de sécurité est **neutre en origine** ; le contrôle de sanctions porte sur
 l'entité, jamais sur le pays.
 
-## SAS — 18
+## SAS — 20
 
 | Id | Nom | Origine | Licence | Contrôles au vert |
 |---|---|---|---|---|
@@ -34,6 +34,8 @@ l'entité, jamais sur le pays.
 | B-18 | [graphiq-dev/graphiq](https://github.com/graphiq-dev/graphiq) | Ki3/Xanadu · photonique | Apache-2.0 | 2/6 |
 | B-19 | [Deltakit/deltakit](https://github.com/Deltakit/deltakit) | Royaume-Uni · Riverlane | Apache-2.0 | 2/6 |
 | B-20 | [munich-quantum-toolkit/qecc](https://github.com/munich-quantum-toolkit/qecc) | Allemagne · TU Munich | MIT ⚠ | 2/6 |
+| B-21 | [seokhyung-lee/OptGraphState](https://github.com/seokhyung-lee/OptGraphState) | Corée du Sud · Seoul National University (Lee & Jeong) | MIT | 2/6 |
+| B-22 | [TeamGraphix/graphix](https://github.com/TeamGraphix/graphix) | Japon · TeamGraphix (Unitary Foundation) | Apache-2.0 | 2/6 |
 
 ## REFUSEE — 2
 

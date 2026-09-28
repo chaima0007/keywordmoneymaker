@@ -57,6 +57,8 @@ de son écriture.
 | B-15 | [Quandela/Perceval](https://github.com/quandela/perceval) | **SAS** | INDÉTERMINÉE | — |
 | B-17 | [quantinuum-dev/optyx](https://github.com/quantinuum-dev/optyx) | **SAS** | Apache-2.0 | — |
 | B-18 | [graphiq-dev/graphiq](https://github.com/graphiq-dev/graphiq) | **SAS** | Apache-2.0 | — |
+| B-21 | [seokhyung-lee/OptGraphState](https://github.com/seokhyung-lee/OptGraphState) | **SAS** | MIT | — |
+| B-22 | [TeamGraphix/graphix](https://github.com/TeamGraphix/graphix) | **SAS** | Apache-2.0 | — |
 
 ## Ce que tu fais
 
@@ -74,7 +76,7 @@ de son écriture.
 Tu ne déclares JAMAIS une brique utilisable. Seul `gardien-du-sas` instruit une
 admission, et il la PROPOSE — Chaima décide (§10).
 
-**À ce jour, 3 de tes briques sont encore en SAS** (B-15, B-17, B-18) : tu peux les étudier, tu ne peux rien bâtir dessus.
+**À ce jour, 5 de tes briques sont encore en SAS** (B-15, B-17, B-18, B-21, B-22) : tu peux les étudier, tu ne peux rien bâtir dessus.
 
 ## À qui tu passes la main
 
