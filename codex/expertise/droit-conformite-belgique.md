@@ -1,6 +1,6 @@
 # Domaine : droit de la conformité — Belgique
 
-> **Maturité : CONFIRMÉ** (13 fiches, un seul projet à ce jour — Caelum Partners).
+> **Maturité : CONFIRMÉ** (16 fiches, un seul projet à ce jour — Caelum Partners).
 > Le seuil de 10 fiches est franchi, mais EXPERT exige **aussi** un deuxième projet (CODEX §4) :
 > le domaine reste donc CONFIRMÉ. Une maturité qu'on s'accorde à soi-même ne vaut rien.
 > Dernière passe : 2026-09-28.
@@ -465,6 +465,115 @@ NON VÉRIFIÉ pour le plafond chiffré. **Dernière confirmation** : 2026-09-28.
 
 ---
 
+## E-BE-14 — RGPD : l'exception « moins de 250 employés » du registre ne s'applique presque jamais
+
+**Principe appris.** L'article 30.5 du RGPD dispense de registre les entreprises de moins de 250
+employés. Cette phrase, lue seule, rassure la quasi-totalité des PME belges — **et elle est
+trompeuse**. L'exception tombe dès qu'on se trouve dans **l'un** des quatre cas, et le quatrième
+l'annule en pratique :
+
+1. le traitement est susceptible de comporter **un risque** pour les droits et libertés ;
+2. il porte sur des **données sensibles** (article 9) ;
+3. il porte sur des données relatives à des **condamnations et infractions** (article 10) ;
+4. le traitement n'est **pas occasionnel** — c'est-à-dire habituel : gestion du personnel, gestion des
+   clients, gestion des fournisseurs.
+
+Une entreprise qui a un seul salarié fait de la gestion du personnel à titre habituel. Une entreprise
+qui a des clients fait de la gestion de clientèle à titre habituel. **L'exception ne leur est donc pas
+applicable.** L'APD l'écrit elle-même : des « circonstances qui ne trouveront […] que très rarement à
+s'appliquer », et sa page publique parle d'une exception « **à portée très limitée** ».
+
+**L'allègement réel, celui qu'il faut connaître à la place.** Une petite organisation qui traite des
+données de manière habituelle peut **limiter son registre à ses traitements habituels** ; les
+traitements strictement occasionnels peuvent en être omis — mais seulement s'ils ne sont ni risqués
+ni sensibles. C'est le vrai gain de temps pour une PME, et personne ne le dit.
+
+**Deux conséquences opérationnelles.** Le registre doit être produit **à la première demande** de
+l'APD (article 30.4). Et son absence, ou sa mauvaise tenue, relève du plafond de l'article 83 :
+10 000 000 EUR ou 2 % du chiffre d'affaires annuel mondial, **le montant le plus élevé étant retenu** —
+même règle que la fiche E-BE-07.
+
+**Sources liées.** APD, « Quelles sont les exceptions ? » —
+https://www.autoriteprotectiondonnees.be/professionnel/rgpd-/registre-des-activites-de-traitement/quelles-sont-les-exceptions- ·
+Même page en néerlandais, les deux versions faisant foi —
+https://www.gegevensbeschermingsautoriteit.be/professioneel/avg/register-van-verwerkingsactiviteiten/zijn-er-uitzonderingen ·
+Recommandation n° 06/2017 de l'APD sur le registre (CO-AR-2017-011) —
+https://dataprotectionauthority.be/publications/recommandation-n-06-2017.pdf ·
+Brochure FAQ pour les PME —
+https://autoriteprotectiondonnees.be/publications/brochure-faq-pour-les-pme.pdf
+
+**Projets où appliqué** : aucun encore. C'est la matière de la carte RGPD du simulateur, qui annonce
+déjà « savoir quelles données vous détenez et où » comme premier chantier.
+**Fiabilité** : ÉLEVÉE — source primaire et autorité compétente, FR et NL.
+**Dernière confirmation** : 2026-09-28.
+
+---
+
+## E-BE-15 — RGPD : une durée de conservation n'est pas forcément un nombre de mois
+
+**Principe appris.** C'est le point qui bloque le plus de PME, et il repose sur un malentendu. Le
+registre doit indiquer, « dans la mesure du possible », les délais prévus pour l'effacement (article
+30.1.f). Or l'APD précise que **la durée de conservation n'a pas à être une durée quantitative** : elle
+peut « faire référence à des paramètres tels que le temps nécessaire à la réalisation de la finalité
+concrète poursuivie ainsi qu'à la gestion du contentieux éventuel y relatif, l'expiration d'un délai
+de prescription, une durée d'archivage légal après la fin du traitement ».
+
+**Pourquoi ça débloque.** Un dirigeant qui croit devoir inventer « 3 ans » ou « 7 ans » pour chaque
+catégorie de données s'arrête, faute de savoir. Écrire « durée de la relation contractuelle, puis
+délai de prescription applicable » est **conforme** et honnête. La conformité ne commence pas par un
+chiffre inventé — un chiffre inventé est d'ailleurs pire, puisqu'il engage.
+
+**Corollaire peu connu.** Quand un traitement cesse, l'APD conseille de **conserver la fiche du
+registre** en y mentionnant la période pendant laquelle le traitement a été opéré : l'autorité peut
+contrôler après la fin du traitement, dans les délais de prescription. Supprimer la ligne du registre
+parce que le traitement s'arrête revient à effacer sa propre preuve.
+
+**Sources liées.** Recommandation n° 06/2017 de l'APD, points sur l'article 30.1.f) et sur la
+conservation du registre après cessation —
+https://dataprotectionauthority.be/publications/recommandation-n-06-2017.pdf
+
+**Projets où appliqué** : aucun encore. Répond directement au deuxième chantier annoncé par la carte
+RGPD du simulateur : « documenter pourquoi et combien de temps vous les gardez ».
+**Fiabilité** : ÉLEVÉE. **Dernière confirmation** : 2026-09-28.
+
+---
+
+## E-BE-16 — RGPD : le contrat de sous-traitance est toujours obligatoire, et son refus se traite par le contrat principal
+
+**Principe appris.** Dès qu'un tiers traite des données personnelles **pour le compte et sur
+instruction** de l'entreprise — comptable, secrétariat social, logiciel de paie, hébergeur, boutique en
+ligne, service d'e-mailing, prestataire informatique — un **contrat de sous-traitance** est
+obligatoire. L'article 28.3 ne connaît pas d'exception de taille : il n'y a pas de seuil, pas de
+dispense pour les petites structures, pas de tolérance parce que le prestataire est un ami.
+
+**Le cas concret qui arrive vraiment : le prestataire refuse de signer.** L'APD donne deux leviers
+contractuels, et c'est le genre de conseil qui vaut une prestation :
+- stipuler dans le **contrat principal** que le contrat de sous-traitance en fait partie intégrante,
+  et joindre sa proposition en annexe du contrat à signer ;
+- stipuler que la signature d'un contrat de sous-traitance distinct est obligatoire et que **le
+  paiement des prestations peut être suspendu** jusqu'à cette signature.
+
+L'APD précise par ailleurs qu'elle **intervient à l'encontre des responsables du traitement qui ne
+concluent pas de contrat de sous-traitance** : le risque pèse sur le client, pas seulement sur le
+prestataire récalcitrant.
+
+**Pourquoi c'est le chantier le plus souvent manquant.** Une PME belge type a un comptable, un
+secrétariat social, un hébergeur et un outil d'e-mailing — quatre sous-traitants au sens du RGPD,
+souvent zéro contrat. C'est un manquement facile à constater, facile à corriger, et qui se chiffre
+en documents, pas en logiciels.
+
+**Sources liées.** APD, brochure FAQ pour les PME, questions 9 et 10 —
+https://autoriteprotectiondonnees.be/publications/brochure-faq-pour-les-pme.pdf ·
+Modèles de registre mis à disposition gratuitement par l'APD (version détaillée, version simplifiée
+responsable de traitement, version simplifiée sous-traitant) —
+https://gegevensbeschermingsautoriteit.be/professionnel/premiere-aide/toolbox
+
+**Projets où appliqué** : aucun encore. Troisième chantier de la carte RGPD du simulateur :
+« encadrer vos sous-traitants ».
+**Fiabilité** : ÉLEVÉE. **Dernière confirmation** : 2026-09-28.
+
+---
+
 ## Ce qui reste ouvert dans ce domaine
 
 | Question | Pourquoi elle n'est pas tranchée | Prochain pas |
@@ -474,4 +583,4 @@ NON VÉRIFIÉ pour le plafond chiffré. **Dernière confirmation** : 2026-09-28.
 | ~~Sanctions encourues par l'employeur — loi lanceurs d'alerte~~ | **Fermé le 2026-09-28** : niveau 4 du Code pénal social pour le canal absent, 6 mois à 3 ans et amende pour l'entrave et les représailles, 18 à 26 semaines d'indemnité (fiche E-BE-13) | Reste à lire l'article 101 du Code pénal social pour le plafond chiffré exact |
 | Colonne « type d'entité » des annexes de la loi belge NIS2, lue ligne à ligne | Les tableaux sont à la fin du Moniteur ; les outils tronquent depuis le début | Chercher les formules distinctives une par une, ou obtenir le PDF paginé |
 | ~~Délais de la loi lanceurs d'alerte~~ | **Fermé le 2026-09-22** : 7 jours pour l'accusé de réception, 3 mois pour le retour (fiche E-BE-11) | — |
-| RGPD : durées de conservation et DPA sous-traitants, pour un usage opérationnel | Hors du périmètre des passes faites jusqu'ici | À ouvrir si un contenu ou une offre le demande |
+| ~~RGPD opérationnel : registre, durées de conservation, DPA sous-traitants~~ | **Fermé le 2026-09-28** — fiches E-BE-14, E-BE-15 et E-BE-16, sourcées à l'APD en FR et NL | Reste à voir si l'APD publie une position sur les durées sectorielles |
