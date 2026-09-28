@@ -81,6 +81,35 @@ def entrer(nom: str, url: str, licence: str, origine: str) -> None:
     print(f"  🔒 {identifiant} — {nom} entre en SAS. Isolée jusqu'à preuve du contraire.")
 
 
+def verifier_licence(identifiant: str, licence: str, preuve: str) -> None:
+    """Inscrit la licence LUE DANS LES FICHIERS, sans effacer celle qui était déclarée.
+
+    Le champ « licence_declaree » garde ce que la fiche du dépôt affichait —
+    y compris « Other » ou rien du tout. Le champ « licence_verifiee » porte ce
+    que la lecture des fichiers a établi. L'écart entre les deux est
+    l'information la plus utile du registre : au 2026-09-28, Quandela/Perceval
+    affichait « Other » pour un LICENSE en MIT, et munich-quantum-toolkit/qecc
+    n'affichait rien pour un LICENSE en MIT avec 169 déclarations SPDX.
+    """
+    donnees = charger()
+    for brique in donnees["briques"]:
+        if brique["id"] != identifiant:
+            continue
+        brique["licence_verifiee"] = licence
+        brique["controles"]["licence_permissive"] = licence in PERMISSIVES
+        brique["preuves"]["licence_permissive"] = preuve
+        ecart = ("" if licence == brique["licence_declaree"]
+                 else f" (ÉCART : la fiche annonçait « {brique['licence_declaree']} »)")
+        brique["journal"].append(
+            {"date": _horodatage(),
+             "evenement": f"licence VÉRIFIÉE dans les fichiers : {licence}{ecart}"}
+        )
+        ecrire(donnees)
+        print(f"  🔎 {identifiant} · licence vérifiée {licence}{ecart}")
+        return
+    sys.exit(f"brique inconnue : {identifiant}")
+
+
 def controler(identifiant: str, controle: str, verdict: str, preuve: str) -> None:
     if controle not in CONTROLES:
         sys.exit(f"contrôle inconnu : {controle} (attendus : {', '.join(CONTROLES)})")
@@ -233,7 +262,10 @@ def engendrer_vue() -> None:
                            if str(brique["preuves"].get(c, "")).startswith("LECTURE HUMAINE"))
             lignes.append(
                 f"| {brique['id']} | [{brique['nom']}]({brique['url']}) | {brique['origine']} "
-                f"| {brique['licence_declaree']} | {verts}/{len(CONTROLES)}"
+                f"| {brique.get('licence_verifiee') or brique['licence_declaree']}"
+                + (" ⚠" if brique.get("licence_verifiee")
+                   and brique["licence_verifiee"] != brique["licence_declaree"] else "")
+                + f" | {verts}/{len(CONTROLES)}"
                 + (f" · ⏸ {attentes}" if attentes else "") + " |"
             )
         lignes.append("")
@@ -278,6 +310,7 @@ def verifier() -> int:
 
     for brique in donnees["briques"]:
         ident = brique["id"]
+        effective = brique.get("licence_verifiee") or brique["licence_declaree"]
 
         # V1 — une brique ADMISE doit avoir ses six contrôles au vert
         if brique["etat"] == "ADMISE":
@@ -286,19 +319,23 @@ def verifier() -> int:
                 fautes.append(f"V1 {ident} ADMISE sans : {', '.join(manquants)}")
 
         # V2 — licence copyleft admise sans dérogation écrite
-        if brique["licence_declaree"] in COPYLEFT and brique["etat"] in ("ADMISE", "VERIFIEE"):
+        if effective in COPYLEFT and brique["etat"] in ("ADMISE", "VERIFIEE"):
             if "derogation" not in brique.get("preuves", {}):
                 fautes.append(
-                    f"V2 {ident} licence copyleft {brique['licence_declaree']} en état "
+                    f"V2 {ident} licence copyleft {effective} en état "
                     f"{brique['etat']} sans dérogation écrite de Chaima"
                 )
 
-        # V3 — licence ni permissive ni copyleft connue : à qualifier, jamais à supposer
-        if brique["licence_declaree"] not in PERMISSIVES | COPYLEFT:
+        # V3 — licence ni permissive ni copyleft connue : à qualifier, jamais à supposer.
+        # On juge la licence VÉRIFIÉE quand elle existe : une fiche de dépôt muette
+        # ou fausse ne doit pas empêcher d'admettre une brique dont les fichiers ont
+        # été lus. Ce n'est pas un desserrage — sans lecture, la déclarée fait foi.
+        if effective not in PERMISSIVES | COPYLEFT:
             if brique["controles"]["licence_permissive"] is True:
                 fautes.append(
-                    f"V3 {ident} licence « {brique['licence_declaree'] or 'vide'} » inconnue du "
-                    "référentiel, mais le contrôle de licence est au vert"
+                    f"V3 {ident} licence « {effective or 'vide'} » inconnue du référentiel, "
+                    "mais le contrôle de licence est au vert — lance "
+                    "« briques.py --licence <id> <licence> \"<preuve>\" »"
                 )
 
         # V4 — une brique admise sans commit épinglé n'est pas reproductible
@@ -336,6 +373,9 @@ def main() -> None:
         engendrer_vue()
     elif args[0] == "--controler":
         controler(args[1], args[2], args[3], args[4])
+        engendrer_vue()
+    elif args[0] == "--licence":
+        verifier_licence(args[1], args[2], args[3])
         engendrer_vue()
     elif args[0] == "--attente":
         attente(args[1], args[2], args[3])

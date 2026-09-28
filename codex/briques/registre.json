@@ -532,6 +532,324 @@
       ],
       "domaine": "assistants-de-code",
       "domaine_description": "Assistants de code auto-hébergés, multi-modèles, sandbox applicative"
+    },
+    {
+      "id": "B-13",
+      "nom": "quantumlib/Stim",
+      "url": "https://github.com/quantumlib/Stim",
+      "origine": "États-Unis · Google Quantum AI",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": "131793efb342",
+      "etat": "SAS",
+      "releve_le": "2026-09-28",
+      "controles": {
+        "licence_permissive": true,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": true,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {
+        "licence_permissive": "Apache-2.0 lue dans LICENSE (sas_licence.py, 2026-09-28)",
+        "empreinte": "commit 131793efb342 relevé au clone du 2026-09-28"
+      },
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "contrôle licence_permissive : VERT — Apache-2.0 lue dans LICENSE (sas_licence.py, 2026-09-28)"
+        },
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "commit épinglé : 131793efb342"
+        },
+        {
+          "date": "2026-09-28 14h00",
+          "evenement": "domaine assigné : quantique-correction-erreurs"
+        }
+      ],
+      "domaine": "quantique-correction-erreurs",
+      "domaine_description": "Simulation de stabilisateurs et correction d'erreurs quantiques"
+    },
+    {
+      "id": "B-14",
+      "nom": "quantumlib/Tesseract-decoder",
+      "url": "https://github.com/quantumlib/Tesseract-decoder",
+      "origine": "États-Unis · Google Quantum AI",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": null,
+      "etat": "SAS",
+      "releve_le": "2026-09-28",
+      "controles": {
+        "licence_permissive": null,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {},
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-28 14h00",
+          "evenement": "domaine assigné : quantique-correction-erreurs"
+        }
+      ],
+      "domaine": "quantique-correction-erreurs",
+      "domaine_description": "Simulation de stabilisateurs et correction d'erreurs quantiques"
+    },
+    {
+      "id": "B-15",
+      "nom": "Quandela/Perceval",
+      "url": "https://github.com/quandela/perceval",
+      "origine": "France · Quandela",
+      "licence_declaree": "INDÉTERMINÉE",
+      "commit_epingle": "4a3a016d877c",
+      "etat": "SAS",
+      "releve_le": "2026-09-28",
+      "controles": {
+        "licence_permissive": true,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": true,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {
+        "licence_permissive": "MIT lue dans LICENSE au commit 4a3a016d877c ; la fiche du dépôt affiche « Other » (sas_licence.py, 2026-09-28)",
+        "empreinte": "commit 4a3a016d877c relevé au clone du 2026-09-28"
+      },
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "contrôle licence_permissive : VERT — MIT lue dans LICENSE, alors que la fiche du dépôt affiche « Other » — la lecture des fichiers DÉBLOQUE ici, au lieu d'attraper un piège (2026-09-28)"
+        },
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "commit épinglé : 4a3a016d877c"
+        },
+        {
+          "date": "2026-09-28 14h00",
+          "evenement": "domaine assigné : quantique-photonique-et-fusion"
+        },
+        {
+          "date": "2026-09-28 18h44",
+          "evenement": "licence VÉRIFIÉE dans les fichiers : MIT (ÉCART : la fiche annonçait « INDÉTERMINÉE »)"
+        }
+      ],
+      "domaine": "quantique-photonique-et-fusion",
+      "domaine_description": "Photonique linéaire, états de graphe, mesures de fusion et superposition",
+      "licence_verifiee": "MIT"
+    },
+    {
+      "id": "B-16",
+      "nom": "PECOS-packages/PECOS",
+      "url": "https://github.com/PECOS-packages/PECOS",
+      "origine": "Quantinuum",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": null,
+      "etat": "SAS",
+      "releve_le": "2026-09-28",
+      "controles": {
+        "licence_permissive": null,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {},
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-28 14h00",
+          "evenement": "domaine assigné : quantique-correction-erreurs"
+        }
+      ],
+      "domaine": "quantique-correction-erreurs",
+      "domaine_description": "Simulation de stabilisateurs et correction d'erreurs quantiques"
+    },
+    {
+      "id": "B-17",
+      "nom": "quantinuum-dev/optyx",
+      "url": "https://github.com/quantinuum-dev/optyx",
+      "origine": "Quantinuum",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": null,
+      "etat": "SAS",
+      "releve_le": "2026-09-28",
+      "controles": {
+        "licence_permissive": null,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {},
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-28 14h00",
+          "evenement": "domaine assigné : quantique-photonique-et-fusion"
+        }
+      ],
+      "domaine": "quantique-photonique-et-fusion",
+      "domaine_description": "Photonique linéaire, états de graphe, mesures de fusion et superposition"
+    },
+    {
+      "id": "B-18",
+      "nom": "graphiq-dev/graphiq",
+      "url": "https://github.com/graphiq-dev/graphiq",
+      "origine": "Ki3/Xanadu · photonique",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": "0c07c23407bf",
+      "etat": "SAS",
+      "releve_le": "2026-09-28",
+      "controles": {
+        "licence_permissive": true,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": true,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {
+        "licence_permissive": "Apache-2.0 lue dans LICENSE.md (2026-09-28)",
+        "empreinte": "commit 0c07c23407bf relevé au clone du 2026-09-28"
+      },
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "contrôle licence_permissive : VERT — Apache-2.0 lue dans LICENSE.md (2026-09-28)"
+        },
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "commit épinglé : 0c07c23407bf"
+        },
+        {
+          "date": "2026-09-28 14h00",
+          "evenement": "domaine assigné : quantique-photonique-et-fusion"
+        }
+      ],
+      "domaine": "quantique-photonique-et-fusion",
+      "domaine_description": "Photonique linéaire, états de graphe, mesures de fusion et superposition"
+    },
+    {
+      "id": "B-19",
+      "nom": "Deltakit/deltakit",
+      "url": "https://github.com/Deltakit/deltakit",
+      "origine": "Royaume-Uni · Riverlane",
+      "licence_declaree": "Apache-2.0",
+      "commit_epingle": null,
+      "etat": "SAS",
+      "releve_le": "2026-09-28",
+      "controles": {
+        "licence_permissive": null,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": null,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {},
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-28 14h00",
+          "evenement": "domaine assigné : quantique-correction-erreurs"
+        }
+      ],
+      "domaine": "quantique-correction-erreurs",
+      "domaine_description": "Simulation de stabilisateurs et correction d'erreurs quantiques"
+    },
+    {
+      "id": "B-20",
+      "nom": "munich-quantum-toolkit/qecc",
+      "url": "https://github.com/munich-quantum-toolkit/qecc",
+      "origine": "Allemagne · TU Munich",
+      "licence_declaree": "INDÉTERMINÉE",
+      "commit_epingle": "348913a686e4",
+      "etat": "SAS",
+      "releve_le": "2026-09-28",
+      "controles": {
+        "licence_permissive": true,
+        "provenance": null,
+        "entite_non_sanctionnee": null,
+        "empreinte": true,
+        "execution_isolee": null,
+        "fonctionne_reellement": null
+      },
+      "preuves": {
+        "licence_permissive": "MIT lue dans LICENSE, 169 déclarations SPDX concordantes ; la fiche n'affiche aucune licence (2026-09-28)",
+        "empreinte": "commit 348913a686e4 relevé au clone du 2026-09-28"
+      },
+      "ce_que_ca_donne": "",
+      "ce_que_ca_ne_fait_pas": "",
+      "journal": [
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "entrée en SAS"
+        },
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "contrôle licence_permissive : VERT — MIT lue dans LICENSE, 169 déclarations SPDX concordantes, alors que la fiche n'affichait aucune licence (2026-09-28)"
+        },
+        {
+          "date": "2026-09-28 18h42",
+          "evenement": "commit épinglé : 348913a686e4"
+        },
+        {
+          "date": "2026-09-28 14h00",
+          "evenement": "domaine assigné : quantique-correction-erreurs"
+        },
+        {
+          "date": "2026-09-28 18h44",
+          "evenement": "licence VÉRIFIÉE dans les fichiers : MIT (ÉCART : la fiche annonçait « INDÉTERMINÉE »)"
+        }
+      ],
+      "domaine": "quantique-correction-erreurs",
+      "domaine_description": "Simulation de stabilisateurs et correction d'erreurs quantiques",
+      "licence_verifiee": "MIT"
     }
   ],
   "reactions": []

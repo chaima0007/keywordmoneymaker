@@ -3,7 +3,7 @@
 **Ne pas modifier à la main.** Engendré par `scripts/briques.py` depuis
 `codex/briques/registre.json`, qui est la source.
 
-Relevé du 2026-09-20 · 12 brique(s) · 0 réaction(s)
+Relevé du 2026-09-28 · 20 brique(s) · 0 réaction(s)
 
 ## Règle d'entrée
 
@@ -12,7 +12,7 @@ son prestige : un dépôt d'NVIDIA passe le même sas qu'un dépôt inconnu sur 
 Le contrôle de sécurité est **neutre en origine** ; le contrôle de sanctions porte sur
 l'entité, jamais sur le pays.
 
-## SAS — 10
+## SAS — 18
 
 | Id | Nom | Origine | Licence | Contrôles au vert |
 |---|---|---|---|---|
@@ -26,6 +26,14 @@ l'entité, jamais sur le pays.
 | B-08 | [jd-opensource/JoyAgent-JDGenie](https://github.com/jd-opensource/JoyAgent-JDGenie) | Chine · JD.com | Apache-2.0 | 0/6 · ⏸ 1 |
 | B-10 | [zhikunqingtao/zhikuncode](https://github.com/zhikunqingtao/zhikuncode) | Chine · indépendant | MIT | 2/6 |
 | B-12 | [zzycxz/momapeer](https://github.com/zzycxz/momapeer) | Chine · écosystème China Mobile | MIT | 2/6 |
+| B-13 | [quantumlib/Stim](https://github.com/quantumlib/Stim) | États-Unis · Google Quantum AI | Apache-2.0 | 2/6 |
+| B-14 | [quantumlib/Tesseract-decoder](https://github.com/quantumlib/Tesseract-decoder) | États-Unis · Google Quantum AI | Apache-2.0 | 0/6 |
+| B-15 | [Quandela/Perceval](https://github.com/quandela/perceval) | France · Quandela | MIT ⚠ | 2/6 |
+| B-16 | [PECOS-packages/PECOS](https://github.com/PECOS-packages/PECOS) | Quantinuum | Apache-2.0 | 0/6 |
+| B-17 | [quantinuum-dev/optyx](https://github.com/quantinuum-dev/optyx) | Quantinuum | Apache-2.0 | 0/6 |
+| B-18 | [graphiq-dev/graphiq](https://github.com/graphiq-dev/graphiq) | Ki3/Xanadu · photonique | Apache-2.0 | 2/6 |
+| B-19 | [Deltakit/deltakit](https://github.com/Deltakit/deltakit) | Royaume-Uni · Riverlane | Apache-2.0 | 0/6 |
+| B-20 | [munich-quantum-toolkit/qecc](https://github.com/munich-quantum-toolkit/qecc) | Allemagne · TU Munich | MIT ⚠ | 2/6 |
 
 ## REFUSEE — 2
 

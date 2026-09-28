@@ -317,3 +317,65 @@ d'agents.
 **État : PISTE NON OUVERTE.** L'espace SBOM, SPDX et analyse de licences est industriel et ancien.
 Aucune antériorité cherchée. L'inscrire comme candidat sans l'avoir testée serait précisément la
 faute que ce registre existe pour empêcher.
+
+
+---
+
+## X-05 — le sas de provenance et de licence — MORT le 2026-09-28
+
+Chaima : « va tester ». Testé. La piste inscrite comme NON OUVERTE le 28/09 au matin est morte le
+même jour, et il est bon qu'elle n'ait jamais été appelée candidate.
+
+**Tout ce que le sas fait est publié, élément par élément :**
+
+- **US11816190** (2023) — analyse des composants libres d'un produit, catégorisation en copyleft
+  fort / faible / permissif, et un jeu de règles où un composant est **REJETÉ** sur copyleft fort,
+  approuvé sous condition sinon, avec un attribut final par composant. C'est la porte d'admission
+  avec règles de licence, revendiquée.
+- **`osslili`** (2025, MIT) — lit les **fichiers** de licence, cascade à quatre niveaux, et écrit
+  ceci : *« osslili n'affirme pas une licence qu'il ne peut pas étayer — une identification qu'il
+  ne peut pas soutenir est abandonnée plutôt que devinée »*. C'est mot pour mot mon « ne conclut
+  pas ». Et aussi : *« les licences trouvées dans des fichiers de notices tierces sont catégorisées
+  séparément, pour qu'un THIRD_PARTY_NOTICES vendorisé ne fasse pas passer un projet permissif pour
+  du copyleft »*. C'est mot pour mot mon traitement de `NOTICE`.
+- **`audit-license-provenance.py`** (DeusData) — audit d'identité **octet par octet** de chaque
+  licence vendorisée contre l'amont, **au commit épinglé**, avec verdicts IDENTICAL,
+  IDENTICAL@PINNED, DIFFERS. C'est mon épinglage, en plus strict.
+- **Une page publique sur les licences de synthèse vocale** documente le motif code/poids comme
+  connaissance courante, en nommant les modèles concernés et en ajoutant des cas que je n'avais pas
+  vus : licences qui portent sur la **sortie** générée, poids d'encodeur retenus, licences
+  **empilées** à trois niveaux, et relicenciement (Piper, MIT vers GPL-3.0).
+
+**Verdict : rien à breveter.** Et comme pour X-04, l'essentiel du corpus est **publié, pas
+breveté** — deux des quatre sources sont du code libre et une page de documentation.
+
+### CE QUE LE SAS A FAIT LE JOUR MÊME, ET QUI N'A RIEN À VOIR AVEC UN BREVET
+
+Huit briques quantiques entrées au registre. Le contrôle de licence a trouvé, **dans le sens
+favorable cette fois** :
+
+- **Quandela/Perceval** — la fiche du dépôt affiche « Other ». Le fichier LICENSE dit **MIT**.
+- **munich-quantum-toolkit/qecc** — la fiche n'affiche **aucune** licence. Le fichier dit **MIT**,
+  avec 169 déclarations SPDX concordantes.
+
+Lire les fichiers ne sert donc pas qu'à attraper des pièges : ça **débloque** des briques que
+l'étiquette faisait éviter. Deux outils que la méfiance aurait écartés sont utilisables.
+
+**C'est la vraie valeur du sas, et elle n'est pas brevetable : elle est opérationnelle.**
+
+### CINQ MORTS, ET LE MOTIF EST STABLE
+
+| | Cause |
+|---|---|
+| X-01, X-02 | domaines trop proches — ma faute, `E-31` |
+| X-03 | idée juste, faite depuis 1990 |
+| X-04 | domaine rendu inbrevetable **en temps réel** par publication défensive |
+| X-05 | **outil déjà publié, en code libre et en documentation** |
+
+Quatre fois sur cinq, ce qui nous bloque n'est pas un brevet concurrent : c'est du **libre publié**.
+Dans le logiciel, les gens ne brevettent pas, ils publient — et publier détruit la nouveauté aussi
+sûrement qu'un dépôt.
+
+**C'est la raison qui rend le virage quantique sensé, et pas seulement différent.** En photonique
+quantique, PsiQuantum, Xanadu, Quandela et Photonic déposent massivement : le domaine se protège
+par brevet, pas par publication. La logique du terrain y est inverse.
