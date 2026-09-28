@@ -122,3 +122,31 @@
 - Vérifié : commit + push sur main (voir git log).
 - Ce qui reste / risques : refonte gelée tant que le positionnement n'est pas tranché ; site actuel affiche encore « agence IA / 9 agents ».
 - Besoin du suivant : lire la décision de Chaima sur le positionnement dans ce fichier avant toute refonte.
+
+
+---
+
+## PASSATION — 2026-09-28 20h13 (Europe/Brussels)
+
+**Tâche.** Réécrire les questions du simulateur pour qu'un dirigeant puisse y répondre, puis auditer
+le dispositif à la demande de Chaima.
+
+**Ce que j'ai fait.** Quatre questions réécrites ; pression retirée de la question 4 ; liste NIS2
+recopiée depuis les annexes après trois erreurs constatées ; exclusions Peppol ajoutées au moteur ;
+règle de comptage de la question 2 tranchée par Chaima le 2026-09-20 ; domaine d'expertise « droit de
+la conformité — Belgique » ouvert (12 fiches) ; audit du 2026-09-28.
+
+**Fichiers touchés.** `products/caelum/site/simulateur.html` · `products/caelum/site/assets/simulateur.js`
+· `products/caelum/site/assets/caelum.css` · `codex/expertise/droit-conformite-belgique.md` (+ README)
+· `.claude/BASE-ERREURS.md` et `🔴 ERREURS.md` · `codex/A-DECIDER.md` · `📋 JOURNAL.md` · `CLAUDE.md`
+· un rapport et ses addendas dans `codex/rapports/`.
+
+**Vérifié.** Les 5 contrôles bloquants rendent 0 en local ; CI verte sur la PR #26 à chaque push ;
+rendu Chromium en 390 px et 1280 px ; trois profils de réponse éprouvés dans le navigateur.
+
+**Ce qui reste / risques.** PR #26 **en brouillon** : rien n'est en production. Trois points restent
+NON VÉRIFIÉS et sont écrits comme tels dans le rapport. `deploy.yml` n'exécute ses gardes que sur
+`main`, donc jamais sur une PR. Cinq Routines n'ont toujours pas de condition d'arrêt déclarée.
+
+**Besoin du suivant.** Ne pas conclure que le dépôt est à jour parce qu'une Routine tourne : lire
+`git log --oneline --since=<dernier snapshot>` avant de répondre « rien n'a changé » (fiche E-30).

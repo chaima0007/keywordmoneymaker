@@ -32,13 +32,13 @@
     // E-facturation — fait vérifié : obligatoire depuis le 01/01/2026 (Peppol), assujettis TVA établis en Belgique, B2B.
     if (q1 === "oui") {
       res.push({ n: "E-facturation B2B (Peppol)", s: "oui",
-        t: "Applicable. Obligatoire depuis le 01/01/2026 pour les factures entre assujettis TVA établis en Belgique. Vérifiez que votre logiciel émet ET reçoit via Peppol — un PDF par e-mail ne suffit plus. Prochaine échéance connue : e-reporting prévu pour 2028." });
+        t: "Applicable. Obligatoire depuis le 01/01/2026 pour les factures entre assujettis TVA établis en Belgique — le régime de la franchise compris. Vérifiez que votre logiciel émet ET reçoit via Peppol : un PDF par e-mail ne suffit plus. Quatre situations en dispensent : ne réaliser que des opérations exemptées par l'article 44 du Code TVA, relever du régime forfaitaire (article 56, jusqu'au 01/01/2028 au plus tard), être en faillite, ou être identifié à la TVA en Belgique sans y être établi. Prochaine échéance connue : e-reporting prévu pour 2028." });
     } else if (q1 === "nsp") {
       res.push({ n: "E-facturation B2B (Peppol)", s: "verifier",
         t: "À vérifier. Si votre entreprise est assujettie à la TVA en Belgique et facture d'autres entreprises, l'obligation s'applique depuis le 01/01/2026. Votre comptable peut le confirmer en quelques minutes." });
     } else {
-      res.push({ n: "E-facturation B2B (Peppol)", s: "non",
-        t: "A priori non applicable à ce jour sur la base de votre réponse (pas de facturation B2B entre assujettis TVA belges). Si votre situation change, la question se reposera." });
+      res.push({ n: "E-facturation B2B (Peppol)", s: "verifier",
+        t: "Vos factures sortantes ne sont pas concernées : celles adressées à des particuliers échappent à l'obligation. Mais attention à la moitié qu'on oublie — si vous avez un numéro de TVA belge, vous devez être en mesure de RECEVOIR les factures électroniques structurées de vos fournisseurs. C'est le seul point à régler de votre côté. Source : efacture.belgium.be." });
     }
     // NIS2 — loi 26/04/2024, en vigueur 18/10/2024 ; secteurs + taille ; échéance essentielles 18/04/2026.
     if (q3 === "oui" && q2 === "plus50") {
@@ -57,7 +57,7 @@
         t: "Applicable — comme pour toute entreprise qui traite des données personnelles, quelle que soit sa taille. Les trois chantiers concrets : savoir quelles données vous détenez et où, documenter pourquoi et combien de temps vous les gardez, encadrer vos sous-traitants. Source officielle : autoriteprotectiondonnees.be." });
     } else {
       res.push({ n: "RGPD (données personnelles)", s: "verifier",
-        t: "Réponse rare : la quasi-totalité des entreprises traite des données personnelles (une boîte mail professionnelle ou des fiches de paie suffisent). Revérifiez — si vous en traitez, le RGPD s'applique." });
+        t: "Sur la base de votre réponse, le RGPD ne s'appliquerait pas. C'est possible, mais rare : une boîte mail professionnelle, un carnet d'adresses ou un seul bulletin de paie suffisent à faire de vous un responsable de traitement — et dans ce cas il s'applique, quelle que soit votre taille." });
     }
     // Lanceurs d'alerte — loi 28/11/2022, ≥50 travailleurs.
     if (q2 === "plus50") {

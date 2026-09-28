@@ -619,6 +619,82 @@ exigés. Un compte, pas seulement une présence. Et un message de sortie qui ne 
 **Leçon transférable.** Un contrôle jamais vu échouer n'est pas un contrôle. Et le premier piège à lui
 poser est l'erreur pour laquelle il a été écrit.
 
+## E-29 — Une liste de secteurs juridiques écrite de mémoire, puis annoncée « complète »
+
+**Constaté le** 2026-09-19 · **Survenu** 2026-09-19 · **État** corrigé avant toute publication
+
+**Ce qui s'est passé.** Pour rendre la question 3 du simulateur répondable, la liste des 18 secteurs
+NIS2 a été écrite directement dans `products/caelum/site/simulateur.html`, de mémoire, sans ouvrir les
+annexes de la directive (UE) 2022/2555 — puis présentée au visiteur comme « la liste complète ». Trois
+lignes étaient fausses, vérification faite aux annexes le 2026-09-19 :
+- « Transports : … routier » : l'annexe I, sous-secteur routier, vise les **autorités routières**
+  chargées du contrôle de la gestion du trafic et les **opérateurs de systèmes de transport
+  intelligents**. Le transport routier de marchandises n'y figure pas. Un transporteur belge se serait
+  déclaré concerné à tort ;
+- « Denrées alimentaires : … distribution » : l'annexe II vise les entreprises du secteur alimentaire
+  « engaged in wholesale distribution and industrial production and processing ». Le commerce de détail
+  en est exclu ;
+- « Infrastructure numérique » : l'énumération omettait les points d'échange internet, les registres de
+  noms de domaine de premier niveau et les réseaux de diffusion de contenu — omission du sens
+  **rassurant**, donc la plus dangereuse.
+Le nombre, lui, était exact : 11 secteurs à l'annexe I, 7 à l'annexe II.
+Preuve : annexes I et II reproduites intégralement, consultées le 2026-09-19.
+
+**Cause racine.** Le mot « complète » a été écrit pour un motif d'ergonomie — on ne peut pas exclure une
+liste qu'on ne voit pas — sans que personne ne traite ce mot comme ce qu'il est : une affirmation
+juridique **sur nous**, au sens du §13. Écrire « exemples de secteurs (~18) » n'engageait à rien ; écrire
+« la liste complète » engage à l'avoir lue. Le passage de l'un à l'autre n'a déclenché aucune
+vérification, parce que le contrôle `verifier_coherence_juridique.py` compare des chaînes qu'on lui a
+données et ne sait pas qu'une liste neuve est apparue.
+
+**Signal de détection.** Tu remplaces une formulation prudente et vague par une formulation ferme et
+précise pour améliorer l'ergonomie. Le gain de confort du lecteur est exactement la mesure de ce que tu
+viens de promettre. Mots déclencheurs : « complète », « tous les », « la liste des », « il suffit de ».
+
+**Contre-mesure.** Toute énumération présentée comme exhaustive est recopiée depuis la source primaire
+**pendant** qu'on l'écrit, pas relue après. `gardien-juridique-verite` est saisi avant le commit, pas
+avant la fusion. Et quand l'accès réseau manque, on écrit « exemples » — jamais « complète ».
+
+**Leçon transférable.** Rendre une question plus facile à répondre, c'est promettre davantage au
+lecteur. L'ergonomie et l'exactitude ne sont pas deux sujets séparés : le confort qu'on offre est une
+dette de preuve qu'on contracte.
+
+## E-30 — Le contrôle automatique a remplacé le rituel qu'il devait protéger
+
+**Constaté le** 2026-09-28 · **Survenu** du 2026-09-19 au 2026-09-28 · **État** corrigé
+
+**Ce qui s'est passé.** Une Routine de contrôle a réveillé la session toutes les six heures pendant
+neuf jours pour surveiller une PR. Elle a fonctionné : la CI a été vérifiée à chaque réveil, l'état
+réel relu à chaque fois, aucun rapport inutile produit. Pendant ce temps, **huit commits** ont été
+poussés et **deux fichiers de tenue ont cessé d'être écrits** :
+- `📋 JOURNAL.md` : dernier snapshot le **2026-09-16**, soit douze jours sans entrée, alors que le §5
+  en impose un par session ;
+- `ETAT.md` : dernière modification le **2026-09-14**, alors que le §4 du projet impose une passation
+  à la fin de **chaque** tâche.
+
+Le journal contenait déjà, daté du 2026-09-14, le constat d'un écart de huit jours sur le même
+rituel. La faute s'est donc répétée à l'identique, **après** avoir été documentée.
+
+**Cause racine.** Un réveil automatique produit le sentiment d'être à jour. À chaque contrôle, l'état
+était bien vérifié — mais vérifié pour la PR, pas pour le dépôt ; et lu, pas écrit. La condition
+d'arrêt anti-bruit (« si rien n'a changé, une seule ligne ») a été appliquée aux **contrôles**, où
+elle était juste, puis étendue sans le vouloir aux **sessions de travail**, où elle ne s'applique
+pas : huit commits ne sont pas « rien n'a changé ». Le silence était correct pour la PR et faux pour
+le dépôt.
+
+**Signal de détection.** Une Routine tourne, et l'on répond « aucun changement » plusieurs fois de
+suite alors que `git log` montre des commits depuis le dernier snapshot. La commande qui tranche :
+`git log --oneline --since=<date du dernier snapshot> | wc -l`. Tout résultat supérieur à zéro
+signifie qu'un snapshot est dû.
+
+**Contre-mesure.** Un contrôle programmé ne dispense pas du rituel du §5 ; il ne le remplace pas non
+plus. Quand une session pousse un commit, elle écrit la passation dans `ETAT.md` dans la même passe —
+pas « à la fin », qui n'arrive jamais quand la session dure neuf jours. Et le snapshot du journal se
+déclenche sur l'existence de commits, pas sur l'impression d'avoir changé quelque chose.
+
+**Leçon transférable.** Une surveillance automatique déplace l'attention vers ce qu'elle surveille.
+Ce qu'elle ne surveille pas cesse d'être regardé — d'autant plus sûrement qu'on se sent surveillé.
+
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
 ```
