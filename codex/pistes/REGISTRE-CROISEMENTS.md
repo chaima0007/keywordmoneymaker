@@ -251,3 +251,69 @@ que chaque tentative coûte des heures, et qu'il faut compter en dizaines de ten
 taux, ou réorienter le dispositif vers ce qu'il a produit de plus utile en deux jours — la liberté
 d'exploitation. Les deux brevets tombés du 19/09 valent immédiatement quelque chose pour son
 produit. Aucun croisement n'a rien valu.
+
+
+---
+
+## X-04 — la couche de contradiction — MORTE le 2026-09-28, et la cause est nouvelle
+
+**Ouverte le 2026-09-20** sur le trou commun aux douze briques du registre : toutes vérifient que la
+tâche s'est TERMINÉE, aucune que la conclusion est JUSTE. Trois questions avaient été posées dans
+cet ordre — est-ce déjà fait, l'effet technique tient-il, est-ce que ça se vend — et **la première
+est restée sans réponse pendant huit jours.** C'est ma faute : j'ai construit l'outillage du sas au
+lieu de traiter la question que j'avais moi-même écrite.
+
+**Réponse : c'est fait, cinq fois.**
+
+- **US12676749** (2026-07-07) — porte d'exécution fail-closed avant inférence, verdict signé par
+  quorum, registre d'arbitrage immuable, verrouillage persistant.
+- **draft-krausz-verification-state-01** (IETF) — contraintes `verification.*`, champ
+  `v_adversarial_result`, et table de vérité où `not_checked` donne **halt** : « un état adverse non
+  sondé n'est pas équivalent à résilient ; l'incertitude DOIT arrêter ».
+- **Chauhan, Ratification by Re-execution** (2026-01) — le vérificateur exécute lui-même et publie
+  son verdict AVANT de lire l'auto-vérification de l'autre. Journaux unidirectionnels, un auteur
+  par fichier.
+- **Surisetti, DCTP** (2026-07) — verrouillage par graphe de dépendances, interface strictement
+  propositionnelle, conservation du candidat perdant. Cite WO2021084510A1 (2021).
+- Une discussion publique de praticiens posant le jeton de veto, la dette de preuve à délai et le
+  registre de dissension qui survit à l'exécution.
+
+### LA CAUSE NOUVELLE — la publication défensive
+
+Le premier résultat n'est pas un brevet. C'est un dépôt GitHub, `verdict-gated-merge-deploy-train`,
+dont l'en-tête porte en gras **« Public prior art »** et qui contient de son propre aveu « une
+divulgation habilitante d'environ cinq mille mots avec des revendications ».
+
+**Ce dépôt n'existe pas pour déposer. Il existe pour empêcher de déposer.**
+
+C'est une publication défensive : rédigée comme une demande de brevet, publiée gratuitement, pour
+détruire la nouveauté de tout dépôt ultérieur. La nouveauté est détruite par toute divulgation
+antérieure — y compris une divulgation faite exprès pour ça.
+
+### CE QUE QUATRE MORTS DISENT MAINTENANT
+
+| | Cause | Ce que ça révélait |
+|---|---|---|
+| X-01 | domaines trop proches | erreur de choix — `E-31` |
+| X-02 | domaines trop proches | même erreur, même journée |
+| X-03 | idée juste, faite depuis 1990 | domaine mûr |
+| X-04 | **domaine rendu inbrevetable en temps réel** | **structure du terrain, pas malchance** |
+
+Les trois premières causes étaient corrigibles : mieux choisir les domaines, chercher plus tôt
+l'antériorité. La quatrième ne l'est pas. Dans l'espace des agents autonomes, les mécanismes sont
+publiés en semaines, les normalisateurs publient en brouillons qui font art antérieur, et une
+partie des acteurs publie délibérément pour bloquer.
+
+**Chercher un brevet logiciel dans ce domaine depuis un bureau a un rendement proche de zéro.**
+
+### CE QUI SURVIT, ET QUI N'EST PAS UN CANDIDAT
+
+Aucun des cinq travaux ne couvre le **sas de provenance et de licence** construit ici : lire les
+fichiers et non l'étiquette, attraper la licence scindée code/poids, traiter `NOTICE` comme
+attribution, distinguer « ne conclut pas » de « refusé », rester neutre en origine tout en séparant
+le contrôle de sanctions. Autre domaine — chaîne d'approvisionnement logicielle, pas vérification
+d'agents.
+
+**État : PISTE NON OUVERTE.** L'espace SBOM, SPDX et analyse de licences est industriel et ancien.
+Aucune antériorité cherchée. L'inscrire comme candidat sans l'avoir testée serait précisément la
+faute que ce registre existe pour empêcher.

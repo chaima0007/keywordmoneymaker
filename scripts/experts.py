@@ -35,6 +35,20 @@ def socle() -> str:
     return "\n".join(lignes[debut:fin]).rstrip()
 
 
+def date_du_registre() -> str:
+    """Date du dernier événement consigné au registre — jamais la date du jour.
+
+    Une date volatile dans du contenu engendré fait échouer le contrôle tout
+    seul : les sept experts engendrés le 2026-09-22 étaient déclarés « dérivés »
+    le 28/09 sans qu'une seule brique ait bougé. Un contrôle qui rougit avec le
+    temps et non avec les faits apprend à être ignoré.
+    """
+    donnees = json.loads(REGISTRE.read_text(encoding="utf-8"))
+    dates = [entree["date"] for brique in donnees["briques"]
+             for entree in brique.get("journal", []) if entree.get("date")]
+    return max(dates)[:10] if dates else donnees.get("ouvert_le", "")
+
+
 def grouper() -> dict[str, dict]:
     donnees = json.loads(REGISTRE.read_text(encoding="utf-8"))
     groupes: dict[str, dict] = defaultdict(lambda: {"briques": [], "description": ""})
@@ -70,7 +84,7 @@ def rendre(domaine: str, groupe: dict) -> str:
         "sans que personne ne t'édite. C'est voulu : un expert écrit à la main est figé le jour",
         "de son écriture.",
         "",
-        f"## Les briques de ton domaine au {date.today()}",
+        f"## Les briques de ton domaine — registre au {date_du_registre()}",
         "",
         "| Id | Brique | État | Licence | Ce qu'il faut savoir |",
         "|---|---|---|---|---|",
