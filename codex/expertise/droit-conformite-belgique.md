@@ -1,9 +1,9 @@
 # Domaine : droit de la conformité — Belgique
 
-> **Maturité : CONFIRMÉ** (12 fiches, un seul projet à ce jour — Caelum Partners).
+> **Maturité : CONFIRMÉ** (13 fiches, un seul projet à ce jour — Caelum Partners).
 > Le seuil de 10 fiches est franchi, mais EXPERT exige **aussi** un deuxième projet (CODEX §4) :
 > le domaine reste donc CONFIRMÉ. Une maturité qu'on s'accorde à soi-même ne vaut rien.
-> Dernière passe : 2026-09-22.
+> Dernière passe : 2026-09-28.
 
 Ce fichier est **transverse** : ce que Caelum apprend du droit belge, tout projet de l'Empire le sait.
 On consigne le **principe** et la **source primaire**, jamais un avis. Chaque fiche porte sa date de
@@ -398,13 +398,80 @@ dans les fiches E-BE-03 et E-BE-07. **Dernière confirmation** : 2026-09-22.
 
 ---
 
+## E-BE-13 — Lanceurs d'alerte, sanctions : le niveau est certain, le montant dépend de la date des faits
+
+**Principe appris.** La loi du 28 novembre 2022 punit l'employeur sur **deux registres distincts**, et
+les confondre fausse tout :
+
+1. **Ne pas établir le canal interne**, ne pas tenir le registre des signalements, ou ne pas respecter
+   les règles de suivi → **sanction de niveau 4 du Code pénal social**, le niveau le plus lourd. Elle
+   vise l'employeur, son préposé ou son mandataire, et **l'amende est multipliée par le nombre de
+   travailleurs concernés**, dans la limite de cent fois le maximum.
+2. **Entraver un signalement, exercer des représailles, intenter une procédure abusive, violer la
+   confidentialité de l'identité** → **six mois à trois ans de prison et une amende**, ou l'une de ces
+   peines seulement. Cette branche vise toute personne physique ou morale, pas seulement l'employeur.
+
+S'y ajoute, du côté civil, l'indemnité due au lanceur d'alerte victime de représailles : **18 à 26
+semaines de rémunération** (article 27 de la loi), en plus de la réparation du préjudice réel.
+
+**Le piège, et c'est tout l'intérêt de la fiche : le montant écrit dans la loi n'est jamais celui qu'on
+paie.** Les amendes du droit pénal social sont majorées par les **décimes additionnels** (loi du
+5 mars 1952), un multiplicateur que le législateur relève périodiquement. Trois régimes se succèdent,
+et **c'est la date des faits qui décide**, pas la date du jugement :
+
+| Faits commis | Décimes | Multiplicateur |
+|---|---|---|
+| du 01/01/2017 au 31/01/2026 | 70 | **× 8** |
+| du 01/02/2026 au 31/08/2026 | 90 | **× 10** |
+| depuis le 01/09/2026 | 2,5 sur des montants déjà réécrits | **× 10 au total** |
+
+Conséquence directe : les montants « **4 800 à 48 000 €** » que citent les commentaires de 2023 —
+et qui circulent encore — sont le × 8 de l'amende de base. **Ils sont périmés pour tout fait commis
+depuis le 1er février 2026.**
+
+**Ajout du 19 décembre 2025, souvent oublié** : quand l'infraction de niveau 4 est commise
+**délibérément** (« facteur aggravant »), l'amende infligée **ne peut pas être inférieure à la moitié
+du maximum**. Le plancher disparaît pour qui savait.
+
+**Sources liées.** Table des matières de la loi sur Justel, qui situe les sanctions — chapitre 7,
+section 5, articles 33-34, et chapitre 8, section 11, articles 53-54 modifiant le Code pénal social :
+https://ejustice.just.fgov.be/eli/loi/2022/11/28/2022042980/justel ·
+Securex, sanctions de la loi lanceurs d'alerte :
+https://www.securex.be/fr/lex4you/employeur/actualites/entreprises-a-partir-de-50-travailleurs-pensez-au-canal-de-signalement-interne ·
+Relèvement des décimes et facteur aggravant, loi du 19/12/2025 :
+https://www.securex.be/fr/lex4you/employeur/actualites/des-amendes-plus-elevees-en-droit-penal-social-a-partir-de-2026 ·
+Travaux parlementaires (« les décimes additionnels sont augmentés de 70 à 90 ») :
+https://www.lachambre.be/FLWB/PDF/56/1094/56K1094001.pdf ·
+Historique des trois régimes et règle de la date des faits :
+https://www.prevent.be/fr/banque-de-connaissance/code-penal-social-amendes-en-forte-hausse
+
+**NON VÉRIFIÉ — le plafond exact du niveau 4.** Un secrétariat social publie, pour les faits depuis le
+01/02/2026, « amende pénale de 6 000 à **70 000** € · amende administrative de 3 000 à **35 000** € ».
+Or × 10 de la base historique (600 à 6 000 € pénal, 300 à 3 000 € administratif) donne 6 000 à
+**60 000** € et 3 000 à **30 000** €. L'écart vient probablement de la réécriture de l'article 101 du
+Code pénal social par la loi du 16 mars 2026, que je n'ai pas lue. **Ne citer aucun plafond chiffré
+tant que l'article 101 n'est pas lu** : dire « sanction de niveau 4, la plus lourde du Code pénal
+social, multipliée par le nombre de travailleurs » suffit et reste exact.
+
+**Piège de recherche rencontré, à connaître.** Une recherche sur « loi lanceurs d'alerte articles 33
+et 34 » remonte en premier une **loi tunisienne de 2017** dont les articles portent les mêmes numéros
+et le même objet. Un numéro d'article sans son texte et son pays ne prouve rien — c'est la fiche
+E-BE-12 en situation.
+
+**Projets où appliqué** : aucun encore. Matière première pour la carte « canal lanceurs d'alerte » du
+simulateur et pour une offre d'accompagnement.
+**Fiabilité** : ÉLEVÉE pour le niveau, les deux registres, l'indemnité et le mécanisme des décimes ;
+NON VÉRIFIÉ pour le plafond chiffré. **Dernière confirmation** : 2026-09-28.
+
+---
+
 ## Ce qui reste ouvert dans ce domaine
 
 | Question | Pourquoi elle n'est pas tranchée | Prochain pas |
 |---|---|---|
 | Décompte des intérimaires pour le seuil de 50 (lanceurs d'alerte) | Ambiguïté du renvoi au seul § 1er de l'article 7 | Une circulaire ou une décision de justice ; sinon, rester au niveau de précision de la fiche E-BE-08 |
 | ~~Numéro d'article du barème de sanctions NIS2~~ | **Fermé le 2026-09-22** : section « Mesures administratives et amendes » = articles 58 à 61 (table des matières de Justel) | Reste à confirmer l'article exact dans cette fourchette |
-| Sanctions encourues par l'employeur — loi lanceurs d'alerte | Aucun commentaire consulté ne cite l'article ; le rattachement à un niveau du Code pénal social n'est pas établi | Lire les articles de sanction de la loi du 28/11/2022 |
+| ~~Sanctions encourues par l'employeur — loi lanceurs d'alerte~~ | **Fermé le 2026-09-28** : niveau 4 du Code pénal social pour le canal absent, 6 mois à 3 ans et amende pour l'entrave et les représailles, 18 à 26 semaines d'indemnité (fiche E-BE-13) | Reste à lire l'article 101 du Code pénal social pour le plafond chiffré exact |
 | Colonne « type d'entité » des annexes de la loi belge NIS2, lue ligne à ligne | Les tableaux sont à la fin du Moniteur ; les outils tronquent depuis le début | Chercher les formules distinctives une par une, ou obtenir le PDF paginé |
 | ~~Délais de la loi lanceurs d'alerte~~ | **Fermé le 2026-09-22** : 7 jours pour l'accusé de réception, 3 mois pour le retour (fiche E-BE-11) | — |
 | RGPD : durées de conservation et DPA sous-traitants, pour un usage opérationnel | Hors du périmètre des passes faites jusqu'ici | À ouvrir si un contenu ou une offre le demande |
