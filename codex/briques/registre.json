@@ -583,18 +583,21 @@
       "url": "https://github.com/quantumlib/Tesseract-decoder",
       "origine": "États-Unis · Google Quantum AI",
       "licence_declaree": "Apache-2.0",
-      "commit_epingle": null,
+      "commit_epingle": "e7c762eef24161e304ba6fccb856a05b41f88c39",
       "etat": "SAS",
       "releve_le": "2026-09-28",
       "controles": {
-        "licence_permissive": null,
+        "licence_permissive": true,
         "provenance": null,
         "entite_non_sanctionnee": null,
-        "empreinte": null,
+        "empreinte": true,
         "execution_isolee": null,
         "fonctionne_reellement": null
       },
-      "preuves": {},
+      "preuves": {
+        "licence_permissive": "Apache-2.0 lue dans LICENSE au commit e7c762eef241 (2026-09-28)",
+        "empreinte": "commit e7c762eef24161e304ba6fccb856a05b41f88c39 relevé au clone du 2026-09-28"
+      },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
       "journal": [
@@ -605,10 +608,19 @@
         {
           "date": "2026-09-28 14h00",
           "evenement": "domaine assigné : quantique-correction-erreurs"
+        },
+        {
+          "date": "2026-09-28 19h42",
+          "evenement": "licence VÉRIFIÉE dans les fichiers : Apache-2.0"
+        },
+        {
+          "date": "2026-09-28 19h42",
+          "evenement": "commit épinglé : e7c762eef24161e304ba6fccb856a05b41f88c39"
         }
       ],
       "domaine": "quantique-correction-erreurs",
-      "domaine_description": "Simulation de stabilisateurs et correction d'erreurs quantiques"
+      "domaine_description": "Simulation de stabilisateurs et correction d'erreurs quantiques",
+      "licence_verifiee": "Apache-2.0"
     },
     {
       "id": "B-15",
@@ -665,18 +677,21 @@
       "url": "https://github.com/PECOS-packages/PECOS",
       "origine": "Quantinuum",
       "licence_declaree": "Apache-2.0",
-      "commit_epingle": null,
+      "commit_epingle": "4c4ebaaa4709e8eb2812b03e5a2e09ca1400a312",
       "etat": "SAS",
       "releve_le": "2026-09-28",
       "controles": {
-        "licence_permissive": null,
+        "licence_permissive": true,
         "provenance": null,
         "entite_non_sanctionnee": null,
-        "empreinte": null,
+        "empreinte": true,
         "execution_isolee": null,
         "fonctionne_reellement": null
       },
-      "preuves": {},
+      "preuves": {
+        "licence_permissive": "Apache-2.0 lue dans ONZE fichiers LICENSE (racine plus dix sous-paquets) au commit 4c4ebaaa4709. RÉSERVE consignée : l'un d'eux est python/pecos-rslib-llvm/.../LLVM-LICENSE.txt, et la licence LLVM est « Apache-2.0 WITH LLVM-exception », un identifiant SPDX DISTINCT que le contrôle ne sépare pas encore. À lire par un humain avant toute redistribution du sous-paquet LLVM.",
+        "empreinte": "commit 4c4ebaaa4709e8eb2812b03e5a2e09ca1400a312 relevé au clone du 2026-09-28"
+      },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
       "journal": [
@@ -687,10 +702,19 @@
         {
           "date": "2026-09-28 14h00",
           "evenement": "domaine assigné : quantique-correction-erreurs"
+        },
+        {
+          "date": "2026-09-28 19h42",
+          "evenement": "licence VÉRIFIÉE dans les fichiers : Apache-2.0"
+        },
+        {
+          "date": "2026-09-28 19h42",
+          "evenement": "commit épinglé : 4c4ebaaa4709e8eb2812b03e5a2e09ca1400a312"
         }
       ],
       "domaine": "quantique-correction-erreurs",
-      "domaine_description": "Simulation de stabilisateurs et correction d'erreurs quantiques"
+      "domaine_description": "Simulation de stabilisateurs et correction d'erreurs quantiques",
+      "licence_verifiee": "Apache-2.0"
     },
     {
       "id": "B-17",
@@ -698,18 +722,21 @@
       "url": "https://github.com/quantinuum-dev/optyx",
       "origine": "Quantinuum",
       "licence_declaree": "Apache-2.0",
-      "commit_epingle": null,
+      "commit_epingle": "b7c92dce34ff4f34dfdebad03b315930f4d5f5af",
       "etat": "SAS",
       "releve_le": "2026-09-28",
       "controles": {
-        "licence_permissive": null,
+        "licence_permissive": true,
         "provenance": null,
         "entite_non_sanctionnee": null,
-        "empreinte": null,
+        "empreinte": true,
         "execution_isolee": null,
         "fonctionne_reellement": null
       },
-      "preuves": {},
+      "preuves": {
+        "licence_permissive": "Apache-2.0 lue dans LICENSE au commit b7c92dce34ff (2026-09-28)",
+        "empreinte": "commit b7c92dce34ff4f34dfdebad03b315930f4d5f5af relevé au clone du 2026-09-28"
+      },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
       "journal": [
@@ -720,10 +747,19 @@
         {
           "date": "2026-09-28 14h00",
           "evenement": "domaine assigné : quantique-photonique-et-fusion"
+        },
+        {
+          "date": "2026-09-28 19h42",
+          "evenement": "licence VÉRIFIÉE dans les fichiers : Apache-2.0"
+        },
+        {
+          "date": "2026-09-28 19h42",
+          "evenement": "commit épinglé : b7c92dce34ff4f34dfdebad03b315930f4d5f5af"
         }
       ],
       "domaine": "quantique-photonique-et-fusion",
-      "domaine_description": "Photonique linéaire, états de graphe, mesures de fusion et superposition"
+      "domaine_description": "Photonique linéaire, états de graphe, mesures de fusion et superposition",
+      "licence_verifiee": "Apache-2.0"
     },
     {
       "id": "B-18",
@@ -775,18 +811,21 @@
       "url": "https://github.com/Deltakit/deltakit",
       "origine": "Royaume-Uni · Riverlane",
       "licence_declaree": "Apache-2.0",
-      "commit_epingle": null,
+      "commit_epingle": "de206c07575d6c8ff4c6d38761d0dfc85d9d7c68",
       "etat": "SAS",
       "releve_le": "2026-09-28",
       "controles": {
-        "licence_permissive": null,
+        "licence_permissive": true,
         "provenance": null,
         "entite_non_sanctionnee": null,
-        "empreinte": null,
+        "empreinte": true,
         "execution_isolee": null,
         "fonctionne_reellement": null
       },
-      "preuves": {},
+      "preuves": {
+        "licence_permissive": "Apache-2.0 lue dans LICENSE au commit de206c07575d (2026-09-28)",
+        "empreinte": "commit de206c07575d6c8ff4c6d38761d0dfc85d9d7c68 relevé au clone du 2026-09-28"
+      },
       "ce_que_ca_donne": "",
       "ce_que_ca_ne_fait_pas": "",
       "journal": [
@@ -797,10 +836,19 @@
         {
           "date": "2026-09-28 14h00",
           "evenement": "domaine assigné : quantique-correction-erreurs"
+        },
+        {
+          "date": "2026-09-28 19h42",
+          "evenement": "licence VÉRIFIÉE dans les fichiers : Apache-2.0"
+        },
+        {
+          "date": "2026-09-28 19h42",
+          "evenement": "commit épinglé : de206c07575d6c8ff4c6d38761d0dfc85d9d7c68"
         }
       ],
       "domaine": "quantique-correction-erreurs",
-      "domaine_description": "Simulation de stabilisateurs et correction d'erreurs quantiques"
+      "domaine_description": "Simulation de stabilisateurs et correction d'erreurs quantiques",
+      "licence_verifiee": "Apache-2.0"
     },
     {
       "id": "B-20",

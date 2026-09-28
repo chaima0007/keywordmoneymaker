@@ -27,12 +27,12 @@ l'entité, jamais sur le pays.
 | B-10 | [zhikunqingtao/zhikuncode](https://github.com/zhikunqingtao/zhikuncode) | Chine · indépendant | MIT | 2/6 |
 | B-12 | [zzycxz/momapeer](https://github.com/zzycxz/momapeer) | Chine · écosystème China Mobile | MIT | 2/6 |
 | B-13 | [quantumlib/Stim](https://github.com/quantumlib/Stim) | États-Unis · Google Quantum AI | Apache-2.0 | 2/6 |
-| B-14 | [quantumlib/Tesseract-decoder](https://github.com/quantumlib/Tesseract-decoder) | États-Unis · Google Quantum AI | Apache-2.0 | 0/6 |
+| B-14 | [quantumlib/Tesseract-decoder](https://github.com/quantumlib/Tesseract-decoder) | États-Unis · Google Quantum AI | Apache-2.0 | 2/6 |
 | B-15 | [Quandela/Perceval](https://github.com/quandela/perceval) | France · Quandela | MIT ⚠ | 2/6 |
-| B-16 | [PECOS-packages/PECOS](https://github.com/PECOS-packages/PECOS) | Quantinuum | Apache-2.0 | 0/6 |
-| B-17 | [quantinuum-dev/optyx](https://github.com/quantinuum-dev/optyx) | Quantinuum | Apache-2.0 | 0/6 |
+| B-16 | [PECOS-packages/PECOS](https://github.com/PECOS-packages/PECOS) | Quantinuum | Apache-2.0 | 2/6 |
+| B-17 | [quantinuum-dev/optyx](https://github.com/quantinuum-dev/optyx) | Quantinuum | Apache-2.0 | 2/6 |
 | B-18 | [graphiq-dev/graphiq](https://github.com/graphiq-dev/graphiq) | Ki3/Xanadu · photonique | Apache-2.0 | 2/6 |
-| B-19 | [Deltakit/deltakit](https://github.com/Deltakit/deltakit) | Royaume-Uni · Riverlane | Apache-2.0 | 0/6 |
+| B-19 | [Deltakit/deltakit](https://github.com/Deltakit/deltakit) | Royaume-Uni · Riverlane | Apache-2.0 | 2/6 |
 | B-20 | [munich-quantum-toolkit/qecc](https://github.com/munich-quantum-toolkit/qecc) | Allemagne · TU Munich | MIT ⚠ | 2/6 |
 
 ## REFUSEE — 2
