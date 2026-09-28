@@ -659,6 +659,42 @@ avant la fusion. Et quand l'accès réseau manque, on écrit « exemples » — 
 lecteur. L'ergonomie et l'exactitude ne sont pas deux sujets séparés : le confort qu'on offre est une
 dette de preuve qu'on contracte.
 
+## E-30 — Le contrôle automatique a remplacé le rituel qu'il devait protéger
+
+**Constaté le** 2026-09-28 · **Survenu** du 2026-09-19 au 2026-09-28 · **État** corrigé
+
+**Ce qui s'est passé.** Une Routine de contrôle a réveillé la session toutes les six heures pendant
+neuf jours pour surveiller une PR. Elle a fonctionné : la CI a été vérifiée à chaque réveil, l'état
+réel relu à chaque fois, aucun rapport inutile produit. Pendant ce temps, **huit commits** ont été
+poussés et **deux fichiers de tenue ont cessé d'être écrits** :
+- `📋 JOURNAL.md` : dernier snapshot le **2026-09-16**, soit douze jours sans entrée, alors que le §5
+  en impose un par session ;
+- `ETAT.md` : dernière modification le **2026-09-14**, alors que le §4 du projet impose une passation
+  à la fin de **chaque** tâche.
+
+Le journal contenait déjà, daté du 2026-09-14, le constat d'un écart de huit jours sur le même
+rituel. La faute s'est donc répétée à l'identique, **après** avoir été documentée.
+
+**Cause racine.** Un réveil automatique produit le sentiment d'être à jour. À chaque contrôle, l'état
+était bien vérifié — mais vérifié pour la PR, pas pour le dépôt ; et lu, pas écrit. La condition
+d'arrêt anti-bruit (« si rien n'a changé, une seule ligne ») a été appliquée aux **contrôles**, où
+elle était juste, puis étendue sans le vouloir aux **sessions de travail**, où elle ne s'applique
+pas : huit commits ne sont pas « rien n'a changé ». Le silence était correct pour la PR et faux pour
+le dépôt.
+
+**Signal de détection.** Une Routine tourne, et l'on répond « aucun changement » plusieurs fois de
+suite alors que `git log` montre des commits depuis le dernier snapshot. La commande qui tranche :
+`git log --oneline --since=<date du dernier snapshot> | wc -l`. Tout résultat supérieur à zéro
+signifie qu'un snapshot est dû.
+
+**Contre-mesure.** Un contrôle programmé ne dispense pas du rituel du §5 ; il ne le remplace pas non
+plus. Quand une session pousse un commit, elle écrit la passation dans `ETAT.md` dans la même passe —
+pas « à la fin », qui n'arrive jamais quand la session dure neuf jours. Et le snapshot du journal se
+déclenche sur l'existence de commits, pas sur l'impression d'avoir changé quelque chose.
+
+**Leçon transférable.** Une surveillance automatique déplace l'attention vers ce qu'elle surveille.
+Ce qu'elle ne surveille pas cesse d'être regardé — d'autant plus sûrement qu'on se sent surveillé.
+
 ## FICHE VIERGE (à copier pour toute erreur nouvelle)
 
 ```

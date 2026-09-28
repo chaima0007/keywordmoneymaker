@@ -318,11 +318,12 @@ Ces deux règles s'appliquent aux **42 agents**, pas seulement à ceux de la cha
 
 3. **DEUX SUBSTRATS D'EXÉCUTION — connaître la frontière.** Ce dépôt contient deux systèmes d'agents
    distincts, qui s'ignoraient totalement jusqu'au 2026-09-11 : les **42 définitions Markdown** de
-   `.claude/agents/` (lues par Claude Code) et les **33 modules Python** de `agents/` (code exécutable,
+   `.claude/agents/` (lues par Claude Code) et les **36 modules Python** de `products/*/agents/`
+   et `shared/` (code exécutable,
    lancé par `main.py`, socle `claude-agent-sdk`). Ce ne sont **pas** des doublons : ni fusion, ni
    archivage. Qui possède quoi, et la règle d'arbitrage : `.claude/FRONTIERE-SUBSTRATS.md` — à lire
    avant d'affirmer « ce qui existe déjà » (fiche E-07). Le substrat Python ne lit pas ce fichier :
-   la base d'erreurs l'atteint via `agents/base_erreurs.py`, qui la **lit** sans la recopier.
+   la base d'erreurs l'atteint via `shared/base_erreurs.py`, qui la **lit** sans la recopier.
 
 ## 2 quater. ORDONNANCEURS — les Routines qui te réveillent (2026-09-14)
 Tu n'es pas toujours lancé par un humain. Des **Routines** programmées réveillent des sessions à heure

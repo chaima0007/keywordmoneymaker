@@ -4,6 +4,47 @@
 > Rien n'a changé → une seule ligne « SNAPSHOT [date] : aucun changement ». Un changement → entrée datée et précise.
 > Un rapport pour dire qu'il n'y a rien à dire est une faute contre le protocole. Le plus récent en haut.
 
+## SNAPSHOT 2026-09-28 20h13 (Europe/Brussels) — audit demandé : garde-fous, réparateurs, experts
+
+**Écart de rituel, le même qu'il y a quinze jours.** Dernier snapshot : 2026-09-16. Douze jours,
+huit commits poussés dans l'intervalle (`git log --oneline --since=2026-09-16 | wc -l` → 8).
+`ETAT.md` n'a pas bougé depuis le 2026-09-14. Une Routine de contrôle tournait toutes les six heures
+et répondait « aucun changement » — vrai pour la PR surveillée, faux pour le dépôt. Fiche **E-30**.
+
+**État réel vérifié, pas de mémoire.**
+- `main` distant = `2a975ec`, inchangé depuis le 2026-09-16. Branche `ux/questions-simulateur`
+  = `74b879f`, 8 commits d'avance, PR #26 **en brouillon**, CI verte, sans conflit.
+- Rien de ce qui a été fait depuis le 19/09 n'est en production. C'est voulu : parcours 3, relecture
+  humaine obligatoire.
+
+**Les garde-fous — 5 contrôles bloquants, tous verts ce jour (code 0).**
+`audit_code_sur.py` · `audit_cloisonnement.py --bloquant` · `generer_registre_erreurs.py --verifier` ·
+`verifier_rapports.py` · `verifier_coherence_juridique.py`. Ils tournent dans
+`.github/workflows/securite-code.yml`. Le second workflow, `deploy.yml`, publie en liste blanche et
+ne se déclenche que sur `main` : ses quatre gardes ne s'exécutent donc **jamais** sur une PR — connu,
+consigné dans la carte, non corrigé.
+
+**Les réparateurs — un seul répare vraiment.** `generer_registre_erreurs.py` régénère
+`🔴 ERREURS.md` depuis `.claude/BASE-ERREURS.md` et échoue en CI si les deux divergent. Les quatre
+autres **constatent** et bloquent, ils ne corrigent rien. Le vrai réparateur du dispositif reste la
+base d'erreurs elle-même : 30 fiches, dont 5 nées d'erreurs commises par un agent cette quinzaine
+(E-26 à E-30).
+
+**Les experts — 56 définitions Markdown, 36 modules Python, 12 fiches d'expertise.**
+`/codex/expertise/` était vide jusqu'au 2026-09-21 : le domaine « droit de la conformité — Belgique »
+y est désormais ouvert, maturité CONFIRMÉ (12 fiches, un seul projet — EXPERT exige un deuxième).
+
+**Défaut trouvé par cet audit, et corrigé.** Le §2 ter.3 du CLAUDE.md — le paragraphe que tout agent
+doit lire « avant d'affirmer ce qui existe déjà » — désignait « les 33 modules Python de `agents/` »
+et « `agents/base_erreurs.py` ». **Ce dossier n'existe pas.** Les modules sont répartis dans
+`products/*/agents/` (21) et `shared/` (15), soit 36, et la base d'erreurs est atteinte via
+`shared/base_erreurs.py`. `codex/CARTE.md` portait, lui, les bons chemins depuis le 2026-09-16 : la
+carte était juste et la constitution périmée. Corrigé dans CLAUDE.md.
+
+**Audit de cohérence (§5.5).** CLAUDE.md porte le CODEX ✅ · structure /codex conforme §12 ✅ ·
+A-DECIDER redaté (il affichait le 20/09) ✅ · ETAT.md remis à jour ✅ · `deploy.yml` sans garde sur PR ⚠️
+(inchangé) · 5 Routines sans condition d'arrêt déclarée ⚠️ (inchangé depuis le 14/09).
+
 ## SNAPSHOT 2026-09-16 16h10 (Europe/Brussels) — pourquoi rien n'a changé, et ce que le journal avait manqué
 
 - **État réel vérifié, pas de mémoire** : `main` = `4f206cf`, **inchangé depuis le 14/09 à 22h**.

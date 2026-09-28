@@ -2,7 +2,7 @@
 
 > Le seul fichier à ouvrir pour savoir ce qui bloque (CODEX §6). Trié par ancienneté, le plus vieux en haut.
 > ⚠️ = en attente depuis plus de 14 jours (mis en évidence). Une ligne ne disparaît que lorsque Chaima a
-> tranché (→ consignée avec sa date), jamais parce qu'elle a vieilli. Aujourd'hui : **2026-09-20**.
+> tranché (→ consignée avec sa date), jamais parce qu'elle a vieilli. Aujourd'hui : **2026-09-28**.
 
 | Quoi | Projet | Type | En attente depuis | Résumé en 1 ligne |
 |---|---|---|---|---|
