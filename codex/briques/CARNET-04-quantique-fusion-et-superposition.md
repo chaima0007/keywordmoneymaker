@@ -220,3 +220,88 @@ utilisables, et deux se sont ajoutées le jour même : `B-21 OptGraphState` (MIT
 La question n'est donc plus quel problème, mais **avec qui** — ou bien s'il faut arrêter de chercher
 des brevets et garder du dispositif ce qui rapporte vraiment, c'est-à-dire les briques vérifiées et
 la liberté d'exploitation.
+
+---
+
+## AJOUT DU 2026-10-01, 10h15 — P-16 : antériorité faite, et trois corrections à ce carnet
+
+**Ajout, pas réécriture.** Ce qui est écrit au-dessus de P-16 reste tel quel, y compris ce qui est
+maintenant corrigé. Entrée `S-01` au registre des solutions.
+
+### Correction 1 — il y a quatre portes, pas deux
+
+Le carnet écrit : *« c'est un compromis dur, énoncé comme tel, et personne ne le résout — on le
+contourne par l'encodage et l'adaptativité »*. **Incomplet, et c'est l'incomplétude qui comptait.**
+
+Les sorties publiées du compromis sont **quatre** :
+
+1. **les photons auxiliaires** — Grice 2011, Ewert & van Loock 2014 (3/4 avec quatre photons non
+   intriqués), optimalité étudiée par Olivo & Grosshans 2018 ;
+2. **la redondance de code** — le « code-boosting », déjà dans la proposition FBQC d'origine ;
+3. **le traitement gaussien actif**, c'est-à-dire la **compression** — Zaidi & van Loock, PRL 110,
+   260501 (2013), dont le titre est *« Beating the one-half limit of ancilla-free linear optics Bell
+   measurements »*. Elle coûte des compresseurs et **pas des photons** ;
+4. **changer la mesure elle-même** — Pankovich et coll., ORCA Computing, PRL 133, 050604 (2024) :
+   projection en base GHZ au lieu de fusion à deux qubits, avec des seuils de perte par photon
+   élevés.
+
+Le carnet nommait les deux premières et présentait le reste comme absent. La troisième est
+précisément la direction que j'allais chercher, et elle a **treize ans**.
+
+### Correction 2 — la question n'était pas ouverte, elle était close par un théorème
+
+La question que j'avais inscrite dans la fiche de `physicien-fusion-et-boosting` — *existe-t-il un
+gain qui ne se paie pas en photons exposés ?* — n'est pas une question de recherche. Elle est
+**bornée** : Calsamiglia et Lütkenhaus établissent que la discrimination non ambiguë de quatre états
+de Bell en optique linéaire ne dépasse pas 1/2, que les modes auxiliaires **dans le vide**
+n'améliorent rien, et qu'une mesure déterministe est **impossible avec n'importe quel état
+auxiliaire**, même avec rétroaction.
+
+**Une question dont la réponse est un théorème n'est pas une direction de recherche.** Et la seule
+porte sans photons, en rail double — l'encodage qu'emploie réellement la FBQC —, est la **moins
+bonne** des quatre : 0,596 par compression (Phys. Rev. A 99, 032302, qui établit que le 0,643
+souvent cité est un point expérimentalement inatteignable) contre 0,625 avec deux photons
+auxiliaires. arXiv:2412.07353 l'écrit : en dimension deux, la compression ne bat même pas la mesure
+de Bell la plus simple avec photons auxiliaires.
+
+### Correction 3 — une citation présentée comme générale, et c'est E-36 encore
+
+Le carnet cite : *« booster ajoute des photons pour des améliorations modestes des probabilités de
+succès, et n'a aucune tolérance intrinsèque à la perte »*. La citation est exacte. Sa portée, non.
+
+Une **expérience** publiée dans npj Quantum Information le 2025-03-08 mesure une mesure de Bell
+boostée par paire auxiliaire intriquée à 69,3 ± 0,3 %, et rapporte un seuil de perte par photon
+passant de 0,45 % à **1,4 %** — *« un triplement de la robustesse à la perte »*, avec en plus des
+taux d'erreur logique nettement réduits même pour de petits réseaux de fusion.
+
+**Les deux énoncés ne se contredisent pas** : booster n'apporte pas de tolérance à la perte *par
+lui-même* — c'est l'encodage qui la donne — tout en relevant le seuil dans le régime mesuré. Et les
+deux chiffres ne se comparent pas : modèles d'erreur différents, réseaux différents. **Il ne faut
+surtout pas les additionner.**
+
+Ce qui est fautif, c'est de ma part : j'ai cité la phrase pessimiste seule, sans la mesure qui la
+nuance, et je l'ai présentée comme un constat de domaine. C'est **la famille de la fiche `E-36`** —
+une phrase lue, une portée non mesurée. Pas de fiche nouvelle : `E-36` couvre déjà exactement ce
+signal, et en ouvrir une seconde pour le même motif diluerait la première.
+
+### Ce que le dispositif a bien fait, et il faut le dire aussi
+
+La contre-mesure d'`E-36` prescrivait : *« quand un article dit qu'un outil manque, lis les
+références de la phrase avant de la croire »*. Appliquée. L'antériorité est passée **avant** toute
+proposition, et la piste est morte **en minutes, sans qu'aucun secret soit créé** — donc l'entrée
+`S-01` peut être écrite en clair, puisqu'il n'y a rien de nous à protéger.
+
+C'est le premier cas où le dispositif tue une mauvaise direction avant qu'elle coûte quelque chose.
+Les six croisements précédents coûtaient des heures ou des jours chacun.
+
+### P-16 : état final
+
+**Fermé comme piste de brevet.** Il reste un problème réel et correctement décrit — le compromis
+existe, les auteurs l'énoncent — mais ses quatre sorties sont occupées, la plus récente depuis douze
+jours (*Single-photon-boosted type-I fusion gates*, Phys. Rev. Applied, 2026-09-16).
+
+**Deux problèmes du carnet restent intouchés par cette recherche :** `P-17` dans ses volets
+**dispositif** — une ligne à retard qui perd moins, un mécanisme qui **tolère** une visibilité HOM
+basse au lieu de l'exiger haute, où l'erreur Z vaut exactement `(1 − V)/4` — et `P-19`. `P-15` est à
+vérifier en premier, parce que arXiv:2606.29432 recycle des « échecs de mesure structurés », ce qui
+est voisin des *scraps* sans leur être identique.
