@@ -192,3 +192,82 @@ auxiliaires.
 - Les probabilités citées sont LUES dans les articles nommés. PLAUSIBLE, confiance MODÉRÉE sur les
   valeurs, ÉLEVÉE sur le fait que la direction est occupée.
 - Ceci n'est pas un conseil juridique.
+
+---
+
+## S-02 — P-15 · exploiter les *scraps* — OUVERTE ET MORTE le 2026-10-01
+
+**Ouverte** dans la foulée de `S-01`, parce que j'avais écrit qu'elle coûtait une heure et qu'il
+valait mieux le savoir tout de suite. Morte en moins.
+
+**Question posée :** les *scraps* — l'information non-stabilisatrice encore disponible sous perte —
+font passer la limite de tolérance de 29,3 % à 38,2 %. Personne ne dit comment les exploiter dans un
+réseau réel. Peut-on le dire ?
+
+### D'abord, une suspicion levée
+
+J'avais écrit dans le rapport de `S-01` qu'arXiv:2606.29432, qui « recycle des échecs de mesure
+structurés », pouvait être la même chose que les scraps. **Ce n'est pas la même chose.** Ce papier
+recycle le secteur d'**échec de fusion** d'une porte de fusion par paires en dimension d, par
+compression gaussienne. Les scraps concernent l'information résiduelle après **perte de photon**.
+Deux secteurs différents, deux mécanismes différents. La suspicion était bonne à vérifier, elle
+tombe.
+
+### Ce qui tue, et c'est une cause nouvelle — la huitième
+
+Les limites publiées le sont bien : **29,3 %** dans le cas non adaptatif, établi par Lee et coll.
+(2015), Ewert et coll. (2016), Lee et coll. (2019) et Hilaire et coll. (2023) ; **50 %** dans le cas
+adaptatif à mesures mono-photon.
+
+Mais le **38,2 %** par les scraps, non. Voici la phrase exacte d'arXiv:2506.11975 :
+
+> « However, **in [19] we show** even without adaptivity an LPPT of 38.2 % (≈ (3 − √5)/2) can be
+> achieved by accounting for the non-stabilizer information (known as scraps) which may still
+> available in the presence of loss. »
+
+Et la référence **[19]** de ce même article est, intégralement :
+
+> **« PsiQuantum, Manuscript in preparation. »**
+
+**Le résultat est annoncé et n'est pas divulgué.** Ce n'est donc ni « déjà publié » (X-04, X-05,
+S-01) ni « déjà breveté » (X-06) : c'est une troisième chose, et elle est pire que les deux.
+
+- **Rien de public sur quoi construire.** Aucun enseignement habilitant : on sait que ça marche et
+  on ne sait pas comment. Impossible de partir de là.
+- **Et la partie qui le détient est celle qui dépose massivement.** Annoncer un résultat dans un
+  article public en réservant le détail habilitant à un manuscrit « en préparation » est la
+  signature habituelle d'une demande déjà déposée. **NON VÉRIFIÉ — je n'ai aucun numéro de demande.**
+  PLAUSIBLE, confiance MODÉRÉE.
+
+Attaquer les scraps, ce n'est donc pas ouvrir une direction : c'est entrer en collision avec
+PsiQuantum sur un résultat qu'ils ont annoncé comme le leur, sans enseignement public, sans
+laboratoire, et probablement après leur date de priorité.
+
+### Fiche d'entrée
+
+| champ | valeur |
+|---|---|
+| **Ouverte le** | 2026-10-01 |
+| **Problème visé** | `P-15` (volet scraps uniquement) |
+| **Nature** | protocole de décodage |
+| **Coût en photons** | neutre — c'est son intérêt |
+| **Test de mort** | la limite de 38,2 % déjà atteinte par un tiers |
+| **Réfutation** | inutile — morte avant, à l'antériorité |
+| **Chiffres** | tous **LUS**, aucun SIMULÉ, aucun MESURÉ |
+| **Antériorité** | **FAITE** le 2026-10-01, et c'est elle qui tue |
+| **État** | **MORTE** |
+| **Où est le fond** | nulle part : il n'y a pas de fond à protéger |
+
+### Ce qui reste vrai de P-15, et ne doit pas être enterré avec
+
+`P-15` **n'est pas clos en entier.** Ce qui meurt est le volet scraps. Ce qui reste décrit et non
+attribué : l'effacement qui retire les voisinages des **deux** qubits pour un seul photon perdu, et
+le fait que les architectures exigeant plus de 97 % d'efficacité photonique sont qualifiées par leurs
+propres auteurs de « perspective redoutable ». Aucune antériorité n'a été cherchée là-dessus.
+
+### Ce que ça dit, et c'est stratégique
+
+**Lire un article public de ce domaine renseigne sur ce qui est déjà revendiqué en privé.** Une
+phrase « nous montrons dans [réf] » où la référence est un manuscrit en préparation est un signal à
+traiter comme un dépôt, pas comme une lacune. C'est exactement le contraire de la lecture que j'ai
+faite de `P-18` le 2026-09-28, où j'avais pris un aveu de trou pour un trou.

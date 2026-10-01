@@ -305,3 +305,79 @@ jours (*Single-photon-boosted type-I fusion gates*, Phys. Rev. Applied, 2026-09-
 basse au lieu de l'exiger haute, où l'erreur Z vaut exactement `(1 − V)/4` — et `P-19`. `P-15` est à
 vérifier en premier, parce que arXiv:2606.29432 recycle des « échecs de mesure structurés », ce qui
 est voisin des *scraps* sans leur être identique.
+
+---
+
+## AJOUT DU 2026-10-01, 11h00 — P-15 : le volet *scraps* est pré-empté sans être divulgué
+
+**Ajout, pas réécriture.** Entrée `S-02` au registre des solutions. Et `P-15` n'est **pas** clos en
+entier : seul son volet scraps meurt ici.
+
+### Ce que le carnet disait, et ce qu'il omettait
+
+Le carnet écrit, à juste titre, que les scraps font passer la limite de 29,3 % à 38,2 % (≈ (3−√5)/2)
+« en tenant compte de l'information non-stabilisatrice encore disponible sous perte ».
+
+Il omettait **qui** l'a montré, et dans quoi. La phrase exacte d'arXiv:2506.11975 est :
+*« **in [19] we show** even without adaptivity an LPPT of 38.2 % […] can be achieved by accounting
+for the non-stabilizer information (known as scraps) »*. Et la référence [19] du même article est,
+intégralement : **« PsiQuantum, Manuscript in preparation. »**
+
+Les deux autres limites, elles, sont publiées et attribuées : **29,3 %** non adaptatif par Lee et
+coll. (2015), Ewert et coll. (2016), Lee et coll. (2019) et Hilaire et coll. (2023) ; **50 %**
+adaptatif à mesures mono-photon.
+
+### La huitième cause de mort, et elle est pire que les sept précédentes
+
+Ni « déjà publié », ni « déjà breveté » : **annoncé et non divulgué.**
+
+- Pas d'enseignement habilitant public : on sait que le résultat existe, pas comment il s'obtient.
+  Rien sur quoi construire.
+- Et la partie qui le détient dépose massivement. Annoncer un résultat en réservant le détail
+  habilitant à un manuscrit en préparation est la signature habituelle d'une demande déjà déposée.
+  **NON VÉRIFIÉ** — aucun numéro de demande en main. PLAUSIBLE, confiance MODÉRÉE.
+
+### Une suspicion levée, et il faut le dire
+
+J'avais écrit ce matin, à 10h15, qu'arXiv:2606.29432 — qui « recycle des échecs de mesure
+structurés » — pouvait recouvrir les scraps. **Non.** Ce papier recycle le secteur d'**échec de
+fusion** d'une porte par paires en dimension d, par compression gaussienne. Les scraps concernent
+l'information résiduelle après **perte de photon**. Secteurs différents, mécanismes différents.
+
+C'était une suspicion, elle était signalée comme telle, et elle tombe. C'est le fonctionnement
+normal : une suspicion vérifiée en une heure vaut mieux qu'une certitude non vérifiée.
+
+### La leçon, et elle inverse celle du 2026-09-28
+
+Le 2026-09-28, sur `P-18`, j'ai pris **un aveu de trou pour un trou** : les auteurs écrivaient qu'il
+leur manquait une métrique, et l'outil était en référence [22] du même paragraphe.
+
+Ici c'est l'inverse exact : les auteurs écrivent qu'ils **ont** le résultat, et la référence est un
+manuscrit en préparation. **Dans les deux cas, la phrase du corps de texte ne dit pas ce qu'elle a
+l'air de dire, et c'est la référence qui le dit.**
+
+Règle qui en sort, et elle complète la contre-mesure d'`E-36` : **dans ce domaine, une référence est
+un acte juridique autant qu'un renvoi bibliographique.** « Nous montrons dans [réf] » où [réf] est
+un manuscrit en préparation se traite comme un dépôt, pas comme une lacune.
+
+### Ce qui reste de P-15, et n'est pas enterré avec
+
+Non attribué, non cherché : l'effacement qui retire les voisinages des **deux** qubits pour un seul
+photon perdu, et l'exigence de plus de 97 % d'efficacité photonique que ses propres auteurs
+qualifient de « perspective redoutable ». Aucune antériorité là-dessus.
+
+### État du carnet 4 au 2026-10-01, 11h00
+
+| problème | état | pourquoi |
+|---|---|---|
+| `P-15` scraps | **MORT** | pré-empté sans divulgation par PsiQuantum (`S-02`) |
+| `P-15` reste | ouvert, non cherché | effacement double voisinage, seuil des 97 % |
+| `P-16` | **FERMÉ** | borné par un théorème, quatre sorties occupées (`S-01`) |
+| `P-17` métrique de coût | **MORT** | `X-06`, le 2026-09-28 |
+| `P-17` dispositif | **ouvert, et c'est le meilleur restant** | ligne à retard, tolérance à une visibilité HOM basse où l'erreur Z vaut `(1 − V)/4` |
+| `P-18` | **MORT** | libre publié MIT + brevet jusqu'en 2044 + art. 52 CBE |
+| `P-19` | ouvert, non cherché | analyse formelle née en 2024 |
+
+**Deux cibles restent, et une seule est bonne.** `P-17` volet dispositif : effet physique — donc
+hors de l'exclusion de l'art. 52 CBE —, relation exacte publiée et donc calculable, et rien de ce
+qui a été lu aujourd'hui ne la touche.
