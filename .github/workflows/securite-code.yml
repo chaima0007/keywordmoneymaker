@@ -86,6 +86,16 @@ jobs:
         # un expert a dérivé du registre ou s'il est devenu orphelin.
         run: python3 scripts/experts.py --verifier
 
+      - name: Chaîne physique engendrée à jour (BLOQUANT)
+        # Chaima, 2026-10-01 : « crée des agents physiciens et agents qui pourraient trouver des
+        # solutions ». Huit rôles — quatre physiciens, un par problème ouvert du carnet 4, et
+        # quatre rôles de solution avec séparation des pouvoirs : un seul propose, un seul produit
+        # des chiffres, un seul réfute, un seul prépare le dossier pour un humain.
+        # Comme les experts de domaine, ces fiches sont ENGENDRÉES et non écrites : le socle commun
+        # est extrait de contradicteur.md, donc une retouche du socle ne peut pas laisser huit
+        # fiches derrière elle. Ce contrôle échoue si une fiche a dérivé de son générateur.
+        run: python3 scripts/engendrer_physiciens.py --verifier
+
       - name: Registre des briques — sas non contourné (BLOQUANT)
         # Chaima, 2026-09-20 : « il faut toujours isoler les nouveaux codes le temps de savoir
         # si c'est safe et que ça fonctionne réellement ». Ce contrôle vérifie que le sas n'a

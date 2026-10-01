@@ -111,3 +111,47 @@ chose**, et la protection vient après, sur ce qu'on a ajouté.
 
 **Ce qui reste des deux jours perdus :** les quatorze problèmes des carnets, le test de distance,
 les fiches E-30 et E-31, et le registre des croisements. Rien n'est supprimé.
+
+---
+
+## 2026-10-01 — 8h40 · La chaîne physique est engendrée. Elle ne mesure rien.
+
+**Ajout, jamais écrasement.** Ce qui est au-dessus reste en vigueur : licence avant tout, un code
+publié est de l'art antérieur contre notre propre brevet, construire d'abord.
+
+**Demande de Chaima, ce matin :** *« crée des agents physiciens et agents qui pourraient trouver
+des solutions »*.
+
+C'est la **route 1** proposée le 2026-09-28 après la mort de `X-06`, et c'est la seule des trois qui
+garde l'objectif de brevets vendables. Sa raison : `P-15`, `P-16`, `P-17` et `P-19` ont un **effet
+technique physique**, donc ils échappent à l'exclusion de l'art. 52(2) CBE qui a tué `P-18`.
+
+**Huit rôles, engendrés par `scripts/engendrer_physiciens.py`.** Quatre physiciens, un par problème
+ouvert. Quatre rôles de solution avec séparation des pouvoirs : `chercheur-de-solutions` est le seul
+à proposer, `calculateur-quantique` le seul à produire des chiffres, `refutateur-physique` le seul à
+réfuter et il ne propose jamais, `liaison-physicien-humain` prépare le dossier pour un humain et ne
+contacte personne. Méthode complète dans `codex/methodes/CHAINE-PHYSIQUE.md`.
+
+**Ce qu'il faut dire et ne pas contourner.** Aucun de ces agents n'est un physicien. Ils lisent et
+ils calculent ; ils ne mesurent rien. Toute sortie porte SIMULÉ ou LU, jamais MESURÉ, et chaque
+fiche porte cet avertissement à l'endroit où l'agent décide — pas en préambule décoratif. C'est la
+leçon de `E-36`, écrite trois jours avant : une inférence non mesurée présentée comme un constat a
+coûté un virage de domaine entier.
+
+**Nouveau registre : `codex/pistes/REGISTRE-SOLUTIONS.md`.** Les carnets ne contiennent que des
+problèmes ; ce registre reçoit les propositions. **Trace uniquement, le fond au coffre** — le dépôt
+est public et il n'y a pas de délai de grâce en Europe, donc une solution écrite ici en clair serait
+une solution dont nous aurions détruit la nouveauté nous-mêmes.
+
+Trois portes avant qu'une proposition devienne candidate : la physique réfutée sans succès, le
+chiffre simulé avec son script, l'antériorité faite — **et pas seulement sur les brevets**, puisque
+quatre croisements sur six sont morts de libre publié.
+
+**Il reste vide, et il doit rester vide tant que c'est vrai.** La chaîne existe depuis aujourd'hui
+et n'a rien produit.
+
+**Ce qui bloque toujours sur Chaima, inchangé depuis plusieurs jours :** créer le dépôt privé
+`empire-codex` (403 pour moi), trancher les 29 fiches au périmètre Caelum (`E-35`), et dire si la
+règle R9 proposée dans `E-36` entre au dispositif. S'y ajoute une question nouvelle, et elle décide
+du reste : **la route 1 suppose un accès à un banc de photonique quantique**, qui n'est ni gratuit
+ni rapide. Je prépare la demande ; je ne contacte personne.
